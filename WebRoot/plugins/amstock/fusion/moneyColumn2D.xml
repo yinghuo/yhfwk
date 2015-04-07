@@ -1,0 +1,5 @@
+<chart palette='3' caption='社会物流总额' xAxisName='年' yAxisName='亿元' rotateYAxisName='0' showValues='0' decimals='0'  formatNumberScale='0' useRoundEdges='1'>
+<set label='2008年' value='19371.05' />
+<set label='2009年' value='21663.79' />
+<set label='2010年' value='23696.35' />
+</chart>

@@ -1,0 +1,28 @@
+<graph caption='营业额' PYAxisName='总收入' SYAxisName='总数'
+ numberPrefix='RMB' showvalues='0'  numDivLines='4' formatNumberScale='0' decimalPrecision='0'
+anchorSides='10' anchorRadius='3' anchorBorderColor='009900'>
+<categories>
+<category name='一月' />
+<category name='二月' />
+<category name='三月' /> 
+<category name='四月' />
+</categories>
+<dataset seriesName='物流' color='AFD8F8' showValues='0'>
+<set value='25601.34' />
+<set value='20148.82' />
+<set value='17372.76' />
+<set value='38105.68' />
+</dataset> 
+<dataset seriesName='仓储' color='F6BD0F' showValues='0' >
+<set value='57401.85' /> 
+<set value='45263.37' />
+<set value='117320.16' />
+<set value='114845.27' />
+</dataset>
+<dataset seriesName='总数' color='8BBA00' showValues='0' parentYAxis='S' >
+<set value='45000' />
+<set value='44835' />
+<set value='77557' />
+<set value='92633' />
+</dataset>
+</graph>

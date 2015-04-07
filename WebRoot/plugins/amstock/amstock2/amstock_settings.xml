@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the settings with values not equal to defaults are in this file. If you want to see the
+	full list of available settings, check the amstock_settings.xml file in the amstock folder. -->
+<settings>
+	<margins>0</margins>
+	<redraw>true</redraw>
+	<margins>0</margins>
+	<font>Arial</font>
+	<text_size>12</text_size>
+	<legend_position>left</legend_position>
+	<legend_width>180</legend_width>
+	<data_sets>
+		<data_set did="0">
+			<title>East Stock</title>
+			<short>ES</short>
+			<color>7f8da9</color>
+			<file_name>data.csv</file_name>
+			<csv>
+				<reverse>true</reverse>
+				<date_format>YYYY-MM-DD</date_format>
+				<columns>
+					<column>date</column>
+					<column>index1</column>
+					<column>index2</column>
+					<column>index3</column>
+					<column>index4</column>
+					<column>index5</column>
+					<column>index6</column>
+					<column>index7</column>
+				</columns>
+			</csv>
+		</data_set>
+	</data_sets>
+
+	<charts>
+		<chart cid="0">
+			<height>60</height>
+			<border_color>#CCCCCC</border_color>
+			<border_alpha>100</border_alpha>
+			<values>
+				<x>
+					<bg_color>#FAC303</bg_color>
+				</x>
+			</values>
+			<column_width>1</column_width>
+			<graphs>
+				<graph gid="0">
+					<title>粮油</title>
+					<color>#D200D2</color>
+					
+					<data_sources>
+						<close>index2</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+				<graph gid="1">
+					<title>水果</title>
+					<color>#d3a4ff</color>
+					<data_sources>
+						<close>index1</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+				<graph gid="2">
+					<title>蔬菜</title>
+					<color>#80FFFF</color>
+					<data_sources>
+						<close>index3</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+				<graph gid="3">
+					<title>花卉</title>
+					<color>#FF5151</color>
+					<data_sources>
+						<close>index4</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+				<graph gid="4">
+					<title>林业</title>
+					<color>#EAC100</color>
+					<data_sources>
+						<close>index5</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+				 <graph gid="6">
+					<title>畜牧</title>
+					<color>#70DE05</color>
+					<fill_alpha>30</fill_alpha>
+					<data_sources>
+						<close>index6</close>
+					</data_sources>
+					<width>3</width>
+					<bullet>round_outline</bullet>
+					<smoothed>true</smoothed>
+					<legend>
+						<date key="true" title="true">{close}</date>
+						<period key="true" title="true">{close}</period>
+					</legend>
+				</graph>
+			</graphs>
+		</chart>
+
+	</charts>
+
+	<data_set_selector>
+		<enabled>false</enabled>
+	</data_set_selector>
+	<period_selector>
+		<periods>
+			<period type="DD" count="5" selected="true">5天</period>
+			<period  type="MM" count="1">1月</period>
+			<period type="MM" count="3">3月</period>
+			<period type="YYYY" count="1">1年</period>
+			<period type="MAX">最大</period>
+		</periods>
+
+		<periods_title>滚动:</periods_title>
+		<custom_period_title>区间:</custom_period_title>
+	</period_selector>
+
+	<header>
+		<enabled>false</enabled>
+	</header>
+
+	<scroller>
+		<graph_data_source>index1</graph_data_source>
+		<resize_button_style>dragger</resize_button_style>
+		<playback>
+			<enabled>true</enabled>
+			<speed>3</speed>
+		</playback>
+	</scroller>
+	<strings>
+	  <months>
+	    <nov>11月</nov>
+	  </months>
+	</strings>
+</settings>

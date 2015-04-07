@@ -1,0 +1,16 @@
+<chart   lineThickness='1' showValues='0' formatNumberScale='0' anchorRadius='2'   divLineAlpha='20' divLineColor='blue' divLineIsDashed='1'  alternateHGridAlpha='5'  shadowAlpha='40' labelStep="2" numvdivlines='5' chartRightMargin="35"  bgAngle='270' bgAlpha='10,10' yAxisName='（%）' palette='3'>
+<categories >
+<category label='2008年' />
+<category label='2009年' />
+<category label='2010年' />
+</categories>
+<dataset seriesName='同比增长' color='1D8BD1' anchorBorderColor='1D8BD1' anchorBgColor='1D8BD1'>
+	<set value='16.72' />
+	<set value='20.390' />
+	<set value='12.27' />
+	</dataset>
+
+
+
+
+</chart>

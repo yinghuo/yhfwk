@@ -1,0 +1,15 @@
+<chart palette='2' caption='延安地市粮食产量分析' xAxisName='地市' yAxisName='产量(吨)' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' useRoundEdges='1'>
+<set label='宝塔区' value='47312' />
+<set label='吴起县' value='63295' />
+<set label='志丹县' value='60219' />
+<set label='安塞县' value='57732' />
+<set label='子长县' value='65293' />
+<set label='延川县' value='62984' />
+<set label='延长县' value='68752' />
+<set label='甘泉县' value='60213' />
+<set label='富县' value='77891' />
+<set label='洛川县' value='50777' />
+<set label='黄陵县' value='60133' />
+<set label='黄龙县' value='48902' />
+<set label='宜川县' value='50981' />
+</chart>

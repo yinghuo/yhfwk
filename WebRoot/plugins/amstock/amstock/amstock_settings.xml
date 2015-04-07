@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the settings with values not equal to defaults are in this file. If you want to see the
+full list of available settings, check the amstock_settings.xml file in the amstock folder. -->
+<settings>
+  <margins>0</margins>                                                   
+  <redraw>true</redraw>
+  <number_format>  
+    <letters>
+       <letter number="1000">℃</letter>
+   
+    </letters>      
+  </number_format>
+  <data_sets> 
+    <data_set did="0">
+       <title>East Stock</title>
+       <short>ES</short>
+       <color>7f8da9</color>
+       <file_name>data.csv</file_name>
+       <csv>
+         <reverse>true</reverse>
+         <date_format>YYYY-MM-DD</date_format>
+         <columns>
+           <column>date</column>
+           <column>index1</column>
+           <column>index2</column>
+         </columns>
+       </csv>
+    </data_set>
+  </data_sets>
+
+  <charts>
+  	<chart cid="0">
+  		<height>60</height>
+  		<title>温度（℃）</title>
+      <border_color>#CCCCCC</border_color>
+      <border_alpha>100</border_alpha>
+     
+      <values>
+        <x>
+          <bg_color>#C08020</bg_color>
+        </x>        
+      </values>
+      <legend>
+        <show_date>true</show_date>
+      </legend>
+
+      <column_width>100</column_width>
+
+      <events>
+        <color>#FF3300</color>
+      </events>
+
+  		<graphs>
+  			<graph gid="0">
+  			  <title>冷链专用箱内温度</title>
+          <color>#60C0FF</color>
+          <fill_alpha>60</fill_alpha>  			
+  				<data_sources>
+  				  <close>index2</close>
+          </data_sources>
+          <width>3</width>
+
+  				<bullet>round_outline</bullet>
+          <smoothed>true</smoothed>
+
+  		    <legend>
+            <date key="true" title="true"><![CDATA[{close}]]></date>
+            <period key="true" title="true"><![CDATA[开始:<b>{open}</b> 结束:<b>{close}</b>]]></period>
+          </legend>         
+  			</graph>     		
+  			<graph gid="1">
+  			  <title>警戒温度</title>
+<color>#FF3300</color>
+  				<data_sources>
+  				  <close>index1</close>
+          </data_sources>
+          <width>3</width>
+  				<bullet>round_outline</bullet>
+          <smoothed>true</smoothed>
+
+  		    <legend>
+            <date key="true" title="true"><![CDATA[{close}]]></date>
+            <period key="true" title="true"><![CDATA[开始:<b>{open}</b> 结束:<b>{close}</b>]]></period>
+          </legend>             
+  			</graph>  
+      			
+  		</graphs>
+  	</chart>
+
+  </charts>
+
+  <data_set_selector>
+    <enabled>false</enabled>
+  </data_set_selector>
+  
+  <period_selector>
+		<periods>		
+      <period type="DD" count="10">10天</period>
+    	<period selected="true" type="MM" count="1">1月</period>
+    	<period type="MM" count="3">3月</period>
+    	<period type="YYYY" count="1">1年</period>
+    	<period type="YTD" count="0">YTD</period>
+    	<period type="MAX">最大</period>
+		</periods>
+		
+		<periods_title>滑动:</periods_title>
+		<custom_period_title>区间:</custom_period_title> 
+  </period_selector>
+
+  <header>
+    <enabled>false</enabled>
+  </header>
+<strings><processing_data>数据处理中......</processing_data>数据加载中......<loading_data></loading_data><export_as_image>另存为图片</export_as_image><no_data>无数据！</no_data><months><jan>2013-07-21</jan><feb>2013-07-21 11:</feb><mar>2013-07-21 11:</mar><apr>2013-07-21 11:</apr><may>2013-07-21 11:</may><jun>2013-07-21 11:</jun><jul>2013-07-21 11:</jul><aug>2013-07-21 11:</aug><sep>2013-07-21 11:</sep><oct>2013-07-21 11:</oct><nov>2013-07-21 11:</nov><dec>2013-07-21 11:</dec></months></strings>
+  <scroller>
+    <graph_data_source>index1</graph_data_source>
+    <resize_button_style>dragger</resize_button_style>
+    <playback>
+      <enabled>true</enabled>
+      <speed>2</speed>
+    </playback>
+  </scroller>
+</settings>

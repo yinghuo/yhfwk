@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="yhfwk"
+  id="myeclipse.1424937006558"
+  context-root="/yhfwk"
+  j2ee-spec="5.0"
+  archive="yhfwk.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

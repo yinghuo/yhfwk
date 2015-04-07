@@ -1,0 +1,23 @@
+<graph caption='同比增加' PYAxisName='支出增加值' SYAxisName='总收入比例'
+ numberPrefix='RMB' showvalues='0'  numDivLines='4' formatNumberScale='0' decimalPrecision='0'
+anchorSides='10' anchorRadius='3' anchorBorderColor='009900'>
+<categories>
+<category name='一月' />
+<category name='二月' />
+<category name='三月' /> 
+<category name='四月' />
+</categories>
+<dataset seriesName='支出' color='AFD8F8' showValues='0'>
+<set value='2601.34' />
+<set value='2148.82' />
+<set value='1372.76' />
+<set value='5407.15' />
+</dataset> 
+ 
+<dataset seriesName='总收入比例' color='8BBA00' showValues='0' parentYAxis='S' >
+<set value='25' />
+<set value='24' />
+<set value='29' />
+<set value='27' />
+</dataset>
+</graph>

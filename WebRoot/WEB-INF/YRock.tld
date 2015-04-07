@@ -7,7 +7,7 @@
 	<uri>http://open.rockontrol/form</uri>
 	<tag>
 		<name>Page</name>
-		<tag-class>com.rockontrol.trust.utils.PageTag</tag-class>
+		<tag-class>org.chonger.utils.PageTag</tag-class>
  		<bodycontent>JSP</bodycontent>
  		
  		<attribute>
@@ -37,7 +37,7 @@
 	
 	<tag>
 		<name>PageNum</name>
-		<tag-class>com.rockontrol.trust.utils.PageNumTag</tag-class>
+		<tag-class>org.chonger.utils.PageNumTag</tag-class>
  		<bodycontent>JSP</bodycontent>
 	</tag>
 </taglib>
