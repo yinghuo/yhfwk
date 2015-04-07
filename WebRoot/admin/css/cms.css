@@ -1,0 +1,78 @@
+.status span
+{
+	display:inline-block;
+	width:120px;
+}
+
+.boardItem
+{
+	border:1px #ccc solid;
+	margin:2px;
+	padding-left:5px;
+}
+
+.boardTitle a
+{
+	height:20px;
+	line-height:20px;
+	font-weight:bold;
+	font-size:14px;
+}
+
+.boardInfo
+{
+	margin-left:20px;
+	margin-right:20px;
+	margin-top:10px;
+}
+
+.boardInfo .boardName
+{
+	height:20px;
+	line-height:20px;
+	font-weight:bold;
+	font-size:14px;
+}
+
+.topiclst{
+}
+
+.topiclst div
+{
+	height:20px;
+	line-height:20px;
+	cursor:pointer;
+	border-bottom:1px #666 solid;
+	margin:2px 0px;
+	padding-left:5px;
+}
+.topiclst div:hover
+{
+	background-color:#ffff99;
+	color:#000;
+}
+
+.topiclst .btns,.topiclst .times
+{
+	float:right;
+}
+.topiclst .times
+{
+	margin-right:20px;
+}
+
+.boardaddfrm 
+{
+	display:none;	
+}
+
+.boardaddfrm .boardItem
+{
+	border-color:red;
+	padding-bottom:8px;
+}
+
+.boardaddfrm .txt
+{
+	width:220px;
+}

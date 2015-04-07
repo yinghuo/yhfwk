@@ -1,0 +1,71 @@
+.dialog {
+	box-shadow: 0px 0px 5px #cccccc;
+	border:solid 2px #d0d0d0;
+	position:absolute;
+	left:30%;
+	top:30%;
+	background-color:#ffffff;
+	width:400px;
+	border-radius: 5px;
+	z-index:999;
+	display:none;
+}
+.dialog h6 {
+	border-bottom:solid 1px #cccccc;
+}
+.dialog h6 span {
+	color:#0c79be;
+}
+.dialogBtnBox {
+	border-top:solid 1px #cccccc;
+}
+.dialog h6,.dialogBtnBox {
+	padding:5px 10px;
+	background-color:#e3eff9;
+	color:#000000;
+	font-weight:bold;
+}
+.dialogClose {
+	float:right;
+	width:22px;
+	height:22px;
+	cursor:pointer;
+	background:url("../images/dialogClose.png") no-repeat  0  0 transparent;
+}
+.dialogClose:hover {
+	background:url("../images/dialogClose-hover.png") no-repeat  0  0 transparent;
+}
+.dialog .dialogContext {
+	padding:20px;
+}
+.dialog ul li {
+	margin:20px 0;
+}
+.dialog ul li label {
+	width:100px;
+	text-align:right;
+	display: inline-block;
+}
+.dialog input[type='button']{
+	float:right
+}
+
+.dialog input[type='text']{
+	height:25px;
+	line-height:25px;
+	width: 50%;
+}
+.maskLayer{
+	width:100%;
+	height:100%;
+    background-color: #000000;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: 900;    
+    display:none;
+}

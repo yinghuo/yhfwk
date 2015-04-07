@@ -1,0 +1,69 @@
+/*左侧*/
+.centerLeft {
+	height:100%;
+	background:#22b4e2 url("../images/centerBg.png") 0 0 repeat-x;
+	padding:20px 0 0 20px;
+	overflow:auto
+}
+.centerLeft li {
+	cursor:pointer;
+}
+.centerLeft li ul{
+	margin:5px 0 5px 15px;
+}
+.centerLeft li ul li {
+	padding:5px 0 5px 10px;	
+}
+
+.leftFirstMenu {
+	margin-bottom:15px;
+	padding-bottom:10px;
+	background:url("../images/cutOffLine.png") center bottom no-repeat transparent;
+}
+.leftFirstMenu span{
+	font-weight:bold;
+	color:#025f99;
+	padding-left:15px;
+	background:url("../images/triangular_up.png") 0 3px no-repeat transparent;
+}
+
+.leftFirstMenu .unfold_LeftMenu{
+	background:url("../images/triangular_down.png")  0 3px no-repeat transparent;
+}
+
+.leftFirstMenu ul {
+	display:none;
+}
+
+.selected_leftMenu {
+	border-radius:5px 0 0 5px;
+	background-color:#ffffff;
+	color:#46b4f9;
+	font-weight: bold;
+}
+
+/*右侧*/
+.centerRightContainer {	
+	height:100%;
+	background:#22b4e2 url("../images/centerBg.png") 0 0 repeat-x;
+}
+
+.centerRight {
+	padding:20px;
+	background-color:#ffffff;
+	height:93%;
+	overflow:auto;
+}
+
+.centerRight h6{
+	margin-bottom:20px;
+	border-bottom:solid 2px #0c79be;
+}
+.centerRight h6 a {
+	color:#499bce;
+	margin:0 5px;
+}
+
+.searchTextBox{
+	display: inline-block;
+}

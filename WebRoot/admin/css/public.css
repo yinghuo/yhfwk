@@ -1,0 +1,174 @@
+html,body{
+    width:100%;
+    height:100%;
+}
+html,body,div,p,img,span,a,ul,li,h1,h2,h3,h4,h5,h6,table,tr,th,td,label,input,dl,dd,form{
+    margin:0;
+    padding:0; 
+}
+body,h1,h2,h3,h4,h5,h6{
+    font-size: 12px;
+    line-height: 24px;
+	color:#555555;
+	font-weight:normal;
+}
+body {
+	 background-color:#ffffff;
+}
+
+input[type="file"]{
+	margin:10px 0;	
+}
+
+a {
+	color:#7b7b7b;
+	text-decoration:none;
+	cursor:pointer;
+}
+a:hover{
+	text-decoration:underline;
+	color:#f63;
+}
+img {
+	border:none;
+	display:block;
+	margin:0 auto;
+}
+ul,li{
+	list-style-type:none;
+}
+select {
+	cursor:pointer;
+}
+
+input[type='button'],input[type='reset'],input[type='submit']{
+	height:25px;
+	/*width:65px; 注释取消按钮的限制宽度，使按钮的宽度自适应其中的文字 by Daniel 2014-05-14*/
+	padding:0 10px;
+	margin-left:5px;	
+	text-align:center;
+	cursor:pointer;
+	border-radius:5px;
+	line-height:25px;
+	border:solid 1px #d6e4ee;
+}
+
+.blueBtn {
+	border:solid 1px #d6e4ee;
+	background-color:#0c79be;
+	color:#ffffff;
+}
+
+.blueBtn:hover{
+	background-color:#ffffff;
+	color:#0c79be;
+}
+
+.wraingBtn{
+	background-color:#f65b16;
+	border: solid 1px #d84a0c;
+	color:#ffffff;
+}
+.wraingBtn:hover{
+	background-color: #ffffff;
+	color: #ed1c24;
+}
+
+.grayBtn {
+	border-radius:3px;
+	border:solid 1px #d0d0d0;
+	padding:3px 7px;
+	color:#499bce;
+	cursor:pointer;
+}
+.grayBtn:hover{
+	background-color:#0c79be;
+	color:#ffffff;
+	text-decoration:none;
+	border:solid 1px #0c79be;
+}
+
+.lightBlueBtn {
+	color:#0c79be;
+	background-color:#f0f7fb;
+}
+
+.lightBlueBtn:hover {
+	color:#ffffff;
+	background-color:#0c79be;
+}
+
+.borderRightNone{
+	border-right:none;
+}
+
+.fontColorBlue {
+	color:#499bce;
+}
+
+.clearFloat{
+	clear:both;
+}
+
+.blueDivBox {
+	padding:5px 20px;
+	border:solid 1px #b6d7e9;
+	background-color:#e3eff9;
+}
+
+.grayDivBox {
+	text-align:center;
+	border:solid 1px #d0d0d0;
+	background-color:#f8f8f8;
+	padding:5px 0;
+}
+.grayDivBox input[type='button']{
+	margin:0 5px;
+}
+.lightBlueInput {
+	border:solid 1px #d6e4ee;
+	border-radius:3px;
+	background-color:#f0f7fb;
+	height:20px;
+}
+.grayBg {
+	background-color:#f8f8f8;
+}
+.marginLeft100{
+	margin-left:100px;
+}
+.delAll {
+	cursor:pointer;
+	display:inline-block;
+	height:18px;
+	line-height:18px;
+	padding:2px 10px;
+	background-color:#f65b16;
+	border: solid 1px #d84a0c;
+	border-radius: 5px;
+	margin-top:25px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.delAll:hover {
+	background-color: #ffffff;
+	color: #ed1c24;
+	border: solid 1px #d0d0d0;
+}
+
+input[type='text'],textArea,select {
+	margin-right:5px;
+}
+table textArea, table select {
+	border: solid 1px #d6e4ee;
+	border-radius: 3px;
+	background-color: #f0f7fb;
+}
+.treeBox {
+	width:40%;
+	height:85%;
+	overflow:auto;
+	float:left;
+	border: solid 1px #d0d0d0;
+}

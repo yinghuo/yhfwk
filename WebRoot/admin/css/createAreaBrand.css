@@ -1,0 +1,23 @@
+.previewDivBox{
+	width:250px;
+	border:solid 1px #d0d0d0;
+	margin:0 auto;
+	padding-bottom:5px;
+}
+.previewDivBox h5 {
+	background-color:#f8f8f8;
+	color:#0c79be;
+	padding:3px 0;
+}
+.progressBar{
+	width: 400px;
+	height: 18px;
+	display:inline-block;
+	border: solid 1px #d6e4ee;
+	border-radius: 3px;
+	background-color: #f0f7fb;
+}
+.loadingProgress input[type='button']{
+	position:relative;
+	top:-5px;
+}

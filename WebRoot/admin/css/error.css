@@ -1,0 +1,7 @@
+.errorContainer {
+	width:750px;
+	border:solid 1px #dbdbdb;
+	margin:20px auto;
+	border-radius:3px;
+	padding:30px 50px;
+}

@@ -1,0 +1,227 @@
+
+.logo {
+  background: url(../images/logo.png) no-repeat 0 50%;
+  width: 287px;
+  height: 95px;
+  display: block;
+}
+.login-box {
+  margin-top: 30px;
+}
+.login-img {
+  background: url(../images/login-img.png) no-repeat 0 0;
+  width: 560px;
+  height: 431px;
+  float: left;
+}
+
+.login-content {
+  background: url(../images/login-content-bg.png) no-repeat 0 0;
+  float: right;
+  width: 310px;
+  height: 380px;
+  padding: 25px;
+}
+
+.login-content-title {
+  font-size: 16px;
+  color: #90cdfc;
+  margin-bottom:20px;
+  font-weight: bold;
+}
+.ipt {
+	border: 1px solid #d0d0d0;
+	padding: 6px 0 6px 10px;
+	width: 258px;
+}
+.ipt-account {
+	padding-left: 30px;
+	background: url(../images/input-account-bg.png) no-repeat 7px 50%;
+}
+.ipt-password, .ipt-repassword {
+	padding-left: 30px;
+	background: url(../images/input-password-bg.png) no-repeat 7px 50%;
+}
+.ipt-min {
+	width: 88px;
+}
+
+/*@modify by Daniel@2014-05-12 修改类样式.green-large-btn添加text-align、text-decoration*/
+.green-large-btn {
+	background-color: #1f9ee2;
+	width: 108px;
+	font-size: 20px;
+	line-height: 40px;
+	height: 40px;
+	border:none;
+	cursor:pointer;
+	text-align:center;
+	text-decoration:none;
+}
+.sign-btn {
+	background: url(../images/reg-btn.png) no-repeat 0 0;
+	width: 60px;
+	height: 20px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.border-bottom-dotted {
+	border-bottom: 1px dotted #d0d0d0;
+}
+.login-sns {
+	margin-top: 10px;
+	border: 1px solid #eeeeee;
+}
+.login-sns-title {
+	background-color: #eeeeee;
+	padding-left: 10px;
+	line-height: 30px;
+	height: 30px;
+}
+.login-sns-content {
+	padding: 10px;
+}
+.weibo {
+	background: url(../images/weibo.png) no-repeat 0 50%;
+}
+.weibo, .qq {
+	display: block;
+	height: 16px;
+	line-height: 16px;
+	padding-left: 21px;
+}
+.qq {
+	background: url(../images/qq.png) no-repeat 0 50%;
+}
+.footer-info {
+	border: 1px solid #ededed;
+	margin-top: 20px;
+}
+.youji, .jidi, .suyuan, .gongkai, .kaocha {
+	width: 56px;
+	height: 56px;
+	float: left;
+}
+.youji {
+	background: url(../images/youji.png) no-repeat 50% 50%;
+}
+.footer-info span {
+	display: block;
+	float: left;
+	line-height: 56px;
+	padding-left: 20px;
+	border-left: 1px solid #ededed;
+	border-right: 1px solid #ededed;
+	padding-right: 20px;
+}
+
+.jidi {
+	background: url(../images/jidi.png) no-repeat 50% 50%;
+}
+.suyuan {
+	background: url(../images/suyuan.png) no-repeat 50% 50%;
+}
+
+.gongkai {
+	background: url(../images/gongkai.png) no-repeat 50% 50%;
+}
+.kaocha {
+	background: url(../images/kaocha.png) no-repeat 50% 50%;
+}
+.footer-info span.footer-info-last {
+	border-right: none;
+}
+.footer {
+	width:800px;
+	margin:20px auto 0;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.footer-navigation {
+	height: 14px;
+	margin-top: 10px;
+}
+.footer-navigation a {
+	display: block;
+	float: left;
+	margin-right: 20px;
+	line-height: 14px;
+	height: 14px;
+}
+.copyright {
+	margin-top: 10px;
+	line-height: 14px;
+}
+.footer-service {
+	padding: 10px 0;
+	line-height: 14px;
+	color: #2e8554;
+}
+
+.loginContainer {
+	width:1000px;
+	margin:0 auto;
+	background-color:#ffffff;
+}
+dl {
+	margin-bottom: 20px;
+}
+.mt5 {
+	margin-top: 5px;
+}
+.mb20 {
+	margin-bottom: 15px;
+}
+.green-btn, .green-large-btn, .orange-btn, .orange-large-btn {
+	font-weight: bold;
+	color: #eeeeee;
+}
+
+.ml10 {
+	margin-left: 10px;
+}
+.mt10 {
+	margin-top: 10px;
+}
+.block {
+	display: block;
+}
+
+.ml20 {
+	margin-left: 20px;
+}
+.fontColorBlue {
+	color:#90cdfc;
+}
+
+.footer-box{
+	margin-top:50px;
+}
+
+.loginBtn:hover{
+	color:#ffffff;
+	text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
