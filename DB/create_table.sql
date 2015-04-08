@@ -1,19 +1,437 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
+Source Server         : 测试
 Source Server Version : 50087
-Source Host           : localhost:3306
+Source Host           : localhost:3308
 Source Database       : yhfwk
 
 Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-03-02 21:59:00
+Date: 2015-04-08 13:25:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `cddjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `cddjb`;
+CREATE TABLE `cddjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `CDSJ` datetime default NULL,
+  `CDLX` varchar(16) default NULL,
+  `CDNY` varchar(16) default NULL COMMENT '自产/轻度助产/难产(产道正常)/难产(产道拉伤)/碎胎',
+  `TW` varchar(16) default NULL COMMENT '正常/坐生/倒产/人工矫正',
+  `JCY` varchar(32) default NULL COMMENT '直肠/孕酮/超声/其他',
+  `TESL` decimal(2,0) default NULL,
+  `JBQ` varchar(16) default NULL,
+  `XZR` varchar(32) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cddjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `fqdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `fqdjb`;
+CREATE TABLE `fqdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `FQSJ` datetime default NULL,
+  `FQLX` varchar(16) default NULL COMMENT '自然发情\r\n            人工催情',
+  `FXFS` varchar(16) default NULL COMMENT '人工\r\n            计步器',
+  `FXR` varchar(32) default NULL,
+  `SHY` varchar(32) default NULL,
+  `SFPZ` char(1) default NULL,
+  `WPYY` varchar(128) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fqdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `fqjbxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `fqjbxx`;
+CREATE TABLE `fqjbxx` (
+  `XH` varchar(36) NOT NULL,
+  `JBQBH` varchar(32) default NULL,
+  `NCBH` varchar(16) default NULL,
+  `KZQBH` varchar(128) default NULL,
+  `KSSJ` datetime default NULL,
+  `JSSJ` datetime default NULL,
+  `LJXX` decimal(8,0) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fqjbxx
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `fqkzqxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `fqkzqxx`;
+CREATE TABLE `fqkzqxx` (
+  `XH` varchar(36) NOT NULL,
+  `KZQBH` varchar(128) default NULL,
+  `NCBH` varchar(16) default NULL,
+  `KZQZT` char(1) default NULL COMMENT '0：正常\r\n            1：停止\r\n            等等',
+  `SFTY` char(1) default NULL COMMENT '0：正常\r\n            1：停用',
+  `LJXX` varchar(128) default NULL COMMENT '数据上传和状态监控及管理的连接信息。\r\n            更多信息需要再次确认',
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fqkzqxx
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `fqtsxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `fqtsxx`;
+CREATE TABLE `fqtsxx` (
+  `XH` varchar(36) NOT NULL,
+  `JBQBH` varchar(16) default NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `NSBH` varchar(16) default NULL,
+  `TSLX` varchar(16) default NULL COMMENT '发情提示 运动量下降提示',
+  `TSMS` varchar(128) default NULL,
+  `SFFQ` char(1) default NULL COMMENT '0：未发情\r\n            1：已发情',
+  `JCR` varchar(16) default NULL,
+  `JCSJ` datetime default NULL,
+  `JCJG` varchar(128) default NULL,
+  `ZJPZSJ` datetime default NULL,
+  `SFPZ` char(1) default NULL COMMENT '0：未配种\r\n            1：已配种',
+  `PZR` varchar(16) default NULL,
+  `PZSJ` datetime default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fqtsxx
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `gtcndjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `gtcndjb`;
+CREATE TABLE `gtcndjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `JNRQ` datetime default NULL,
+  `BC` varchar(16) default NULL,
+  `CL` decimal(10,0) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gtcndjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `jbdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `jbdjb`;
+CREATE TABLE `jbdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `FBRQ` datetime default NULL,
+  `JBZL` varchar(16) default NULL,
+  `JBMC` varchar(16) default NULL,
+  `ZYZZ` varchar(16) default NULL,
+  `FBYY` varchar(16) default NULL,
+  `YZCD` varchar(16) default NULL,
+  `CZQK` varchar(32) default NULL,
+  `FSQN` char(1) default NULL COMMENT '1是\r\n            0否',
+  `YYRQ` datetime default NULL,
+  `YFLJ` decimal(10,2) default NULL,
+  `YYCS` decimal(3,0) default NULL,
+  `JSXYRQ` datetime default NULL,
+  `SYS` varchar(32) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jbdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `jsxxb`
+-- ----------------------------
+DROP TABLE IF EXISTS `jsxxb`;
+CREATE TABLE `jsxxb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `JSBH` varchar(16) default NULL,
+  `JSMC` varchar(64) default NULL,
+  `JSLB` varchar(16) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jsxxb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `lcdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `lcdjb`;
+CREATE TABLE `lcdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `LCRQ` datetime default NULL,
+  `LCYY` varchar(16) default NULL,
+  `TELX` varchar(16) default NULL,
+  `FXR` varchar(32) default NULL,
+  `FXFS` varchar(16) default NULL,
+  `HSR` varchar(32) default NULL,
+  `LCZR` varchar(32) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lcdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `ncjbxxb`
+-- ----------------------------
+DROP TABLE IF EXISTS `ncjbxxb`;
+CREATE TABLE `ncjbxxb` (
+  `NCBH` varchar(36) NOT NULL,
+  `NCMC` varchar(128) default NULL,
+  `NCXZ` varchar(16) default NULL,
+  `NCDZ` varchar(128) default NULL,
+  `SSQY` varchar(128) default NULL,
+  `SNQY` varchar(128) default NULL,
+  `FZR` varchar(16) default NULL,
+  `FZRDH` varchar(16) default NULL,
+  `LXR` varchar(16) default NULL,
+  `LXRDH` varchar(16) default NULL,
+  `PZY` varchar(16) default NULL,
+  `FQXTSYBZ` char(1) default NULL,
+  `KSSYSJ` datetime default NULL,
+  `TZSYSJ` datetime default NULL,
+  `PZYDH` varchar(16) default NULL,
+  `LXYX` varchar(64) default NULL,
+  `KDDZ` varchar(128) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`NCBH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ncjbxxb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `nzjbxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `nzjbxx`;
+CREATE TABLE `nzjbxx` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `EBBH` varchar(16) default NULL,
+  `JBQBH` varchar(16) default NULL,
+  `CSRQ` datetime default NULL,
+  `XB` char(1) default NULL,
+  `LB` char(2) default NULL,
+  `RQLX` char(2) default NULL,
+  `YL` decimal(3,0) default NULL,
+  `CSZ` decimal(10,0) default NULL,
+  `JS` varchar(16) default NULL,
+  `PZ` varchar(16) default NULL,
+  `MS` varchar(16) default NULL,
+  `TC` decimal(3,0) default NULL,
+  `CDRQ` datetime default NULL,
+  `FQH` varchar(16) default NULL,
+  `MQH` varchar(16) default NULL,
+  `MRZT` char(2) default NULL,
+  `FZZT` char(2) default NULL,
+  `BZ` varchar(128) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzjbxx
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `nzlcdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `nzlcdjb`;
+CREATE TABLE `nzlcdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `PZ` varchar(16) default NULL,
+  `JS` varchar(16) default NULL,
+  `NL` varchar(16) default NULL,
+  `LQRQ` datetime default NULL,
+  `LQLX` varchar(16) default NULL,
+  `LQTZ` decimal(10,0) default NULL,
+  `LQYY` varchar(128) default NULL,
+  `QX` varchar(128) default NULL,
+  `JSR` varchar(32) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzlcdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `nzzsdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `nzzsdjb`;
+CREATE TABLE `nzzsdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `ZSRQ` datetime default NULL,
+  `ZCJS` varchar(16) default NULL,
+  `ZRJS` varchar(16) default NULL,
+  `JSR` varchar(32) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzzsdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `pzdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `pzdjb`;
+CREATE TABLE `pzdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `PZSJ` datetime default NULL,
+  `DJBH` varchar(16) default NULL,
+  `DJLX` varchar(16) default NULL,
+  `PZY` varchar(32) default NULL,
+  `FQSJ` datetime default NULL,
+  `FQLX` varchar(16) default NULL,
+  `FXFS` varchar(32) default NULL,
+  `FXR` varchar(32) default NULL,
+  `SL` decimal(8,0) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pzdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `rsjcdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `rsjcdjb`;
+CREATE TABLE `rsjcdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `JCRQ` datetime default NULL,
+  `JCLX` varchar(16) default NULL COMMENT '初检\r\n            复检',
+  `JCJG` varchar(64) default NULL COMMENT '人工\r\n            计步器',
+  `JCY` varchar(32) default NULL,
+  `JCFS` varchar(16) default NULL COMMENT '直肠/孕酮/超声/其他',
+  `TSZT` varchar(16) default NULL,
+  `NZXB` char(1) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of rsjcdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `xtcl`
+-- ----------------------------
+DROP TABLE IF EXISTS `xtcl`;
+CREATE TABLE `xtcl` (
+  `DMID` varchar(36) NOT NULL,
+  `DMLB` varchar(64) default NULL,
+  `DMBH` varchar(64) default NULL,
+  `DMMC` varchar(64) default NULL,
+  `SRDM` varchar(64) default NULL,
+  `DMMS` varchar(64) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`DMID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xtcl
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `xxtsgl`
+-- ----------------------------
+DROP TABLE IF EXISTS `xxtsgl`;
+CREATE TABLE `xxtsgl` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `SJHM` varchar(16) default NULL,
+  `TSLX` varchar(8) default NULL COMMENT '包括发情提示、最佳配种时间提示、运动量下降提示、定胎提示等',
+  `TSNR` varchar(128) default NULL COMMENT '4、	发情提示信息(牛只编号、牛舍、发情描述、发情检测：是否发情—检测人—检测时间【选择确认发情后，根据发情描述时间推算最佳配种时间并提示。发情后8-12小时配种时间最佳】、配种：是否配种—配种人—配种时间)\r\n            运动量下降提示信息(牛只编号、牛舍、描述、检测结果、检测时间、检测人)\r\n            ',
+  `SFTS` char(1) default NULL COMMENT '0：未提示\r\n            1：已提示',
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xxtsgl
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `ygxxb`
+-- ----------------------------
+DROP TABLE IF EXISTS `ygxxb`;
+CREATE TABLE `ygxxb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `YGBH` varchar(16) default NULL,
+  `YGMC` varchar(32) default NULL,
+  `ZJHM` varchar(32) default NULL,
+  `LXDH` varchar(32) default NULL,
+  `LXDZ` varchar(128) default NULL,
+  `YGLB` char(1) default NULL,
+  `SCBZ` char(1) default NULL COMMENT '0：未删除\r\n            1：已删除',
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of ygxxb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `yh_system_menus`
@@ -105,417 +523,29 @@ CREATE TABLE `yh_system_users_info` (
 -- Records of yh_system_users_info
 -- ----------------------------
 
+-- ----------------------------
+-- Table structure for `yyjlb`
+-- ----------------------------
+DROP TABLE IF EXISTS `yyjlb`;
+CREATE TABLE `yyjlb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(16) default NULL,
+  `NZBH` varchar(16) default NULL,
+  `YYCS` decimal(3,0) default NULL,
+  `YYRQ` datetime default NULL,
+  `YYSY` varchar(32) default NULL,
+  `YYFF` varchar(32) default NULL,
+  `YPMC` varchar(64) default NULL,
+  `YPGG` varchar(16) default NULL,
+  `YPDW` varchar(16) default NULL,
+  `YPDJ` decimal(10,2) default NULL,
+  `YPSL` decimal(3,0) default NULL,
+  `YPFY` decimal(10,2) default NULL,
+  `XYQ` varchar(16) default NULL,
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS CDDJB;
-
-DROP TABLE IF EXISTS FQDJB;
-
-DROP TABLE IF EXISTS FQJBXX;
-
-DROP TABLE IF EXISTS FQKZQXX;
-
-DROP TABLE IF EXISTS FQTSXX;
-
-DROP TABLE IF EXISTS GTCNDJB;
-
-DROP TABLE IF EXISTS JBDJB;
-
-DROP TABLE IF EXISTS JSXXB;
-
-DROP TABLE IF EXISTS LCDJB;
-
-DROP TABLE IF EXISTS NCJBXXB;
-
-DROP TABLE IF EXISTS NZJBXX;
-
-DROP TABLE IF EXISTS NZLCDJB;
-
-DROP TABLE IF EXISTS NZZSDJB;
-
-DROP TABLE IF EXISTS PZDJB;
-
-DROP TABLE IF EXISTS RSJCDJB;
-
-DROP TABLE IF EXISTS XTCL;
-
-DROP TABLE IF EXISTS XXTSGL;
-
-DROP TABLE IF EXISTS YGXXB;
-
-DROP TABLE IF EXISTS YYJLB;
-
-/*==============================================================*/
-/* Table: CDDJB                                                 */
-/*==============================================================*/
-CREATE TABLE CDDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   CDSJ                 DATETIME,
-   CDLX                 VARCHAR(16),
-   CDNY                 VARCHAR(16) COMMENT '自产/轻度助产/难产(产道正常)/难产(产道拉伤)/碎胎',
-   TW                   VARCHAR(16) COMMENT '正常/坐生/倒产/人工矫正',
-   JCY                  VARCHAR(32) COMMENT '直肠/孕酮/超声/其他',
-   TESL                 NUMERIC(2,0),
-   JBQ                  VARCHAR(16),
-   XZR                  VARCHAR(32),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: FQDJB                                                 */
-/*==============================================================*/
-CREATE TABLE FQDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   FQSJ                 DATETIME,
-   FQLX                 VARCHAR(16) COMMENT '自然发情
-            人工催情',
-   FXFS                 VARCHAR(16) COMMENT '人工
-            计步器',
-   FXR                  VARCHAR(32),
-   SHY                  VARCHAR(32),
-   SFPZ                 CHAR(1),
-   WPYY                 VARCHAR(128),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: FQJBXX                                                */
-/*==============================================================*/
-CREATE TABLE FQJBXX
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   JBQBH                VARCHAR(32),
-   NCBH                 VARCHAR(16),
-   KZQBH                VARCHAR(128),
-   KSSJ                 DATETIME,
-   JSSJ                 DATETIME,
-   LJXX                 NUMERIC(8,0),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: FQKZQXX                                               */
-/*==============================================================*/
-CREATE TABLE FQKZQXX
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   KZQBH                VARCHAR(128),
-   NCBH                 VARCHAR(16),
-   KZQZT                CHAR(1) COMMENT '0：正常
-            1：停止
-            等等',
-   SFTY                 CHAR(1) COMMENT '0：正常
-            1：停用',
-   LJXX                 VARCHAR(128) COMMENT '数据上传和状态监控及管理的连接信息。
-            更多信息需要再次确认',
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: FQTSXX                                                */
-/*==============================================================*/
-CREATE TABLE FQTSXX
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   JBQBH                VARCHAR(16),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   NSBH                 VARCHAR(16),
-   TSLX                 VARCHAR(16) COMMENT '发情提示 运动量下降提示',
-   TSMS                 VARCHAR(128),
-   SFFQ                 CHAR(1) COMMENT '0：未发情
-            1：已发情',
-   JCR                  VARCHAR(16),
-   JCSJ                 DATETIME,
-   JCJG                 VARCHAR(128),
-   ZJPZSJ               DATETIME,
-   SFPZ                 CHAR(1) COMMENT '0：未配种
-            1：已配种',
-   PZR                  VARCHAR(16),
-   PZSJ                 DATETIME,
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: GTCNDJB                                               */
-/*==============================================================*/
-CREATE TABLE GTCNDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   JNRQ                 DATETIME,
-   BC                   VARCHAR(16),
-   CL                   NUMERIC(10,0),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: JBDJB                                                 */
-/*==============================================================*/
-CREATE TABLE JBDJB
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   FBRQ                 DATETIME,
-   JBZL                 VARCHAR(16),
-   JBMC                 VARCHAR(16),
-   ZYZZ                 VARCHAR(16),
-   FBYY                 VARCHAR(16),
-   YZCD                 VARCHAR(16),
-   CZQK                 VARCHAR(32),
-   FSQN                 CHAR(1) COMMENT '1是
-            0否',
-   YYRQ                 DATETIME,
-   YFLJ                 NUMERIC(10,2),
-   YYCS                 NUMERIC(3,0),
-   JSXYRQ               DATETIME,
-   SYS                  VARCHAR(32),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: JSXXB                                                 */
-/*==============================================================*/
-CREATE TABLE JSXXB
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   NCBH                 VARCHAR(16),
-   JSBH                 VARCHAR(16),
-   JSMC                 VARCHAR(64),
-   JSLB                 VARCHAR(16),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: LCDJB                                                 */
-/*==============================================================*/
-CREATE TABLE LCDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   LCRQ                 DATETIME,
-   LCYY                 VARCHAR(16),
-   TELX                 VARCHAR(16),
-   FXR                  VARCHAR(32),
-   FXFS                 VARCHAR(16),
-   HSR                  VARCHAR(32),
-   LCZR                 VARCHAR(32),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: NCJBXXB                                               */
-/*==============================================================*/
-CREATE TABLE NCJBXXB
-(
-   NCBH                 VARCHAR(16) NOT NULL,
-   NCMC                 VARCHAR(128),
-   NCXZ                 VARCHAR(16),
-   NCDZ                 VARCHAR(128),
-   SSQY                 VARCHAR(128),
-   SNQY                 VARCHAR(128),
-   FZR                  VARCHAR(16),
-   FZRDH                VARCHAR(16),
-   LXR                  VARCHAR(16),
-   LXRDH                VARCHAR(16),
-   PZY                  VARCHAR(16),
-   FQXTSYBZ             CHAR(1),
-   KSSYSJ               DATETIME,
-   TZSYSJ               DATETIME,
-   PZYDH                VARCHAR(16),
-   LXYX                 VARCHAR(64),
-   KDDZ                 VARCHAR(128),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (NCBH)
-);
-
-/*==============================================================*/
-/* Table: NZJBXX                                                */
-/*==============================================================*/
-CREATE TABLE NZJBXX
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   EBBH                 VARCHAR(16),
-   JBQBH                VARCHAR(16),
-   CSRQ                 DATETIME,
-   XB                   CHAR(1),
-   LB                   CHAR(2),
-   RQLX                 CHAR(2),
-   YL                   NUMERIC(3,0),
-   CSZ                  NUMERIC(10,0),
-   JS                   VARCHAR(16),
-   PZ                   VARCHAR(16),
-   MS                   VARCHAR(16),
-   TC                   NUMERIC(3,0),
-   CDRQ                 DATETIME,
-   FQH                  VARCHAR(16),
-   MQH                  VARCHAR(16),
-   MRZT                 CHAR(2),
-   FZZT                 CHAR(2),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: NZLCDJB                                               */
-/*==============================================================*/
-CREATE TABLE NZLCDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   PZ                   VARCHAR(16),
-   JS                   VARCHAR(16),
-   NL                   VARCHAR(16),
-   LQRQ                 DATETIME,
-   LQLX                 VARCHAR(16),
-   LQTZ                 NUMERIC(10,0),
-   LQYY                 VARCHAR(128),
-   QX                   VARCHAR(128),
-   JSR                  VARCHAR(32),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: NZZSDJB                                               */
-/*==============================================================*/
-CREATE TABLE NZZSDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   ZSRQ                 DATETIME,
-   ZCJS                 VARCHAR(16),
-   ZRJS                 VARCHAR(16),
-   JSR                  VARCHAR(32),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: PZDJB                                                 */
-/*==============================================================*/
-CREATE TABLE PZDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   PZSJ                 DATETIME,
-   DJBH                 VARCHAR(16),
-   DJLX                 VARCHAR(16),
-   PZY                  VARCHAR(32),
-   FQSJ                 DATETIME,
-   FQLX                 VARCHAR(16),
-   FXFS                 VARCHAR(32),
-   FXR                  VARCHAR(32),
-   SL                   NUMERIC(8,0),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: RSJCDJB                                               */
-/*==============================================================*/
-CREATE TABLE RSJCDJB
-(
-   XH                   NUMERIC(16,0),
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   JCRQ                 DATETIME,
-   JCLX                 VARCHAR(16) COMMENT '初检
-            复检',
-   JCJG                 VARCHAR(64) COMMENT '人工
-            计步器',
-   JCY                  VARCHAR(32),
-   JCFS                 VARCHAR(16) COMMENT '直肠/孕酮/超声/其他',
-   TSZT                 VARCHAR(16),
-   NZXB                 CHAR(1),
-   BZ                   VARCHAR(128)
-);
-
-/*==============================================================*/
-/* Table: XTCL                                                  */
-/*==============================================================*/
-CREATE TABLE XTCL
-(
-   DMID                 VARCHAR(16) NOT NULL,
-   DMLB                 VARCHAR(64),
-   DMBH                 VARCHAR(64),
-   DMMC                 VARCHAR(64),
-   SRDM                 VARCHAR(64),
-   DMMS                 VARCHAR(64),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (DMID)
-);
-
-/*==============================================================*/
-/* Table: XXTSGL                                                */
-/*==============================================================*/
-CREATE TABLE XXTSGL
-(
-   XH                   NUMERIC(32,0) NOT NULL,
-   NCBH                 VARCHAR(16),
-   SJHM                 VARCHAR(16),
-   TSLX                 VARCHAR(8) COMMENT '包括发情提示、最佳配种时间提示、运动量下降提示、定胎提示等',
-   TSNR                 VARCHAR(128) COMMENT '4、	发情提示信息(牛只编号、牛舍、发情描述、发情检测：是否发情—检测人—检测时间【选择确认发情后，根据发情描述时间推算最佳配种时间并提示。发情后8-12小时配种时间最佳】、配种：是否配种—配种人—配种时间)
-            运动量下降提示信息(牛只编号、牛舍、描述、检测结果、检测时间、检测人)
-            ',
-   SFTS                 CHAR(1) COMMENT '0：未提示
-            1：已提示',
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: YGXXB                                                 */
-/*==============================================================*/
-CREATE TABLE YGXXB
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   NCBH                 VARCHAR(16),
-   YGBH                 VARCHAR(16),
-   YGMC                 VARCHAR(32),
-   ZJHM                 VARCHAR(32),
-   LXDH                 VARCHAR(32),
-   LXDZ                 VARCHAR(128),
-   YGLB                 CHAR(1),
-   SCBZ                 CHAR(1) COMMENT '0：未删除
-            1：已删除',
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
-
-/*==============================================================*/
-/* Table: YYJLB                                                 */
-/*==============================================================*/
-CREATE TABLE YYJLB
-(
-   XH                   NUMERIC(16,0) NOT NULL,
-   NCBH                 VARCHAR(16),
-   NZBH                 VARCHAR(16),
-   YYCS                 NUMERIC(3,0),
-   YYRQ                 DATETIME,
-   YYSY                 VARCHAR(32),
-   YYFF                 VARCHAR(32),
-   YPMC                 VARCHAR(64),
-   YPGG                 VARCHAR(16),
-   YPDW                 VARCHAR(16),
-   YPDJ                 NUMERIC(10,2),
-   YPSL                 NUMERIC(3,0),
-   YPFY                 NUMERIC(10,2),
-   XYQ                  VARCHAR(16),
-   BZ                   VARCHAR(128),
-   PRIMARY KEY (XH)
-);
+-- ----------------------------
+-- Records of yyjlb
+-- ----------------------------
