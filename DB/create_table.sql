@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : ����
+Source Server         : 本地
 Source Server Version : 50087
 Source Host           : localhost:3306
 Source Database       : yhfwk
@@ -20,26 +20,26 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `yh_system_menus`;
 CREATE TABLE `yh_system_menus` (
-  `FBM_ID` varchar(36) NOT NULL default '' COMMENT '�˵�ID',
-  `FBM_NAME` varchar(24) default NULL COMMENT '�˵�����',
-  `FBM_TITLE` varchar(24) default NULL COMMENT '�˵�����',
-  `FBM_ACTION` varchar(128) default NULL COMMENT '�˵�����',
-  `FBM_STATUS` int(11) default NULL COMMENT '�˵�״̬',
-  `FBM_LEVEL` int(11) default NULL COMMENT '�˵��ȼ�',
-  `FBM_PARENTID` varchar(36) default NULL COMMENT '��һ���˵�',
-  `FBM_SEQ` int(11) default NULL COMMENT '����',
-  `FBM_TYPE` int(1) default NULL COMMENT '�˵�����',
+  `FBM_ID` varchar(36) NOT NULL default '' COMMENT '菜单ID',
+  `FBM_NAME` varchar(24) default NULL COMMENT '菜单名称',
+  `FBM_TITLE` varchar(24) default NULL COMMENT '菜单标题',
+  `FBM_ACTION` varchar(128) default NULL COMMENT '菜单链接',
+  `FBM_STATUS` int(11) default NULL COMMENT '菜单状态',
+  `FBM_LEVEL` int(11) default NULL COMMENT '菜单等级',
+  `FBM_PARENTID` varchar(36) default NULL COMMENT '上一级菜单',
+  `FBM_SEQ` int(11) default NULL COMMENT '排序',
+  `FBM_TYPE` int(1) default NULL COMMENT '菜单类型',
   PRIMARY KEY  (`FBM_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of yh_system_menus
 -- ----------------------------
-INSERT INTO `yh_system_menus` VALUES ('23', '�˵�����', null, null, '1', '1', '16', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('16', 'ϵͳ����', null, '#', '1', '0', '', '9', '1');
-INSERT INTO `yh_system_menus` VALUES ('26', '��ɫ����', null, null, '1', '1', '16', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('25', '�˵�����', null, '/master/system/menu!AllMenus.action', '1', '2', '23', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('30', '��ɫ����', null, '/master/system/role!listRoles.action', '1', '2', '26', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('23', '菜单管理', null, null, '1', '1', '16', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('16', '系统管理', null, '#', '1', '0', '', '9', '1');
+INSERT INTO `yh_system_menus` VALUES ('26', '角色管理', null, null, '1', '1', '16', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('25', '菜单管理', null, '/master/system/menu!AllMenus.action', '1', '2', '23', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('30', '角色管理', null, '/master/system/role!listRoles.action', '1', '2', '26', '0', '1');
 
 -- ----------------------------
 -- Table structure for `yh_system_roles`
@@ -53,28 +53,28 @@ CREATE TABLE `yh_system_roles` (
   `R_STATUS` int(1) default NULL,
   `R_REMARK` text,
   `R_TypeID` int(1) default NULL,
-  `R_DefaultStatus` int(1) default '0' COMMENT '��ɫĬ�ϣ�����ɫ���ڶ����ʱ��ע���û�Ĭ�ϵĽ�ɫȨ��',
+  `R_DefaultStatus` int(1) default '0' COMMENT '角色默认，当角色存在多个的时候注册用户默认的角色权限',
   PRIMARY KEY  (`R_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of yh_system_roles
 -- ----------------------------
-INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '��������Ա', null, '16', '0', null, '1', '0');
+INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '16', '0', null, '1', '0');
 
 -- ----------------------------
 -- Table structure for `yh_system_users`
 -- ----------------------------
 DROP TABLE IF EXISTS `yh_system_users`;
 CREATE TABLE `yh_system_users` (
-  `U_ID` varchar(36) NOT NULL COMMENT '�û�ID',
-  `U_NAME` varchar(50) NOT NULL COMMENT '�û��ǳ�',
+  `U_ID` varchar(36) NOT NULL COMMENT '用户ID',
+  `U_NAME` varchar(50) NOT NULL COMMENT '用户昵称',
   `U_LOGINNAME` varchar(36) NOT NULL,
-  `U_PASSWORD` varchar(128) NOT NULL COMMENT '�û�����',
-  `U_FACEIMAGE` varchar(255) default NULL COMMENT '�û�ͷ��',
-  `U_TYPE` int(1) NOT NULL default '0' COMMENT '�û����ͣ�0Ϊ��ͨ�û� 1Ϊ��ҵ�û�',
-  `U_RULEID` varchar(36) NOT NULL COMMENT '�û���ɫID',
-  `U_Tid` varchar(36) default NULL COMMENT '�������ID��Ŀǰ��Ҫ��������ҵʹ��',
+  `U_PASSWORD` varchar(128) NOT NULL COMMENT '用户密码',
+  `U_FACEIMAGE` varchar(255) default NULL COMMENT '用户头像',
+  `U_TYPE` int(1) NOT NULL default '0' COMMENT '用户类型，0为普通用户 1为企业用户',
+  `U_RULEID` varchar(36) NOT NULL COMMENT '用户角色ID',
+  `U_Tid` varchar(36) default NULL COMMENT '主体外键ID，目前主要做关联企业使用',
   `U_lASTIME` datetime default NULL,
   `U_NOWTIME` datetime default NULL,
   PRIMARY KEY  (`U_ID`)
@@ -83,7 +83,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '����Ա', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-03-02 21:53:39', '2015-03-02 21:57:52');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-03-02 21:53:39', '2015-03-02 21:57:52');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -91,7 +91,7 @@ INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '�
 DROP TABLE IF EXISTS `yh_system_users_info`;
 CREATE TABLE `yh_system_users_info` (
   `U_ID` varchar(36) NOT NULL default '',
-  `U_SEX` int(1) default '0' COMMENT '1=�У�2=Ů',
+  `U_SEX` int(1) default '0' COMMENT '1=男，2=女',
   `U_PHONENUM` varchar(20) default NULL,
   `U_IDNAME` varchar(20) default NULL,
   `U_IDNUM` varchar(20) default NULL,
@@ -154,9 +154,9 @@ CREATE TABLE CDDJB
    NZBH                 VARCHAR(16),
    CDSJ                 DATETIME,
    CDLX                 VARCHAR(16),
-   CDNY                 VARCHAR(16) COMMENT '�Բ�/�������/�Ѳ�(��������)/�Ѳ�(��������)/��̥',
-   TW                   VARCHAR(16) COMMENT '����/����/����/�˹�����',
-   JCY                  VARCHAR(32) COMMENT 'ֱ��/��ͪ/����/����',
+   CDNY                 VARCHAR(16) COMMENT '自产/轻度助产/难产(产道正常)/难产(产道拉伤)/碎胎',
+   TW                   VARCHAR(16) COMMENT '正常/坐生/倒产/人工矫正',
+   JCY                  VARCHAR(32) COMMENT '直肠/孕酮/超声/其他',
    TESL                 NUMERIC(2,0),
    JBQ                  VARCHAR(16),
    XZR                  VARCHAR(32),
@@ -172,10 +172,10 @@ CREATE TABLE FQDJB
    NCBH                 VARCHAR(16),
    NZBH                 VARCHAR(16),
    FQSJ                 DATETIME,
-   FQLX                 VARCHAR(16) COMMENT '��Ȼ����
-            �˹�����',
-   FXFS                 VARCHAR(16) COMMENT '�˹�
-            �Ʋ���',
+   FQLX                 VARCHAR(16) COMMENT '自然发情
+            人工催情',
+   FXFS                 VARCHAR(16) COMMENT '人工
+            计步器',
    FXR                  VARCHAR(32),
    SHY                  VARCHAR(32),
    SFPZ                 CHAR(1),
@@ -207,13 +207,13 @@ CREATE TABLE FQKZQXX
    XH                   NUMERIC(16,0) NOT NULL,
    KZQBH                VARCHAR(128),
    NCBH                 VARCHAR(16),
-   KZQZT                CHAR(1) COMMENT '0������
-            1��ֹͣ
-            �ȵ�',
-   SFTY                 CHAR(1) COMMENT '0������
-            1��ͣ��',
-   LJXX                 VARCHAR(128) COMMENT '�����ϴ���״̬��ؼ�������������Ϣ��
-            ������Ϣ��Ҫ�ٴ�ȷ��',
+   KZQZT                CHAR(1) COMMENT '0：正常
+            1：停止
+            等等',
+   SFTY                 CHAR(1) COMMENT '0：正常
+            1：停用',
+   LJXX                 VARCHAR(128) COMMENT '数据上传和状态监控及管理的连接信息。
+            更多信息需要再次确认',
    BZ                   VARCHAR(128),
    PRIMARY KEY (XH)
 );
@@ -228,16 +228,16 @@ CREATE TABLE FQTSXX
    NCBH                 VARCHAR(16),
    NZBH                 VARCHAR(16),
    NSBH                 VARCHAR(16),
-   TSLX                 VARCHAR(16) COMMENT '������ʾ �˶����½���ʾ',
+   TSLX                 VARCHAR(16) COMMENT '发情提示 运动量下降提示',
    TSMS                 VARCHAR(128),
-   SFFQ                 CHAR(1) COMMENT '0��δ����
-            1���ѷ���',
+   SFFQ                 CHAR(1) COMMENT '0：未发情
+            1：已发情',
    JCR                  VARCHAR(16),
    JCSJ                 DATETIME,
    JCJG                 VARCHAR(128),
    ZJPZSJ               DATETIME,
-   SFPZ                 CHAR(1) COMMENT '0��δ����
-            1��������',
+   SFPZ                 CHAR(1) COMMENT '0：未配种
+            1：已配种',
    PZR                  VARCHAR(16),
    PZSJ                 DATETIME,
    BZ                   VARCHAR(128),
@@ -273,8 +273,8 @@ CREATE TABLE JBDJB
    FBYY                 VARCHAR(16),
    YZCD                 VARCHAR(16),
    CZQK                 VARCHAR(32),
-   FSQN                 CHAR(1) COMMENT '1��
-            0��',
+   FSQN                 CHAR(1) COMMENT '1是
+            0否',
    YYRQ                 DATETIME,
    YFLJ                 NUMERIC(10,2),
    YYCS                 NUMERIC(3,0),
@@ -434,12 +434,12 @@ CREATE TABLE RSJCDJB
    NCBH                 VARCHAR(16),
    NZBH                 VARCHAR(16),
    JCRQ                 DATETIME,
-   JCLX                 VARCHAR(16) COMMENT '����
-            ����',
-   JCJG                 VARCHAR(64) COMMENT '�˹�
-            �Ʋ���',
+   JCLX                 VARCHAR(16) COMMENT '初检
+            复检',
+   JCJG                 VARCHAR(64) COMMENT '人工
+            计步器',
    JCY                  VARCHAR(32),
-   JCFS                 VARCHAR(16) COMMENT 'ֱ��/��ͪ/����/����',
+   JCFS                 VARCHAR(16) COMMENT '直肠/孕酮/超声/其他',
    TSZT                 VARCHAR(16),
    NZXB                 CHAR(1),
    BZ                   VARCHAR(128)
@@ -468,12 +468,12 @@ CREATE TABLE XXTSGL
    XH                   NUMERIC(32,0) NOT NULL,
    NCBH                 VARCHAR(16),
    SJHM                 VARCHAR(16),
-   TSLX                 VARCHAR(8) COMMENT '����������ʾ���������ʱ����ʾ���˶����½���ʾ����̥��ʾ��',
-   TSNR                 VARCHAR(128) COMMENT '4��	������ʾ��Ϣ(ţֻ��š�ţ�ᡢ���������������⣺�Ƿ��顪����ˡ����ʱ�䡾ѡ��ȷ�Ϸ���󣬸��ݷ�������ʱ�������������ʱ�䲢��ʾ�������8-12Сʱ����ʱ����ѡ������֣��Ƿ����֡������ˡ�����ʱ��)
-            �˶����½���ʾ��Ϣ(ţֻ��š�ţ�ᡢ����������������ʱ�䡢�����)
+   TSLX                 VARCHAR(8) COMMENT '包括发情提示、最佳配种时间提示、运动量下降提示、定胎提示等',
+   TSNR                 VARCHAR(128) COMMENT '4、	发情提示信息(牛只编号、牛舍、发情描述、发情检测：是否发情—检测人—检测时间【选择确认发情后，根据发情描述时间推算最佳配种时间并提示。发情后8-12小时配种时间最佳】、配种：是否配种—配种人—配种时间)
+            运动量下降提示信息(牛只编号、牛舍、描述、检测结果、检测时间、检测人)
             ',
-   SFTS                 CHAR(1) COMMENT '0��δ��ʾ
-            1������ʾ',
+   SFTS                 CHAR(1) COMMENT '0：未提示
+            1：已提示',
    BZ                   VARCHAR(128),
    PRIMARY KEY (XH)
 );
@@ -491,8 +491,8 @@ CREATE TABLE YGXXB
    LXDH                 VARCHAR(32),
    LXDZ                 VARCHAR(128),
    YGLB                 CHAR(1),
-   SCBZ                 CHAR(1) COMMENT '0��δɾ��
-            1����ɾ��',
+   SCBZ                 CHAR(1) COMMENT '0：未删除
+            1：已删除',
    BZ                   VARCHAR(128),
    PRIMARY KEY (XH)
 );
