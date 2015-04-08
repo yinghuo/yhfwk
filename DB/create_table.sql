@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-04-08 13:25:37
+Date: 2015-04-08 17:06:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,14 +21,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `cddjb`;
 CREATE TABLE `cddjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `CDSJ` datetime default NULL,
   `CDLX` varchar(16) default NULL,
   `CDNY` varchar(16) default NULL COMMENT '自产/轻度助产/难产(产道正常)/难产(产道拉伤)/碎胎',
   `TW` varchar(16) default NULL COMMENT '正常/坐生/倒产/人工矫正',
   `JCY` varchar(32) default NULL COMMENT '直肠/孕酮/超声/其他',
-  `TESL` decimal(2,0) default NULL,
+  `TESL` int(2) default NULL,
   `JBQ` varchar(16) default NULL,
   `XZR` varchar(32) default NULL,
   `BZ` varchar(128) default NULL,
@@ -45,14 +45,14 @@ CREATE TABLE `cddjb` (
 DROP TABLE IF EXISTS `fqdjb`;
 CREATE TABLE `fqdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `FQSJ` datetime default NULL,
   `FQLX` varchar(16) default NULL COMMENT '自然发情\r\n            人工催情',
   `FXFS` varchar(16) default NULL COMMENT '人工\r\n            计步器',
   `FXR` varchar(32) default NULL,
   `SHY` varchar(32) default NULL,
-  `SFPZ` char(1) default NULL,
+  `SFPZ` int(1) default '0',
   `WPYY` varchar(128) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
@@ -68,9 +68,9 @@ CREATE TABLE `fqdjb` (
 DROP TABLE IF EXISTS `fqjbxx`;
 CREATE TABLE `fqjbxx` (
   `XH` varchar(36) NOT NULL,
-  `JBQBH` varchar(32) default NULL,
-  `NCBH` varchar(16) default NULL,
-  `KZQBH` varchar(128) default NULL,
+  `JBQBH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `KZQBH` varchar(36) NOT NULL,
   `KSSJ` datetime default NULL,
   `JSSJ` datetime default NULL,
   `LJXX` decimal(8,0) default NULL,
@@ -89,9 +89,9 @@ DROP TABLE IF EXISTS `fqkzqxx`;
 CREATE TABLE `fqkzqxx` (
   `XH` varchar(36) NOT NULL,
   `KZQBH` varchar(128) default NULL,
-  `NCBH` varchar(16) default NULL,
-  `KZQZT` char(1) default NULL COMMENT '0：正常\r\n            1：停止\r\n            等等',
-  `SFTY` char(1) default NULL COMMENT '0：正常\r\n            1：停用',
+  `NCBH` varchar(36) default NULL,
+  `KZQZT` int(1) default NULL COMMENT '0：正常\r\n            1：停止\r\n            等等',
+  `SFTY` int(1) default NULL COMMENT '0：正常\r\n            1：停用',
   `LJXX` varchar(128) default NULL COMMENT '数据上传和状态监控及管理的连接信息。\r\n            更多信息需要再次确认',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
@@ -113,12 +113,12 @@ CREATE TABLE `fqtsxx` (
   `NSBH` varchar(16) default NULL,
   `TSLX` varchar(16) default NULL COMMENT '发情提示 运动量下降提示',
   `TSMS` varchar(128) default NULL,
-  `SFFQ` char(1) default NULL COMMENT '0：未发情\r\n            1：已发情',
+  `SFFQ` int(1) default '0' COMMENT '0：未发情\r\n            1：已发情',
   `JCR` varchar(16) default NULL,
   `JCSJ` datetime default NULL,
   `JCJG` varchar(128) default NULL,
   `ZJPZSJ` datetime default NULL,
-  `SFPZ` char(1) default NULL COMMENT '0：未配种\r\n            1：已配种',
+  `SFPZ` int(1) default NULL COMMENT '0：未配种\r\n            1：已配种',
   `PZR` varchar(16) default NULL,
   `PZSJ` datetime default NULL,
   `BZ` varchar(128) default NULL,
@@ -183,8 +183,8 @@ CREATE TABLE `jbdjb` (
 DROP TABLE IF EXISTS `jsxxb`;
 CREATE TABLE `jsxxb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `JSBH` varchar(16) default NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `JSBH` varchar(16) NOT NULL,
   `JSMC` varchar(64) default NULL,
   `JSLB` varchar(16) default NULL,
   `BZ` varchar(128) default NULL,
@@ -201,8 +201,8 @@ CREATE TABLE `jsxxb` (
 DROP TABLE IF EXISTS `lcdjb`;
 CREATE TABLE `lcdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `LCRQ` datetime default NULL,
   `LCYY` varchar(16) default NULL,
   `TELX` varchar(16) default NULL,
@@ -254,26 +254,27 @@ CREATE TABLE `ncjbxxb` (
 DROP TABLE IF EXISTS `nzjbxx`;
 CREATE TABLE `nzjbxx` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
-  `EBBH` varchar(16) default NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(16) NOT NULL,
+  `EBBH` varchar(16) NOT NULL,
   `JBQBH` varchar(16) default NULL,
   `CSRQ` datetime default NULL,
-  `XB` char(1) default NULL,
-  `LB` char(2) default NULL,
+  `XB` int(1) NOT NULL default '0',
+  `LB` varchar(5) default NULL,
   `RQLX` char(2) default NULL,
-  `YL` decimal(3,0) default NULL,
-  `CSZ` decimal(10,0) default NULL,
-  `JS` varchar(16) default NULL,
+  `YL` decimal(3,2) default NULL,
+  `CSZ` decimal(10,2) default NULL,
+  `JS` varchar(36) NOT NULL,
   `PZ` varchar(16) default NULL,
   `MS` varchar(16) default NULL,
   `TC` decimal(3,0) default NULL,
   `CDRQ` datetime default NULL,
-  `FQH` varchar(16) default NULL,
-  `MQH` varchar(16) default NULL,
+  `FQH` varchar(36) default NULL,
+  `MQH` varchar(36) default NULL,
   `MRZT` char(2) default NULL,
   `FZZT` char(2) default NULL,
-  `BZ` varchar(128) default NULL
+  `BZ` varchar(128) default NULL,
+  PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -286,10 +287,10 @@ CREATE TABLE `nzjbxx` (
 DROP TABLE IF EXISTS `nzlcdjb`;
 CREATE TABLE `nzlcdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `PZ` varchar(16) default NULL,
-  `JS` varchar(16) default NULL,
+  `JS` varchar(36) default NULL,
   `NL` varchar(16) default NULL,
   `LQRQ` datetime default NULL,
   `LQLX` varchar(16) default NULL,
@@ -311,11 +312,11 @@ CREATE TABLE `nzlcdjb` (
 DROP TABLE IF EXISTS `nzzsdjb`;
 CREATE TABLE `nzzsdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
-  `ZSRQ` datetime default NULL,
-  `ZCJS` varchar(16) default NULL,
-  `ZRJS` varchar(16) default NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(16) NOT NULL,
+  `ZSRQ` datetime NOT NULL,
+  `ZCJS` varchar(36) NOT NULL,
+  `ZRJS` varchar(36) NOT NULL,
   `JSR` varchar(32) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
@@ -331,8 +332,8 @@ CREATE TABLE `nzzsdjb` (
 DROP TABLE IF EXISTS `pzdjb`;
 CREATE TABLE `pzdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `PZSJ` datetime default NULL,
   `DJBH` varchar(16) default NULL,
   `DJLX` varchar(16) default NULL,
@@ -356,15 +357,15 @@ CREATE TABLE `pzdjb` (
 DROP TABLE IF EXISTS `rsjcdjb`;
 CREATE TABLE `rsjcdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `JCRQ` datetime default NULL,
   `JCLX` varchar(16) default NULL COMMENT '初检\r\n            复检',
   `JCJG` varchar(64) default NULL COMMENT '人工\r\n            计步器',
   `JCY` varchar(32) default NULL,
   `JCFS` varchar(16) default NULL COMMENT '直肠/孕酮/超声/其他',
   `TSZT` varchar(16) default NULL,
-  `NZXB` char(1) default NULL,
+  `NZXB` int(1) default '2' COMMENT '0母1公2未确认',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -398,11 +399,11 @@ CREATE TABLE `xtcl` (
 DROP TABLE IF EXISTS `xxtsgl`;
 CREATE TABLE `xxtsgl` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
   `SJHM` varchar(16) default NULL,
   `TSLX` varchar(8) default NULL COMMENT '包括发情提示、最佳配种时间提示、运动量下降提示、定胎提示等',
   `TSNR` varchar(128) default NULL COMMENT '4、	发情提示信息(牛只编号、牛舍、发情描述、发情检测：是否发情—检测人—检测时间【选择确认发情后，根据发情描述时间推算最佳配种时间并提示。发情后8-12小时配种时间最佳】、配种：是否配种—配种人—配种时间)\r\n            运动量下降提示信息(牛只编号、牛舍、描述、检测结果、检测时间、检测人)\r\n            ',
-  `SFTS` char(1) default NULL COMMENT '0：未提示\r\n            1：已提示',
+  `SFTS` int(1) default '0' COMMENT '0：未提示\r\n            1：已提示',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -424,7 +425,7 @@ CREATE TABLE `ygxxb` (
   `LXDH` varchar(32) default NULL,
   `LXDZ` varchar(128) default NULL,
   `YGLB` char(1) default NULL,
-  `SCBZ` char(1) default NULL COMMENT '0：未删除\r\n            1：已删除',
+  `SCBZ` int(1) NOT NULL default '0' COMMENT '0：未删除\r\n            1：已删除',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
