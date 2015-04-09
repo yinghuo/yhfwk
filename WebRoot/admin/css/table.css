@@ -19,7 +19,7 @@ table thead label{
 table td {
 	border-top:solid 1px #b6d7e9;
 	border-right:solid 1px #b6d7e9;
-	padding: 10px;
+	height:28px;
 }
 
 table td a{
@@ -33,6 +33,10 @@ table td input[type='checkbox']{
 	margin-top:10px;
 }
 
+table td input{
+	height:70%;
+	width:350px;
+}
 
 .modifyBtn {
 	padding-left:32px;
@@ -50,6 +54,8 @@ table td input[type='checkbox']{
 	padding-left:26px;
 	background:url("../images/del.png") no-repeat 0 0 transparent;
 }
+
+
 
 .page{
 	width:290px;
