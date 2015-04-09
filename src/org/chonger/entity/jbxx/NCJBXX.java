@@ -49,7 +49,7 @@ public class NCJBXX {
 	@Column(name = "lxr")
 	private String lxr;//联系人
 	
-	@Column(name = "lxr")
+	@Column(name = "lxrdh")
 	private String lxrdh;//联系人电话
 	
 	@Column(name = "pzy")

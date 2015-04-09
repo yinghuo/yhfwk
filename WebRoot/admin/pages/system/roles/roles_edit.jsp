@@ -5,7 +5,7 @@
 <head>
 	<%@include file='/admin/pages/importResource.jsp'%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
-    <script src="${pageContext.request.contextPath}/vendor/jqueryui/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/plugins/jqueryui/jquery-ui-1.10.2.custom.js" type="text/javascript"></script>
     <link href="${pageContext.request.contextPath}/plugins/fancytree/skin/win/ui.fancytree.css" rel="stylesheet" type="text/css">
   	<script src="${pageContext.request.contextPath}/plugins/fancytree/jquery.fancytree.js" type="text/javascript"></script>
   	<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>

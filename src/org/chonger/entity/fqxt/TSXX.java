@@ -20,6 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class TSXX
 {
+	@Id
 	@Column(name = "xh")
 	private String xh;//序号
 	

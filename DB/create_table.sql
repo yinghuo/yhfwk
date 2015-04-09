@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-04-08 17:06:10
+Date: 2015-04-09 11:16:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -455,10 +455,34 @@ CREATE TABLE `yh_system_menus` (
 -- Records of yh_system_menus
 -- ----------------------------
 INSERT INTO `yh_system_menus` VALUES ('23', '菜单管理', null, null, '1', '1', '16', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('16', '系统管理', null, '#', '1', '0', '', '9', '1');
+INSERT INTO `yh_system_menus` VALUES ('16', '系统管理', null, '#', '1', '0', '', '100', '1');
 INSERT INTO `yh_system_menus` VALUES ('26', '角色管理', null, null, '1', '1', '16', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('25', '菜单管理', null, '/master/system/menu!AllMenus.action', '1', '2', '23', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('30', '角色管理', null, '/master/system/role!listRoles.action', '1', '2', '26', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('7f5f3ec0-7120-4a35-86ff-022d1a08d7b3', '基础数据', null, '#', '1', '0', '', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('ada29240-f710-4b5f-b1e4-769bd5216ac8', '牧场管理', null, '#', '1', '1', '7f5f3ec0-7120-4a35-86ff-022d1a08d7b3', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('f6d14b1b-f915-4c1a-aa14-c5e772ebff2b', '牧场信息', null, '#', '1', '2', 'ada29240-f710-4b5f-b1e4-769bd5216ac8', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('ee9abbe4-98a1-4daa-9a32-168d44d44875', '牛只管理', null, '#', '1', '0', '', '1', '1');
+INSERT INTO `yh_system_menus` VALUES ('7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '牛只管理', null, '#', '1', '1', 'ee9abbe4-98a1-4daa-9a32-168d44d44875', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('03cfe1fc-2215-477d-8c52-028185a518b8', '牛只基本信息', null, '#', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('2124e606-2184-4d92-af67-fee9e292fe57', '牛只转舍记录', null, '#', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '1', '1');
+INSERT INTO `yh_system_menus` VALUES ('dfc0b7c9-753b-4699-bc31-955a2b5ab754', '牛只离场记录', null, '#', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '2', '1');
+INSERT INTO `yh_system_menus` VALUES ('6c85bfb9-87bc-4314-aede-04050c1e14eb', '发情管理', null, '#', '1', '0', '', '2', '1');
+INSERT INTO `yh_system_menus` VALUES ('1db91c40-1bac-4a21-a51d-93ca9313abf5', '发情管理', null, '#', '1', '1', '6c85bfb9-87bc-4314-aede-04050c1e14eb', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('775f12d4-7398-47cc-99d3-a3f5252a2cde', '发情信息管理', null, '#', '1', '2', '1db91c40-1bac-4a21-a51d-93ca9313abf5', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('664e9af6-44d1-40f7-a90c-593c0df30be2', '繁殖管理', null, '#', '1', '0', '', '3', '1');
+INSERT INTO `yh_system_menus` VALUES ('344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '繁殖管理', null, '#', '1', '1', '664e9af6-44d1-40f7-a90c-593c0df30be2', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('363f04b6-998b-4ff6-b9a7-eda518000d2b', '发情登记', null, '#', '1', '2', '344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('f5ccef47-db94-4586-93bd-9b1386a7a1b5', '配种登记', null, '#', '1', '2', '344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '1', '1');
+INSERT INTO `yh_system_menus` VALUES ('2e112434-6820-4edb-9c05-850db98ba8a1', '妊检登记', null, '#', '1', '2', '344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '2', '1');
+INSERT INTO `yh_system_menus` VALUES ('48afcc5c-e687-4daf-9c4a-69860f801881', '产犊登记', null, '#', '1', '2', '344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '3', '1');
+INSERT INTO `yh_system_menus` VALUES ('e764ad0b-6c22-42bc-96a8-98a9a526eb5a', '流产登记', null, '#', '1', '2', '344b6e6f-b9f2-404f-a9f6-e7bdfefa9709', '4', '1');
+INSERT INTO `yh_system_menus` VALUES ('489b6e7f-fbc6-4280-ba38-594f08ae69a4', '产奶管理', null, '#', '1', '0', '', '4', '1');
+INSERT INTO `yh_system_menus` VALUES ('4c5ca112-e24f-4922-b495-0192cf819cb7', '产奶管理', null, '#', '1', '1', '489b6e7f-fbc6-4280-ba38-594f08ae69a4', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('5b2e72d9-1b7e-4649-95f1-e4c83f74ffe0', '个体产奶登记', null, '#', '1', '2', '4c5ca112-e24f-4922-b495-0192cf819cb7', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('855a0784-8f59-4c76-a711-331fdce82c01', '兽医保健', null, '#', '1', '0', '', '5', '1');
+INSERT INTO `yh_system_menus` VALUES ('ccd14723-924c-4bc3-b06d-fc5ca0e3fb39', '疾病管理', null, '#', '1', '1', '855a0784-8f59-4c76-a711-331fdce82c01', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('baa7a720-08f7-47d8-9fa9-bd152a96b9cd', '疾病登记', null, '#', '1', '2', 'ccd14723-924c-4bc3-b06d-fc5ca0e3fb39', '0', '1');
 
 -- ----------------------------
 -- Table structure for `yh_system_roles`
@@ -479,7 +503,7 @@ CREATE TABLE `yh_system_roles` (
 -- ----------------------------
 -- Records of yh_system_roles
 -- ----------------------------
-INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '16', '0', null, '1', '0');
+INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '7f5f3ec0-7120-4a35-86ff-022d1a08d7b3,ee9abbe4-98a1-4daa-9a32-168d44d44875,6c85bfb9-87bc-4314-aede-04050c1e14eb,664e9af6-44d1-40f7-a90c-593c0df30be2,489b6e7f-fbc6-4280-ba38-594f08ae69a4,855a0784-8f59-4c76-a711-331fdce82c01,16', '0', null, '1', '0');
 
 -- ----------------------------
 -- Table structure for `yh_system_users`
@@ -502,7 +526,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-03-02 21:53:39', '2015-03-02 21:57:52');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-09 11:15:07', '2015-04-09 11:15:19');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
