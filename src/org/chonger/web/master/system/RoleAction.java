@@ -96,6 +96,7 @@ public class RoleAction extends ActionSupport  {
 	 */
 	@Override
 	public String execute() throws Exception {
+		
 		menus=menumanager.loadAllMenu();
 		return "edit.jsp";
 	}

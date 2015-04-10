@@ -13,7 +13,7 @@
 				<thead>
 					<tr>
 						<th colspan="3" class="borderRightNone">
-							<label>创建牛场信息</label>
+							<label>新增牛场信息</label>
 						</th>
 					</tr>
 				</thead>
