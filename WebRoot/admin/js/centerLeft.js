@@ -65,8 +65,6 @@ function bindEvent()
 		$("#centerLeft li").removeClass("selected_leftMenu");
 		$(this).addClass("selected_leftMenu");
 
-		$(rightFrame).attr("src",rightPageName);
-
 		//$(rightFrame).attr("src","rightPages/"+rightPageName); @modify by Daniel@2014-05-13 同Line:28
 		window.parent.beginShow($(this).attr("id"));
 		//添加空页处理逻辑 by Daniel
