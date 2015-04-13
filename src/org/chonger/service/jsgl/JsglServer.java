@@ -1,48 +1,48 @@
-package org.chonger.service.ncgl;
+package org.chonger.service.jsgl;
 
 import java.util.List;
 
 import org.chonger.dao.CommonDAO;
+import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 /**   
 *
-* @title NcglServer.java 牛场信息管理业务逻辑
+* @title JsglServer.java 圈舍信息管理业务逻辑
 * @package org.chonger.service.ncgl
 * @author Daniel
 * @create 2015-4-10 
  */
 @Service
 @Transactional
-public class NcglServer {
+public class JsglServer {
 	
 	@Autowired
-	private CommonDAO<NCJBXX> dao;
-	
+	private CommonDAO<JSJBXX> dao;
 	
 	public String getQueryString()
 	{
-		return "from NCJBXX model";
+		return "from JSJBXX model";
 	}
 	
 	/**
-	 * 查找所有的牛场信息
+	 * 查找所有的圈舍信息
 	 * @Title: finaAll 
 	 * @Description: 
-	 * @retrun List<NCJBXX> 
+	 * @retrun List<JSJBXX> 
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public List<NCJBXX> finaAll()
+	public List<JSJBXX> finaAll()
 	{
 		return dao.find(getQueryString());
 	}
+	
 	
 	/**
 	 * 保存或更新牛场信息
@@ -53,22 +53,21 @@ public class NcglServer {
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public void saveOrUpdate(NCJBXX Ncxx)
+	public void saveOrUpdate(JSJBXX jsxx)
 	{
-		if(Ncxx!=null)
+		if(jsxx!=null)
 		{
-			if(StringUtil.IsEmpty(Ncxx.getNcbh()))
+			if(StringUtil.IsEmpty(jsxx.getXh()))
 			{
-				//牛场编号为空，表示新增，进行自动编号
-				Ncxx.setNcbh(CommUUID.getUUID());
+				//圈舍编号为空，表示新增，进行自动编号
+				jsxx.setXh(CommUUID.getUUID());
 				
-				dao.save(Ncxx);
+				dao.save(jsxx);
 			}
 			else
 			{
-				dao.saveOrUpdate(Ncxx);
+				dao.saveOrUpdate(jsxx);
 			}
 		}
 	}
-	
 }

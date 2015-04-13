@@ -14,15 +14,15 @@
      		<h6 id="NavMap"></h6>
      		<form id="frmSearch" action="" method="post">
 	     		<div class="blueDivBox">
-	     			<label>牛场名称：</label>
+	     			<label>圈舍编号：</label>
 					<input id="" name="" type="text" value=""/>
-					<label style="margin-left:10px;">牛场编号：</label>
+	     			<label style="margin-left:10px;">圈舍名称：</label>
 					<input id="" name="" type="text" value=""/>
 					<span class="searchTextBox">					
 						<input onClick="" type="button" class="blueBtn" value="搜索"/>
 					</span>
 					 <div style="float:right;">
-				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/ncgl/add.jsp" style="float:right;padding:0px 8px;">新增牛场信息</a>		
+				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/jsgl/add.jsp" style="float:right;padding:0px 8px;">新增圈舍信息</a>		
 				    </div>
 				</div>
 			</form>
@@ -33,16 +33,16 @@
 							<label>序号</label>
 						</th>
 						<th>
-							<label>牛场名称</label>
+							<label>圈舍编号</label>
 						</th>
 						<th>
-							<label>负责人</label>
+							<label>圈舍名称</label>
 						</th>
 						<th>
-							<label>开始使用时间</label>
+							<label>圈舍类别</label>
 						</th>
 						<th>
-							<label>到期时间</label>
+							<label>所属牛场名称</label>
 						</th>
 						<th class="borderRightNone" width="120">
 							<label class="borderRightNone">操作</label>
@@ -50,13 +50,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="nclist" status="status" id="ncxx">
+					<s:iterator value="jslist" status="status" id="jsxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#ncxx.ncmc"/></td>
-							<td><s:property value="#ncxx.fzr"/></td>
-							<td><s:date name="#ncxx.kssysj" format="yyyy年MM月dd日"/></td>
-							<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
+							<td><s:property value="#jsxx.jsbh"/></td>
+							<td><s:property value="#jsxx.jsmc"/></td>
+							<td><s:property value="#jsxx.jslb"/></td>
+							<td><s:property value="#jsxx.ncjbxx.ncmc"/></td>
 							<td>
 								<a >修改</a>
 								<a >删除</a>

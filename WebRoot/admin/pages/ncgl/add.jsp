@@ -202,7 +202,8 @@
      	function savedone(data)
      	{
      		jsonResult(data,function(data){
-     			window.location.href="${pageContext.request.contextPath}/master/ncgl/ncgl.action";
+     			if(data["error"]==0)
+     				window.location.href="${pageContext.request.contextPath}/master/ncgl/ncgl.action";
      		});
      	}
      </script>

@@ -1,5 +1,7 @@
 package org.chonger.web.master.ncgl;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -26,6 +28,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({ 
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
+	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
 	@Result(name = "list.jsp", location = "/admin/pages/ncgl/index.jsp"),
 	@Result(name = "edit.jsp", location = "/admin/pages/ncgl/add.jsp")
 })
@@ -80,5 +83,22 @@ public class NcglAction extends ActionSupport {
 		return "infos";
 	}
 	
-	
+	public String loadname() throws Exception{
+		
+		List<NCJBXX> ncjbxxList=server.finaAll();
+		
+		if(ncjbxxList!=null&&ncjbxxList.size()>0)
+		{
+			jsonResult.objListInitOrClear();
+			for(NCJBXX item : ncjbxxList)
+			{
+				HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
+				infoMap.put("name",item.getNcmc());
+				infoMap.put("id",item.getNcbh());
+				jsonResult.getObjList().add(infoMap);
+			}
+		}
+		
+		return "infolist";
+	}
 }

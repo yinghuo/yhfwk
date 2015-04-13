@@ -1,10 +1,13 @@
 package org.chonger.entity.jbxx;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -75,6 +78,17 @@ public class NCJBXX {
 	
 	@Column(name = "bz")
 	private String bz;//备注
+	
+	@OneToMany(mappedBy="ncjbxx",fetch = FetchType.LAZY)
+	private List<JSJBXX> jsxxList;
+	
+	public List<JSJBXX> getJsxxList() {
+		return jsxxList;
+	}
+
+	public void setJsxxList(List<JSJBXX> jsxxList) {
+		this.jsxxList = jsxxList;
+	}
 
 	public String getNcbh() {
 		return ncbh;
