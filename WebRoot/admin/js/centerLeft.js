@@ -28,10 +28,6 @@ function bindEvent()
 		rightPageName = firstLeftMenu.attr("rightPageName"),
 		rightFrame = $(window.parent.document).find("#rightFrame");
 
-
-	$(rightFrame).attr("src",rightPageName);
-
-	
 	//添加无默认菜单逻辑 by Daniel
 	if(firstLeftMenu.length==0)//无3级默认菜单
 	{

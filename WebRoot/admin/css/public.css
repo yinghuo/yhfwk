@@ -172,3 +172,7 @@ table textArea, table select {
 	float:left;
 	border: solid 1px #d0d0d0;
 }
+.btns{
+	text-align:center;
+	padding:10px;
+}

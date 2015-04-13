@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+
 <!doctype html>
 <html>
   <head>
@@ -30,10 +33,10 @@
 							<label>序号</label>
 						</th>
 						<th>
-							<label>牛场编号</label>
+							<label>牛场名称</label>
 						</th>
 						<th>
-							<label>牛场名称</label>
+							<label>负责人</label>
 						</th>
 						<th>
 							<label>开始使用时间</label>
@@ -47,6 +50,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<s:iterator value="nclist" status="status" id="ncxx">
+						<tr>
+							<td>${status.count }</td>
+							<td><s:property value="#ncxx.ncmc"/></td>
+							<td><s:property value="#ncxx.fzr"/></td>
+							<td><s:date name="#ncxx.kssysj" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
+							<td></td>
+						</tr>
+					</s:iterator>
 				</tbody>
 			</table>
      	</div>

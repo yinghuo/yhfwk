@@ -10,6 +10,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ismartcms.core.orm.hibernate.HibernateDao;
 /**
@@ -33,7 +35,7 @@ public class RollPage<T> extends HibernateDao<T,String> {
 	/**设置ID*/
 	public void setId(String id) {		this.id = id;	}
 	
-	private int pageSize=12;
+	public int pageSize=12;
 	/**获取每页显示的数据个数*/
 	public int getPageSize() {		return pageSize;	}
 	/**设置每页显示的数据个数，如果pageSize小于或等于0则会重置为默认大小*/
@@ -194,9 +196,22 @@ public class RollPage<T> extends HibernateDao<T,String> {
 	 */
 	public void init(String commandText,int pageSize) throws Exception
 	{
-		this.setCommandText(commandText);
 		this.setPageSize(pageSize);
-		init();
+		init(commandText);
+	}
+	
+	/**
+	 * 控件初始化操作
+	 * @param commandText 执行的查询语句
+	 * @param pageSize 每页显示的数据个数，如果pageSize小于或等于0则会重置为默认大小
+	 * @param pageNum  翻页展示数据
+	 * @throws Exception
+	 */
+	public void init(String commandText,int pageSize,int pageNum) throws Exception
+	{
+		init(commandText,pageSize);
+		if(pageNum>0)
+			this.doPageJump(pageNum);
 	}
 	
 	/**

@@ -13,6 +13,8 @@ import java.util.Map;
  * @author Daniel
  * @create 2014-08-09
  * @version 1.0
+ * 
+ * @add 2015-04-13	Daniel 1：对该类进行函数扩展
  */
 public class JsonResultUtils implements Serializable {
 	
@@ -82,4 +84,25 @@ public class JsonResultUtils implements Serializable {
 		this.object = object;
 	}
 	
+	//Add  2015-04-13	Daniel 扩展函数引用
+	/**
+	 * 回复成功消息，参数msg可以为空
+	 */
+	public void sendSuccessMessage(String msg)
+	{
+		this.infosInitOrClear();
+		this.getInfos().put(ERROR,OKVALUE);
+		if(!StringUtil.IsEmpty(msg))
+			this.getInfos().put(MESSAGE,msg);
+	}
+	/**
+	 * 回复失败消息，参数msg可以为空
+	 */
+	public void sendErrorMessage(String msg)
+	{
+		this.infosInitOrClear();
+		this.getInfos().put(ERROR,ERRORVALUE);
+		if(!StringUtil.IsEmpty(msg))
+			this.getInfos().put(MESSAGE,msg);
+	}
 }
