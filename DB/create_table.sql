@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-04-14 09:20:20
+Date: 2015-04-14 23:18:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4007,7 +4007,7 @@ INSERT INTO `yh_system_menus` VALUES ('ada29240-f710-4b5f-b1e4-769bd5216ac8', '�
 INSERT INTO `yh_system_menus` VALUES ('f6d14b1b-f915-4c1a-aa14-c5e772ebff2b', '牧场信息', null, '/master/ncgl/ncgl.action', '1', '2', 'ada29240-f710-4b5f-b1e4-769bd5216ac8', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('ee9abbe4-98a1-4daa-9a32-168d44d44875', '牛只管理', null, '#', '1', '0', '', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '牛只管理', null, '#', '1', '1', 'ee9abbe4-98a1-4daa-9a32-168d44d44875', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('03cfe1fc-2215-477d-8c52-028185a518b8', '牛只基本信息', null, '/admin/pages/nopage.jsp', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('03cfe1fc-2215-477d-8c52-028185a518b8', '牛只基本信息', null, '/master/nzgl/nzxx.action', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('2124e606-2184-4d92-af67-fee9e292fe57', '牛只转舍记录', null, '/admin/pages/nopage.jsp', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('dfc0b7c9-753b-4699-bc31-955a2b5ab754', '牛只离场记录', null, '/admin/pages/nopage.jsp', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('6c85bfb9-87bc-4314-aede-04050c1e14eb', '发情管理', null, '#', '1', '0', '', '2', '1');
@@ -4071,7 +4071,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-13 22:54:42', '2015-04-13 23:01:12');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-14 22:06:25', '2015-04-14 22:07:52');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
