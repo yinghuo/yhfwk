@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-04-13 16:17:01
+Date: 2015-04-14 09:20:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3733,6 +3733,7 @@ CREATE TABLE `jsxxb` (
 -- ----------------------------
 -- Records of jsxxb
 -- ----------------------------
+INSERT INTO `jsxxb` VALUES ('4763e9d4-d142-402e-be95-64c7aa5a3150', '50c82dc1-e25a-47ba-b1fd-be0e550da4ab', '001', '一号圈舍', '空调房', '优质奶牛住所');
 
 -- ----------------------------
 -- Table structure for `lcdjb`
@@ -4026,7 +4027,7 @@ INSERT INTO `yh_system_menus` VALUES ('855a0784-8f59-4c76-a711-331fdce82c01', '�
 INSERT INTO `yh_system_menus` VALUES ('ccd14723-924c-4bc3-b06d-fc5ca0e3fb39', '疾病管理', null, '#', '1', '1', '855a0784-8f59-4c76-a711-331fdce82c01', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('baa7a720-08f7-47d8-9fa9-bd152a96b9cd', '疾病登记', null, '/admin/pages/nopage.jsp', '1', '2', 'ccd14723-924c-4bc3-b06d-fc5ca0e3fb39', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('ae30a5d6-e7ce-402b-8389-b1cf825b60fb', '圈舍管理', null, '#', '1', '1', '7f5f3ec0-7120-4a35-86ff-022d1a08d7b3', '1', '1');
-INSERT INTO `yh_system_menus` VALUES ('550df218-7f5b-4651-80a7-8fcdbe17a981', '圈舍信息', null, '/admin/pages/nopage.jsp', '1', '2', 'ae30a5d6-e7ce-402b-8389-b1cf825b60fb', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('550df218-7f5b-4651-80a7-8fcdbe17a981', '圈舍信息', null, '/master/jsgl/jsgl.action', '1', '2', 'ae30a5d6-e7ce-402b-8389-b1cf825b60fb', '0', '1');
 
 -- ----------------------------
 -- Table structure for `yh_system_roles`
@@ -4070,7 +4071,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-13 12:45:30', '2015-04-13 13:14:30');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-13 22:54:42', '2015-04-13 23:01:12');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
