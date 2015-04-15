@@ -21,31 +21,31 @@
 				<tbody>
 					<tr>
 						<td>牛只编号</td>
-						<td align="left"><input type="text" id="ncmc" name="nz.ncmc" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="nzbh" name="nz.nzbh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>所属圈舍</td>
 						<td align="left">
-							<select id="nc" name="nz." class="txt vm" ><option value="">请选择所属圈舍</option></select>
+							<select id="js" name="nz.js" class="txt vm" ><option value="">请选择所属圈舍</option></select>
 							<span style='color:red;'>*必填</span>
 						</td>
 					</tr>
 					<tr>
 						<td>电子耳标编号</td>
-						<td align="left"><input type="text" id="ncdz" name="nz.ncdz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="ebbh" name="nz.ebbh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>计步器编号</td>
-						<td align="left"><input type="text" id="snqy" name="nz.snqy" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="jbqbh" name="nz.jbqbh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>出生日期</td>
-						<td align="left"><input type="text" id="fzr" name="nz.fzr" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="csrq" name="nz.csrq" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>性别</td>
 						<td align="left">
-							<select id="nc" name="nz." class="txt vm" >
+							<select id="xb" name="nz.xb" class="txt vm" >
 								<option value="1">公</option>
 								<option value="0">母</option>
 							</select>
@@ -54,7 +54,7 @@
 					<tr>
 						<td>类别</td>
 						<td align="left">
-						<select id="nc" name="nz." class="txt vm" >
+						<select id="lb" name="nz.lb" class="txt vm" >
 								<option value="">请选择牛只类别</option>
 								<option value="哺乳犊牛">哺乳犊牛</option>
 								<option value="断奶犊牛">断奶犊牛</option>
@@ -69,7 +69,7 @@
 					<tr>
 						<td>入群类型</td>
 						<td align="left">
-							<select id="nc" name="nz." class="txt vm" >
+							<select id="rqlx" name="nz.rqlx" class="txt vm" >
 								<option value="">请选择入群类型</option>
 								<option value="自繁">自繁</option>
 								<option value="购买">购买</option>
@@ -78,43 +78,43 @@
 					</tr>
 					<tr>
 						<td>月龄</td>
-						<td align="left"><input type="text" id="pzy" name="nz.pzy" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="yl" name="nz.yl" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>出生重</td>
-						<td align="left"><input type="text" id="pzhdg" name="nz.pzhdg" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="csz" name="nz.csz" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>品种</td>
-						<td align="left"><input type="text" maxlength="1" id="fqxtsybz" name="nz.fqxtsybz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="pz" name="nz.pz" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>毛色</td>
-						<td align="left"><input type="text" id="kssysj" name="nz.kssysj"><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="ms" name="nz.ms"><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>胎次</td>
-						<td align="left"><input type="text" id="tzsysj" name="nz.tzsysj"><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="tc" name="nz.tc"><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>产犊日期</td>
-						<td align="left"><input type="text" id="lxyx" name="nz.lxyx" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="cdrq" name="nz.cdrq" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>父亲牛只</td>
-						<td align="left"><input type="text" id="kddz" name="nz.kddz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="fqh" name="nz.fqh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>母亲牛只</td>
-						<td align="left"><input type="text" id="bz" name="nz.bz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="mqh" name="nz.mqh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>泌乳状态</td>
-						<td align="left"><input type="text" id="bz" name="nz.bz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="mrzt" name="nz.mrzt" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>繁殖状态</td>
-						<td align="left"><input type="text" id="bz" name="nz.bz" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="fzzt" name="nz.fzzt" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>母亲牛只</td>
