@@ -85,7 +85,7 @@ public class NcglAction extends ActionSupport {
 	
 	public String loadname() throws Exception{
 		
-		List<NCJBXX> ncjbxxList=server.finaAll();
+		List<NCJBXX> ncjbxxList=server.findAll();
 		
 		if(ncjbxxList!=null&&ncjbxxList.size()>0)
 		{

@@ -27,7 +27,7 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
 	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
-	@Result(name = "nz-list.jsp", location = "/admin/pages/nzgl/nz-index.jsp"),
+	@Result(name = "list.jsp", location = "/admin/pages/nzgl/nz-index.jsp"),
 	@Result(name = "edit.jsp", location = "/admin/pages/nzgl/nz-add.jsp")
 })
 public class NzxxAction extends ActionSupport {
@@ -59,11 +59,24 @@ public class NzxxAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		
-		return "nz-list.jsp";
+		pager.init(server.getQueryString(),pager.pageSize,p);
+		nzlist=pager.getDataSource();
+		return "list.jsp";
 	}
 	
-	
+	/**保存数据操作*/
+	public String save() throws Exception{
+		
+		try{
+			server.saveOrUpdate(nz);
+			
+			jsonResult.sendSuccessMessage("新增牛只信息成功！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage("新增牛只信息异常！");
+		}		
+		return "infos";
+	}
 	
 }
 	

@@ -39,7 +39,7 @@ public class NcglServer {
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public List<NCJBXX> finaAll()
+	public List<NCJBXX> findAll()
 	{
 		return dao.find(getQueryString());
 	}

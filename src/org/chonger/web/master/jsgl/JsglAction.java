@@ -1,5 +1,7 @@
 package org.chonger.web.master.jsgl;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -9,6 +11,7 @@ import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.service.jsgl.JsglServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,6 +29,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Results({ 
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
+	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
 	@Result(name = "list.jsp", location = "/admin/pages/jsgl/index.jsp"),
 	@Result(name = "edit.jsp", location = "/admin/pages/jsgl/add.jsp")
 })
@@ -54,6 +58,10 @@ public class JsglAction extends ActionSupport {
 	private List<JSJBXX> jslist;
 	public List<JSJBXX> getJslist() {		return jslist;	}
 	
+	/**参数列表*/
+	private String ncbh;//牛场编号参数。
+	public String getNcbh() {		return ncbh;	}
+	public void setNcbh(String ncbh) {		this.ncbh = ncbh;	}
 	
 	
 	@Override
@@ -76,6 +84,29 @@ public class JsglAction extends ActionSupport {
 		}
 		
 		return "infos";
+	}
+	
+	/**加载圈舍的选择信息，如果存在牛场编号，则加载该牛场编号的圈舍信息*/
+	public String loadname() throws Exception{
+		
+		if(!StringUtil.IsEmpty(ncbh))
+		{
+			List<JSJBXX> jsjbxxList=server.findAllByNcbh(ncbh);
+			
+			if(jsjbxxList!=null&&jsjbxxList.size()>0)
+			{
+				jsonResult.objListInitOrClear();
+				for(JSJBXX item : jsjbxxList)
+				{
+					HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
+					infoMap.put("name",item.getJsmc());
+					infoMap.put("id",item.getXh());
+					jsonResult.getObjList().add(infoMap);
+				}
+			}
+		}
+		
+		return "infolist";
 	}
 	
 }

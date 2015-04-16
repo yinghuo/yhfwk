@@ -9,7 +9,7 @@
      <div class="centerRightContainer">
      	<div class="centerRight">
      		<h6 id="NavMap"></h6>
-     		<form id="frmncxx">
+     		<form id="frmnzxx">
      		<table>
 				<thead>
 					<tr>
@@ -24,10 +24,19 @@
 						<td align="left"><input type="text" id="nzbh" name="nz.nzbh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
+						<td>所属牛场</td>
+						<td align="left">
+							<select id="nc" name="nz.ncbh" class="txt vm" ><option value="">请选择所属牛场</option></select>
+							<span style='color:red;'>*必填</span>
+							<div style="display:none" id="widgetData_loadnc" url="${pageContext.request.contextPath}/master/ncgl/ncgl!loadname.action" callfunction=",loadncdone,"></div>
+						</td>
+					</tr>
+					<tr>
 						<td>所属圈舍</td>
 						<td align="left">
 							<select id="js" name="nz.js" class="txt vm" ><option value="">请选择所属圈舍</option></select>
 							<span style='color:red;'>*必填</span>
+							<div style="display:none" auto="false" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/jsgl/jsgl!loadname.action" callfunction=",loadjsdone,"></div>
 						</td>
 					</tr>
 					<tr>
@@ -117,111 +126,113 @@
 						<td align="left"><input type="text" id="fzzt" name="nz.fzzt" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
-						<td>母亲牛只</td>
+						<td>备注信息</td>
 						<td align="left"><input type="text" id="bz" name="nz.bz" value=""></td>
 					</tr>
 				</tbody>
 			</table>
 			</form>
 			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/ncgl/ncgl!save.action" name="frmncxx" class="blueBtn" type="button" value=" 确认新增 "/>
+				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="blueBtn" type="button" value=" 确认新增 "/>
 			</div>
      	</div>
      </div>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
      	
-     	var district=new YDistrict({
-			"YDistrict.SHENG":{"id":"sheng"},
-			"YDistrict.SHI":{"id":"shi"},
-			"YDistrict.XIAN":{"id":"xian"},
-			"init":true
-		});
-     	
      	function validata()
      	{
-     		$("#ssqy").val(district.getSelectValue());
-     		if(IsNull("ncmc",0))
+     		if(IsNull("nzbh",0))
      		{
-     			alert("请填写牛场名称！");
+     			alert("请填写牛只编号！");
      			return false;
      		}
-     		else if(IsNull("ncxz",0))
+     		else if(IsNull("js",0))
      		{
-     			alert("请填写牛场性质！");
+     			alert("请选择牛只的圈舍！");
      			return false;
      		}
-     		else if(IsNull("ncdz",0))
+     		else if(IsNull("ebbh",0))
      		{
-     			alert("请填写牛场地址！");
+     			alert("请填写牛只耳标编号！");
      			return false;
      		}
-     		else if(IsNull("ssqy",0))
+     		else if(IsNull("jbqbh",0))
      		{
-     			alert("请填写牛场的所属区域！");
+     			alert("请填写牛只计步器编号！");
      			return false;
      		}
-     		else if(IsNull("snqy",0))
+     		else if(IsNull("csrq",0))
      		{
-     			alert("请填写牛场的收奶企业！");
+     			alert("请填写牛只的出生日期！");
      			return false;
      		}
-     		else if(IsNull("fzr",0))
+     		else if(IsNull("xb",0))
      		{
-     			alert("请填写牛场的负责人！");
+     			alert("请选择牛只的性别！");
      			return false;
      		}
-     		else if(IsNull("fzrdh",0))
+     		else if(IsNull("lb",0))
      		{
-     			alert("请填写牛场的负责人电话！");
+     			alert("请选择牛只的类别！");
      			return false;
      		}
-     		else if(IsNull("lxr",0))
+     		else if(IsNull("rqlx",0))
      		{
-     			alert("请填写牛场的联系人！");
+     			alert("请选择牛只的入群类型！");
      			return false;
      		}
-     		else if(IsNull("lxrdh",0))
+     		else if(IsNull("yl",0))
      		{
-     			alert("请填写牛场的联系人电话！");
+     			alert("请填写牛只的月龄！");
      			return false;
      		}
-     		else if(IsNull("pzy",0))
+     		else if(IsNull("csz",0))
      		{
-     			alert("请填写牛场的配种员！");
+     			alert("请填写牛只的出生重量！");
      			return false;
      		}
-     		else if(IsNull("pzhdg",0))
+     		else if(IsNull("pz",0))
      		{
-     			alert("请填写牛场的配种员电话！");
+     			alert("请填写牛只的品种！");
      			return false;
      		}
-     		else if(IsNull("fqxtsybz",0))
+     		else if(IsNull("ms",0))
      		{
-     			alert("请填写牛场的发情系统标志！");
+     			alert("请填写牛只的毛色！");
      			return false;
      		}
-     		else if(IsNull("kssysj",0))
+     		else if(IsNull("tc",0))
      		{
-     			alert("请填写牛场的开始使用时间！");
+     			alert("请填写牛只的胎次！");
      			return false;
      		}
-     		else if(IsNull("tzsysj",0))
+     		else if(IsNull("cdrq",0))
      		{
-     			alert("请填写牛场的到期使用时间！");
+     			alert("请填写牛只的到产犊日期！");
      			return false;
      		}
-     		else if(IsNull("lxyx",0))
+     		else if(IsNull("fqh",0))
      		{
-     			alert("请填写牛场的联系邮箱！");
+     			alert("请选择牛只的父亲！");
      			return false;
      		}
-     		else if(IsNull("kddz",0))
+     		else if(IsNull("mqh",0))
      		{
-     			alert("请填写牛场的快递地址！");
+     			alert("请选择牛只的母亲！");
+     			return false;
+     		}
+     		else if(IsNull("mrzt",0))
+     		{
+     			alert("请填写牛只的泌乳状态！");
+     			return false;
+     		}
+     		else if(IsNull("fzzt",0))
+     		{
+     			alert("请填写牛只的繁殖状态！");
      			return false;
      		}
      		return true;
@@ -231,9 +242,44 @@
      	{
      		jsonResult(data,function(data){
      			if(data["error"]==0)
-     				window.location.href="${pageContext.request.contextPath}/master/ncgl/ncgl.action";
+     				window.location.href="${pageContext.request.contextPath}/master/nzgl/nzxx.action";
      		});
      	}
+     	
+     	function loadncdone(data)
+     	{
+     		if(data)
+     		{
+     			var selectControl=document.getElementById("nc");
+     			for(var i=0;i<data.length;i++)
+				{
+					var items=data[i];
+					var optionItem=new Option(items.name,items.id);
+					selectControl.options.add(optionItem);
+				}
+     		}
+     	}
+     	
+     	function loadjsdone(data)
+     	{
+     		var selectControl=document.getElementById("js");
+     		selectControl.options.length = 1;
+     		if(data)
+     		{
+     			for(var i=0;i<data.length;i++)
+				{
+					var items=data[i];
+					var optionItem=new Option(items.name,items.id);
+					selectControl.options.add(optionItem);
+				}
+     		}
+     	}
+     	
+     	$("#nc").on("change",function(e){
+     		$("#widgetData_loadjs").attr("data","ncbh="+$("#nc").val());
+     		$("#widgetData_loadjs").trigger("loaddata");
+     	});
+     	
      </script>
   </body>
 </html>

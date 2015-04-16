@@ -1,13 +1,17 @@
 package org.chonger.entity.jbxx;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -45,6 +49,17 @@ public class JSJBXX {
 	@JoinColumn(name="ncbh",insertable = false, updatable = false)
 	private NCJBXX ncjbxx;
 	
+	@OneToMany(mappedBy="jsjbxx",fetch = FetchType.LAZY)
+	private List<NZJBXX> nzxxList;
+	
+	public List<NZJBXX> getNzxxList() {
+		return nzxxList;
+	}
+
+	public void setNzxxList(List<NZJBXX> nzxxList) {
+		this.nzxxList = nzxxList;
+	}
+
 	public NCJBXX getNcjbxx() {
 		return ncjbxx;
 	}

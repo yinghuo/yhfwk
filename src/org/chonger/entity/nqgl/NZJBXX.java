@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.jbxx.JSJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -105,6 +109,18 @@ public class NZJBXX {
 	@Column(name = "bz")
 	/**备注*/
 	private String bz;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="js",insertable = false, updatable = false)
+	private JSJBXX jsjbxx;
+	
+	public JSJBXX getJsjbxx() {
+		return jsjbxx;
+	}
+
+	public void setJsjbxx(JSJBXX jsjbxx) {
+		this.jsjbxx = jsjbxx;
+	}
 
 	public String getXh() {
 		return xh;

@@ -43,6 +43,21 @@ public class JsglServer {
 		return dao.find(getQueryString());
 	}
 	
+	/**
+	 * 根据牛场编号查询圈舍信息
+	 * @Title: findAllByNcbh 
+	 * @Description: 
+	 * @param ncbh 要查询的牛场编号
+	 * @retrun List<JSJBXX> 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public List<JSJBXX> findAllByNcbh(String ncbh)
+	{
+		
+		return dao.find(getQueryString()+" where model.ncbh='"+ncbh+"'");
+	}
 	
 	/**
 	 * 保存或更新牛场信息

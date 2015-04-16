@@ -38,9 +38,6 @@
 							<label>牛只编号</label>
 						</th>
 						<th>
-							<label>所属牛场</label>
-						</th>
-						<th>
 							<label>所属圈舍</label>
 						</th>
 						<th>
@@ -58,13 +55,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="nclist" status="status" id="ncxx">
+					<s:iterator value="nzlist" status="status" id="nzxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#ncxx.ncmc"/></td>
-							<td><s:property value="#ncxx.fzr"/></td>
-							<td><s:date name="#ncxx.kssysj" format="yyyy年MM月dd日"/></td>
-							<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
+							<td><s:property value="#nzxx.nzbh"/></td>
+							<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>
+							<td><s:property value="#nzxx.ebbh"/></td>
+							<td><s:property value="#nzxx.jbqbh"/></td>
+							<td><s:date name="#nzxx.csrq" format="yyyy年MM月dd日"/></td>
 							<td>
 								<a >修改</a>
 								<a >删除</a>
