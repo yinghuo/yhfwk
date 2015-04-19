@@ -3,7 +3,11 @@ package org.chonger.web.master.nzgl;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.JsonResultUtils;
+import org.chonger.utils.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 /**
@@ -26,6 +30,9 @@ import com.opensymphony.xwork2.ActionSupport;
 })
 public class ZsxxAction extends ActionSupport {
 	
+	@Autowired
+	private NzxxServer nzServer;
+	
 	public ZsxxAction(){
 		jsonResult=new JsonResultUtils();
 	}
@@ -34,10 +41,28 @@ public class ZsxxAction extends ActionSupport {
 	private JsonResultUtils jsonResult;
 	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 	
+	/**牛只基本信息实体，用于展示转舍牛只信息*/
+	private NZJBXX nz;
+	public NZJBXX getNz() {		return nz;	}
+	public void setNz(NZJBXX nz) {		this.nz = nz;	}
+	
+	/**id参数，作为请求id使用*/
+	private String id;	
+	public void setId(String id) {		this.id = id;	}
+	
 	@Override
 	public String execute() throws Exception {
 		
 		return "list.jsp";
+	}
+	
+	/**添加牛只转舍记录*/
+	public String add(){
+		if(!StringUtil.IsEmpty(id))
+		{
+			nz=nzServer.queryNZById(id);
+		}
+		return "edit.jsp";
 	}
 	
 }

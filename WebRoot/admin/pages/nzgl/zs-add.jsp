@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html>
   <head>
@@ -19,111 +20,50 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>牛只编号</td>
-						<td align="left"><input type="text" id="nzbh" name="nz.nzbh" value=""><span style='color:red;'>*必填</span></td>
+					<tr align="left">
+						<td colspan="2" style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;转出牛只信息</td>
 					</tr>
 					<tr>
-						<td>所属牛场</td>
+						<td>牛只编号</td>
+						<td align="left"><s:property value="nz.nzbh"/></td>
+						<input type="hidden" name="" value="<s:property value="nz.xh"/>"/>
+					</tr>
+					<tr>
+						<td>电子耳标编号</td>
+						<td align="left"><s:property value="nz.ebbh"/></td>
+					</tr>
+					<tr>
+						<td>计步器编号</td>
+						<td align="left"><s:property value="nz.jbqbh"/></td>
+					</tr>
+					<tr>
+						<td>当前所属牛场</td>
 						<td align="left">
-							<select id="nc" name="nz.ncbh" class="txt vm" ><option value="">请选择所属牛场</option></select>
+							1111111111
+						</td>
+					</tr>
+					<tr>
+						<td>当前所属圈舍</td>
+						<td align="left"><s:property value="nz.jsjbxx.jsmc"/></td>
+					</tr>
+					<tr align="left">
+						<td colspan="2" style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;转入圈舍信息</td>
+					</tr>
+					<tr>
+						<td>转入牛场</td>
+						<td align="left">
+							<select id="nc" name="nz.ncbh" class="txt vm" ><option value="">请选择转入牛场</option></select>
 							<span style='color:red;'>*必填</span>
 							<div style="display:none" id="widgetData_loadnc" url="${pageContext.request.contextPath}/master/ncgl/ncgl!loadname.action" callfunction=",loadncdone,"></div>
 						</td>
 					</tr>
 					<tr>
-						<td>所属圈舍</td>
+						<td>转入圈舍</td>
 						<td align="left">
-							<select id="js" name="nz.js" class="txt vm" ><option value="">请选择所属圈舍</option></select>
+							<select id="js" name="nz.js" class="txt vm" ><option value="">请选择转入圈舍</option></select>
 							<span style='color:red;'>*必填</span>
 							<div style="display:none" auto="false" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/jsgl/jsgl!loadname.action" callfunction=",loadjsdone,"></div>
 						</td>
-					</tr>
-					<tr>
-						<td>电子耳标编号</td>
-						<td align="left"><input type="text" id="ebbh" name="nz.ebbh" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>计步器编号</td>
-						<td align="left"><input type="text" id="jbqbh" name="nz.jbqbh" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>出生日期</td>
-						<td align="left"><input type="text" id="csrq" name="nz.csrq" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>性别</td>
-						<td align="left">
-							<select id="xb" name="nz.xb" class="txt vm" >
-								<option value="1">公</option>
-								<option value="0">母</option>
-							</select>
-						<span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>类别</td>
-						<td align="left">
-						<select id="lb" name="nz.lb" class="txt vm" >
-								<option value="">请选择牛只类别</option>
-								<option value="哺乳犊牛">哺乳犊牛</option>
-								<option value="断奶犊牛">断奶犊牛</option>
-								<option value="育成牛">育成牛</option>
-								<option value="青年牛">青年牛</option>
-								<option value="泌乳牛">泌乳牛</option>
-								<option value="干奶牛">干奶牛</option>
-								<option value="留养公牛">留养公牛</option>
-							</select>
-						<span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>入群类型</td>
-						<td align="left">
-							<select id="rqlx" name="nz.rqlx" class="txt vm" >
-								<option value="">请选择入群类型</option>
-								<option value="自繁">自繁</option>
-								<option value="购买">购买</option>
-							</select>
-						<span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>月龄</td>
-						<td align="left"><input type="text" id="yl" name="nz.yl" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>出生重</td>
-						<td align="left"><input type="text" id="csz" name="nz.csz" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>品种</td>
-						<td align="left"><input type="text" id="pz" name="nz.pz" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>毛色</td>
-						<td align="left"><input type="text" id="ms" name="nz.ms"><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>胎次</td>
-						<td align="left"><input type="text" id="tc" name="nz.tc"><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>产犊日期</td>
-						<td align="left"><input type="text" id="cdrq" name="nz.cdrq" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>父亲牛只</td>
-						<td align="left"><input type="text" id="fqh" name="nz.fqh" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>母亲牛只</td>
-						<td align="left"><input type="text" id="mqh" name="nz.mqh" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>泌乳状态</td>
-						<td align="left"><input type="text" id="mrzt" name="nz.mrzt" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>繁殖状态</td>
-						<td align="left"><input type="text" id="fzzt" name="nz.fzzt" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>备注信息</td>
@@ -133,7 +73,7 @@
 			</table>
 			</form>
 			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="blueBtn" type="button" value=" 确认新增 "/>
+				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="blueBtn" type="button" value=" 确认转舍 "/>
 			</div>
      	</div>
      </div>
@@ -280,6 +220,7 @@
      		$("#widgetData_loadjs").trigger("loaddata");
      	});
      	
+     	window.parent.window.frames["leftFrame"].selectMenu("2124e606-2184-4d92-af67-fee9e292fe57");
      </script>
   </body>
 </html>

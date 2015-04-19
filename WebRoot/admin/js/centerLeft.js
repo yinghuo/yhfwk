@@ -72,6 +72,15 @@ function bindEvent()
 	});
 }
 
+function selectMenu(id)
+{
+	var menu=$("#"+id);
+	if(menu){
+		$("#centerLeft li").removeClass("selected_leftMenu");
+		menu.addClass("selected_leftMenu");
+	}
+}
+
 /**
 	展示指定的菜单
 	@param menu 从head.js传递过来的需要展示的菜单

@@ -1,6 +1,8 @@
 
 package org.chonger.service.nzgl;
 
+import java.util.List;
+
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.utils.CommUUID;
@@ -21,6 +23,24 @@ import org.springframework.transaction.annotation.Transactional;
 public class NzxxServer {
 	@Autowired
 	private CommonDAO<NZJBXX> dao;
+	
+	/**
+	 * 依据牛只的id信息查询牛只信息
+	 * @Title: queryNZById 
+	 * @Description: 
+	 * @param id
+	 * @retrun NZJBXX 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public NZJBXX queryNZById(String id)
+	{
+		List<NZJBXX> resultList=dao.find(getQueryString()+" where model.xh='"+id+"'");
+		if(resultList!=null&&resultList.size()>0)
+			return resultList.get(0);
+		return null;
+	}
 	
 	public String getQueryString()
 	{

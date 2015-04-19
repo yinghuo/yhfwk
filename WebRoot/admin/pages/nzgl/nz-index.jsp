@@ -66,6 +66,7 @@
 							<td>
 								<a >修改</a>
 								<a >删除</a>
+								<a href="${pageContext.request.contextPath}/master/nzgl/zsxx!add.action?id=<s:property value="#nzxx.xh"/>">转舍</a>
 							</td>
 						</tr>
 					</s:iterator>

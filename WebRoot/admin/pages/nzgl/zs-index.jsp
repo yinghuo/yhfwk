@@ -20,7 +20,7 @@
 						<input onClick="" type="button" class="blueBtn" value="搜索"/>
 					</span>
 					 <div style="float:right;">
-				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/nzgl/zs-add.jsp" style="float:right;padding:0px 8px;">新增转舍记录</a>		
+				    	<%//<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/nzgl/zs-add.jsp" style="float:right;padding:0px 8px;">新增转舍记录</a> %>		
 				    </div>
 				</div>
 			</form>
