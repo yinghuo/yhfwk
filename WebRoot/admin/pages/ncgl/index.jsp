@@ -11,7 +11,6 @@
   <body>
      <div class="centerRightContainer">
      	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
      		<form id="frmSearch" action="" method="post">
 	     		<div class="blueDivBox">
 	     			<label>牛场名称：</label>
