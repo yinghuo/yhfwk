@@ -8,7 +8,6 @@
   <body>
      <div class="centerRightContainer">
      	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
      		<form id="frmncxx">
      		<table>
 				<thead>
@@ -105,7 +104,7 @@
 	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
-     	
+     	showmap("牧场信息管理 > 新增牛场信息");
      	var district=new YDistrict({
 			"YDistrict.SHENG":{"id":"sheng"},
 			"YDistrict.SHI":{"id":"shi"},

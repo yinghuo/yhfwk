@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
  <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.SuperSlide.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/frame.js"></script>
   <script type="text/javascript">
   $(function(){
       $(".sideMenu").slide({
@@ -88,7 +89,7 @@
       </div>
       <div id="side_here">
         <div id="side_here_l" class="fl"></div>
-        <div id="here_area" class="fl">当前位置：</div>
+        <div id="here_area" class="fl">当前位置：<span id="NavMap"></span></div>
       </div>
     </div>
     <div class="side">
@@ -96,7 +97,7 @@
           <h3>基础数据</h3>
           <ul>
             <li class="on" url="/master/ncgl/ncgl.action">牧场信息管理</li>
-            <li>圈舍信息管理</li>
+            <li url="/master/jsgl/jsgl.action">圈舍信息管理</li>
           </ul>
           <h3>牛只管理</h3>
           <ul>
@@ -127,10 +128,10 @@
        </div>
     </div>
     <div class="main">
-       <iframe name="right" id="rightMain" src="main.html" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
+       <iframe name="right" id="rightMain" src="" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
-      <div id="bottom_bg">版权</div>
+      <div id="bottom_bg" style="text-align:left;padding-left:10px;">版权</div>
     </div>
     <div class="scroll">
           <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>
@@ -144,7 +145,12 @@
 				var url="http://"+document.domain+"${pageContext.request.contextPath}"+page;
 				$("#rightMain").attr("src",url);
 			}
+			//css
+			$(".sideMenu ul li").removeClass("on");
+			$(this).addClass("on");
 		});
+		//触发
+		$(".on").trigger("click");
     </script>
 </body>
 

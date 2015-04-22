@@ -67,7 +67,7 @@
      	</div>
      </div>
      <script>
-     	
+     	showmap("牧场信息管理 > 牛场信息列表");
      </script>
   </body>
 </html>

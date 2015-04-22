@@ -8,8 +8,13 @@
 */
 window.onload = function() {
 	//处理map显示
-	var showItem=document.getElementById("NavMap");
-	if(showItem!=null)
-		window.parent.endShow(showItem);
+	//var showItem=document.getElementById("NavMap");
+	//if(showItem!=null)
+	//	window.parent.endShow(showItem);
+}
+
+function showmap(val)
+{
+	window.parent.endShow(val);
 }
 

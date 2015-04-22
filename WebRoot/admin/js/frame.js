@@ -11,7 +11,7 @@ var showControl=null;//当前展示页面的导航条回传
 
 /**
 	默认注册导航控件事件，详细请参照NavMap使用说明
-*/
+
 NavMap.showItem=function(item)
 {
 	if(showControl!=null)
@@ -27,6 +27,7 @@ NavMap.showItem=function(item)
 		}
 	}
 }
+*/
 
 /**
 	初始化函数，初始化NavMap控件，详细请参照NavMap使用说明
@@ -46,13 +47,15 @@ function beginShow(id)
 
 /**
 	显示结束，在iframe.js中加载完成后调用，传递菜单map的控件，需要right Iframe页面中引用iframe.js并且页面的存放map的div的id属性为NavMap，可以在iframe.js中修改
-*/
+
 function endShow(dcontrol)
 {
 	showControl=dcontrol;
 	NavMap.show(showMenuId);
 }
+*/
+function endShow(value)
+{
+	$("#NavMap").html(value);
+}
 
-$("#rightFrame").load(function(){ 
-    console.log("加载完成。。。。");
-}); 
