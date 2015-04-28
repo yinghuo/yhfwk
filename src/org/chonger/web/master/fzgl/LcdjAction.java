@@ -5,17 +5,17 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.chonger.entity.fzgl.CDDJXX;
-import org.chonger.service.fzgl.CddjServer;
+import org.chonger.entity.fzgl.LCXX;
+import org.chonger.service.fzgl.LcdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 /**
- * 产犊登记的常用Action处理
- * @ClassName: CddjAction
- * @Description: 产犊登记管理Action
+ * 流产登记的常用Action处理
+ * @ClassName: LcdjAction
+ * @Description: 流产登记管理Action
  * @author Liuzq
  * @date 2015-4-16 
  * @version V1.0
@@ -27,15 +27,15 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
 	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
-	@Result(name = "cd-list.jsp", location = "/admin/pages/fzgl/cddj-index.jsp"),
-	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/cddj-add.jsp")
+	@Result(name = "lc-list.jsp", location = "/admin/pages/fzgl/lcdj-index.jsp"),
+	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/lcdj-add.jsp")
 })
-public class CddjAction extends ActionSupport {
+public class LcdjAction extends ActionSupport {
 	
 	@Autowired
-	private CddjServer server;
+	private LcdjServer server;
 	
-	public CddjAction(){
+	public LcdjAction(){
 		jsonResult=new JsonResultUtils();
 	}
 	
@@ -43,39 +43,40 @@ public class CddjAction extends ActionSupport {
 	private JsonResultUtils jsonResult;
 	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 
-	/**产犊登记实体*/
-	private CDDJXX cd;
-	public CDDJXX getNz() {		return cd;	}
-	public void setNz(CDDJXX nz) {		this.cd = nz;	}
+	/**流产登记实体*/
+	private LCXX lc;
+	public LCXX getNz() {		return lc;	}
+	public void setNz(LCXX nz) {		this.lc = nz;	}
 	
-	private List<CDDJXX> cdlist;
-	public List<CDDJXX> getCdlist() {		return cdlist;	}
+	private List<LCXX> lcList;
+	public List<LCXX> getCdlist() {		return lcList;	}
 	
 	/**列表翻页组件*/
 	@Autowired
-	public RollPage<CDDJXX> pager;
+	public RollPage<LCXX> pager;
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	
 	@Override
 	public String execute() throws Exception {
 		pager.init(server.getQueryString(),pager.pageSize,p);
-		cdlist=pager.getDataSource();
-		return "cd-list.jsp";
+		lcList=pager.getDataSource();
+		return "lc-list.jsp";
 	}
-		
+	
 	/**保存数据操作*/
 	public String save() throws Exception{
 		
 		try{
-			server.saveOrUpdate(cd);
+			server.saveOrUpdate(lc);
 			
-			jsonResult.sendSuccessMessage("新增产犊信息成功！");
+			jsonResult.sendSuccessMessage("新增流产信息成功！");
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage("新增产犊信息异常！");
+			jsonResult.sendErrorMessage("新增流产信息异常！");
 		}		
 		return "infos";
 	}
+	
 }
 	

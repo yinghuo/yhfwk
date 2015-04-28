@@ -111,11 +111,11 @@
           </ul>
           <h3>繁殖管理</h3>
           <ul>
-            <li>发情登记</li>
-            <li>配种登记</li>
-            <li>妊检登记</li>
+            <li url="/master/fzgl/fqdj.action">发情登记</li>
+            <li url="/master/fzgl/pzdj.action">配种登记</li>
+            <li url="/master/fzgl/rjdj.action">妊检登记</li>
             <li url="/master/fzgl/cddj.action">产犊登记</li>
-            <li>流产登记</li>
+            <li url="/master/fzgl/lcdj.action">流产登记</li>
           </ul>
           <h3>产奶登记</h3>
           <ul>
