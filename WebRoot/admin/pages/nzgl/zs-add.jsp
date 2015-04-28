@@ -73,7 +73,7 @@
 			</table>
 			</form>
 			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="blueBtn" type="button" value=" 确认转舍 "/>
+				<input id="1comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="blueBtn" type="button" value=" 确认转舍 "/>
 			</div>
      	</div>
      </div>

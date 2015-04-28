@@ -101,8 +101,8 @@
           </ul>
           <h3>牛只管理</h3>
           <ul>
-            <li>牛只信息管理</li>
-            <li>转舍记录查询</li>
+            <li url="/master/nzgl/nzxx.action">牛只信息管理</li>
+            <li url="/master/nzgl/zsxx.action">转舍记录查询</li>
             <li>离场记录查询</li>
           </ul>
           <h3>发情管理</h3>
@@ -114,7 +114,7 @@
             <li>发情登记</li>
             <li>配种登记</li>
             <li>妊检登记</li>
-            <li>产犊登记</li>
+            <li url="/master/fzgl/cddj.action">产犊登记</li>
             <li>流产登记</li>
           </ul>
           <h3>产奶登记</h3>
@@ -140,11 +140,16 @@
     <script>
 		$(".sideMenu ul li").on("click",function(){
 			var page=$(this).attr("url");
+			var url="";
 			if(typeof(page)!="undefined")
 			{
-				var url="http://"+document.domain+"${pageContext.request.contextPath}"+page;
-				$("#rightMain").attr("src",url);
+				url="http://"+document.domain+"${pageContext.request.contextPath}"+page;
 			}
+			else
+			{
+				url="http://"+document.domain+"${pageContext.request.contextPath}/admin/pages/nopage.jsp";
+			}
+			$("#rightMain").attr("src",url);
 			//css
 			$(".sideMenu ul li").removeClass("on");
 			$(this).addClass("on");

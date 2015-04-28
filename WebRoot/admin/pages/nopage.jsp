@@ -9,9 +9,11 @@
   <body>
     <div class="centerRightContainer">
     	<div class="centerRight">
-    		<h6 id="NavMap"></h6>
     		当前菜单无可用页面！
     	</div>
     </div>
+    <script>
+     	showmap("牧场管理系统 > 无可用的页面");
+     </script>
   </body>
 </html>

@@ -8,7 +8,6 @@
   <body>
      <div class="centerRightContainer">
      	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
      		<form id="frmncxx">
      		<table>
 				<thead>
@@ -54,6 +53,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
+     	showmap("牧场信息管理 > 新增圈舍信息");
      	function validata()
      	{
      		if(IsNull("jsbh",0))

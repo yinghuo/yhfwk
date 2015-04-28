@@ -11,7 +11,6 @@
   <body>
      <div class="centerRightContainer">
      	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
      		<form id="frmSearch" action="" method="post">
 	     		<div class="blueDivBox">
 	     			<label>圈舍编号：</label>
@@ -68,7 +67,7 @@
      	</div>
      </div>
      <script>
-     	
+     	showmap("圈舍信息管理 > 圈舍信息列表");
      </script>
   </body>
 </html>

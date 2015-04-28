@@ -11,7 +11,6 @@
   <body>
      <div class="centerRightContainer">
      	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
      		<form id="frmSearch" action="" method="post">
 	     		<div class="blueDivBox">
 	     			<label>牛只编号：</label>
@@ -75,7 +74,7 @@
      	</div>
      </div>
      <script>
-     	
+     	showmap("牛只信息管理 > 牛只信息列表");
      </script>
   </body>
 </html>
