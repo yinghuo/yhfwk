@@ -143,11 +143,11 @@
 			var url="";
 			if(typeof(page)!="undefined")
 			{
-				url="http://"+document.domain+"${pageContext.request.contextPath}"+page;
+				url="http://"+window.location.host+"${pageContext.request.contextPath}"+page;
 			}
 			else
 			{
-				url="http://"+document.domain+"${pageContext.request.contextPath}/admin/pages/nopage.jsp";
+				url="http://"+window.location.host+"${pageContext.request.contextPath}/admin/pages/nopage.jsp";
 			}
 			$("#rightMain").attr("src",url);
 			//css
