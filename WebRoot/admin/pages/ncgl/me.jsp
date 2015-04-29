@@ -13,7 +13,7 @@
 		<div id="forms" class="mt10">
 			<div class="box_center">
 				<form id="frmncxx" class="jqtransform">
-					32<input type="hidden" id="ncbh" name="nc.ncbh" value="${ncxx.ncbh}">
+					<input type="hidden" id="ncbh" name="nc.ncbh" value="${ncxx.ncbh}">
 					<table class="form_table pt15 pb15" border="0" cellpadding="0"
 						cellspacing="0">
 						<tr>

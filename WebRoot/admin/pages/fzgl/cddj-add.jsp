@@ -78,7 +78,7 @@
 			</table>
 			</form>
 			<div class="btns">
-				<input id="1comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/cddj!save.action" name="frmcddj" class="blueBtn" type="button" value=" 确认新增 "/>
+				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/cddj!save.action" name="frmcddj" class="blueBtn" type="button" value=" 确认新增 "/>
 			</div>
      	</div>
      </div>
