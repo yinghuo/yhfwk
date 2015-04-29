@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.jbxx.NCJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -65,6 +66,17 @@ public class User implements Cloneable {
 	@OneToOne(mappedBy="user")
 	private UserInfo userInfo;
 	
+	@OneToOne(mappedBy="user")
+	private NCJBXX ncjbxx;
+	
+	public NCJBXX getNcjbxx() {
+		return ncjbxx;
+	}
+
+	public void setNcjbxx(NCJBXX ncjbxx) {
+		this.ncjbxx = ncjbxx;
+	}
+
 	public Role getRole() {
 		return role;
 	}

@@ -8,9 +8,11 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.system.User;
 import org.chonger.service.ncgl.NcglServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,7 +23,8 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author Daniel
  * @date Apr 10, 2015 10:39:15 PM
  * @version V1.0
- *
+ * 
+ * @modify 2015-04-28	Daniel	1:修改Save函数，新增企业信息保存
  */
 @SuppressWarnings("serial")
 @ParentPackage("json-default") 
@@ -71,13 +74,20 @@ public class NcglAction extends ActionSupport {
 	public String save() throws Exception{
 		
 		try{
-			server.saveOrUpdate(nc);
 			
-			jsonResult.sendSuccessMessage("新增牛场信息成功！");
-			
+			//当前用户
+			User user=SessionUtils.getUser();			
+			if(user!=null)
+			{
+				//企业用户角色
+				if(user.getRole().getRtype()==2)
+					nc.setYhid(user.getUid());
+				server.saveOrUpdate(nc);				
+				jsonResult.sendSuccessMessage("更新牛场信息成功！");
+			}
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage("新增牛场信息异常！");
+			jsonResult.sendErrorMessage("更新牛场信息异常！");
 		}
 		
 		return "infos";

@@ -7,21 +7,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.entity.system.Menu;
 import org.chonger.entity.system.Role;
 import org.chonger.entity.system.User;
-import org.chonger.entity.system.UserInfo;
 import org.chonger.service.system.MenuManager;
 import org.chonger.service.system.RoleManager;
 import org.chonger.service.system.UserManager;
-import org.chonger.utils.SHAUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -156,13 +153,7 @@ public class LoginAction extends ActionSupport {
 				Role userRole=roleManager.findById(user.getUroleid());
 				user.setRole(userRole);
 				ServletActionContext.getRequest().getSession().setAttribute("urole",userRole.getRname());
-				
-				if(userRole==null||userRole.getRtype()==2)
-				{
-					ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/");
-					return;
-				}
-				
+				ServletActionContext.getRequest().getSession().setAttribute("uncxx",user.getNcjbxx());
 				allmenus=menumanager.loadMenusByUserRole(userRole);
 			} catch (Exception e) {
 				e.printStackTrace();

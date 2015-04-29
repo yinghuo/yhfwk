@@ -7,9 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.system.User;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -78,6 +81,13 @@ public class NCJBXX {
 	
 	@Column(name = "bz")
 	private String bz;//备注
+	
+	@Column(name="YHID")
+	private String yhid;//用户id
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "YHID",insertable = false, updatable = false)
+	private User user;
 	
 	@OneToMany(mappedBy="ncjbxx",fetch = FetchType.LAZY)
 	private List<JSJBXX> jsxxList;
@@ -232,5 +242,21 @@ public class NCJBXX {
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public String getYhid() {
+		return yhid;
+	}
+
+	public void setYhid(String yhid) {
+		this.yhid = yhid;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

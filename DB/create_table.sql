@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-04-14 23:18:05
+Date: 2015-04-29 08:27:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3781,15 +3781,16 @@ CREATE TABLE `ncjbxxb` (
   `LXYX` varchar(64) default NULL,
   `KDDZ` varchar(128) default NULL,
   `BZ` varchar(128) default NULL,
+  `YHID` varchar(36) NOT NULL COMMENT '用户编号',
   PRIMARY KEY  (`NCBH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ncjbxxb
 -- ----------------------------
-INSERT INTO `ncjbxxb` VALUES ('50c82dc1-e25a-47ba-b1fd-be0e550da4ab', '测试新增牛场', '新牛场', '南路1号', '110111', '伊利乳业', '张三', '12345678901', '李四', '12345678901', '王五', 'A', '2015-03-31 00:00:00', '2015-04-30 00:00:00', '12345678901', 'test@qq.com', '北京市房山区南路1号', '备注信息');
-INSERT INTO `ncjbxxb` VALUES ('05307576-a953-4772-973d-a6adb22fa6ff', '11', '22', '33', '310110', '4', '4', '5', '6', '7', '8', '0', '2015-04-23 00:00:00', '2015-04-08 00:00:00', '9', '2', '2', '3');
-INSERT INTO `ncjbxxb` VALUES ('5bd6322d-e238-430b-ac3c-bd75e8088041', '11', '2', '1', '15', '1', '2', '1', '1', '1', '1', '1', '2015-10-07 00:00:00', '2015-05-01 00:00:00', '1', '1', '1', '1');
+INSERT INTO `ncjbxxb` VALUES ('50c82dc1-e25a-47ba-b1fd-be0e550da4ab', '测试新增牛场', '新牛场', '南路1号', '110111', '伊利乳业', '张三', '12345678901', '李四', '12345678901', '王五', 'A', '2015-03-31 00:00:00', '2015-04-30 00:00:00', '12345678901', 'test@qq.com', '北京市房山区南路1号', '备注信息', '11');
+INSERT INTO `ncjbxxb` VALUES ('05307576-a953-4772-973d-a6adb22fa6ff', '11', '22', '33', '310110', '4', '4', '5', '6', '7', '8', '0', '2015-04-23 00:00:00', '2015-04-08 00:00:00', '9', '2', '2', '3', '');
+INSERT INTO `ncjbxxb` VALUES ('5bd6322d-e238-430b-ac3c-bd75e8088041', '11', '2', '1', '15', '1', '2', '1', '1', '1', '1', '1', '2015-10-07 00:00:00', '2015-05-01 00:00:00', '1', '1', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for `nzjbxx`
@@ -3823,6 +3824,7 @@ CREATE TABLE `nzjbxx` (
 -- ----------------------------
 -- Records of nzjbxx
 -- ----------------------------
+INSERT INTO `nzjbxx` VALUES ('53e916cf-87df-4fbe-b11e-c6077c3c8608', '50c82dc1-e25a-47ba-b1fd-be0e550da4ab', '11', '1', '1', '2015-04-10 00:00:00', '1', '断奶犊牛', '购买', '1.00', '1.00', '4763e9d4-d142-402e-be95-64c7aa5a3150', '1', '1', '1', '2015-04-08 00:00:00', '1', '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -4008,7 +4010,7 @@ INSERT INTO `yh_system_menus` VALUES ('f6d14b1b-f915-4c1a-aa14-c5e772ebff2b', '�
 INSERT INTO `yh_system_menus` VALUES ('ee9abbe4-98a1-4daa-9a32-168d44d44875', '牛只管理', null, '#', '1', '0', '', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '牛只管理', null, '#', '1', '1', 'ee9abbe4-98a1-4daa-9a32-168d44d44875', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('03cfe1fc-2215-477d-8c52-028185a518b8', '牛只基本信息', null, '/master/nzgl/nzxx.action', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('2124e606-2184-4d92-af67-fee9e292fe57', '牛只转舍记录', null, '/admin/pages/nopage.jsp', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '1', '1');
+INSERT INTO `yh_system_menus` VALUES ('2124e606-2184-4d92-af67-fee9e292fe57', '牛只转舍记录', null, '/master/nzgl/zsxx.action', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('dfc0b7c9-753b-4699-bc31-955a2b5ab754', '牛只离场记录', null, '/admin/pages/nopage.jsp', '1', '2', '7fdd1f2a-f0ea-48ef-a622-353a7f20aff8', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('6c85bfb9-87bc-4314-aede-04050c1e14eb', '发情管理', null, '#', '1', '0', '', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('1db91c40-1bac-4a21-a51d-93ca9313abf5', '发情管理', null, '#', '1', '1', '6c85bfb9-87bc-4314-aede-04050c1e14eb', '0', '1');
@@ -4049,6 +4051,7 @@ CREATE TABLE `yh_system_roles` (
 -- Records of yh_system_roles
 -- ----------------------------
 INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '7f5f3ec0-7120-4a35-86ff-022d1a08d7b3,ee9abbe4-98a1-4daa-9a32-168d44d44875,6c85bfb9-87bc-4314-aede-04050c1e14eb,664e9af6-44d1-40f7-a90c-593c0df30be2,489b6e7f-fbc6-4280-ba38-594f08ae69a4,855a0784-8f59-4c76-a711-331fdce82c01,16', '0', null, '1', '0');
+INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefae', '企业用户', null, '7f5f3ec0-7120-4a35-86ff-022d1a08d7b3', '0', null, '2', '0');
 
 -- ----------------------------
 -- Table structure for `yh_system_users`
@@ -4071,7 +4074,8 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-14 22:06:25', '2015-04-14 22:07:52');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-04-27 23:03:45', '2015-04-28 21:26:24');
+INSERT INTO `yh_system_users` VALUES ('11', '牛牛牧场', 'user', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-04-28 23:17:49', '2015-04-29 00:00:36');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -4092,6 +4096,7 @@ CREATE TABLE `yh_system_users_info` (
 -- ----------------------------
 -- Records of yh_system_users_info
 -- ----------------------------
+INSERT INTO `yh_system_users_info` VALUES ('11', '0', '15120070638', null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for `yyjlb`
