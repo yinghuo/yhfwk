@@ -6,9 +6,12 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.entity.fzgl.PZDJXX;
-import org.chonger.service.fzgl.RjdjServer;
+import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.system.User;
+import org.chonger.service.fzgl.PzdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,7 +36,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class PzdjAction extends ActionSupport {
 	
 	@Autowired
-	private RjdjServer server;
+	private PzdjServer server;
 	
 	public PzdjAction(){
 		jsonResult=new JsonResultUtils();
@@ -45,12 +48,24 @@ public class PzdjAction extends ActionSupport {
 
 	/**配种登记实体*/
 	private PZDJXX pz;
-	public PZDJXX getNz() {		return pz;	}
-	public void setNz(PZDJXX nz) {		this.pz = nz;	}
+
 	
-	private List<PZDJXX> list;
-	public List<PZDJXX> getCdlist() {		return list;	}
+	public PZDJXX getPz() {
+		return pz;
+	}
+
+	public void setPz(PZDJXX pz) {
+		this.pz = pz;
+	}
+
+
+	private List<PZDJXX> pzlist;
+
 	
+	public List<PZDJXX> getPzlist() {
+		return pzlist;
+	}
+
 	/**列表翻页组件*/
 	@Autowired
 	public RollPage<PZDJXX> pager;
@@ -59,11 +74,38 @@ public class PzdjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		
+		pager.init(server.getQueryString(), pager.pageSize, p);
+		pzlist = pager.getDataSource();
 		return "pz-list.jsp";
 	}
 	
-	
+	/** 保存数据操作 */
+	public String save() throws Exception {
+
+		try {
+			// 增加当前用户的信息
+			User user = SessionUtils.getUser();
+
+			if (user != null) {
+				// 企业用户关联我的牛场信息
+				if (user.getRole().getRtype() == 2) {
+					NCJBXX ncxx = user.getNcjbxx();
+
+					if (ncxx != null) {
+						pz.setNcbh(ncxx.getNcbh());
+					}
+				}
+				server.saveOrUpdate(pz);
+
+				jsonResult.sendSuccessMessage("新增配种信息成功！");
+			} else {
+				jsonResult.sendSuccessMessage("请重新登录！");
+			}
+		} catch (Exception ex) {
+			jsonResult.sendErrorMessage("新增配种信息异常！");
+		}
+		return "infos";
+	}
 	
 }
 	

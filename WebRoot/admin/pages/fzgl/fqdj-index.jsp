@@ -29,6 +29,7 @@
 			<table cellpadding="0" cellspacing="0" class="checkboxTable">
 				<thead>
 					<tr>
+						<td>序号</td>
 						<th>
 							<label>牛只编号</label>
 						</th>
@@ -56,7 +57,7 @@
 					<s:iterator value="fqlist" status="status" id="fqxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#fqxx.ncmc"/></td>
+							<td><s:property value="#fqxx.nzbh"/></td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#fqxx.fqlx"/></td>
 							<td><s:property value="#fqxx.fxfs"/></td>

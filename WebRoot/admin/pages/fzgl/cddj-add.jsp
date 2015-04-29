@@ -50,11 +50,11 @@
 						<td align="left">
 							<select id="tw" name="cd.tw" class="txt vm" >
 								<option value="">请选择胎位</option>
-								<option value="01">正常</option>
-								<option value="02">坐生</option>
-								<option value="03">倒产</option>
-								<option value="04">人工矫正</option>
-								<option value="99">其他</option>
+								<option value="正常">正常</option>
+								<option value="坐生">坐生</option>
+								<option value="倒产">倒产</option>
+								<option value="人工矫正">人工矫正</option>
+								<option value="其他">其他</option>
 							</select>
 						<span style='color:red;'>*必填</span></td>
 					</tr>
