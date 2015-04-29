@@ -29,6 +29,7 @@
 			<table cellpadding="0" cellspacing="0" class="checkboxTable">
 				<thead>
 					<tr>
+						<td>${status.count }</td>
 						<th>
 							<label>牛只编号</label>
 						</th>
@@ -56,13 +57,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="nclist" status="status" id="ncxx">
+					<s:iterator value="cdlist" status="status" id="cdxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#ncxx.ncmc"/></td>
-							<td><s:property value="#ncxx.fzr"/></td>
-							<td><s:date name="#ncxx.kssysj" format="yyyy年MM月dd日"/></td>
-							<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
+							<td><s:property value="#cdxx.nzbh"/></td>
+							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
+							<td><s:property value="#cdxx.cdlx"/></td>
+							<td><s:property value="#cdxx.cdny"/></td>
+							<td><s:property value="#cdxx.tw"/></td>
+							<td><s:property value="#cdxx.jcy"/></td>
+							<td><s:property value="#cdxx.tesl"/></td>
 							<td>
 								<a >修改</a>
 								<a >删除</a>
