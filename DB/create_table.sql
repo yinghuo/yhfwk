@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : 测试
@@ -3591,7 +3591,7 @@ CREATE TABLE `fqdjb` (
   `FXFS` varchar(16) default NULL COMMENT '人工\r\n            计步器',
   `FXR` varchar(32) default NULL,
   `SHY` varchar(32) default NULL,
-  `SFPZ` int(1) default '0',
+  `SFPZ` varchar(16) default NULL,
   `WPYY` varchar(128) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
@@ -3910,7 +3910,7 @@ CREATE TABLE `rsjcdjb` (
   `JCY` varchar(32) default NULL,
   `JCFS` varchar(16) default NULL COMMENT '直肠/孕酮/超声/其他',
   `TSZT` varchar(16) default NULL,
-  `NZXB` int(1) default '2' COMMENT '0母1公2未确认',
+  `NZXB` varchar(16) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
