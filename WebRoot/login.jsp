@@ -26,8 +26,8 @@
 					<div id="login_tip">
 						用户登录&nbsp;&nbsp;UserLogin
 					</div>
-					<div><input type="text" id="username" name="loginName" value="admin" class="username"></div>
-					<div><input type="text" id="pwd"  name='loginPwd' value="admin" class="pwd"></div>
+					<div><input type="text" id="username" name="loginName" value="user" class="username"></div>
+					<div><input type="password" id="pwd"  name='loginPwd' value="123456" class="pwd"></div>
 					<div id="btn_area">
 						<input type="button" name="submit" id="sub_btn" onclick="login()" value="登&nbsp;&nbsp;录">&nbsp;&nbsp;
 						<input type="text" class="verify">

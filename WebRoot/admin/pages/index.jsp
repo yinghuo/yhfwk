@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -81,7 +82,7 @@
               <a href="3" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
-              admin
+              <s:property value="#session.urole"/>
               <span id="nt">通知</span><span><a href="#" id="notice">3</a></span>
             </div>
           </div>
@@ -94,9 +95,10 @@
     </div>
     <div class="side">
         <div class="sideMenu" style="margin:0 auto">
-          <h3>基础数据</h3>
+          <h3>我的基础数据</h3>
           <ul>
-            <li class="on" url="/master/ncgl/ncgl.action">牧场信息管理</li>
+            <!-- <li class="on" url="/master/ncgl/ncgl.action">牧场信息管理</li> -->
+            <li class="on" url="/admin/pages/ncgl/me.jsp">我的牛场信息</li>
             <li url="/master/jsgl/jsgl.action">圈舍信息管理</li>
           </ul>
           <h3>牛只管理</h3>
@@ -131,7 +133,7 @@
        <iframe name="right" id="rightMain" src="" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
-      <div id="bottom_bg" style="text-align:left;padding-left:10px;">版权</div>
+      <div id="bottom_bg" style="text-align:left;padding-left:10px;">系统授权企业：<s:property value="#session.uname"/></div>
     </div>
     <div class="scroll">
           <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>

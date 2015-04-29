@@ -16,7 +16,7 @@ $(function(){
 		});
 	}); 
 
-	/*ie6,7下拉框美化*/
+	/*ie6,7下拉框美化
     if ( $.browser.msie ){
     	if($.browser.version == '7.0' || $.browser.version == '6.0'){
     		$('.select').each(function(i){
@@ -24,6 +24,6 @@ $(function(){
 			 });
     		
     	}
-    }
+    }*/
  
 });

@@ -62,7 +62,7 @@ public class MasterFilter implements Filter {
 				
 				Role role = user.getRole();
 				
-				if(role.getRtype()!=2||index==2||index==3)//管理员  不是前台校验
+				if(role!=null)//role.getRtype()!=2||index==2||index==3)//管理员  不是前台校验
 				{
 					arg2.doFilter(arg0, arg1);
 				}

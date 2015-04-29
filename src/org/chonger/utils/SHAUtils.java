@@ -63,4 +63,9 @@ public class SHAUtils {
         }
         return des;
     }
+	
+	public static void main(String[] args){
+		System.out.println(CreateSHAKey("123456"));
+	}
+	
 }
