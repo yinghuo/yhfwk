@@ -22,13 +22,14 @@
 						<input onClick="" type="button" class="blueBtn" value="搜索"/>
 					</span>
 					 <div style="float:right;">
-				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/fzgl/rjdj-add.jsp" style="float:right;padding:0px 8px;">新增配种信息</a>		
+				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/fzgl/pzdj-add.jsp" style="float:right;padding:0px 8px;">新增配种信息</a>		
 				    </div>
 				</div>
 			</form>
 			<table cellpadding="0" cellspacing="0" class="checkboxTable">
 				<thead>
 					<tr>
+						<td>序号</td>
 						<th>
 							<label>牛只编号</label>
 						</th>

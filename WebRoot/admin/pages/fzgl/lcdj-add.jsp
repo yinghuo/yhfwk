@@ -21,7 +21,7 @@
 				<tbody>
 					<tr>
 						<td>牛只编号</td>
-						<td align="left"><input type="text" id="nzbh" name="cd.nzbh" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left"><input type="text" id="nzbh" name="lc.nzbh" value=""><span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>流产日期</td>

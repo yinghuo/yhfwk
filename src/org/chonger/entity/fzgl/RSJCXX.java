@@ -51,7 +51,7 @@ public class RSJCXX
 	private String tszt;//胎儿状况
 	
 	@Column(name = "nzxb")
-	private int nzxb;//牛只性别
+	private String nzxb;//牛只性别
 	
 	@Column(name = "bz")
 	private String bz;//备注
@@ -128,11 +128,11 @@ public class RSJCXX
 		this.tszt = tszt;
 	}
 
-	public int getNzxb() {
+	public String getNzxb() {
 		return nzxb;
 	}
 
-	public void setNzxb(int nzxb) {
+	public void setNzxb(String nzxb) {
 		this.nzxb = nzxb;
 	}
 

@@ -32,9 +32,9 @@
 						<td align="left">
 							<select id="jclx" name="rj.jclx" class="txt vm" >
 								<option value="">请选择检查类型</option>
-								<option value="01">初检</option>
-								<option value="02">复检</option>
-								<option value="99">其他</option>
+								<option value="初检">初检</option>
+								<option value="复检">复检</option>
+								<option value="其他">其他</option>
 							</select>
 						<span style='color:red;'>*必填</span></td>
 					</tr>
@@ -56,7 +56,14 @@
 					</tr>
 					<tr>
 						<td>牛只性别</td>
-						<td align="left"><input type="text" id="nzxb" name="rj.nzxb" value=""><span style='color:red;'>*必填</span></td>
+						<td align="left">
+							<select id="nzxb" name="rj.nzxb" class="txt vm" >
+								<option value="">请选择牛只性别</option>
+								<option value="公">公</option>
+								<option value="母">母</option>
+								<option value="其他">其他</option>
+							</select>
+						<span style='color:red;'>*必填</span></td>
 					</tr>
 					<tr>
 						<td>备注</td>

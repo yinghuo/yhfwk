@@ -6,9 +6,12 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.entity.fzgl.RSJCXX;
+import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.system.User;
 import org.chonger.service.fzgl.RjdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -45,12 +48,21 @@ public class RjdjAction extends ActionSupport {
 
 	/**妊娠检查登记实体*/
 	private RSJCXX rj;
-	public RSJCXX getNz() {		return rj;	}
-	public void setNz(RSJCXX nz) {		this.rj = nz;	}
+
 	
-	private List<RSJCXX> list;
-	public List<RSJCXX> getCdlist() {		return list;	}
-	
+	public RSJCXX getRj() {
+		return rj;
+	}
+
+	public void setRj(RSJCXX rj) {
+		this.rj = rj;
+	}
+
+	private List<RSJCXX> rjlist;
+
+	public List<RSJCXX> getRjlist() {
+		return rjlist;
+	}
 	/**列表翻页组件*/
 	@Autowired
 	public RollPage<RSJCXX> pager;
@@ -59,11 +71,38 @@ public class RjdjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		
+		pager.init(server.getQueryString(), pager.pageSize, p);
+		rjlist = pager.getDataSource();
 		return "rj-list.jsp";
 	}
 	
-	
+	/** 保存数据操作 */
+	public String save() throws Exception {
+
+		try {
+			// 增加当前用户的信息
+			User user = SessionUtils.getUser();
+
+			if (user != null) {
+				// 企业用户关联我的牛场信息
+				if (user.getRole().getRtype() == 2) {
+					NCJBXX ncxx = user.getNcjbxx();
+
+					if (ncxx != null) {
+						rj.setNcbh(ncxx.getNcbh());
+					}
+				}
+				server.saveOrUpdate(rj);
+
+				jsonResult.sendSuccessMessage("新增妊娠检查信息成功！");
+			} else {
+				jsonResult.sendSuccessMessage("请重新登录！");
+			}
+		} catch (Exception ex) {
+			jsonResult.sendErrorMessage("新增妊娠检查信息异常！");
+		}
+		return "infos";
+	}
 	
 }
 	

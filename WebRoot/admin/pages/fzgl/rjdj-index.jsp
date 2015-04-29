@@ -29,6 +29,7 @@
 			<table cellpadding="0" cellspacing="0" class="checkboxTable">
 				<thead>
 					<tr>
+						<td>序号</td>
 						<th>
 							<label>牛只编号</label>
 						</th>
