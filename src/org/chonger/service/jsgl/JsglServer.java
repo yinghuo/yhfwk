@@ -5,7 +5,9 @@ import java.util.List;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.system.User;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,20 +70,34 @@ public class JsglServer {
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public void saveOrUpdate(JSJBXX jsxx)
+	public void saveOrUpdate(JSJBXX jsxx) throws Exception
 	{
 		if(jsxx!=null)
 		{
-			if(StringUtil.IsEmpty(jsxx.getXh()))
+			//权限校验
+			User user = SessionUtils.getUser();
+			if(user!=null)
 			{
-				//圈舍编号为空，表示新增，进行自动编号
-				jsxx.setXh(CommUUID.getUUID());
+				int rtype=-1;
+				// 企业用户关联我的牛场信息
+				if ((rtype=user.getRole().getRtype()) == 2) {
+					NCJBXX ncxx = user.getNcjbxx();
+					if (ncxx != null) {
+						jsxx.setNcbh(ncxx.getNcbh());
+					}
+				}
 				
-				dao.save(jsxx);
-			}
-			else
-			{
-				dao.saveOrUpdate(jsxx);
+				if(StringUtil.IsEmpty(jsxx.getXh()))
+				{
+					//圈舍编号为空，表示新增，进行自动编号
+					jsxx.setXh(CommUUID.getUUID());
+					
+					dao.save(jsxx);
+				}
+				else
+				{
+					dao.saveOrUpdate(jsxx);
+				}
 			}
 		}
 	}

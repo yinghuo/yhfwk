@@ -2,55 +2,52 @@
 <!doctype html>
 <html>
   <head>
-  	 <%@include file='/admin/pages/importResource.jsp'%>
-  	 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
+  	 <%@include file='/admin/pages/import.jsp'%>
   </head>
   <body>
-     <div class="centerRightContainer">
-     	<div class="centerRight">
-     		<form id="frmncxx">
-     		<table>
-				<thead>
+  	<div class="box_center mt10">
+		<form id="frmncxx" class="jqtransform">
+			<input type="hidden" id="ncbh" name="nc.ncbh" value="${ncxx.ncbh}">
+				<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<th colspan="3" class="borderRightNone">
-							<label>新增圈舍信息</label>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>圈舍编号</td>
-						<td align="left"><input type="text" id="jsbh" name="js.jsbh" value=""><span style='color:red;'>*必填</span></td>
+						<td class="td_right">圈舍编号：</td>
+						<td class="">
+							<input type="text" id="jsbh" name="js.jsbh" class="input-text lh30" value="${js.jsbh}" size="80"><span class="required">*必填</span>
+						</td>
 					</tr>
 					<tr>
-						<td>圈舍名称</td>
-						<td align="left"><input type="text" id="jsmc" name="js.jsmc" value=""><span style='color:red;'>*必填</span></td>
+						<td class="td_right">圈舍名称：</td>
+						<td class="">
+							<input type="text" id="jsmc" name="js.jsmc" class="input-text lh30" value="${js.jsmc}" size="80"><span class="required">*必填</span>
+						</td>
 					</tr>
 					<tr>
-						<td>圈舍类型</td>
-						<td align="left"><input type="text" id="jslb" name="js.jslb" value=""><span style='color:red;'>*必填</span></td>
+						<td class="td_right">圈舍类型：</td>
+						<td class="">
+							<input type="text" id="jslb" name="js.jslb" class="input-text lh30" value="${js.jslb}" size="80"><span class="required">*必填</span>
+						</td>
 					</tr>
 					<tr>
-						<td>所属牛场</td>
-						<td align="left">
-						<select id="nc" name="js.ncbh" class="txt vm" ><option value="">请选择所属牛场</option></select>
-						<div style="display:none" id="widgetData_loadnc" url="${pageContext.request.contextPath}/master/ncgl/ncgl!loadname.action" callfunction=",loadncdone,"></div>
-						<span style='color:red;'>*必填</span></td>
+						<td class="td_right">所属牛场：</td>
+						<td class="">
+							<div class="input-text lh30" style="width:325px;">${uncxx.ncmc}</div>
+						</td>
 					</tr>
 					<tr>
-						<td>备注信息</td>
-						<td align="left"><input type="text" id="bz" name="js.bz" value=""></td>
+						<td class="td_right">备注信息：</td>
+						<td class="">							
+							<textarea id="bz" name="js.bz" cols="80" rows="10" class="textarea">${js.bz}</textarea>
+						</td>
 					</tr>
-				</tbody>
-			</table>
-			</form>
+  				</table>
+  		</form>
+	</div>
 			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/jsgl/jsgl!save.action" name="frmncxx" class="blueBtn" type="button" value=" 确认新增 "/>
+				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/jsgl/jsgl!save.action" name="frmncxx" class="btn btn82 btn_add" type="button" value=" 新增 "/>
 			</div>
      	</div>
      </div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
      	showmap("牧场信息管理 > 新增圈舍信息");
@@ -71,11 +68,6 @@
      			alert("请填写圈舍类别！");
      			return false;
      		}
-     		else if(IsNull("nc",0))
-     		{
-     			alert("请选择所属牛场！");
-     			return false;
-     		}
      		return true;
      	}
      
@@ -87,7 +79,7 @@
      		});
      	}
      	
-     	function loadncdone(data)
+     	/*function loadncdone(data)
      	{
      		if(data)
      		{
@@ -99,7 +91,7 @@
 					selectControl.options.add(optionItem);
 				}
      		}
-     	}
+     	}*/
      	
      </script>
   </body>

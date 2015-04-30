@@ -48,8 +48,9 @@ public class JsglAction extends ActionSupport {
 	/**列表翻页组件*/
 	@Autowired
 	public RollPage<JSJBXX> pager;
+	public RollPage<JSJBXX> getPager() {return pager;}
 	private int p;
-	public void setP(int p) {		this.p = p;	}
+	public void setP(int p) {this.p = p;}
 	
 	private JSJBXX js;
 	public JSJBXX getJs() {		return js;	}

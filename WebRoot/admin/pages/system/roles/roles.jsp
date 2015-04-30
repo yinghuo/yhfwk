@@ -63,8 +63,8 @@
 				<td>${st.index+1}</td>
 				<td><s:property value="#element.rname"/></td>
 				<td>
-					<a href="${pageContext.request.contextPath}/master/system/role!doEditRoles.action?eid=<s:property value="#element.rid"/>" class="modifyBtn">修改</a>
-					<a id="comsubmit_delete" callfunction=",result," promptInfo='确认删除角色[<s:property value="rname"/>]？' url="${pageContext.request.contextPath}/master/system/role!doDelete.action?eid=${rid}" class="delLoadBtn">删除</a>
+					<a href="${pageContext.request.contextPath}/master/system/role!doEditRoles.action?eid=<s:property value="#element.rid"/>" class="fa fa-edit">修改</a>
+					<a href="#" id="comsubmit_delete" callfunction=",result," promptInfo='确认删除角色[<s:property value="rname"/>]？' url="${pageContext.request.contextPath}/master/system/role!doDelete.action?eid=${rid}" class="fa fa-remove">删除</a>
 				</td>
 			</tr>
 			</s:iterator>
