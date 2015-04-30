@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
  <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.SuperSlide.js"></script>
-  <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/frame.js"></script>
-  <script type="text/javascript">
+ <script type="text/javascript">
   $(function(){
       $(".sideMenu").slide({
          titCell:"h3", 
@@ -64,6 +63,11 @@
 	    }
 	  }
 	}
+	
+	function endShow(value)
+	{
+		$("#NavMap").html(value);
+	}
   </script>
   <title>欢迎使用牧场管理系统</title>
 </head>
@@ -95,38 +99,14 @@
     </div>
     <div class="side">
         <div class="sideMenu" style="margin:0 auto">
-          <h3>我的基础数据</h3>
-          <ul>
-            <!-- <li class="on" url="/master/ncgl/ncgl.action">牧场信息管理</li> -->
-            <li class="on" url="/admin/pages/ncgl/me.jsp">我的牛场信息</li>
-            <li url="/master/jsgl/jsgl.action">圈舍信息管理</li>
-          </ul>
-          <h3>牛只管理</h3>
-          <ul>
-            <li url="/master/nzgl/nzxx.action">牛只信息管理</li>
-            <li url="/master/nzgl/zsxx.action">转舍记录查询</li>
-            <li>离场记录查询</li>
-          </ul>
-          <h3>发情管理</h3>
-          <ul>
-            <li>发情信息管理</li>
-          </ul>
-          <h3>繁殖管理</h3>
-          <ul>
-            <li url="/master/fzgl/fqdj.action">发情登记</li>
-            <li url="/master/fzgl/pzdj.action">配种登记</li>
-            <li url="/master/fzgl/rjdj.action">妊检登记</li>
-            <li url="/master/fzgl/cddj.action">产犊登记</li>
-            <li url="/master/fzgl/lcdj.action">流产登记</li>
-          </ul>
-          <h3>产奶登记</h3>
-          <ul>
-            <li>个体产奶登记</li>
-          </ul>
-          <h3>兽医保健</h3>
-          <ul>
-            <li>疾病等级</li>
-          </ul>
+        <s:iterator value="#session._sys_mymenus" id="element" status="st">
+        	<h3><s:property value="mname"></s:property></h3>
+        	<ul>
+        		<s:iterator value="child" id="child" status="stchild">
+        			<li url="<s:property value="maction"></s:property>"><s:property value="mname"></s:property></li>
+        		</s:iterator>
+        	</ul>
+        </s:iterator>
        </div>
     </div>
     <div class="main">
@@ -140,10 +120,13 @@
           <a href="javascript:;" class="next" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(2);"></a>
     </div>
     <script>
+    	var first=$(".sideMenu ul li").get(0);
+    	$(first).addClass("on");
+    	debugger;
 		$(".sideMenu ul li").on("click",function(){
 			var page=$(this).attr("url");
 			var url="";
-			if(typeof(page)!="undefined")
+			if(typeof(page)!="undefined"&&page!=""&&page!="#")
 			{
 				url="http://"+window.location.host+"${pageContext.request.contextPath}"+page;
 			}

@@ -59,8 +59,12 @@ public class MenuManager {
 	{
 		//获取角色的菜单ID，
 		//处理role的可用菜单ID
-		String ids=role.getRmids().replaceAll(",","','");
-		List<Menu> menus=menuDao.find("from Menu model where model.mstatus='1' and model.mid in ('"+ids+"') order by model.mparentid,model.mseq");
+		String ids=role.getRmids();
+		if(StringUtil.IsEmpty(ids))
+			return null;
+		else
+			ids=ids.replaceAll(",","','");
+		List<Menu> menus=menuDao.find("from Menu model where model.mstatus='0' and model.mid in ('"+ids+"') order by model.mparentid,model.mseq");
 		return menus;
 	}
 	

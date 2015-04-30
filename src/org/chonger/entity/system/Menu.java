@@ -39,7 +39,7 @@ public class Menu {
 	@Column(name = "FBM_SEQ")
 	private int mseq=0;
 	@Column(name = "FBM_TYPE")
-	private int mtype=0;
+	private int mtype=1;
 	
 	//关联关系实现Tree
 	@Transient

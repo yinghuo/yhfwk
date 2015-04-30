@@ -431,6 +431,9 @@ table.fancytree-ext-columnview .fancytree-has-children span.fancytree-cv-right:h
  */
 span.fancytree-node {
   border: 1px solid transparent;
+  hegith:18px;
+  line-height:18px;
+  padding:2px 0;
 }
 span.fancytree-node:hover {
   background-color: #E5F3FB;

@@ -185,30 +185,13 @@ public class LoginAction extends ActionSupport {
 			{
 				ex.printStackTrace();
 			}
-			System.out.println("比较完成");
 			ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONKEY, allmenus);
 			ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONJSONKEY, jsonmenus);
 			//判断跳转
 			ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/admin/pages/");
-			//ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/");
 		}
-		
-		//进行用户角色校验
-		//加载菜单
-//		allmenus=menumanager.loadMenuByType(MenuManager.MENUSMASTERTYPE);
-//		Map<String,Menu> mymenus=menumanager.convert2tree(allmenus);
-//		String jsonmenus=menumanager.convert2Json(mymenus);
-//		
-//		allmenus.clear();
-//		System.out.println(mymenus.values().size());
-//		
-//		for(Menu menu : mymenus.values())
-//			allmenus.add(menu);
-//		
-//		ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONKEY, allmenus);
-//		ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONJSONKEY, jsonmenus);
-//		//判断跳转
-//		ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/admin/pages/");
+		else
+			ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/login.jsp");
 	}
 	
 	private Map<String,Menu> cacheMenus=new LinkedHashMap<String,Menu>();

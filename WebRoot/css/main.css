@@ -101,6 +101,33 @@
 	background:   url('../images/btn_res_hover.png') 0px 0px no-repeat;
 	color: #fff;
 }
+
+.btn_bar{
+	margin-left:10px;
+}
+
+.btn_bar button{
+	height:25px;
+	line-height:25px;
+	width:91px;
+	margin:5px;
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:5px;
+    cursor:pointer;
+}
+.btn_bar .blue{
+	background-color:#4096ee;
+	color:#fff;
+	border:1px #1c6cbe solid;
+}
+
+.btn_bar .red{
+	background-color:#ee7540;
+	color:#fff;
+	border:1px #ee4040 solid;
+}
+
 /*table*/
 .list_table{
 	width: 100%;

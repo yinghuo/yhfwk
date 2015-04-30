@@ -6,9 +6,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/colResizable-1.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
 <!-- 文本编辑器 -->
 <script type="text/javascript">
 	var urldomain="${pageContext.request.contextPath}";
+	function showmap(val)
+	{
+		window.parent.endShow(val);
+	}
 </script>
 

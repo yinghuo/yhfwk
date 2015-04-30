@@ -6,7 +6,6 @@
 <html>
   <head>
   	 <%@include file='/admin/pages/importResource.jsp'%>
-  	 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
   </head>
   <body>
      <div class="centerRightContainer">

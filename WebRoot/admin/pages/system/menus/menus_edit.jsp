@@ -77,11 +77,10 @@
 			});
 			
 			//@modify Daniel 2014-08-01 1：修复非底层菜单的路径问题，默认为#
-			if($("#yradiobar_level").attr("value")<2)
+			if($("#yradiobar_level").attr("value")<1)
 				$("#eurl").val("#");
 	});
 	
-	<%-- @modify Daniel 2014-08-01	1：添加菜单等级自动切换功能，当点击【添加子级】的时候，自动切换菜单等级，先记录当前展示菜单的等级，然后+1作为下一级，并将值放入到form中 --%>
 	var nl=<s:property value="editmenu.mlevel"/>;
 	function selectLevel(l)
 	{
@@ -121,7 +120,7 @@
 					alert(data["msg"]);
 					if(data["error"]=="0")
 					{
-						window.location.href=window.location.href;
+						location.reload();
 					}
 				},
 				error:function(xhr){
@@ -131,69 +130,61 @@
 		}
 	}
 </script>
-<form id="frm_menus" action="${pageContext.request.contextPath}/master/system/menu!doSaveOrUpdate.action" method="post">
-	<input name="editmenu.mid" id="eid" type="hidden" value="<s:property value="editmenu.mid"/>"/> 
-	<input name="editmenu.mparentid" id="pid" type="hidden" value="<s:property value="editmenu.mparentid"/>"/>
-	<input name="addtype" id="addtype" type="hidden" value="-1"/> 
-	<table cellpadding="0" cellspacing="0" style="width:500px;">
-			<tr>
-				<td>操作菜单</td>
-				<td class="borderRightNone"><input name="editmenu.mname" class="text" id="ename" type="text" value="<s:property value="editmenu.mname"/>"/></td>
-			</tr>
-			<tr>
-				<td>菜单路径</td>
-				<td class="borderRightNone"><input name="editmenu.maction" class="text" id="eurl"  type="text" value="<s:property value="editmenu.maction"/>"/></td>
-			</tr>
-			<tr>
-				<td>父级菜单</td>
-				<td class="borderRightNone"><label id="parentTxt"></label></td>
-			</tr>
-			<tr>
-				<td>菜单排序</td>
-				<td class="borderRightNone"><input name="editmenu.mseq" class="text" id="eorder" type="text" value="<s:property value="editmenu.mseq"/>"/></td>
-			</tr>
-			<!-- <tr>
-				<td>菜单类型</td>
-				<td class="borderRightNone">
-					<input name="type" type="radio"/>前台&nbsp;&nbsp;&nbsp;<input name="type" checked="checked" type="radio"/>后台</td>
-			</tr> -->
-			<tr>
-				<td>菜单类型</td>
-				<td class="borderRightNone" align="center">
-					<div name="editmenu.mtype" id="yradiobar_type" value="<s:property value="editmenu.mtype"/>">
-						<a value="0" <s:if test="editmenu.mtype==0">class="selected"</s:if>>前台</a>
-						<a value="1" <s:if test="editmenu.mtype==1">class="selected"</s:if>>后台</a>
-					</div>	
-				</td>
-			</tr>
-			<tr>
-				<td>菜单层级</td>
-				<td class="borderRightNone" align="center">
-					<!-- <input name="level" <s:if test="editmenu.mlevel==0">checked="checked"</s:if> type="radio"/>1级&nbsp;
-					<input name="level" <s:if test="editmenu.mlevel==1">checked="checked"</s:if> type="radio"/>2级&nbsp;
-					<input name="level" <s:if test="editmenu.mlevel==2">checked="checked"</s:if> type="radio"/>3级</td> -->
-					<div name="editmenu.mlevel" id="yradiobar_level" value="<s:property value="editmenu.mlevel"/>">
-						<a value="0" <s:if test="editmenu.mlevel==0">class="selected"</s:if>>1级</a>
-						<a value="1" <s:if test="editmenu.mlevel==1">class="selected"</s:if>>2级</a>
-						<a value="2" <s:if test="editmenu.mlevel==2">class="selected"</s:if>>3级</a>
-					</div>
-			</tr>
-			<tr>
-				<td>菜单状态</td>
-				<td class="borderRightNone" align="center">
-					<div name="editmenu.mstatus" id="yradiobar_level" value="<s:property value="editmenu.mstatus"/>">
-						<a value="0" <s:if test="editmenu.mstatus==0">class="selected"</s:if>>隐藏</a>
-						<a value="1" <s:if test="editmenu.mstatus==1">class="selected"</s:if>>显示</a>
-					</div>
-			</tr>
-	</table>
-</form>
-<s:if test="editmenu.mlevel==2">
+
+<div id="forms" class="mt10">
+	<div class="box_center">
+		<form id="frm_menus" class="jqtransform" action="${pageContext.request.contextPath}/master/system/menu!doSaveOrUpdate.action" method="post">
+			<input name="editmenu.mid" id="eid" type="hidden" value="<s:property value="editmenu.mid"/>"/> 
+			<input name="editmenu.mparentid" id="pid" type="hidden" value="<s:property value="editmenu.mparentid"/>"/>
+			<input name="addtype" id="addtype" type="hidden" value="-1"/> 
+			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td class="td_right">显示名称：</td>
+					<td class="">
+						<input type="text" id="ename" name="editmenu.mname" class="input-text lh30" value="${editmenu.mname}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">菜单路径：</td>
+					<td class="">
+						<input type="text" id="eurl" name="editmenu.maction" class="input-text lh30" value="${editmenu.maction}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">父级菜单：</td>
+					<td class="">
+						<div id="parentTxt" class="input-text lh30" style="width:325px;"></div>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">显示排序：</td>
+					<td class="">
+						<input type="text" id="eorder" name="editmenu.mseq" class="input-text lh30" value="${editmenu.mseq}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">菜单层级：</td>
+					<td class="">
+						<div name="editmenu.mlevel" id="yradiobar_level" value="<s:property value="editmenu.mlevel"/>">
+							<a value="0" <s:if test="editmenu.mlevel==0">class="selected"</s:if>>1级</a>
+							<a value="1" <s:if test="editmenu.mlevel==1">class="selected"</s:if>>2级</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div class="btn_bar ta-c">
+			<input class="btn blue" id="btnSave" onclick="save()" type="button" value="  更新菜单  "/>
+		</div>
+	</div>
+</div>
+
+
+<s:if test="editmenu.mlevel==1">
 	<script>$("#btnAdd2").attr("disabled","disabled");</script>
 </s:if>
 <s:else>
 	<script>$("#btnAdd2").attr("disabled",false);</script>
 </s:else>
-<div align="right" style="padding-right:30px;">
-	<input id="btnSave" onclick="save()" type="button" value="更新菜单"/>
-</div>
+
+
