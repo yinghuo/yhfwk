@@ -29,7 +29,7 @@
 						<select id="js" name="nz.js" class="select">
 							<option value="">请选择所属圈舍</option>
 						</select>
-						<div style="display:none" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/jsgl/jsgl!loadname.action" callfunction=",loadjsdone,"></div>
+						<div style="display:none" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/jsgl/jsgl!loadname.action?ncbh=me" callfunction=",loadjsdone,"></div>
 						<span class="required">*必填</span>
 					</td>
 				</tr>

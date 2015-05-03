@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.common.ConstantKey;
 import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.entity.system.User;
 import org.chonger.service.ncgl.NcglServer;
@@ -81,9 +82,25 @@ public class NcglAction extends ActionSupport {
 			{
 				//企业用户角色
 				if(user.getRole().getRtype()==2)
+				{
+					NCJBXX _ncjbxx=user.getNcjbxx();
+					if(_ncjbxx!=null)
+					{
+						nc.setNcbh(_ncjbxx.getNcbh());
+						nc.setKssysj(_ncjbxx.getKssysj());
+						nc.setTzsysj(_ncjbxx.getTzsysj());
+					}
 					nc.setYhid(user.getUid());
-				server.saveOrUpdate(nc);				
+				}
+				server.saveOrUpdate(nc);
 				jsonResult.sendSuccessMessage("更新牛场信息成功！");
+				
+				//更新用户缓存
+				if(user.getRole().getRtype()==2)
+				{
+					user.setNcjbxx(nc);
+					SessionUtils.setSession(ConstantKey.SESSION_USER_NCXX_OBJECT, nc);
+				}				
 			}
 		}catch(Exception ex)
 		{

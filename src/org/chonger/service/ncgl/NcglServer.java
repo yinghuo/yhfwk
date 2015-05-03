@@ -24,7 +24,7 @@ public class NcglServer {
 	@Autowired
 	private CommonDAO<NCJBXX> dao;
 	
-	
+	/**获取查询所有的语句*/
 	public String getQueryString()
 	{
 		return "from NCJBXX model";

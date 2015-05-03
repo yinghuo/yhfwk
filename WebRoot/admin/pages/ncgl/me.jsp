@@ -13,7 +13,6 @@
 		<div id="forms" class="mt10">
 			<div class="box_center">
 				<form id="frmncxx" class="jqtransform">
-					<input type="hidden" id="ncbh" name="nc.ncbh" value="${ncxx.ncbh}">
 					<table class="form_table pt15 pb15" border="0" cellpadding="0"
 						cellspacing="0">
 						<tr>
@@ -28,13 +27,7 @@
 							<td class="">
 								<input type="text" id="ncxz" name="nc.ncxz" class="input-text lh30" size="80" value="${ncxx.ncxz}"><span class="required">*必填</span>
 							</td>
-						</tr>
-						<tr>
-							<td class="td_right">牛场地址：</td>
-							<td class="">
-								<input type="text" id="ncdz" name="nc.ncdz" class="input-text lh30" size="80" value="${ncxx.ncdz}"><span class="required">*必填</span>
-							</td>
-						</tr>
+						</tr>						
 						<tr>
 							<td class="td_right">牛场所属区域：</td>
 							<td class="">
@@ -42,6 +35,12 @@
 							 	 <select id="shi" class="select" ><option value="0">请选择市</option></select>
 							 	 <select id="xian" class="select" ><option value="0">请选择县</option></select>
 								 <input type="hidden" id="ssqy" name="nc.ssqy" value=""><span class="required">*必填</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_right">牛场地址：</td>
+							<td class="">
+								<input type="text" id="ncdz" name="nc.ncdz" class="input-text lh30" size="80" value="${ncxx.ncdz}"><span class="required">*必填</span>
 							</td>
 						</tr>
 						<tr>
@@ -95,13 +94,13 @@
 						<tr>
 							<td class="td_right">开始使用时间：</td>
 							<td class="">
-								<input type="text" id="kssysj" name="nc.kssysj" class="input-text lh30" size="80" value="<fmt:formatDate value="${ncxx.kssysj}" pattern="yyyy-MM-dd"/>" readonly="true" onClick="WdatePicker()"><span class="required">*必填</span>
+								<input type="text" class="input-text lh30" size="80" value="<fmt:formatDate value="${ncxx.kssysj}" pattern="yyyy-MM-dd"/>" readonly="true">
 							</td>
 						</tr>
 						<tr>
 							<td class="td_right">使用到期时间：</td>
 							<td class="">
-								<input type="text" id="tzsysj" name="nc.tzsysj" class="input-text lh30" size="80" value="<fmt:formatDate value="${ncxx.tzsysj}" pattern="yyyy-MM-dd"/>" readonly="true" onClick="WdatePicker()"><span class="required">*必填</span>
+								<input type="text" class="input-text lh30" size="80" value="<fmt:formatDate value="${ncxx.tzsysj}" pattern="yyyy-MM-dd"/>" readonly="true">
 							</td>
 						</tr>
 						<tr>
@@ -129,10 +128,8 @@
 		<div class="btns">
 			<input type="button" id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/ncgl/ncgl!save.action" name="frmncxx"  class="btn btn82 btn_add" value="更新">
 		</div>
-	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
      	showmap("我的基础数据> 编辑我的牛场信息");
      	var district=new YDistrict({
@@ -206,7 +203,7 @@
      			alert("请填写牛场的发情系统标志！");
      			return false;
      		}
-     		else if(IsNull("kssysj",0))
+     		/*else if(IsNull("kssysj",0))
      		{
      			alert("请填写牛场的开始使用时间！");
      			return false;
@@ -215,7 +212,7 @@
      		{
      			alert("请填写牛场的到期使用时间！");
      			return false;
-     		}
+     		}*/
      		else if(IsNull("lxyx",0))
      		{
      			alert("请填写牛场的联系邮箱！");

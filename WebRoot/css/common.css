@@ -21,6 +21,9 @@ select{*vertical-align: top;}
 .ta-r{text-align:right;}
 .ta-c{text-align:center;}
 
+/*cursor*/
+.cr-p{cursor:pointer;}
+
 .span2{ width:19.97%;}
 .span3{ width:29.97%;}
 .span4{ width:39.97%;}

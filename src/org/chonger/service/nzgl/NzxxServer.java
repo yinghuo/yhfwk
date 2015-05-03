@@ -48,6 +48,21 @@ public class NzxxServer {
 	}
 	
 	/**
+	 * 根据圈舍的编号查询该圈舍的牛只个数
+	 * @Title: getNZCountByJSXX 
+	 * @Description: 
+	 * @param jsxh
+	 * @retrun long 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public long getNZCountByJSXX(String jsxh)
+	{
+		return dao.getCount("select count(*) from NZJBXX model where model.js='"+jsxh+"'");
+	}
+	
+	/**
 	 * 保存或更新牛只信息
 	 * @Title: saveOrUpdate 
 	 * @Description: 

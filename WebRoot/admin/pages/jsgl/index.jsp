@@ -54,8 +54,8 @@
 							<td><s:property value="#jsxx.jslb"/></td>
 							<td><s:property value="#jsxx.ncjbxx.ncmc"/></td>
 							<td>
-								<a href="#" class="fa fa-edit">修改</a>
-								<a href="#" class="fa fa-remove">删除</a>
+								<a class="fa fa-edit cr-p">修改</a>
+								<a id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#jsxx.jsmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#jsxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 			</s:iterator>
@@ -90,11 +90,19 @@
            	</div>
 		</div>
   	 </div>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
      	showmap("圈舍信息管理 > 圈舍信息列表");
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/jsgl/add.jsp";
+     	}
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
      	}
      </script>
   </body>

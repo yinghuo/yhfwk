@@ -29,4 +29,18 @@ public class SessionUtils {
 		return null;
 	}
 	
+	/**
+	 * 设置Sesssion的值
+	 * @param key
+	 * @param object
+	 * @retrun void 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public static void setSession(String key,Object object)
+	{
+		ServletActionContext.getRequest().getSession().setAttribute(key,object);
+	}
+	
 }

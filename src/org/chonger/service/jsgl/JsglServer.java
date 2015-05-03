@@ -6,6 +6,7 @@ import org.chonger.dao.CommonDAO;
 import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -25,6 +26,9 @@ public class JsglServer {
 	
 	@Autowired
 	private CommonDAO<JSJBXX> dao;
+	
+	@Autowired
+	private NzxxServer nzxxServer;
 	
 	public String getQueryString()
 	{
@@ -54,11 +58,21 @@ public class JsglServer {
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
+	 * @modify 2015-05-03	Daniel	1:新增企业查询权限
 	 */
 	public List<JSJBXX> findAllByNcbh(String ncbh)
 	{
-		
-		return dao.find(getQueryString()+" where model.ncbh='"+ncbh+"'");
+		//企业用户角色
+		User user=SessionUtils.getUser();	
+		if(user!=null&&user.getRole()!=null)
+		{
+			if(user.getRole().getRtype()==2)
+			{
+				ncbh=user.getNcjbxx().getNcbh();
+			}
+			return dao.find(getQueryString()+" where model.ncbh='"+ncbh+"'");
+		}
+		return null;
 	}
 	
 	/**
@@ -99,6 +113,41 @@ public class JsglServer {
 					dao.saveOrUpdate(jsxx);
 				}
 			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @Title: delete 
+	 * @Description: 
+	 * @param id
+	 * @throws Exception
+	 * @retrun void 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public void delete(String id) throws Exception{
+		if(!StringUtil.IsEmpty(id))
+		{
+			//企业用户角色
+			User user=SessionUtils.getUser();	
+			if(user!=null&&user.getRole()!=null)
+			{
+				String deleteHql="delete JSJBXX model where model.xh='"+id+"'";
+				if(user.getRole().getRtype()==2)
+				{
+					deleteHql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+				}
+				
+				//检查该圈舍是否有存在的牛只信息
+				if(nzxxServer.getNZCountByJSXX(id)>0)
+					throw new Exception("删除错误，这个圈舍中还有牛牛哦！");
+				
+				dao.ExecutionHql(deleteHql);
+			}
+			else
+				throw new Exception("无效的用户信息！");
+			
 		}
 	}
 }

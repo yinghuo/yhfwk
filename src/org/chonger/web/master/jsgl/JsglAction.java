@@ -64,6 +64,8 @@ public class JsglAction extends ActionSupport {
 	public String getNcbh() {		return ncbh;	}
 	public void setNcbh(String ncbh) {		this.ncbh = ncbh;	}
 	
+	private String id;
+	public void setId(String id) {	this.id = id;	}
 	
 	@Override
 	public String execute() throws Exception {
@@ -72,18 +74,26 @@ public class JsglAction extends ActionSupport {
 		return "list.jsp";
 	}
 	
-	public String save() throws Exception{
-		
+	public String save() throws Exception{		
 		try{
-			server.saveOrUpdate(js);
-			
-			jsonResult.sendSuccessMessage("新增圈舍信息成功！");
-			
+			server.saveOrUpdate(js);			
+			jsonResult.sendSuccessMessage("新增圈舍信息成功！");			
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage("新增圈舍信息异常！");
+		}		
+		return "infos";
+	}
+	
+	/**删除数据操作*/
+	public String delete() throws Exception{
+		try{
+			server.delete(id);
+			jsonResult.sendSuccessMessage("删除圈舍信息成功！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage(ex.getMessage());
 		}
-		
 		return "infos";
 	}
 	

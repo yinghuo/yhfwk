@@ -102,7 +102,6 @@
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
      	showmap("牧场信息管理 > 新增牛场信息");
      	var district=new YDistrict({
