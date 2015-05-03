@@ -3,6 +3,7 @@ package org.chonger.utils;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ismartcms.core.orm.hibernate.HibernateDao;
 /**
@@ -20,6 +19,7 @@ import com.ismartcms.core.orm.hibernate.HibernateDao;
  * @author Daniel
  * @modify by Daniel@2014-04-30	1：添加翻页对原生Sql的支持，通过设置setIsSql(true,Class)来启用原生sql。
  * 								2：修改当总长度为0时出错的bug。
+ * @modify 2015-05-03(V2.0)	Daniel	1：新增搜索查询模块
  * 								
  */
 @Repository
@@ -223,8 +223,11 @@ public class RollPage<T> extends HibernateDao<T,String> {
 		//拆分执行语句
 		//Note 是否添加SQL注入过滤？
 		//commandText=commandText.trim().toLowerCase();//Error
+		//注入查询参数
+		//commandText=setSearchParams(commandText);
+		
 		String _cmdStr=commandText;
-		_cmdStr=_cmdStr.replaceAll("(?i)from","from");
+		_cmdStr=_cmdStr.replaceAll("(?i)from","from");		
 		Session session=this.getSession();
 		boolean blnOther = false;
 		String[] strOtherHQL = { "left", "join", "group", "order" };
@@ -368,6 +371,62 @@ public class RollPage<T> extends HibernateDao<T,String> {
 			throw ex;
 		}
 	}
+	
+	/******************************搜索查询模块 v1.0*****************/
+	//将查询参数注入到SQL语句的where字段中，用where做分隔符，在前方插入过滤条件
+	private String searchChar=":";//查询分隔符
+	public String getSearchChar() {	return searchChar;	}
+	public void setSearchChar(String searchChar) {	this.searchChar = searchChar;	}
+	
+	private String search="";
+	public String getSearch() {	
+		if(searchParams!=null)
+		{
+			for(String key : searchParams.keySet())
+			{
+				String value;
+				if(!StringUtil.IsEmpty(value=searchParams.get(key)))
+					search+=key+"="+value+":";
+			}
+		}			
+		return search;	
+	}
+	public void setSearch(String search) {		
+		if(!StringUtil.IsEmpty(search))
+		{
+			searchParams=new LinkedHashMap<String,String>();
+			//拆分查询语句
+			String[] _params=search.split(searchChar);
+			
+			for(String paramsItem : _params)
+			{
+				String[] entity=paramsItem.split("=");
+				searchParams.put(entity[0],entity[1]);
+			}			
+		}
+	}
+	
+	private Map<String,String> searchParams;
+	
+	public String setSearchParams(String sql)
+	{
+		if(!StringUtil.IsEmpty(sql))
+		{
+			int whereIndex=sql.indexOf("where");
+			
+			if(whereIndex>0)
+			{
+				
+				String[] _sqls=sql.split("where");
+				String newsql=_sqls[0];
+				System.out.println("0="+_sqls[0]);
+				System.out.println("1="+_sqls[1]);
+			}			
+		}
+		return sql;
+	}
+	
+	
 	
 	
 //	public String getPageRollLink(String action,String goal,boolean showFirstLast,boolean showPageNum,int numCount,int numType,boolean showJump)

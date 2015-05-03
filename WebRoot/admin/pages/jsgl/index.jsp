@@ -16,13 +16,13 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/jsgl/jsgl.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>圈舍编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="50"></td>
+	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="50"></td>
 	          				<td>圈舍名称：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="50"></td>
+	          				<td><input id="mc" type="text" name="mc" class="input-text lh25" value="${mc}" size="50"></td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -30,7 +30,7 @@
 	         </div>
 	         <div class="pb5 pt5 pr10">
 	          		<div class="search_bar_btn" style="text-align:right;">
-	          			<input type="button" name="button" onClick="sousuo()" class="btn btn82 btn_search" value="查询">
+	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
 	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
 	          		</div>
 	         </div>
@@ -54,7 +54,7 @@
 							<td><s:property value="#jsxx.jslb"/></td>
 							<td><s:property value="#jsxx.ncjbxx.ncmc"/></td>
 							<td>
-								<a class="fa fa-edit cr-p">修改</a>
+								<a onclick="edit('<s:property value="#jsxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 								<a id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#jsxx.jsmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#jsxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
@@ -68,21 +68,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageNowNum-1}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageIndex}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?p=${pageIndex}${searchString}">${pageIndex}</a></li>
 							</s:else>
 						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageNowNum+1}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?p=${pageNowNum+1}${searchString}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>
@@ -93,6 +93,10 @@
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
      	showmap("圈舍信息管理 > 圈舍信息列表");
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/jsgl/add.jsp";
@@ -104,6 +108,10 @@
      				window.location.reload();
      		});
      	}
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/jsgl/jsgl!edit.action?id="+id;
+     	}     	
      </script>
   </body>
 </html>

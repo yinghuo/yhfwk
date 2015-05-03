@@ -30,9 +30,12 @@ public class JsglServer {
 	@Autowired
 	private NzxxServer nzxxServer;
 	
-	public String getQueryString()
+	public String getQueryString(String bh,String mc)
 	{
-		return "from JSJBXX model";
+		String sql="from JSJBXX model where 1=1 ";		
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.jsbh='"+bh+"' ";
+		if(!StringUtil.IsEmpty(mc))sql+=" and model.jsmc like '%"+mc+"%'";
+		return sql;
 	}
 	
 	/**
@@ -46,7 +49,7 @@ public class JsglServer {
 	 */
 	public List<JSJBXX> finaAll()
 	{
-		return dao.find(getQueryString());
+		return dao.find(getQueryString(null,null));
 	}
 	
 	/**
@@ -70,8 +73,24 @@ public class JsglServer {
 			{
 				ncbh=user.getNcjbxx().getNcbh();
 			}
-			return dao.find(getQueryString()+" where model.ncbh='"+ncbh+"'");
+			return dao.find(getQueryString(null,null)+" and model.ncbh='"+ncbh+"'");
 		}
+		return null;
+	}
+	
+	public JSJBXX getEntityById(String id)
+	{
+		String sql=getQueryString(null,null)+" and model.xh=?";
+		
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+		}
+		
+		List<JSJBXX> resultList=dao.find(sql,id);
+		if(resultList!=null&&resultList.size()>0)
+			return resultList.get(0);
 		return null;
 	}
 	

@@ -67,9 +67,25 @@ public class JsglAction extends ActionSupport {
 	private String id;
 	public void setId(String id) {	this.id = id;	}
 	
+	/**搜索查询参数定义*/
+	private String bh,mc;
+	public String getBh() {	return bh;	}
+	public void setBh(String bh) {	this.bh = bh;	}
+	public String getMc() {	return mc;	}
+	public void setMc(String mc) {	this.mc = mc;	}
+	/**搜索参数获取，方便翻页使用*/
+	public String getSearchString()
+	{
+		String searchString="";
+		if(!StringUtil.IsEmpty(bh))searchString+=("&bh="+bh);
+		if(!StringUtil.IsEmpty(mc))searchString+=("&mc="+mc);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(),pager.pageSize,p);
+		
+		pager.init(server.getQueryString(bh,mc),pager.pageSize,p);
 		jslist=pager.getDataSource();
 		return "list.jsp";
 	}
@@ -77,10 +93,10 @@ public class JsglAction extends ActionSupport {
 	public String save() throws Exception{		
 		try{
 			server.saveOrUpdate(js);			
-			jsonResult.sendSuccessMessage("新增圈舍信息成功！");			
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(js.getXh())?"新增":"更新"+"圈舍信息成功！");			
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage("新增圈舍信息异常！");
+			jsonResult.sendErrorMessage(StringUtil.IsEmpty(js.getXh())?"新增":"更新"+"圈舍信息异常！");
 		}		
 		return "infos";
 	}
@@ -95,6 +111,17 @@ public class JsglAction extends ActionSupport {
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
+	}
+	
+	/**修改数据操作*/
+	public String edit() throws Exception{
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			js=server.getEntityById(id);
+		}
+		
+		return "edit.jsp";
 	}
 	
 	/**加载圈舍的选择信息，如果存在牛场编号，则加载该牛场编号的圈舍信息*/

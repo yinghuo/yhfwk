@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
 <!doctype html>
 <html>
   <head>
@@ -7,7 +9,7 @@
   <body>
   	<div class="box_center mt10">
 		<form id="frmncxx" class="jqtransform">
-			<input type="hidden" id="ncbh" name="nc.ncbh" value="${ncxx.ncbh}">
+				<input type="hidden" name="js.xh" value="${js.xh}">
 				<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="td_right">圈舍编号：</td>
@@ -43,12 +45,12 @@
   		</form>
 	</div>
 			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/jsgl/jsgl!save.action" name="frmncxx" class="btn btn82 btn_add" type="button" value=" 新增 "/>
+				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/jsgl/jsgl!save.action" name="frmncxx" class="btn btn82 btn_add" type="button" value=" <s:if test="js==null">新增</s:if><s:else>更新</s:else> "/>
 			</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
-     	showmap("牧场信息管理 > 新增圈舍信息");
+     	showmap("牧场信息管理 > <s:if test="js==null">新增</s:if><s:else>更新</s:else>圈舍信息");
      	function validata()
      	{
      		if(IsNull("jsbh",0))
