@@ -68,21 +68,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/system/role!listRoles.action?page=${pageNowNum-1}&eid=${eid}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageNowNum-1}">上一页</a></li>
 						</s:else>
-						<r:PageNum>
+						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/system/role!listRoles.action?page=${pageIndex}&eid=${eid}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageIndex}">${pageIndex}</a></li>
 							</s:else>
-						</r:PageNum>
+						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/system/role!listRoles.action?page=${pageNowNum+1}&eid=${eid}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/jsgl/jsgl.action?page=${pageNowNum+1}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>

@@ -1,6 +1,9 @@
 /*
 	Title：异步数据提交 1.0
 	modity Daniel 2014-09-25	1:修复使用的时候重复绑定事件bug。
+	
+	v3.0
+	modify 2015-05-02	1:添加表单异步文件提交功能
 */
 $(document).ready(function(){
 	$("input[type=button][id^=comsubmit],input[type=submit][id^=comsubmit],a[id^=comsubmit],div[id^=comsubmit],p[id^=comsubmit],button[id^=comsubmit]").unbind("click").bind("click",function(){ //   /.each(
@@ -23,6 +26,7 @@ $(document).ready(function(){
 		{
 			url=$("#"+frm).attr("action");
 		}
+		
 		//debugger;
 		var callfunctions;
 		if(callfunction)
@@ -30,7 +34,50 @@ $(document).ready(function(){
 			callfunctions = callfunction.split(',');
 		}
 		
-		$.ajax({
+		//V3.0判断提交方式
+		if(checkFileInForm(frm))//含有文件域的提交
+		{
+			var frmObj=$("#"+frm);
+			frmObj.attr("action",url);
+			frmObj.attr("method","post");
+			frmObj.ajaxSubmit({
+				dataType:'json',
+				beforeSend:function(xhr){
+					if(callfunction)
+					{
+						if(callfunctions.length>1&&callfunctions[0])
+							return eval(callfunctions[0]+"()");
+					}
+					
+					if(promptInfo){
+						if(!confirm(promptInfo!='default'?promptInfo:'<s:text name="errors.delete.confirm"/>')){
+			 				return false;
+			 			}
+					}
+					
+				},
+				success:function(data){
+					
+					if(callfunction)
+					{
+						if(callfunctions.length>2&&callfunctions[1])
+							eval(callfunctions[1]+"(data)");
+					}		
+					
+				},
+				error:function(xmlHttpRequest, error){
+					if(callfunction)
+					{
+						if(callfunctions.length>2&&callfunctions[2])
+							//alert(callfunctions[2]);
+							eval(callfunctions[2]+"()");
+					}
+				}	
+			});
+		}
+		else
+		{		
+			$.ajax({
 				url:url,
 				type:"post",
 				data:frm?$('#'+frm).serialize():'',//;    $('form#'+$(this).attr('name')).formSerialize()				  $.param($('#'+frm))
@@ -68,8 +115,20 @@ $(document).ready(function(){
 					}
 				}	 		
 			});
+		}
 	});
 });
+
+//
+function checkFileInForm(fid)
+{
+	var hasFileSelect=false;
+	$("#"+fid).find("input[type='file']").each(function(){
+		if($(this).val().length>0)
+			hasFileSelect=true;
+	});
+	return hasFileSelect;
+}
 
 function jsonResult(data,call)
 {
