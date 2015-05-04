@@ -2,7 +2,7 @@ package org.chonger.service.nzgl;
 
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
-import org.chonger.entity.nqgl.NZZSXX;
+import org.chonger.entity.nqgl.NZLCXX;
 import org.chonger.entity.system.User;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
@@ -13,24 +13,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**   
 *
-* @title ZsxxServer.java 牛只转舍信息管理业务逻辑
+* @title LcxxServer.java 牛只离场信息管理业务逻辑
 * @package org.chonger.service.nzgl
 * @author Daniel
-* @create 2015-4-10 
+* @create 2015-5-4
  */
 @Service
 @Transactional
-public class ZsxxServer {
+public class LcxxServer {
 	
 	@Autowired
-	private CommonDAO<NZZSXX> dao;
+	private CommonDAO<NZLCXX> dao;
 	
 	@Autowired
 	private NzxxServer nzServer;
 	
 	public String getQueryString()
 	{
-		String sql="from NZZSXX model where 1=1 ";
+		String sql="from NZLCXX model where 1=1 ";
 		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
@@ -42,20 +42,19 @@ public class ZsxxServer {
 	}
 	
 	/**
-	 * 保存或更新转舍信息
-	 * @Title: saveOrUpdate 
-	 * @Description: 
-	 * @param zsxx
+	 * 保存或更新牛只离场信息
+	 * @param lcxx
+	 * @retrun void 
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public void saveOrUpdate(NZZSXX zsxx) throws Exception
+	public void saveOrUpdate(NZLCXX lcxx) throws Exception
 	{
-		if(zsxx!=null)
+		if(lcxx!=null)
 		{
-			//获取转舍的牛只
-			NZJBXX nz=nzServer.queryNZById(zsxx.getNzxh());
+			//获取离场的牛只
+			NZJBXX nz=nzServer.queryNZById(lcxx.getNzxh());
 			
 			if(nz!=null)
 			{			
@@ -63,24 +62,20 @@ public class ZsxxServer {
 				User user=SessionUtils.getUser();
 				if(user!=null&&user.getRole().getRtype()==2)
 				{
-					zsxx.setNcbh(user.getNcjbxx().getNcbh());
+					lcxx.setNcbh(user.getNcjbxx().getNcbh());
 				}
 				
-				//补全转舍信息
-				zsxx.setZcjs(nz.getJs());
+				//补全离场信息
 				
-				if(StringUtil.IsEmpty(zsxx.getXh()))
+				
+				if(StringUtil.IsEmpty(lcxx.getXh()))
 				{
 					//序号为空，表示新增，进行自动编号
-					zsxx.setXh(CommUUID.getUUID());
-					dao.save(zsxx);
+					lcxx.setXh(CommUUID.getUUID());
+					dao.save(lcxx);
 				}
 				else
-					dao.saveOrUpdate(zsxx);
-				
-				//更新牛只的转舍信息
-				nz.setJs(zsxx.getZrjs());
-				nzServer.saveOrUpdate(nz);
+					dao.saveOrUpdate(lcxx);				
 			}
 			else
 				throw new Exception("转舍的牛只信息错误！");

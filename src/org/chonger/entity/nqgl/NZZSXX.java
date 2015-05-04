@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.jbxx.JSJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,9 +34,9 @@ public class NZZSXX {
 	/**牛场编号*/
 	private String ncbh;
 	
-	@Column(name = "nzbh")
-	/**牛只编号*/
-	private String nzbh;
+	@Column(name = "nzxh")
+	/**牛只序号*/
+	private String nzxh;
 	
 	@Column(name = "zsrq")
 	/**转舍日期*/
@@ -53,7 +57,19 @@ public class NZZSXX {
 	@Column(name = "bz")
 	/**备注*/
 	private String bz;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nzxh",insertable = false, updatable = false)
+	private NZJBXX nzjbxx;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="zcjs",insertable = false, updatable = false)
+	private JSJBXX zcjsxx;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="zrjs",insertable = false, updatable = false)
+	private JSJBXX zrjsxx;
+	
 	public String getXh() {
 		return xh;
 	}
@@ -70,12 +86,36 @@ public class NZZSXX {
 		this.ncbh = ncbh;
 	}
 
-	public String getNzbh() {
-		return nzbh;
+	public String getNzxh() {
+		return nzxh;
 	}
 
-	public void setNzbh(String nzbh) {
-		this.nzbh = nzbh;
+	public void setNzxh(String nzxh) {
+		this.nzxh = nzxh;
+	}
+
+	public NZJBXX getNzjbxx() {
+		return nzjbxx;
+	}
+
+	public void setNzjbxx(NZJBXX nzjbxx) {
+		this.nzjbxx = nzjbxx;
+	}
+
+	public JSJBXX getZcjsxx() {
+		return zcjsxx;
+	}
+
+	public void setZcjsxx(JSJBXX zcjsxx) {
+		this.zcjsxx = zcjsxx;
+	}
+
+	public JSJBXX getZrjsxx() {
+		return zrjsxx;
+	}
+
+	public void setZrjsxx(JSJBXX zrjsxx) {
+		this.zrjsxx = zrjsxx;
 	}
 
 	public Date getZsrq() {

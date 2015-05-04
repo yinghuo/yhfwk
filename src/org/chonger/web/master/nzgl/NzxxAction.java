@@ -9,6 +9,7 @@ import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -57,26 +58,66 @@ public class NzxxAction extends ActionSupport {
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	
+	private String id;
+	public void setId(String id) {	this.id = id;	}
+	
+	/**搜索查询参数定义*/
+	private String bh,jbq,eb;
+	public String getBh() {	return bh;	}
+	public void setBh(String bh) {this.bh = bh;}
+	public String getJbq() {	return jbq;	}
+	public void setJbq(String jbq) {this.jbq = jbq;}
+	public String getEb() {	return eb;	}
+	public void setEb(String eb) {this.eb = eb;}
+	/**搜索参数获取，方便翻页使用*/
+	public String getSearchString()
+	{
+		String searchString="";
+		if(!StringUtil.IsEmpty(bh))searchString+=("&bh="+bh);
+		if(!StringUtil.IsEmpty(jbq))searchString+=("&jbq="+jbq);
+		if(!StringUtil.IsEmpty(eb))searchString+=("&eb="+eb);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(),pager.pageSize,p);
+		pager.init(server.getQueryString(bh,jbq,eb),pager.pageSize,p);
 		nzlist=pager.getDataSource();
 		return "list.jsp";
 	}
 	
 	/**保存数据操作*/
 	public String save() throws Exception{
-		
 		try{
 			server.saveOrUpdate(nz);
-			
-			jsonResult.sendSuccessMessage("新增牛只信息成功！");
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(nz.getXh())?"新增":"更新"+"牛只信息成功！");
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage("新增牛只信息异常！");
+			jsonResult.sendErrorMessage(StringUtil.IsEmpty(nz.getXh())?"新增":"更新"+"牛只信息异常！");
 		}		
 		return "infos";
 	}
 	
+	/**修改数据操作*/
+	public String edit() throws Exception{
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			nz=server.queryNZById(id);
+		}
+		return "edit.jsp";
+	}
+	
+	/**删除数据操作*/
+	public String delete() throws Exception{
+		try{
+			server.delete(id);
+			jsonResult.sendSuccessMessage("删除牛只信息成功！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage(ex.getMessage());
+		}
+		return "infos";
+	}
 }
 	

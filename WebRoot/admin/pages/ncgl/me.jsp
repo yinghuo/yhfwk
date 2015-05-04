@@ -230,7 +230,8 @@
      	{
      		jsonResult(data,function(data){
      			if(data["error"]==0)
-     				window.location.href="${pageContext.request.contextPath}/admin/pages/ncgl/me.jsp";
+     				window.top.location.reload();
+     				//window.location.href="${pageContext.request.contextPath}/admin/pages/ncgl/me.jsp";
      		});
      	}
      </script>

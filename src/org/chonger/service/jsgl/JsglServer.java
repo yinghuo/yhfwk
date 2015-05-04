@@ -35,6 +35,13 @@ public class JsglServer {
 		String sql="from JSJBXX model where 1=1 ";		
 		if(!StringUtil.IsEmpty(bh))sql+=" and model.jsbh='"+bh+"' ";
 		if(!StringUtil.IsEmpty(mc))sql+=" and model.jsmc like '%"+mc+"%'";
+		
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+		}
+		
 		return sql;
 	}
 	
@@ -80,15 +87,7 @@ public class JsglServer {
 	
 	public JSJBXX getEntityById(String id)
 	{
-		String sql=getQueryString(null,null)+" and model.xh=?";
-		
-		User user=SessionUtils.getUser();
-		if(user!=null&&user.getRole().getRtype()==2)
-		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
-		}
-		
-		List<JSJBXX> resultList=dao.find(sql,id);
+		List<JSJBXX> resultList=dao.find(getQueryString(null,null)+" and model.xh=?",id);
 		if(resultList!=null&&resultList.size()>0)
 			return resultList.get(0);
 		return null;
@@ -164,9 +163,6 @@ public class JsglServer {
 				
 				dao.ExecutionHql(deleteHql);
 			}
-			else
-				throw new Exception("无效的用户信息！");
-			
 		}
 	}
 }

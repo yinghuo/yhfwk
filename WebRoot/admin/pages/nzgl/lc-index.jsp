@@ -39,20 +39,24 @@
   	 		<tr>
              	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
-              	<th width="200">转舍日期</th>
-              	<th width="200">转出圈舍</th>
-              	<th width="200">转入圈舍</th>
+              	<th width="200">所属圈舍</th>
+              	<th width="200">离群日期</th>
+              	<th width="200">离群类型</th>
+              	<th width="200">离群体重</th>
+              	<th width="200">去向</th>
               	<th width="200">经手人</th>
               	<th width="200">操作</th>
          	</tr>
-         	<s:iterator value="zslist" status="status" id="zsxx">
+         	<s:iterator value="lclist" status="status" id="lcxx">
 				<tr>
 					<td>${status.count}</td>
-					<td><s:property value="#zsxx.nzjbxx.nzbh"/></td>
-					<td><s:date name="#zsxx.zsrq" format="yyyy-MM-dd HH:mm"/></td>
-					<td><s:property value="#zsxx.zcjsxx.jsmc"/></td>
-					<td><s:property value="#zsxx.zrjsxx.jsmc"/></td>
-					<td><s:property value="#zsxx.jsr"/></td>
+					<td><s:property value="#lcxx.nzjbxx.nzbh"/></td>
+					<td><s:property value="#lcxx.nzjbxx.jsjbxx.jsbh"/></td>
+					<td><s:date name="#lcxx.lqrq" format="yyyy-MM-dd HH:mm"/></td>
+					<td><s:property value="#lcxx.lqlx"/></td>
+					<td><s:property value="#lcxx.lqtz"/></td>
+					<td><s:property value="#lcxx.qx"/></td>
+					<td><s:property value="#lcxx.jsr"/></td>
 					<td>
 						<a >删除</a>
 					</td>
@@ -67,21 +71,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum-1}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/lcxx.action?p=${pageNowNum-1}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageIndex}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/nzgl/lcxx.action?p=${pageIndex}">${pageIndex}</a></li>
 							</s:else>
 						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum+1}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/lcxx.action?p=${pageNowNum+1}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>
@@ -90,7 +94,7 @@
 		</div>
   	 </div>
      <script>
-     	showmap("牛只信息管理 > 转舍信息列表");
+     	showmap("牛只信息管理 > 离场信息列表");
      </script>
   </body>
 </html>

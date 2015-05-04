@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.jbxx.NCJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -28,8 +32,8 @@ public class NZLCXX {
 	@Column(name = "ncbh")
 	private String ncbh;//牛场编号
 	
-	@Column(name = "nzbh")
-	private String nzbh;//牛只编号
+	@Column(name = "nzxh")
+	private String nzxh;//牛只编号
 	
 	@Column(name = "pz")
 	private String pz;//品种
@@ -60,7 +64,11 @@ public class NZLCXX {
 	
 	@Column(name = "bz")
 	private String bz;//备注
-
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "nzxh",insertable = false, updatable = false)
+	private NZJBXX nzjbxx;
+	
 	public String getXh() {
 		return xh;
 	}
@@ -77,12 +85,12 @@ public class NZLCXX {
 		this.ncbh = ncbh;
 	}
 
-	public String getNzbh() {
-		return nzbh;
+	public String getNzxh() {
+		return nzxh;
 	}
 
-	public void setNzbh(String nzbh) {
-		this.nzbh = nzbh;
+	public void setNzxh(String nzxh) {
+		this.nzxh = nzxh;
 	}
 
 	public String getPz() {
@@ -163,5 +171,13 @@ public class NZLCXX {
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public NZJBXX getNzjbxx() {
+		return nzjbxx;
+	}
+
+	public void setNzjbxx(NZJBXX nzjbxx) {
+		this.nzjbxx = nzjbxx;
 	}
 }

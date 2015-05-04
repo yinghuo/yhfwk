@@ -68,6 +68,13 @@
 	{
 		$("#NavMap").html(value);
 	}
+	
+	function selectMenu(id)
+	{
+		$(".sideMenu ul li").removeClass("on");
+		$("#"+id).addClass("on");
+	}
+	
   </script>
   <title>欢迎使用牧场管理系统</title>
 </head>
@@ -81,9 +88,9 @@
           </div>
           <div id="base_info" class="fr">
             <div class="help_info">
-              <a href="1" id="hp">&nbsp;</a>
-              <a href="2" id="gy">&nbsp;</a>
-              <a href="3" id="out">&nbsp;</a>
+              <a href="#" id="hp">&nbsp;</a>
+              <a href="#" id="gy">&nbsp;</a>
+              <a href="#" onclick="" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
               <s:property value="#session.urole"/>
@@ -103,7 +110,7 @@
         	<h3><s:property value="mname"></s:property></h3>
         	<ul>
         		<s:iterator value="child" id="child" status="stchild">
-        			<li url="<s:property value="maction"></s:property>"><s:property value="mname"></s:property></li>
+        			<li id="<s:property value="mid"></s:property>" url="<s:property value="maction"></s:property>"><s:property value="mname"></s:property></li>
         		</s:iterator>
         	</ul>
         </s:iterator>
@@ -113,7 +120,7 @@
        <iframe name="right" id="rightMain" src="" frameborder="no" scrolling="auto" width="100%" height="auto" allowtransparency="true"></iframe>
     </div>
     <div class="bottom">
-      <div id="bottom_bg" style="text-align:left;padding-left:10px;">系统授权企业：<s:property value="#session.uname"/></div>
+      <div id="bottom_bg" style="text-align:left;padding-left:10px;">系统授权企业牧场：<s:property value="#session.uncxx.ncmc"/></div>
     </div>
     <div class="scroll">
           <a href="javascript:;" class="per" title="使用鼠标滚轴滚动侧栏" onclick="menuScroll(1);"></a>

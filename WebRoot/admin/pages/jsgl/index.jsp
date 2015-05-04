@@ -54,8 +54,8 @@
 							<td><s:property value="#jsxx.jslb"/></td>
 							<td><s:property value="#jsxx.ncjbxx.ncmc"/></td>
 							<td>
-								<a onclick="edit('<s:property value="#jsxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-								<a id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#jsxx.jsmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#jsxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+								<a title="修改" onclick="edit('<s:property value="#jsxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a title="删除" id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#jsxx.jsmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#jsxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 			</s:iterator>

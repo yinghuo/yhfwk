@@ -29,12 +29,12 @@
 							<input type="text" id="jslb" name="js.jslb" class="input-text lh30" value="${js.jslb}" size="80"><span class="required">*必填</span>
 						</td>
 					</tr>
-					<tr>
+					<%/*<tr>
 						<td class="td_right">所属牛场：</td>
 						<td class="">
 							<div class="input-text lh30" style="width:325px;">${uncxx.ncmc}</div>
 						</td>
-					</tr>
+					</tr>*/%>
 					<tr>
 						<td class="td_right">备注信息：</td>
 						<td class="">							

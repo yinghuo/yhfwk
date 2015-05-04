@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
@@ -20,11 +21,11 @@
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
-	          				<td>牛场编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
+	          				<td>计步器编号：</td>
+	          				<td><input id="jbq" type="text" name="jbq" class="input-text lh25" value="${jbq}" size="30"></td>
 	          				<td>耳标编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          				<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -41,11 +42,14 @@
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
              	<th width="80">序号</th>
-              	<th width="200">牛只编号</th>
-              	<th width="200">所属圈舍</th>
-              	<th width="200">耳标编号</th>
-              	<th width="200">计步器编号</th>
-              	<th width="200">出生日期</th>
+              	<th width="120">牛只编号</th>
+              	<th width="120">所属圈舍</th>
+              	<th width="120">耳标编号</th>
+              	<th width="120">计步器编号</th>
+              	<th width="120">类别</th>
+              	<th width="120">入群类型</th>
+              	<th width="120">出生日期</th>
+              	<th width="80">性别</th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="nzlist" status="status" id="nzxx">
@@ -55,11 +59,15 @@
 					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>
 					<td><s:property value="#nzxx.ebbh"/></td>
 					<td><s:property value="#nzxx.jbqbh"/></td>
-					<td><s:date name="#nzxx.csrq" format="yyyy年MM月dd日"/></td>
+					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>
+					<td><y:EnumLabel enumName="NZRQLX" value="${nzxx.rqlx}"/></td>
+					<td><s:date name="#nzxx.csrq" format="yyyy-MM-dd"/></td>
+					<td><y:EnumLabel enumName="NZXB" value="${nzxx.xb}"/></td>
 					<td>
-						<a >修改</a>
-						<a >删除</a>
-						<a href="${pageContext.request.contextPath}/master/nzgl/zsxx!add.action?id=<s:property value="#nzxx.xh"/>">转舍</a>
+						<a title="修改" onclick="edit('<s:property value="#nzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+						<a title="删除" id="comsubmit_delete" promptInfo='确认删除当前牛只的信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/nzgl/nzxx!delete.action?id=<s:property value="#nzxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+						<a title="转舍登记" class="fa fa-exchange cr-p" onclick="transfer('<s:property value="#nzxx.xh"/>')">转舍</a>
+						<a title="离场登记" class="fa fa-truck cr-p" onclick="departure('<s:property value="#nzxx.xh"/>')">离场</a>
 					</td>
 				</tr>
 			</s:iterator>
@@ -72,21 +80,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?page=${pageNowNum-1}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=${pageNowNum-1}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?page=${pageIndex}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=${pageIndex}">${pageIndex}</a></li>
 							</s:else>
 						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?page=${pageNowNum+1}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=${pageNowNum+1}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>
@@ -94,12 +102,38 @@
            	</div>
 		</div>
   	 </div>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
      	showmap("牛只信息管理 > 牛只信息列表");
+     	
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/nzgl/nz-add.jsp";
      	}
+     	
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/nzgl/nzxx!edit.action?id="+id;
+     	}
+     	
+     	function transfer(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/nzgl/zsxx!add.action?id="+id;
+     	}
+     	
+     	function departure(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/nzgl/lcxx!add.action?id="+id;
+     	}
+     	
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
+     	}
+     	
      </script>
   </body>
 </html>

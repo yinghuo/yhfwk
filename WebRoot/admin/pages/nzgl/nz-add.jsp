@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <!doctype html>
 <html>
@@ -9,18 +10,12 @@
   <body>
   	<div class="box_center mt10">
   		<form id="frmnzxx" class="jqtransform">
-  			<input type="hidden" id="nzbh" name="nz.nzbh" value="${ncxx.ncbh}">
+  			<input type="hidden" name="nz.xh" value="${nz.xh}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
   				<tr>
-					<td class="td_right">圈舍编号：</td>
+					<td class="td_right">牛只编号：</td>
 					<td class="">
 						<input type="text" id="nzbh" name="nz.nzbh" class="input-text lh30" value="${nz.nzbh}" size="80"><span class="required">*必填</span>
-					</td>
-				</tr>
-				<tr>
-					<td class="td_right">所属牛场：</td>
-					<td class="">
-						<div class="input-text lh30" style="width:500px;">${uncxx.ncmc}</div>
 					</td>
 				</tr>
 				<tr>
@@ -42,13 +37,13 @@
 				<tr>
 					<td class="td_right">计步器编号：</td>
 					<td class="">
-						<input type="text" id="jbqbh" name="nz.jbqbh" class="input-text lh30" value="${nz.jbqbh}" size="80"><span class="required">*必填</span>
+						<input type="text" id="jbqbh" name="nz.jbqbh" class="input-text lh30" value="${nz.jbqbh}" size="80">
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">出生日期：</td>
 					<td class="">
-						<input type="text" id="csrq" name="nz.csrq" class="input-text lh30" readonly="readonly" value="${nz.csrq}" onFocus="WdatePicker()" size="80"><span class="required">*必填</span>
+						<input type="text" id="csrq" name="nz.csrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.csrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -66,8 +61,8 @@
 					<td class="">
 						<select id="lb" name="nz.lb" class="select" >
 							<option value="">请选择牛只类别</option>
-							<y:EnumValues value="" enumName="NZLB">
-								<option value="${value}">${label}</option>
+							<y:EnumValues value="${nz.lb}" enumName="NZLB">
+								<option value="${value}" ${selected}>${label}</option>
 							</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -78,8 +73,8 @@
 					<td class="">
 						<select id="rqlx" name="nz.rqlx" class="select" >
 							<option value="">请选择入群类型</option>
-							<y:EnumValues value="" enumName="NZRQLX">
-								<option value="${value}">${label}</option>
+							<y:EnumValues value="${nz.rqlx}" enumName="NZRQLX">
+								<option value="${value}" ${selected}>${label}</option>
 							</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -118,7 +113,7 @@
 				<tr>
 					<td class="td_right">产犊日期：</td>
 					<td class="">
-						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" value="${nz.cdrq}" readonly="readonly" onFocus="WdatePicker()" size="80"><span class="required">*必填</span>
+						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.cdrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -155,14 +150,14 @@
   		</form>
   	</div>
 	<div class="btns">
-		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="btn btn82 btn_add" type="button" value=" 新增 "/>
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/nzxx!save.action" name="frmnzxx" class="btn btn82 btn_add" type="button" value=" <s:if test="nz==null">新增</s:if><s:else>更新</s:else> "/>
 	</div>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
-     	showmap("牛只信息管理 > 新增牛只信息");
+     	showmap("牛只信息管理 > <s:if test="nz==null">新增</s:if><s:else>更新</s:else>牛只信息");
      	function validata()
      	{
      		if(IsNull("nzbh",0))
@@ -180,11 +175,11 @@
      			alert("请填写牛只耳标编号！");
      			return false;
      		}
-     		else if(IsNull("jbqbh",0))
+     		/*else if(IsNull("jbqbh",0))
      		{
      			alert("请填写牛只计步器编号！");
      			return false;
-     		}
+     		}*/
      		else if(IsNull("csrq",0))
      		{
      			alert("请填写牛只的出生日期！");
@@ -266,7 +261,7 @@
      		});
      	}
      	
-     	function loadncdone(data)
+     	<%/*function loadncdone(data)
      	{
      		if(data)
      		{
@@ -278,11 +273,12 @@
 					selectControl.options.add(optionItem);
 				}
      		}
-     	}
+     	}*/%>
      	
      	function loadjsdone(data)
      	{
      		var selectControl=document.getElementById("js");
+     		var defval="${nz.js}";
      		selectControl.options.length = 1;
      		if(data)
      		{
@@ -290,6 +286,7 @@
 				{
 					var items=data[i];
 					var optionItem=new Option(items.name,items.id);
+					if(defval&&defval==items.id)optionItem.selected=true;
 					selectControl.options.add(optionItem);
 				}
      		}

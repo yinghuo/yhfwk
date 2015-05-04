@@ -1,6 +1,7 @@
 package org.chonger.entity.nqgl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.chonger.entity.jbxx.JSJBXX;
+import org.chonger.entity.jbxx.NCJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -88,7 +92,7 @@ public class NZJBXX {
 	
 	@Column(name = "cdrq")
 	/**产犊日期*/
-	private String cdrq;
+	private Date cdrq;
 	
 	@Column(name = "fqh")
 	/**父亲号*/
@@ -113,6 +117,12 @@ public class NZJBXX {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="js",insertable = false, updatable = false)
 	private JSJBXX jsjbxx;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<NZZSXX> zsxxList;
+	
+	@OneToOne(mappedBy="nzjbxx")
+	private NZLCXX nzlcxx;
 	
 	public JSJBXX getJsjbxx() {
 		return jsjbxx;
@@ -242,11 +252,11 @@ public class NZJBXX {
 		this.tc = tc;
 	}
 
-	public String getCdrq() {
+	public Date getCdrq() {
 		return cdrq;
 	}
 
-	public void setCdrq(String cdrq) {
+	public void setCdrq(Date cdrq) {
 		this.cdrq = cdrq;
 	}
 
@@ -288,5 +298,21 @@ public class NZJBXX {
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public List<NZZSXX> getZsxxList() {
+		return zsxxList;
+	}
+
+	public void setZsxxList(List<NZZSXX> zsxxList) {
+		this.zsxxList = zsxxList;
+	}
+
+	public NZLCXX getNzlcxx() {
+		return nzlcxx;
+	}
+
+	public void setNzlcxx(NZLCXX nzlcxx) {
+		this.nzlcxx = nzlcxx;
 	}
 }
