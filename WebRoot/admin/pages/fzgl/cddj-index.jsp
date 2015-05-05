@@ -5,55 +5,49 @@
 <!doctype html>
 <html>
   <head>
-  	 <%@include file='/admin/pages/importResource.jsp'%>
-  	 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
+  	 <%@include file='/admin/pages/import.jsp'%>
   </head>
   <body>
-     <div class="centerRightContainer">
-     	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
-     		<form id="frmSearch" action="" method="post">
-	     		<div class="blueDivBox">
-	     			<label>牛只编号：</label>
-					<input id="" name="" type="text" value=""/>
-					<label style="margin-left:10px;">耳标编号：</label>
-					<input id="" name="" type="text" value=""/>
-					<span class="searchTextBox">					
-						<input onClick="" type="button" class="blueBtn" value="搜索"/>
-					</span>
-					 <div style="float:right;">
-				    	<a id="btnAdd2" class="blueBtn" href="${pageContext.request.contextPath}/admin/pages/fzgl/cddj-add.jsp" style="float:right;padding:0px 8px;">新增产犊信息</a>		
-				    </div>
-				</div>
-			</form>
-			<table cellpadding="0" cellspacing="0" class="checkboxTable">
+     <div class="box">
+	  		<div class="box_border">
+	        	<div class="box_top">
+	          		<div class="box_top">	          		
+	          			<b class="pl15">查询搜索</b>
+	          		</div>
+	          	</div>
+	          	<div class="box_center pt5 pb5">
+	          		<form id="frmSearch" action="" method="post">
+	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
+	          			<tr>
+	          				<td>牛只编号：</td>
+	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          				<td>耳标编号：</td>
+	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          			</tr>
+	          		</table>
+	          		</form>
+	          	</div>	          	
+	         </div>
+	         <div class="pb5 pt5 pr10">
+	          		<div class="search_bar_btn" style="text-align:right;">
+	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
+	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+	          		</div>
+	         </div>
+	</div>
+	<div class="box span10 oh mt5">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 				<thead>
 					<tr>
 						<td>${status.count }</td>
-						<th>
-							<label>牛只编号</label>
-						</th>
-						<th>
-							<label>产犊时间</label>
-						</th>
-						<th>
-							<label>产犊类型</label>
-						</th>
-						<th>
-							<label>产犊难易</label>
-						</th>
-						<th>
-							<label>胎位</label>
-						</th>
-						<th>
-							<label>接产员</label>
-						</th>
-						<th>
-							<label>胎儿数量</label>
-						</th>
-						<th class="borderRightNone" width="120">
-							<label class="borderRightNone">操作</label>
-						</th>
+						<th>牛只编号</th>
+						<th>产犊时间</th>
+						<th>产犊类型</th>
+						<th>产犊难易</th>
+						<th>胎位</th>
+						<th>接产员</th>
+						<th>胎儿数量</th>
+						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -68,17 +62,49 @@
 							<td><s:property value="#cdxx.jcy"/></td>
 							<td><s:property value="#cdxx.tesl"/></td>
 							<td>
-								<a >修改</a>
-								<a >删除</a>
+								<a onclick="edit('<s:property value="cdxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a id="comsubmit_delete" promptInfo='确认删除该条产犊信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fzgl!delete.action?id=<s:property value="#cdxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
-     	</div>
-     </div>
+			<div class="page mt10 fr pr10">
+         	<div class="pagination">
+            	<ul>
+            		<i:Page page="pager" count="9">
+            			<s:if test="#attr.IsFirst">
+							<li class="first-child disabled"><span>上一页</span></li>
+						</s:if>
+						<s:else>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/fzgl/cddj.action?page=${pageNowNum-1}">上一页</a></li>
+						</s:else>
+						<i:PageNum>
+							<s:if test="#attr.IsNow">
+								<li class="active"><span>${pageIndex}</span></li>
+							</s:if>
+							<s:else>
+								<li><a href="${pageContext.request.contextPath}/master/fzgl/cddj.action?page=${pageIndex}">${pageIndex}</a></li>
+							</s:else>
+						</i:PageNum>
+						<s:if test="#attr.IsLast">
+							<li class="disabled"><span>下一页</span></li>
+						</s:if>
+						<s:else>
+							<li><a class="" href="${pageContext.request.contextPath}/master/fzgl/cddj.action?page=${pageNowNum+1}">下一页</a></li>
+						</s:else>
+						<li class="last-child"><span>共${pageMaxNum}页</span></li>
+            		</i:Page>
+                 </ul>
+           	</div>
+		</div>
+  	 </div>
      <script>
      	showmap("产犊信息管理 > 产犊信息列表");
+     	function add()
+     	{
+     		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/cddj-add.jsp";
+     	}
      </script>
   </body>
 </html>
