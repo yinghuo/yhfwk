@@ -39,7 +39,7 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 				<thead>
 					<tr>
-						<td>${status.count }</td>
+						<th>序号</th>
 						<th>牛只编号</th>
 						<th>产犊时间</th>
 						<th>产犊类型</th>
@@ -47,7 +47,7 @@
 						<th>胎位</th>
 						<th>接产员</th>
 						<th>胎儿数量</th>
-						<th>操作</th>
+						<th width="200">操作</th>
 					</tr>
 				</thead>
 				<tbody>

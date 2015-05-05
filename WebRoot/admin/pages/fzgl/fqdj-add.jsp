@@ -1,101 +1,98 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html>
 <head>
-<%@include file='/admin/pages/importResource.jsp'%>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
+<%@include file='/admin/pages/import.jsp'%>
 </head>
 <body>
-	<div class="centerRightContainer">
-		<div class="centerRight">
-			<h6 id="NavMap"></h6>
-			<form id="frmfqdj">
-				<table>
-					<thead>
-						<tr>
-							<th colspan="3" class="borderRightNone"><label>新增发情登记信息</label>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>牛只编号</td>
-							<td align="left"><input type="text" id="nzbh" name="fq.nzbh"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发情时间</td>
-							<td align="left"><input type="text" id="fqsj" name="fq.fqsj"
-								value="" readonly="readonly" onClick="WdatePicker()"><span
-								style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发情类型</td>
-							<td align="left"><select id="fqlx" name="fq.fqlx"
-								class="txt vm">
-									<option value="">选择发情类型</option>
-									<option value="自然发情">自然发情</option>
-									<option value="人工催情">人工催情</option>
-							</select> <span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发现方式</td>
-							<td align="left"><select id="fxfs" name="fq.fxfs"
-								class="txt vm">
-									<option value="">选择发现方式</option>
-									<option value="人工">人工</option>
-									<option value="计步器">计步器</option>
-							</select> <span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发现人</td>
-							<td align="left"><input type="text" id="fxr" name="fq.fxr"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>审核员</td>
-							<td align="left"><input type="text" id="shy" name="fq.shy"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>是否配种</td>
-							<td align="left"><select id="sfpz" name="fq.sfpz"
-								class="txt vm">
-									<option value="">选择是否配种</option>
-									<option value="是">是</option>
-									<option value="否">否</option>
-							</select> <span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>未配原因</td>
-							<td align="left"><input type="text" id="wpyy" name="fq.wpyy"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>备注</td>
-							<td align="left"><input type="text" id="bz" name="fq.bz"
-								value=""></td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone,"
-					validata="validata"
-					url="${pageContext.request.contextPath}/master/fzgl/fqdj!save.action"
-					name="frmfqdj" class="blueBtn" type="button" value=" 确认新增 " />
-			</div>
-		</div>
+	<div class="box_center mt10">
+  		<form id="frmfqdj" class="jqtransform">
+  			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
+	  			<tr>
+					<td class="td_right">牛只编号：</td>
+					<td class="">
+						<input type="text" id="nzbh" name="fq.nzbh" class="input-text lh30" value="${fq.nzbh}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发情时间：</td>
+					<td class="">
+						<input type="text" id="fqsj" name="fq.fqsj" class="input-text lh30" readonly="readonly" value="<s:date name="fq.fqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发情类型：</td>
+					<td class="">
+						<select id="fqlx" name="fq.fqlx" class="select" >
+							<option value="">选择发情类型</option>
+						<y:EnumValues value="" enumName="FQLX">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发现方式：</td>
+					<td class="">
+						<select id="fxfs" name="fq.fxfs" class="select" >
+							<option value="">选择发现方式</option>
+						<y:EnumValues value="" enumName="FXFS">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发现人：</td>
+					<td class="">
+						<input type="text" id="fxr" name="fq.fxr" class="input-text lh30" value="${fq.fxr}" size="35">
+						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">审核员：</td>
+					<td class="">
+						<input type="text" id="shy" name="fq.shy" class="input-text lh30" value="${fq.shy}" size="35">
+						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">是否配种：</td>
+					<td class="">
+						<select id="sfpz" name="fq.sfpz" class="select" >
+						<y:EnumValues value="" enumName="SFPZ">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">未配原因：</td>
+					<td class="">
+						<input type="text" id="wpyy" name="fq.wpyy" class="input-text lh30" value="${fq.wpyy}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">备注：</td>
+					<td class="">
+						<textarea id="bz" name="fq.bz" cols="80" rows="10" class="textarea">${fq.bz}</textarea>
+					</td>
+				</tr>
+			</table>
+  		</form>
+  	</div>
+  	<div class="btns">
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/fqdj!save.action" name="frmfqdj" class="btn btn82 btn_add" type="button" value=" <s:if test="fq==null">新增</s:if><s:else>更新</s:else> "/>
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
+	<script	src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript">
 		showmap("发情信息管理 > 新增发情信息");
-
 		function validata() {
 			if (IsNull("nzbh", 0)) {
 				alert("请填写牛只编号！");

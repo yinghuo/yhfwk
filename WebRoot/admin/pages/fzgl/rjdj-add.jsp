@@ -1,88 +1,91 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html>
   <head>
-  	 <%@include file='/admin/pages/importResource.jsp'%>
-  	 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
+  	 <%@include file='/admin/pages/import.jsp'%>
   </head>
   <body>
-     <div class="centerRightContainer">
-     	<div class="centerRight">
-     		<h6 id="NavMap"></h6>
-     		<form id="frmrjdj">
-     		<table>
-				<thead>
-					<tr>
-						<th colspan="3" class="borderRightNone">
-							<label>新增妊娠检查登记信息</label>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>牛只编号</td>
-						<td align="left"><input type="text" id="nzbh" name="rj.nzbh" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>检查日期</td>
-						<td align="left"><input type="text" id="jcrq" name="rj.jcrq" value="" readonly="readonly" onClick="WdatePicker()"><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>检查类型</td>
-						<td align="left">
-							<select id="jclx" name="rj.jclx" class="txt vm" >
-								<option value="">请选择检查类型</option>
-								<option value="初检">初检</option>
-								<option value="复检">复检</option>
-								<option value="其他">其他</option>
-							</select>
-						<span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>检查结果</td>
-						<td align="left"><input type="text" id="jcjg" name="rj.jcjg" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>检查人</td>
-						<td align="left"><input type="text" id="jcy" name="rj.jcy" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>检查方式</td>
-						<td align="left"><input type="text" id="jcfs" name="rj.jcfs" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>胎儿状况</td>
-						<td align="left"><input type="text" id="tszt" name="rj.tszt" value=""><span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>牛只性别</td>
-						<td align="left">
-							<select id="nzxb" name="rj.nzxb" class="txt vm" >
-								<option value="">请选择牛只性别</option>
-								<option value="公">公</option>
-								<option value="母">母</option>
-								<option value="其他">其他</option>
-							</select>
-						<span style='color:red;'>*必填</span></td>
-					</tr>
-					<tr>
-						<td>备注</td>
-						<td align="left"><input type="text" id="bz" name="rj.bz" value=""></td>
-					</tr>
-				</tbody>
-			</table>
-			</form>
-			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/rjdj!save.action" name="frmrjdj" class="blueBtn" type="button" value=" 确认新增 "/>
-			</div>
-     	</div>
-     </div>
+  	<div class="box_center mt10">
+  		<form id="frmrjdj" class="jqtransform">
+  			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
+  				<tr>
+					<td class="td_right">牛只编号：</td>
+					<td class="">
+						<input type="text" id="nzbh" name="rj.nzbh" class="input-text lh30" value="${rj.nzbh}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">检查日期：</td>
+					<td class="">
+						<input type="text" id="jcrq" name="rj.jcrq" class="input-text lh30" readonly="readonly" value="<s:date name="rj.jcrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">检查类型：</td>
+					<td class="">
+						<select id="jclx" name="rj.jclx" class="select" >
+							<option value="">请选择检查类型</option>
+						<y:EnumValues value="" enumName="RJJCLX">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">检查结果：</td>
+					<td class="">
+						<input type="text" id="jcjg" name="rj.jcjg" class="input-text lh30" value="${rj.jcjg}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">检查人：</td>
+					<td class="">
+						<input type="text" id="jcy" name="rj.jcy" class="input-text lh30" value="${rj.jcy}" size="35">
+						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">检查方式：</td>
+					<td class="">
+						<input type="text" id="jcfs" name="rj.jcfs" class="input-text lh30" value="${rj.jcfs}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">胎儿状况：</td>
+					<td class="">
+						<input type="text" id="tszt" name="rj.tszt" class="input-text lh30" value="${rj.tszt}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">牛只性别：</td>
+					<td class="">
+						<select id="nzxb" name="rj.nzxb" class="select" >
+						<y:EnumValues value="" enumName="NZXB">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">备注：</td>
+					<td class="">
+						<textarea id="bz" name="rj.bz" cols="80" rows="10" class="textarea">${rj.bz}</textarea>
+					</td>
+				</tr>
+  			</table>
+  		</form>
+  	</div>
+  	<div class="btns">
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/rjdj!save.action" name="frmrjdj" class="btn btn82 btn_add" type="button" value=" <s:if test="rj==null">新增</s:if><s:else>更新</s:else> "/>
+	</div>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
-     	
+     	showmap("妊娠检查信息管理 > 新增妊娠检查信息");
      	function validata()
      	{
      		if(IsNull("nzbh",0))

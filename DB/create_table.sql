@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-04 23:12:13
+Date: 2015-05-05 21:12:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4078,7 +4078,7 @@ CREATE TABLE `yh_system_users` (
 -- Records of yh_system_users
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-04 17:03:43', '2015-05-04 17:12:20');
-INSERT INTO `yh_system_users` VALUES ('11', '牛牛牧场', 'user', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-04 23:04:27', '2015-05-04 23:06:32');
+INSERT INTO `yh_system_users` VALUES ('11', '牛牛牧场', 'user', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-05 20:57:09', '2015-05-05 21:09:36');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

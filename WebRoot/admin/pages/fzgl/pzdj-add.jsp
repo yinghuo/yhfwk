@@ -1,107 +1,105 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!doctype html>
 <html>
 <head>
-<%@include file='/admin/pages/importResource.jsp'%>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
+<%@include file='/admin/pages/import.jsp'%>
 </head>
 <body>
-	<div class="centerRightContainer">
-		<div class="centerRight">
-			<h6 id="NavMap"></h6>
-			<form id="frmpzdj">
-				<table>
-					<thead>
-						<tr>
-							<th colspan="3" class="borderRightNone"><label>新增配种登记信息</label>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>牛只编号</td>
-							<td align="left"><input type="text" id="nzbh" name="pz.nzbh"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>配种时间</td>
-							<td align="left"><input type="text" id="pzsj" name="pz.pzsj"
-								value="" readonly="readonly" onClick="WdatePicker()"><span
-								style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>冻精编号</td>
-							<td align="left"><input type="text" id="djbh" name="pz.djbh"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>冻精类型</td>
-							<td align="left"><input type="text" id="djlx" name="pz.djlx"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>配种员</td>
-							<td align="left"><input type="text" id="pzy" name="pz.pzy"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发情时间</td>
-							<td align="left"><input type="text" id="fqsj" name="pz.fqsj"
-								value="" readonly="readonly" onClick="WdatePicker()"><span
-								style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发情类型</td>
-							<td align="left"><select id="fqlx" name="pz.fqlx"
-								class="txt vm">
-									<option value="">选择发情类型</option>
-									<option value="自然发情">自然发情</option>
-									<option value="人工催情">人工催情</option>
-							</select> <span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发现方式</td>
-							<td align="left"><select id="fxfs" name="pz.fxfs"
-								class="txt vm">
-									<option value="">选择发现方式</option>
-									<option value="人工">人工</option>
-									<option value="计步器">计步器</option>
-							</select><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>发现人</td>
-							<td align="left"><input type="text" id="fxr" name="pz.fxr"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>数量</td>
-							<td align="left"><input type="text" id="sl" name="pz.sl"
-								value=""><span style='color: red;'>*必填</span></td>
-						</tr>
-						<tr>
-							<td>备注</td>
-							<td align="left"><input type="text" id="bz" name="pz.bz"
-								value=""></td>
-						</tr>
-					</tbody>
-				</table>
-			</form>
-			<div class="btns">
-				<input id="comsubmit_save" callfunction=",savedone,"
-					validata="validata"
-					url="${pageContext.request.contextPath}/master/fzgl/pzdj!save.action"
-					name="frmpzdj" class="blueBtn" type="button" value=" 确认新增 " />
-			</div>
-		</div>
+	<div class="box_center mt10">
+  		<form id="frmpzdj" class="jqtransform">
+  			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
+  				<tr>
+					<td class="td_right">牛只编号：</td>
+					<td class="">
+						<input type="text" id="nzbh" name="pz.nzbh" class="input-text lh30" value="${pz.nzbh}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">配种时间：</td>
+					<td class="">
+						<input type="text" id="pzsj" name="pz.pzsj" class="input-text lh30" readonly="readonly" value="<s:date name="pz.pzsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">冻精编号：</td>
+					<td class="">
+						<input type="text" id="djbh" name="pz.djbh" class="input-text lh30" value="${pz.djbh}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">冻精类型：</td>
+					<td class="">
+						<input type="text" id="djlx" name="pz.djlx" class="input-text lh30" value="${pz.djlx}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">配种员：</td>
+					<td class="">
+						<input type="text" id="pzy" name="pz.pzy" class="input-text lh30" value="${pz.pzy}" size="35">
+						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发情时间：</td>
+					<td class="">
+						<input type="text" id="fqsj" name="pz.fqsj" class="input-text lh30" readonly="readonly" value="<s:date name="pz.fqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发情类型：</td>
+					<td class="">
+						<select id="fqlx" name="pz.fqlx" class="select" >
+							<option value="">选择发情类型</option>
+						<y:EnumValues value="" enumName="FQLX">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发现方式：</td>
+					<td class="">
+						<select id="fxfs" name="pz.fxfs" class="select" >
+							<option value="">选择发现方式</option>
+						<y:EnumValues value="" enumName="FXFS">
+							<option value="${value}">${label}</option>
+						</y:EnumValues>
+						</select>
+						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">发现人：</td>
+					<td class="">
+						<input type="text" id="fxr" name="pz.fxr" class="input-text lh30" value="${pz.fxr}" size="35">
+						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">数量：</td>
+					<td class="">
+						<input type="text" id="sl" name="pz.sl" class="input-text lh30" value="${pz.sl}" size="50"><span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">备注：</td>
+					<td class="">
+						<textarea id="bz" name="pz.bz" cols="80" rows="10" class="textarea">${pz.bz}</textarea>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-	<script
-		src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YDistrict3.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
+	<div class="btns">
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/pzdj!save.action" name="frmpzdj" class="btn btn82 btn_add" type="button" value=" <s:if test="pz==null">新增</s:if><s:else>更新</s:else> "/>
+	</div>
+	<script	src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript"	src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript">
+		showmap("配种信息管理 > 新增配种信息");
 		function validata() {
 			if (IsNull("nzbh", 0)) {
 				alert("请填写牛只编号！");

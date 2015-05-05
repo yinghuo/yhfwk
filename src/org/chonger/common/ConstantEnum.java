@@ -19,7 +19,89 @@ public class ConstantEnum {
 	
 	//如果需要使用枚举常量，可以在这里进行声明定义。
 	
+	/**
+	 * 定义产犊登记的产犊胎位常量
+	 */
+	public static enum CDTW implements BaseEnum<Integer>{
+		
+		正常(0),坐生(1),倒产(2),人工矫正(3),其他(4);
+		
+		private int value;
+		CDTW(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
 	
+	/**
+	 * 定义产犊登记的产犊难易程度常量
+	 */
+	public static enum CDNYCD implements BaseEnum<Integer>{
+		
+		自产(0),轻度助产(1),难产产道正常(2),难产产道拉伤(3),碎胎(4),其他(5);
+		
+		private int value;
+		CDNYCD(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义妊检登记的检查类型常量
+	 */
+	public static enum RJJCLX implements BaseEnum<Integer>{
+		
+		初检(0),复检(1),其他(2);
+		
+		private int value;
+		RJJCLX(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义发情登记的是否配种常量
+	 */
+	public static enum SFPZ implements BaseEnum<Integer>{
+		
+		否(0),是(1);
+		
+		private int value;
+		SFPZ(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义发情登记的发现类型常量
+	 */
+	public static enum FXFS implements BaseEnum<Integer>{
+		
+		人工(0),计步器(1);
+		
+		private int value;
+		FXFS(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义发情登记的发情类型常量
+	 */
+	public static enum FQLX implements BaseEnum<Integer>{
+		
+		自然发情(0),人工催情(1);
+		
+		private int value;
+		FQLX(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
 	
 	/**
 	 * 定义牛只的入群类型常量
