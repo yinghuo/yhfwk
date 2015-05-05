@@ -35,15 +35,18 @@ public class CddjServer {
 	 */
 	public CDDJXX queryNZById(String id)
 	{
-		List<CDDJXX> resultList=dao.find(getQueryString()+" where model.nzbh='"+id+"'");
+		List<CDDJXX> resultList=dao.find(getQueryString(null, null)+" where model.xh='"+id+"'");
 		if(resultList!=null&&resultList.size()>0)
 			return resultList.get(0);
 		return null;
 	}
 	
-	public String getQueryString()
+	public String getQueryString(String nzbh,String ebbh)
 	{
-		return "from CDDJXX model";
+		String sql="from CDDJXX model where 1=1 ";		
+		if(!StringUtil.IsEmpty(nzbh))sql+=" and model.nzbh='"+nzbh+"' ";
+		if(!StringUtil.IsEmpty(ebbh))sql+=" and model.ebbh like '%"+ebbh+"%'";
+		return sql;
 	}
 	
 	/**
