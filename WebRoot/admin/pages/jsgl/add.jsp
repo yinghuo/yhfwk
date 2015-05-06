@@ -48,7 +48,6 @@
 				<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/jsgl/jsgl!save.action" name="frmncxx" class="btn btn82 btn_add" type="button" value=" <s:if test="js==null">新增</s:if><s:else>更新</s:else> "/>
 			</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-	<script src="${pageContext.request.contextPath}/js/YBaseValidata.js"></script>
      <script type="text/javascript">
      	showmap("牧场信息管理 > <s:if test="js==null">新增</s:if><s:else>更新</s:else>圈舍信息");
      	function validata()
