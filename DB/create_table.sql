@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-05 21:12:44
+Date: 2015-05-07 23:00:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3967,21 +3967,22 @@ CREATE TABLE `xxtsgl` (
 DROP TABLE IF EXISTS `ygxxb`;
 CREATE TABLE `ygxxb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `YGBH` varchar(16) default NULL,
-  `YGMC` varchar(32) default NULL,
-  `ZJHM` varchar(32) default NULL,
-  `LXDH` varchar(32) default NULL,
-  `LXDZ` varchar(128) default NULL,
-  `YGLB` char(1) default NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `YGBH` varchar(16) NOT NULL,
+  `YGMC` varchar(32) NOT NULL,
+  `ZJHM` varchar(32) NOT NULL,
+  `LXDH` varchar(32) NOT NULL,
+  `LXDZ` varchar(128) NOT NULL,
+  `YGLB` varchar(10) NOT NULL,
   `SCBZ` int(1) NOT NULL default '0' COMMENT '0：未删除\r\n            1：已删除',
-  `BZ` varchar(128) default NULL,
+  `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of ygxxb
 -- ----------------------------
+INSERT INTO `ygxxb` VALUES ('4ceb249f-0485-44f5-8c86-4c63c45fe7d8', '50c82dc1-e25a-47ba-b1fd-be0e550da4ab', '001', '张三', '10000011', '15120070638', '北京市海淀区中关村大街', '饲养员', '0', null);
 
 -- ----------------------------
 -- Table structure for `yh_system_menus`
@@ -4006,7 +4007,7 @@ CREATE TABLE `yh_system_menus` (
 INSERT INTO `yh_system_menus` VALUES ('1', '系统管理', null, '#', '0', '0', null, '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('2', '菜单管理', null, '/master/system/menu!AllMenus.action', '0', '1', '1', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('1b9139be-09af-4667-a634-98dc61906543', '基础数据', null, '#', '0', '0', '', '1', '1');
-INSERT INTO `yh_system_menus` VALUES ('7122ab89-6599-43f5-885e-08ba737e2f60', '牛场信息管理', null, '/master/ncgl/ncgl.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('7122ab89-6599-43f5-885e-08ba737e2f60', '牛场授权管理', null, '/master/ncgl/ncgl.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('54af0c61-e2ba-4216-8281-da5e14bcf9fe', '我的牛场信息', null, '/admin/pages/ncgl/me.jsp', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('8c3ed385-cc3c-4416-a6ce-9043bf8fe844', '圈舍信息管理', null, '/master/jsgl/jsgl.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('b953f0d0-a0f3-462b-9726-bc72012ac760', '牛只管理', null, '#', '0', '0', '', '2', '1');
@@ -4026,7 +4027,7 @@ INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '�
 INSERT INTO `yh_system_menus` VALUES ('f2ef60df-3c0d-479c-a3ea-abe162e749e9', '兽医保健', null, '#', '0', '0', '', '6', '1');
 INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '疾病登记', null, '#', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('d8ebffd9-60d9-4813-8ee6-9725ad7c5b60', '角色管理', null, '/master/system/role!listRoles.action', '0', '1', '1', '1', '1');
-INSERT INTO `yh_system_menus` VALUES ('979e846b-a625-4ff4-bdb4-cac85c4d6133', '员工信息管理', null, '#', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '3', '1');
+INSERT INTO `yh_system_menus` VALUES ('979e846b-a625-4ff4-bdb4-cac85c4d6133', '员工信息管理', null, '/master/yggl/ygxx.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('13a74fbb-d638-4d88-94c3-d92f71b5b831', '数据管理', null, '#', '0', '0', '', '7', '1');
 INSERT INTO `yh_system_menus` VALUES ('335ea9de-07ea-4c3a-ab9c-a03b2edfcafc', '数据导入', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('e82d8bb0-5f60-43ed-8cc8-61a1f28e2ba6', '控制器信息管理', null, '#', '0', '1', '6d07a593-4daa-43ea-9ee5-12be440bce2f', '1', '1');
@@ -4053,7 +4054,8 @@ CREATE TABLE `yh_system_roles` (
 -- ----------------------------
 -- Records of yh_system_roles
 -- ----------------------------
-INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '1', '0', null, '2', '0');
+INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '1', '0', null, '1', '1');
+INSERT INTO `yh_system_roles` VALUES ('bfe348a5-73e1-4d91-9853-e685c46109a9', '系统管理员', null, '7122ab89-6599-43f5-885e-08ba737e2f60', '0', null, '1', '0');
 INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefae', '企业用户', null, '54af0c61-e2ba-4216-8281-da5e14bcf9fe,8c3ed385-cc3c-4416-a6ce-9043bf8fe844,979e846b-a625-4ff4-bdb4-cac85c4d6133,b953f0d0-a0f3-462b-9726-bc72012ac760,6d07a593-4daa-43ea-9ee5-12be440bce2f,60ae96d5-72a9-4d58-bbe3-1166252529ce,352fa9a5-17d5-4d79-82db-6b392bdad1e3,f2ef60df-3c0d-479c-a3ea-abe162e749e9,13a74fbb-d638-4d88-94c3-d92f71b5b831', '0', null, '2', '0');
 
 -- ----------------------------
@@ -4077,8 +4079,9 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'admin', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-04 17:03:43', '2015-05-04 17:12:20');
-INSERT INTO `yh_system_users` VALUES ('11', '牛牛牧场', 'user', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-05 20:57:09', '2015-05-05 21:09:36');
+INSERT INTO `yh_system_users` VALUES ('9507c1e6-f974-4891-9f3c-30910a733d6b', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 20:33:10', '2015-05-07 22:12:21');
+INSERT INTO `yh_system_users` VALUES ('11', '牛牛牧场', 'user', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-07 22:03:42', '2015-05-07 22:08:50');
+INSERT INTO `yh_system_users` VALUES ('1', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-07 22:18:00', '2015-05-07 22:18:00');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
