@@ -13,6 +13,6 @@
 	function showmap(val)
 	{
 		window.parent.endShow(val);
-	}
+	}	
 </script>
 
