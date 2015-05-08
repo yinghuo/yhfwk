@@ -1,3 +1,6 @@
+
+var pattern_Email = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+
 function IsNull(id,length)
 {
 	var str = document.getElementById(id).value;
@@ -20,7 +23,17 @@ function IsDate(id){
              return false;
          return true;
      }
- }    
+}    
+
+function IsEmail(id)
+{
+	if(!IsNull(id,0))
+	{
+		var value=document.getElementById(id).value;	
+		return pattern_Email.test(value);
+	}
+	return false;
+}
 
 function String2Date(datestr,sp)
 {

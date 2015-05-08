@@ -74,7 +74,16 @@
 		$(".sideMenu ul li").removeClass("on");
 		$("#"+id).addClass("on");
 	}
-	
+	function logout()
+	{
+		$.ajax({
+			url:"${pageContext.request.contextPath}/login!logout.action?t="+new Date().getTime(),
+			type:"get",
+			success:function(data){
+				window.location.href="${pageContext.request.contextPath}";
+			}
+		});
+	}
   </script>
   <title>欢迎使用牧场管理系统</title>
 </head>
@@ -90,7 +99,7 @@
             <div class="help_info">
               <a href="#" id="hp">&nbsp;</a>
               <a href="#" id="gy">&nbsp;</a>
-              <a href="#" onclick="" id="out">&nbsp;</a>
+              <a href="#" onclick="logout()" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
               <s:property value="#session.urole"/>
@@ -129,7 +138,6 @@
     <script>
     	var first=$(".sideMenu ul li").get(0);
     	$(first).addClass("on");
-    	debugger;
 		$(".sideMenu ul li").on("click",function(){
 			var page=$(this).attr("url");
 			var url="";

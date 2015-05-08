@@ -11,6 +11,7 @@ import org.chonger.common.ConstantKey;
 import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.entity.system.User;
 import org.chonger.service.ncgl.NcglServer;
+import org.chonger.service.system.UserManager;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.SessionUtils;
@@ -44,7 +45,8 @@ public class NcglAction extends ActionSupport {
 	
 	@Autowired
 	private NcglServer server;
-	
+	@Autowired
+	private UserManager userManager;
 	
 	/**返回的json消息*/
 	private JsonResultUtils jsonResult;
@@ -54,6 +56,11 @@ public class NcglAction extends ActionSupport {
 	private NCJBXX nc;
 	public NCJBXX getNc() {		return nc;	}
 	public void setNc(NCJBXX nc) {		this.nc = nc;	}
+	
+	/**牛场管理员用户信息*/
+	private User u;
+	public User getU() {	return u;	}
+	public void setU(User u) {	this.u = u;	}
 	
 	private List<NCJBXX> nclist;
 	public List<NCJBXX> getNclist() {		return nclist;	}
@@ -74,8 +81,7 @@ public class NcglAction extends ActionSupport {
 	/**保存数据操作*/
 	public String save() throws Exception{
 		
-		try{
-			
+		try{			
 			//当前用户
 			User user=SessionUtils.getUser();			
 			if(user!=null)
@@ -91,7 +97,37 @@ public class NcglAction extends ActionSupport {
 						nc.setTzsysj(_ncjbxx.getTzsysj());
 					}
 					nc.setYhid(user.getUid());
+					
+					
 				}
+				else if(user.getRole().getRtype()==1)//管理员调用牛场保存的函数
+				{
+					if(u!=null)//用户信息不为空，提交的是授权信息
+					{
+						//进行信息检测
+						if(!server.checkNCBHExist(nc.getNcbh()))
+						{
+							//检测登陆名是否存在
+							if(!userManager.checkLoginNameExist(u.getUloginname()))
+							{
+								server.authorize(nc,u);
+								jsonResult.sendSuccessMessage("新的牛场授权开通成功！");
+								return "infos";
+							}
+							else
+							{
+								jsonResult.sendErrorMessage("管理员登录名已经存在，请重新分配登录名！");
+								return "infos";
+							}
+						}
+						else
+						{
+							jsonResult.sendErrorMessage("牛场编号已经存在，请确实是否重复授权！");
+							return "infos";
+						}
+					}
+				}
+				
 				server.saveOrUpdate(nc);
 				jsonResult.sendSuccessMessage("更新牛场信息成功！");
 				
@@ -104,28 +140,29 @@ public class NcglAction extends ActionSupport {
 			}
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage("更新牛场信息异常！");
+			jsonResult.sendErrorMessage("操作异常，请举报问题给平台管理员！");
 		}
 		
 		return "infos";
 	}
 	
-	public String loadname() throws Exception{
-		
-		List<NCJBXX> ncjbxxList=server.findAll();
-		
-		if(ncjbxxList!=null&&ncjbxxList.size()>0)
-		{
-			jsonResult.objListInitOrClear();
-			for(NCJBXX item : ncjbxxList)
-			{
-				HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
-				infoMap.put("name",item.getNcmc());
-				infoMap.put("id",item.getNcbh());
-				jsonResult.getObjList().add(infoMap);
-			}
-		}
-		
-		return "infolist";
-	}
+	
+//	public String loadname() throws Exception{
+//		
+//		List<NCJBXX> ncjbxxList=server.findAll();
+//		
+//		if(ncjbxxList!=null&&ncjbxxList.size()>0)
+//		{
+//			jsonResult.objListInitOrClear();
+//			for(NCJBXX item : ncjbxxList)
+//			{
+//				HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
+//				infoMap.put("name",item.getNcmc());
+//				infoMap.put("id",item.getNcbh());
+//				jsonResult.getObjList().add(infoMap);
+//			}
+//		}
+//		
+//		return "infolist";
+//	}
 }

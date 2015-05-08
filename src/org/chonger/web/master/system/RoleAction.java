@@ -195,7 +195,7 @@ public class RoleAction extends ActionSupport  {
 				}
 				else//删除
 				{
-					manager.deleteRole(eid, delrole.getRtype()+"");
+					manager.deleteRole(eid, delrole.getRtype());
 					
 					infos.clear();
 					infos.put("error","0");

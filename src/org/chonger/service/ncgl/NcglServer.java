@@ -2,9 +2,15 @@ package org.chonger.service.ncgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantKey;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.system.Role;
+import org.chonger.entity.system.User;
+import org.chonger.service.system.RoleManager;
+import org.chonger.service.system.UserManager;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.SHAUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +28,31 @@ import org.springframework.transaction.annotation.Transactional;
 public class NcglServer {
 	
 	@Autowired
-	private CommonDAO<NCJBXX> dao;
+	private CommonDAO<NCJBXX> dao;	
+	@Autowired
+	private UserManager userManager;
+	@Autowired
+	private RoleManager roleManager;
+	
 	
 	/**获取查询所有的语句*/
 	public String getQueryString()
 	{
 		return "from NCJBXX model";
+	}
+	
+	/**
+	 * 判断牛场编号是否存在
+	 * @param ncbh
+	 * @return
+	 * @retrun boolean 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public boolean checkNCBHExist(String ncbh)
+	{
+		return dao.getCount("select count(*) from NCJBXX model where model.ncbh='"+ncbh+"'")>0;
 	}
 	
 	/**
@@ -45,6 +70,34 @@ public class NcglServer {
 	}
 	
 	/**
+	 * 牛场授权信息，平台管理员使用
+	 * @param Ncxx
+	 * @param user
+	 * @retrun void 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 * @throws Exception 
+	 */
+	public void authorize(NCJBXX Ncxx,User user) throws Exception
+	{
+		if(Ncxx!=null&&user!=null)
+		{
+			user.setUpassword(SHAUtils.CreateSHAKey(user.getUpassword()));
+			user.setUname(user.getUloginname());
+			
+			//用户授权
+			Role role=roleManager.findDefaultRole(ConstantKey.UserType_User);
+			user.setUroleid(role.getRid());
+			//保存用户信息
+			userManager.saveOrUpdata(user);
+			//保存牛场信息
+			Ncxx.setYhid(user.getUid());
+			saveOrUpdate(Ncxx);
+		}
+	}
+	
+	/**
 	 * 保存或更新牛场信息
 	 * @Title: saveOrUpdate 
 	 * @Description: 
@@ -57,10 +110,10 @@ public class NcglServer {
 	{
 		if(Ncxx!=null)
 		{
-			if(StringUtil.IsEmpty(Ncxx.getNcbh()))
+			if(StringUtil.IsEmpty(Ncxx.getXh()))
 			{
 				//牛场编号为空，表示新增，进行自动编号
-				Ncxx.setNcbh(CommUUID.getUUID());
+				Ncxx.setXh(CommUUID.getUUID());
 				
 				dao.save(Ncxx);
 			}

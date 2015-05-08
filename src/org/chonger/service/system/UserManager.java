@@ -165,7 +165,7 @@ public class UserManager {
 	public void saveOrUpdata(User user) throws Exception
 	{
 		//判断实体是否存在有效地ID，如果不存在ID则创建信的uuid并进行保存操作，如果存在则进行更新操作
-		if(user.getUid()==null||"".equals(user.getUid()))
+		if(StringUtil.IsEmpty(user.getUid()))
 		{
 			user.setUid(CommUUID.getUUID());
 			userDao.save(user);

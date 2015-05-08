@@ -28,6 +28,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class NCJBXX {
 	@Id
+	@Column(name="xh")
+	private String xh;//数据序号
+	
 	@Column(name = "ncbh")	
 	private String ncbh;//牛场编号
 	
@@ -258,5 +261,13 @@ public class NCJBXX {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getXh() {
+		return xh;
+	}
+
+	public void setXh(String xh) {
+		this.xh = xh;
 	}
 }

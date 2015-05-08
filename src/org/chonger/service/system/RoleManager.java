@@ -110,9 +110,9 @@ public class RoleManager {
 	 * 获取系统设置的默认前台角色
 	 * @return
 	 */
-	public Role findDefaultRole(String type)
+	public Role findDefaultRole(int type)
 	{
-		List<Role> lstResult=roleDAO.find("from Role model where model.rdefault='"+type+"'");
+		List<Role> lstResult=roleDAO.find("from Role model where model.rtype='"+type+"' and model.rdefault=0");
 		Role role=null;
 		if(lstResult!=null&&lstResult.size()>0)
 			role=lstResult.get(0);
@@ -153,7 +153,7 @@ public class RoleManager {
 	 * @param id 要删除的角色ID
 	 * @param type 要删除的角色类型
 	 */
-	public void deleteRole(String id,String type)
+	public void deleteRole(String id,int type)
 	{
 			//删除管理员角色，需要重置用户角色为默认管理员角色
 			Role adminrole=this.findDefaultRole(type);

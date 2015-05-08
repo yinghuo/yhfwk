@@ -107,7 +107,7 @@ public class CddjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(), pager.pageSize, p);
+		pager.init(server.getQueryString(null,null), pager.pageSize, p);
 		cdlist = pager.getDataSource();
 		return "cd-list.jsp";
 	}

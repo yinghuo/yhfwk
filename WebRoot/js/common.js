@@ -1,3 +1,10 @@
+
+//全局属性定义
+var global_password_length=7;
+var global_success=0;
+var global_error=1;
+
+
 $(function(){
 	//表格行，鼠标放上去变色
 	$(".tr:odd").css("background", "#FFFCEA");
