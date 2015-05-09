@@ -33,6 +33,15 @@ public class YgxxServer {
 		return dao.find(getQueryString(null,null));
 	}
 	
+	/**根据id获取员工信息*/
+	public YGJBXX getEntityById(String id)
+	{
+		List<YGJBXX> resultList=dao.find(getQueryString(null,null)+" and model.xh=?",id);
+		if(resultList!=null&&resultList.size()>0)
+			return resultList.get(0);
+		return null;
+	}
+	
 	public String getQueryString(String bh,String mc)
 	{
 		String sql="from YGJBXX model where 1=1 ";		

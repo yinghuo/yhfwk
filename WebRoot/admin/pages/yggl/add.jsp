@@ -9,7 +9,7 @@
   <body>
   	<div class="box_center mt10">
 		<form id="frmygxx" class="jqtransform">
-				<input type="hidden" name="js.xh" value="${js.xh}">
+				<input type="hidden" name="yg.xh" value="${yg.xh}">
 				<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td class="td_right">员工编号：</td>

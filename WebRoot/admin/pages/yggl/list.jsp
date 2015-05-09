@@ -17,7 +17,7 @@
 		          		</div>
 		          	</div>
 		          	<div class="box_center pt5 pb5">
-		          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/jsgl/jsgl.action" method="post">
+		          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/yggl/ygxx.action" method="post">
 		          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 		          			<tr>
 		          				<td>员工编号：</td>
@@ -56,7 +56,7 @@
 									<td><s:property value="#ygxx.lxdh"/></td>
 									<td>
 										<a title="修改" onclick="edit('<s:property value="#ygxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-										<a title="删除" id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#ygxx.ygmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#ygxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+										<!-- <a title="删除" id="comsubmit_delete" promptInfo='确认删除员工[<s:property value="#ygxx.ygmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#ygxx.xh"/>" class="fa fa-remove cr-p">删除</a> -->
 									</td>
 								</tr>
 					</s:iterator>
@@ -111,7 +111,7 @@
 	     	}
 	     	function edit(id)
 	     	{
-	     		window.location.href="${pageContext.request.contextPath}/master/jsgl/jsgl!edit.action?id="+id;
+	     		window.location.href="${pageContext.request.contextPath}/master/yggl/ygxx!edit.action?id="+id;
 	     	}     	
      	</script>
 	</body>

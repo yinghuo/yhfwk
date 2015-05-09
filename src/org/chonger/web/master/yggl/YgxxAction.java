@@ -60,7 +60,8 @@ public class YgxxAction extends ActionSupport {
 	private List<YGJBXX> yglist;
 	public List<YGJBXX> getYglist() {	return yglist;	}
 	
-	
+	private String id;
+	public void setId(String id) {	this.id = id;	}
 	
 	@Override
 	public String execute() throws Exception {
@@ -81,6 +82,15 @@ public class YgxxAction extends ActionSupport {
 		return "infos";
 	}
 	
+	/**修改数据操作*/
+	public String edit() throws Exception{
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			yg=server.getEntityById(id);
+		}
+		return "edit.jsp";
+	}
 	
 	public String loadname()
 	{
