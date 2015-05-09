@@ -43,8 +43,9 @@
 				<tr>
 					<td class="td_right">检查人：</td>
 					<td class="">
-						<input type="text" id="jcy" name="rj.jcy" class="input-text lh30" value="${rj.jcy}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="jcytxt" readonly="readonly" class="input-text lh30" value="${rj.jcy}" size="35">
+						<input type="hidden" id="jcy" name="rj.jcy" value="${rj.jcy}">
+						&nbsp;<a id="selectjcy" onclick="ygSelect('selectjcy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -84,7 +85,8 @@
 	</div>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-     <script type="text/javascript">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
+    <script type="text/javascript">
      	showmap("妊娠检查信息管理 > 新增妊娠检查信息");
      	function validata()
      	{
@@ -103,6 +105,20 @@
      				window.location.href="${pageContext.request.contextPath}/master/fzgl/rjdj.action";
      		});
      	}
+     	
+     	var select=new YSelect("selectjcy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+	  		$("#jcytxt").val(t);
+		 	$("#jcy").val(v);
+		});
+			
+		function ygSelect(id)
+		{
+			if(select.state())
+				select.hiden();
+			else
+				select.show(id);
+		}
+     	
      </script>
   </body>
 </html>

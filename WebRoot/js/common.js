@@ -5,6 +5,14 @@ var global_success=0;
 var global_error=1;
 
 
+function autoHiden(event)
+{
+	if(event!=null)
+	{
+		event.style.display="none";
+	}
+}
+
 $(function(){
 	//表格行，鼠标放上去变色
 	$(".tr:odd").css("background", "#FFFCEA");

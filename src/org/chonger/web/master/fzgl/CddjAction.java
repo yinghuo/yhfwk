@@ -126,7 +126,7 @@ public class CddjAction extends ActionSupport {
 					NCJBXX ncxx = user.getNcjbxx();
 
 					if (ncxx != null) {
-						cd.setNcbh(ncxx.getNcbh());
+						cd.setNcbh(ncxx.getXh());
 					}
 				}
 				server.saveOrUpdate(cd);

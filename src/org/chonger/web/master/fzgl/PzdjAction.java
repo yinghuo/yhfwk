@@ -92,7 +92,7 @@ public class PzdjAction extends ActionSupport {
 					NCJBXX ncxx = user.getNcjbxx();
 
 					if (ncxx != null) {
-						pz.setNcbh(ncxx.getNcbh());
+						pz.setNcbh(ncxx.getXh());
 					}
 				}
 				server.saveOrUpdate(pz);

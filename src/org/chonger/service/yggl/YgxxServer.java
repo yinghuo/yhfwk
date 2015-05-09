@@ -1,5 +1,7 @@
 package org.chonger.service.yggl;
 
+import java.util.List;
+
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.jbxx.NCJBXX;
 import org.chonger.entity.jbxx.YGJBXX;
@@ -25,6 +27,12 @@ public class YgxxServer {
 	@Autowired
 	private CommonDAO<YGJBXX> dao;
 	
+	/**获取所有的员工信息*/
+	public List<YGJBXX> findAllYGXX()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	public String getQueryString(String bh,String mc)
 	{
 		String sql="from YGJBXX model where 1=1 ";		
@@ -32,7 +40,7 @@ public class YgxxServer {
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		
 		return sql;
@@ -60,7 +68,7 @@ public class YgxxServer {
 				if ((rtype=user.getRole().getRtype()) == 2) {
 					NCJBXX ncxx = user.getNcjbxx();
 					if (ncxx != null) {
-						ygxx.setNcbh(ncxx.getNcbh());
+						ygxx.setNcbh(ncxx.getXh());
 					}
 				}
 				

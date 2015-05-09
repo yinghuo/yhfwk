@@ -49,15 +49,17 @@
 				<tr>
 					<td class="td_right">发现人：</td>
 					<td class="">
-						<input type="text" id="fxr" name="fq.fxr" class="input-text lh30" value="${fq.fxr}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="fxrtxt" readonly="readonly" class="input-text lh30" value="${fq.fxr}" size="35">
+						<input type="hidden" id="fxr" name="fq.fxr" value="${fq.fxr}">
+						&nbsp;<a id="selectfxr" onclick="ygSelect('selectfxr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">审核员：</td>
 					<td class="">
-						<input type="text" id="shy" name="fq.shy" class="input-text lh30" value="${fq.shy}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="shytxt" readonly="readonly" class="input-text lh30" value="${fq.shy}" size="35">
+						<input type="hidden" id="shy" name="fq.shy" value="${fq.shy}">
+						&nbsp;<a id="selectshy" onclick="ygSelect('selectshy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -91,6 +93,7 @@
 	</div>
 	<script	src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript">
 		showmap("发情信息管理 > 新增发情信息");
 		function validata() {
@@ -109,6 +112,30 @@
 							window.location.href = "${pageContext.request.contextPath}/master/fzgl/fqdj.action";
 					});
 		}
+		
+		
+		var select=new YSelect("selectfxr","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+	  		
+	  		if(id=="selectfxr")
+	  		{
+		  		$("#fxrtxt").val(t);
+		 		$("#fxr").val(v);
+	 		}
+	 		else if(id=="selectshy")
+	  		{
+		  		$("#shytxt").val(t);
+		 		$("#shy").val(v);
+	 		}
+		});
+			
+		function ygSelect(id)
+		{
+			if(select.state())
+				select.hiden();
+			else
+				select.show(id);
+		}
+		
 	</script>
 </body>
 </html>

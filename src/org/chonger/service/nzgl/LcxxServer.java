@@ -35,7 +35,7 @@ public class LcxxServer {
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		
 		return sql;
@@ -62,7 +62,7 @@ public class LcxxServer {
 				User user=SessionUtils.getUser();
 				if(user!=null&&user.getRole().getRtype()==2)
 				{
-					lcxx.setNcbh(user.getNcjbxx().getNcbh());
+					lcxx.setNcbh(user.getNcjbxx().getXh());
 				}
 				
 				//补全离场信息

@@ -98,7 +98,7 @@ public class FqdjAction extends ActionSupport {
 					NCJBXX ncxx = user.getNcjbxx();
 
 					if (ncxx != null) {
-						fq.setNcbh(ncxx.getNcbh());
+						fq.setNcbh(ncxx.getXh());
 					}
 				}
 				server.saveOrUpdate(fq);

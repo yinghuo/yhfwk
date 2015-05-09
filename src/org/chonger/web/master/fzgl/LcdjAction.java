@@ -98,7 +98,7 @@ public class LcdjAction extends ActionSupport {
 					NCJBXX ncxx = user.getNcjbxx();
 
 					if (ncxx != null) {
-						lc.setNcbh(ncxx.getNcbh());
+						lc.setNcbh(ncxx.getXh());
 					}
 				}
 				server.saveOrUpdate(lc);

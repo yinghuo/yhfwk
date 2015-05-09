@@ -55,8 +55,9 @@
 				<tr>
 					<td class="td_right">接产员：</td>
 					<td class="">
-						<input type="text" id="jcy" name="cd.jcy" class="input-text lh30" value="${cd.jcy}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="jcytxt" readonly="readonly" class="input-text lh30" value="${cd.jcy}" size="35">
+						<input type="hidden" id="jcy" name="cd.jcy" value="${cd.jcy}">
+						&nbsp;<a id="selectjcy" onclick="ygSelect('selectjcy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -74,8 +75,9 @@
 				<tr>
 					<td class="td_right">协助人：</td>
 					<td class="">
-						<input type="text" id="xzr" name="cd.xzr" class="input-text lh30" value="${cd.xzr}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="xzrtxt" readonly="readonly" class="input-text lh30" value="${cd.xzr}" size="35">
+						<input type="hidden" id="xzr" name="cd.xzr" value="${cd.xzr}">
+						&nbsp;<a id="selectxzr" onclick="ygSelect('selectxzr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
   			</table>
@@ -86,7 +88,8 @@
 	</div>
   	
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
      <script type="text/javascript">
      	showmap("产犊信息管理 > 新增产犊信息");
      	
@@ -107,6 +110,29 @@
      				window.location.href="${pageContext.request.contextPath}/master/fzgl/cddj.action";
      		});
      	}
+     	
+     	var select=new YSelect("selectjcy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+	  		
+	  		if(id=="selectjcy")
+	  		{
+		  		$("#jcytxt").val(t);
+		 		$("#jcy").val(v);
+	 		}
+	 		else if(id=="selectxzr")
+	  		{
+		  		$("#xzrtxt").val(t);
+		 		$("#xzr").val(v);
+	 		}
+		});
+			
+		function ygSelect(id)
+		{
+			if(select.state())
+				select.hiden();
+			else
+				select.show(id);
+		}
+     	
      </script>
   </body>
 </html>

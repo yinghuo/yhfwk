@@ -54,7 +54,7 @@ public class NzxxServer {
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		
 		return sql;
@@ -92,7 +92,7 @@ public class NzxxServer {
 			User user=SessionUtils.getUser();
 			if(user!=null&&user.getRole().getRtype()==2)
 			{
-				Nzxx.setNcbh(user.getNcjbxx().getNcbh());
+				Nzxx.setNcbh(user.getNcjbxx().getXh());
 			}
 			
 			if(StringUtil.IsEmpty(Nzxx.getXh()))
@@ -126,7 +126,7 @@ public class NzxxServer {
 				String deleteHql="delete NZJBXX model where model.xh='"+id+"'";
 				if(user.getRole().getRtype()==2)
 				{
-					deleteHql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+					deleteHql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 				}
 				
 				//检查该牛只是否有计步器，更新计步器信息

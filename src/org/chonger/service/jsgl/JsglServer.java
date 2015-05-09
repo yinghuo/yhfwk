@@ -39,7 +39,7 @@ public class JsglServer {
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		
 		return sql;
@@ -78,7 +78,7 @@ public class JsglServer {
 		{
 			if(user.getRole().getRtype()==2)
 			{
-				ncbh=user.getNcjbxx().getNcbh();
+				ncbh=user.getNcjbxx().getXh();
 			}
 			return dao.find(getQueryString(null,null)+" and model.ncbh='"+ncbh+"'");
 		}
@@ -115,7 +115,7 @@ public class JsglServer {
 				if ((rtype=user.getRole().getRtype()) == 2) {
 					NCJBXX ncxx = user.getNcjbxx();
 					if (ncxx != null) {
-						jsxx.setNcbh(ncxx.getNcbh());
+						jsxx.setNcbh(ncxx.getXh());
 					}
 				}
 				
@@ -154,7 +154,7 @@ public class JsglServer {
 				String deleteHql="delete JSJBXX model where model.xh='"+id+"'";
 				if(user.getRole().getRtype()==2)
 				{
-					deleteHql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+					deleteHql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 				}
 				
 				//检查该圈舍是否有存在的牛只信息

@@ -89,7 +89,7 @@ public class RjdjAction extends ActionSupport {
 					NCJBXX ncxx = user.getNcjbxx();
 
 					if (ncxx != null) {
-						rj.setNcbh(ncxx.getNcbh());
+						rj.setNcbh(ncxx.getXh());
 					}
 				}
 				server.saveOrUpdate(rj);

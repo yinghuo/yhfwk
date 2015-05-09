@@ -37,8 +37,9 @@
 				<tr>
 					<td class="td_right">配种员：</td>
 					<td class="">
-						<input type="text" id="pzy" name="pz.pzy" class="input-text lh30" value="${pz.pzy}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="pzytxt" readonly="readonly" class="input-text lh30" value="${pz.pzy}" size="35">
+						<input type="hidden" id="pzy" name="pz.pzy" value="${pz.pzy}">
+						&nbsp;<a id="selectpzy" onclick="ygSelect('selectpzy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -74,8 +75,9 @@
 				<tr>
 					<td class="td_right">发现人：</td>
 					<td class="">
-						<input type="text" id="fxr" name="pz.fxr" class="input-text lh30" value="${pz.fxr}" size="35">
-						&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<input type="text" id="fxrtxt" readonly="readonly" class="input-text lh30" value="${pz.fxr}" size="35">
+						<input type="hidden" id="fxr" name="pz.fxr" value="${pz.fxr}">
+						&nbsp;<a id="selectfxr" onclick="ygSelect('selectfxr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -97,7 +99,8 @@
 		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/pzdj!save.action" name="frmpzdj" class="btn btn82 btn_add" type="button" value=" <s:if test="pz==null">新增</s:if><s:else>更新</s:else> "/>
 	</div>
 	<script	src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript"	src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+	<script type="text/javascript"	src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript">
 		showmap("配种信息管理 > 新增配种信息");
 		function validata() {
@@ -116,6 +119,29 @@
 							window.location.href = "${pageContext.request.contextPath}/master/fzgl/pzdj.action";
 					});
 		}
+		
+		var select=new YSelect("selectfxr","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+	  		
+	  		if(id=="selectfxr")
+	  		{
+		  		$("#fxrtxt").val(t);
+		 		$("#fxr").val(v);
+	 		}
+	 		else if(id=="selectpzy")
+	  		{
+		  		$("#pzytxt").val(t);
+		 		$("#pzy").val(v);
+	 		}
+		});
+			
+		function ygSelect(id)
+		{
+			if(select.state())
+				select.hiden();
+			else
+				select.show(id);
+		}
+		
 	</script>
 </body>
 </html>

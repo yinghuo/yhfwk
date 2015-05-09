@@ -1,5 +1,7 @@
 package org.chonger.web.master.yggl;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -77,6 +79,25 @@ public class YgxxAction extends ActionSupport {
 			jsonResult.sendErrorMessage(StringUtil.IsEmpty(yg.getXh())?"新增":"更新"+"员工信息异常！");
 		}
 		return "infos";
+	}
+	
+	
+	public String loadname()
+	{
+		yglist=server.findAllYGXX();
+		if(yglist!=null&&yglist.size()>0)
+		{
+			jsonResult.objListInitOrClear();
+			for(YGJBXX item : yglist)
+			{
+				HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
+				infoMap.put("id",item.getXh());
+				infoMap.put("name",item.getYgmc());
+				jsonResult.getObjList().add(infoMap);
+			}
+		}
+		
+		return "infolist";
 	}
 	
 }

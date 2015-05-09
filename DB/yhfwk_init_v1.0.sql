@@ -1,16 +1,9 @@
 /*
-Navicat MySQL Data Transfer
 
-Source Server         : 测试
-Source Server Version : 50087
-Source Host           : localhost:3308
-Source Database       : yhfwk
+系统初始化表
 
-Target Server Type    : MYSQL
-Target Server Version : 50087
-File Encoding         : 65001
-
-Date: 2015-05-08 20:32:04
+Version: v1.0
+Date: 2015-05-09 14:25:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,17 +20,13 @@ CREATE TABLE `cddjb` (
   `CDLX` varchar(16) default NULL,
   `CDNY` varchar(16) default NULL COMMENT '自产/轻度助产/难产(产道正常)/难产(产道拉伤)/碎胎',
   `TW` varchar(16) default NULL COMMENT '正常/坐生/倒产/人工矫正',
-  `JCY` varchar(32) default NULL COMMENT '直肠/孕酮/超声/其他',
+  `JCY` varchar(36) default NULL COMMENT '直肠/孕酮/超声/其他',
   `TESL` int(2) default NULL,
   `JBQ` varchar(16) default NULL,
-  `XZR` varchar(32) default NULL,
+  `XZR` varchar(36) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of cddjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `district`
@@ -3589,17 +3578,13 @@ CREATE TABLE `fqdjb` (
   `FQSJ` datetime default NULL,
   `FQLX` varchar(16) default NULL COMMENT '自然发情\r\n            人工催情',
   `FXFS` varchar(16) default NULL COMMENT '人工\r\n            计步器',
-  `FXR` varchar(32) default NULL,
-  `SHY` varchar(32) default NULL,
+  `FXR` varchar(36) default NULL,
+  `SHY` varchar(36) default NULL,
   `SFPZ` int(1) default '0',
   `WPYY` varchar(128) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of fqdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `fqjbxx`
@@ -3618,10 +3603,6 @@ CREATE TABLE `fqjbxx` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of fqjbxx
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `fqkzqxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `fqkzqxx`;
@@ -3635,10 +3616,6 @@ CREATE TABLE `fqkzqxx` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of fqkzqxx
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `fqtsxx`
@@ -3665,10 +3642,6 @@ CREATE TABLE `fqtsxx` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of fqtsxx
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `gtcndjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `gtcndjb`;
@@ -3682,10 +3655,6 @@ CREATE TABLE `gtcndjb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of gtcndjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `jbdjb`
@@ -3713,10 +3682,6 @@ CREATE TABLE `jbdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of jbdjb
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `jsxxb`
 -- ----------------------------
 DROP TABLE IF EXISTS `jsxxb`;
@@ -3731,10 +3696,6 @@ CREATE TABLE `jsxxb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of jsxxb
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `lcdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `lcdjb`;
@@ -3745,17 +3706,13 @@ CREATE TABLE `lcdjb` (
   `LCRQ` datetime default NULL,
   `LCYY` varchar(16) default NULL,
   `TELX` varchar(16) default NULL,
-  `FXR` varchar(32) default NULL,
+  `FXR` varchar(36) default NULL,
   `FXFS` varchar(16) default NULL,
-  `HSR` varchar(32) default NULL,
-  `LCZR` varchar(32) default NULL,
+  `HSR` varchar(36) default NULL,
+  `LCZR` varchar(36) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of lcdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `ncjbxxb`
@@ -3786,10 +3743,6 @@ CREATE TABLE `ncjbxxb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of ncjbxxb
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `nzjbxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `nzjbxx`;
@@ -3803,7 +3756,7 @@ CREATE TABLE `nzjbxx` (
   `XB` int(1) NOT NULL default '0',
   `LB` varchar(5) default NULL,
   `RQLX` char(2) default NULL,
-  `YL` decimal(3,2) default NULL,
+  `YL` decimal(5,2) default NULL,
   `CSZ` decimal(10,2) default NULL,
   `JS` varchar(36) NOT NULL,
   `PZ` varchar(16) default NULL,
@@ -3817,10 +3770,6 @@ CREATE TABLE `nzjbxx` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of nzjbxx
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -3838,14 +3787,10 @@ CREATE TABLE `nzlcdjb` (
   `LQTZ` decimal(10,0) NOT NULL,
   `LQYY` varchar(128) NOT NULL,
   `QX` varchar(128) NOT NULL,
-  `JSR` varchar(32) NOT NULL,
+  `JSR` varchar(36) NOT NULL,
   `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of nzlcdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `nzzsdjb`
@@ -3858,14 +3803,10 @@ CREATE TABLE `nzzsdjb` (
   `ZSRQ` datetime NOT NULL,
   `ZCJS` varchar(36) NOT NULL,
   `ZRJS` varchar(36) NOT NULL,
-  `JSR` varchar(32) NOT NULL,
+  `JSR` varchar(36) NOT NULL COMMENT '员工数据序号',
   `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of nzzsdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `pzdjb`
@@ -3878,19 +3819,15 @@ CREATE TABLE `pzdjb` (
   `PZSJ` datetime default NULL,
   `DJBH` varchar(16) default NULL,
   `DJLX` varchar(16) default NULL,
-  `PZY` varchar(32) default NULL,
+  `PZY` varchar(36) default NULL,
   `FQSJ` datetime default NULL,
   `FQLX` varchar(16) default NULL,
   `FXFS` varchar(32) default NULL,
-  `FXR` varchar(32) default NULL,
+  `FXR` varchar(36) default NULL,
   `SL` decimal(8,0) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of pzdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `rsjcdjb`
@@ -3903,17 +3840,13 @@ CREATE TABLE `rsjcdjb` (
   `JCRQ` datetime default NULL,
   `JCLX` varchar(16) default NULL COMMENT '初检\r\n            复检',
   `JCJG` varchar(64) default NULL COMMENT '人工\r\n            计步器',
-  `JCY` varchar(32) default NULL,
+  `JCY` varchar(36) default NULL,
   `JCFS` varchar(16) default NULL COMMENT '直肠/孕酮/超声/其他',
   `TSZT` varchar(16) default NULL,
   `NZXB` varchar(16) default '2' COMMENT '0母1公2未确认',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of rsjcdjb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `xtcl`
@@ -3931,10 +3864,6 @@ CREATE TABLE `xtcl` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of xtcl
--- ----------------------------
-
--- ----------------------------
 -- Table structure for `xxtsgl`
 -- ----------------------------
 DROP TABLE IF EXISTS `xxtsgl`;
@@ -3948,10 +3877,6 @@ CREATE TABLE `xxtsgl` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of xxtsgl
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `ygxxb`
@@ -3970,10 +3895,6 @@ CREATE TABLE `ygxxb` (
   `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of ygxxb
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `yh_system_menus`
@@ -4070,8 +3991,8 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 20:33:10', '2015-05-07 22:12:21');
-INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-07 22:18:00', '2015-05-08 20:08:16');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 22:12:21', '2015-05-08 20:32:42');
+INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:05:29', '2015-05-08 22:18:59');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -4088,10 +4009,6 @@ CREATE TABLE `yh_system_users_info` (
   `U_INTEGRITY` double NOT NULL default '0',
   PRIMARY KEY  (`U_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of yh_system_users_info
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for `yyjlb`
@@ -4115,7 +4032,3 @@ CREATE TABLE `yyjlb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of yyjlb
--- ----------------------------

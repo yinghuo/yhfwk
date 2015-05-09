@@ -93,6 +93,7 @@ public class NcglAction extends ActionSupport {
 					if(_ncjbxx!=null)
 					{
 						nc.setNcbh(_ncjbxx.getNcbh());
+						nc.setXh(_ncjbxx.getXh());
 						nc.setKssysj(_ncjbxx.getKssysj());
 						nc.setTzsysj(_ncjbxx.getTzsysj());
 					}

@@ -35,7 +35,7 @@ public class ZsxxServer {
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
-			sql+=" and model.ncbh='"+user.getNcjbxx().getNcbh()+"'";
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		
 		return sql;
@@ -63,7 +63,7 @@ public class ZsxxServer {
 				User user=SessionUtils.getUser();
 				if(user!=null&&user.getRole().getRtype()==2)
 				{
-					zsxx.setNcbh(user.getNcjbxx().getNcbh());
+					zsxx.setNcbh(user.getNcjbxx().getXh());
 				}
 				
 				//补全转舍信息

@@ -92,8 +92,9 @@
 					<tr>
 						<td class="td_right">经手人：</td>
 						<td class="">
-							<input type="text" id="jsr" name="lc.jsr" class="input-text lh30" value="" size="35">
-							&nbsp;<a class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+							<input type="text" id="jsrtxt" readonly="readonly" class="input-text lh30" value="" size="35">
+							<input type="hidden" id="jsr" name="lc.jsr">
+							&nbsp;<a id="selectBtn" onclick="ygSelect()" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
@@ -109,7 +110,8 @@
 			<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/nzgl/lcxx!save.action" name="frmlcxx" class="btn btn82 btn_add" type="button" value=" 登记 "/>
 		</div>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
-		<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
+		<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>		
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
      	<script type="text/javascript">
      		showmap("牛只信息管理 > 牛只离场登记");
 	     	function validata()
@@ -172,6 +174,19 @@
 					}
 	     		}
 	     	}
+	     	
+	     	var select=new YSelect("selectBtn","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+	     		$("#jsrtxt").val(t);
+	     		$("#jsr").val(v);
+	     	});
+			
+			function ygSelect()
+			{
+				if(select.state())
+					select.hiden();
+				else
+					select.show();
+			}
 	     	
      		window.parent.selectMenu("a945cb02-a136-4735-b349-332f8fc94bfa");
      </script>
