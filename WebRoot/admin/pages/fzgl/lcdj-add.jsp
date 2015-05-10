@@ -104,17 +104,17 @@
 	  		if(id=="selectfxr")
 	  		{
 		  		$("#fxrtxt").val(t);
-		 		$("#fxr").val(v);
+		 		$("#fxr").val(t);
 	 		}
 	 		else if(id=="selecthsr")
 	  		{
 		  		$("#hsrtxt").val(t);
-		 		$("#hsr").val(v);
+		 		$("#hsr").val(t);
 	 		}
 	 		else if(id=="selectlczr")
 	  		{
 		  		$("#lczrtxt").val(t);
-		 		$("#lczr").val(v);
+		 		$("#lczr").val(t);
 	 		}
 		});
 			

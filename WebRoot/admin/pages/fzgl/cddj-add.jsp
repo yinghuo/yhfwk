@@ -116,12 +116,12 @@
 	  		if(id=="selectjcy")
 	  		{
 		  		$("#jcytxt").val(t);
-		 		$("#jcy").val(v);
+		 		$("#jcy").val(t);
 	 		}
 	 		else if(id=="selectxzr")
 	  		{
 		  		$("#xzrtxt").val(t);
-		 		$("#xzr").val(v);
+		 		$("#xzr").val(t);
 	 		}
 		});
 			

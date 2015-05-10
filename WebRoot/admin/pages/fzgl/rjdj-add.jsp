@@ -108,7 +108,7 @@
      	
      	var select=new YSelect("selectjcy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
 	  		$("#jcytxt").val(t);
-		 	$("#jcy").val(v);
+		 	$("#jcy").val(t);
 		});
 			
 		function ygSelect(id)

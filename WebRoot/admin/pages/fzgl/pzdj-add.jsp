@@ -125,12 +125,12 @@
 	  		if(id=="selectfxr")
 	  		{
 		  		$("#fxrtxt").val(t);
-		 		$("#fxr").val(v);
+		 		$("#fxr").val(t);
 	 		}
 	 		else if(id=="selectpzy")
 	  		{
 		  		$("#pzytxt").val(t);
-		 		$("#pzy").val(v);
+		 		$("#pzy").val(t);
 	 		}
 		});
 			

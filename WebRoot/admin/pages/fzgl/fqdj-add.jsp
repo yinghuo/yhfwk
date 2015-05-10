@@ -119,12 +119,12 @@
 	  		if(id=="selectfxr")
 	  		{
 		  		$("#fxrtxt").val(t);
-		 		$("#fxr").val(v);
+		 		$("#fxr").val(t);
 	 		}
 	 		else if(id=="selectshy")
 	  		{
 		  		$("#shytxt").val(t);
-		 		$("#shy").val(v);
+		 		$("#shy").val(t);
 	 		}
 		});
 			
