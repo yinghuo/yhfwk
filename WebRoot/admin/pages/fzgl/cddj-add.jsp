@@ -41,7 +41,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="td_right">产犊难易：</td>
+					<td class="td_right">胎位：</td>
 					<td class="">
 						<select id="tw" name="cd.tw" class="select" >
 							<option value="">请选择胎位</option>
