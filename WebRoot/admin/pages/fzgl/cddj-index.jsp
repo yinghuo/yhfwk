@@ -57,8 +57,8 @@
 							<td><s:property value="#cdxx.nzbh"/></td>
 							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#cdxx.cdlx"/></td>
-							<td><s:property value="#cdxx.cdny"/></td>
-							<td><s:property value="#cdxx.tw"/></td>
+							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
+							<td><y:EnumLabel enumName="CDTW" value="${cdxx.tw}"/></td>
 							<td><s:property value="#cdxx.jcy"/></td>
 							<td><s:property value="#cdxx.tesl"/></td>
 							<td>

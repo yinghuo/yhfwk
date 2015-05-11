@@ -74,69 +74,103 @@ public class CddjAction extends ActionSupport {
 	/** 列表翻页组件 */
 	@Autowired
 	public RollPage<CDDJXX> pager;
-	public RollPage<CDDJXX> getPager() {return pager;}
+
+	public RollPage<CDDJXX> getPager() {
+		return pager;
+	}
+
 	private int p;
+
 	public void setP(int p) {
 		this.p = p;
 	}
 
-	/**参数列表*/
-	private String ncbh;//牛场编号参数。
-	public String getNcbh() {		return ncbh;	}
-	public void setNcbh(String ncbh) {		this.ncbh = ncbh;	}
-	
-	private String id;
-	public void setId(String id) {	this.id = id;	}
-	
-	/**搜索查询参数定义*/
-	private String nzbh,ebbh;
-	public String getNzbh() {	return nzbh;	}
-	public void setNzbh(String bh) {	this.nzbh = bh;	}
-	public String getEbbh() {	return ebbh;	}
-	public void setEbbh(String ebbh) {	this.ebbh = ebbh;	}
-	
+	/** 参数列表 */
+	private String ncbh;// 牛场编号参数。
 
-	/**搜索参数获取，方便翻页使用*/
-	public String getSearchString()
-	{
-		String searchString="";
-		if(!StringUtil.IsEmpty(nzbh))searchString+=("&nzbh="+nzbh);
-		if(!StringUtil.IsEmpty(ebbh))searchString+=("&ebbh="+ebbh);
+	public String getNcbh() {
+		return ncbh;
+	}
+
+	public void setNcbh(String ncbh) {
+		this.ncbh = ncbh;
+	}
+
+	private String id;
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/** 搜索查询参数定义 */
+	private String nzbh, ebbh;
+
+	public String getNzbh() {
+		return nzbh;
+	}
+
+	public void setNzbh(String bh) {
+		this.nzbh = bh;
+	}
+
+	public String getEbbh() {
+		return ebbh;
+	}
+
+	public void setEbbh(String ebbh) {
+		this.ebbh = ebbh;
+	}
+
+	/** 搜索参数获取，方便翻页使用 */
+	public String getSearchString() {
+		String searchString = "";
+		if (!StringUtil.IsEmpty(nzbh))
+			searchString += ("&nzbh=" + nzbh);
+		if (!StringUtil.IsEmpty(ebbh))
+			searchString += ("&ebbh=" + ebbh);
 		return searchString;
 	}
-	
+
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(null,null), pager.pageSize, p);
+		pager.init(server.getQueryString(null, null), pager.pageSize, p);
 		cdlist = pager.getDataSource();
 		return "cd-list.jsp";
 	}
-	
 
 	/** 保存数据操作 */
 	public String save() throws Exception {
 
 		try {
-			// 增加当前用户的信息
-			User user = SessionUtils.getUser();
+			server.saveOrUpdate(cd);
 
-			if (user != null) {
-				// 企业用户关联我的牛场信息
-				if (user.getRole().getRtype() == 2) {
-					NCJBXX ncxx = user.getNcjbxx();
-
-					if (ncxx != null) {
-						cd.setNcbh(ncxx.getXh());
-					}
-				}
-				server.saveOrUpdate(cd);
-
-				jsonResult.sendSuccessMessage("新增产犊信息成功！");
-			} else {
-				jsonResult.sendSuccessMessage("请重新登录！");
-			}
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(cd.getXh()) ? "新增"
+					: "更新" + "产犊信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendErrorMessage("新增产犊信息异常！");
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(cd.getXh()) ? "新增"
+					: "更新" + "产犊信息异常！");
+		}
+		return "infos";
+	}
+	
+	/**修改数据操作*/
+	public String edit() throws Exception{
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			cd=server.queryNZById(id);
+		}
+		return "edit.jsp";
+	}
+	
+	/**删除数据操作*/
+	public String delete() throws Exception{
+		try{
+			server.delete(id);
+			jsonResult.sendSuccessMessage("删除牛只信息成功！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
 	}
