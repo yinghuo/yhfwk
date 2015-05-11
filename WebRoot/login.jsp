@@ -30,8 +30,8 @@
 					<div><input type="password" id="pwd"  name='loginPwd' value="1234567" class="pwd"></div>
 					<div id="btn_area">
 						<input type="button" name="submit" id="sub_btn" onclick="login()" value="登&nbsp;&nbsp;录">&nbsp;&nbsp;
-						<input type="text" class="verify">
-						<img src="images/login/verify.png" alt="" width="80" height="40">
+						<input type="text" id="vcode" name="loginVcode" class="verify">
+						<img id="vcodeimg" src="${pageContext.request.contextPath}/vimage.jsp?type=login" alt="" width="80" height="40">
 					</div>
 				</form>
 			</div>
@@ -41,26 +41,26 @@
 		版权
 	</div>
 	<script type="text/javascript">
- 			
+ 			function rvode()
+	 		{
+	 			document.getElementById("vcodeimg").src="${pageContext.request.contextPath}/vimage.jsp?type=login&t="+Date.parse(new Date());
+	 		}
 		  	function login()
 		  	{
 		  		if($("#username").val().length<=0)
 		  		{
-		  			$("#rname").html("请输入登陆账号！");
+		  			alert("请输入登陆账号！");
 		  			return;
 		  		}
-		  		else
+		  		else if($("#pwd").val().length<=0)
 		  		{
-		  			$("#rname").html("");
-		  		}
-		  		if($("#pwd").val().length<=0)
-		  		{
-		  			$("#pas").html("请输入登陆密码！");
+		  			alert("请输入登陆密码！");
 		  			return;
 		  		}
-		  		else
+		  		else if($("#vcode").val().length<=0)
 		  		{
-		  			$("#pas").html("");
+		  			alert("请输入验证码！");
+		  			return;
 		  		}
 		  		
 		  		$("#loginfrm").ajaxSubmit({
@@ -70,6 +70,7 @@
 						{
 							alert(data["msg"]);
 							rvode();
+							$("#vcode").val("");
 						}else if(data["login"]=="access")
 						{
 							window.location="${pageContext.request.contextPath}/login!access.action";

@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="i" uri="http://open.yinghuo.info/form"%>
 
 <!doctype html>
 <html>
@@ -16,13 +16,11 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/jsgl/jsgl.action" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/cngl/gtcnxx.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
-	          				<td>圈舍编号：</td>
+	          				<td>牛只编号：</td>
 	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="50"></td>
-	          				<td>圈舍名称：</td>
-	          				<td><input id="mc" type="text" name="mc" class="input-text lh25" value="${mc}" size="50"></td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -35,28 +33,24 @@
 	          		</div>
 	         </div>
 	 </div>
-  	 
-  	 <div class="box span10 oh mt5">
+	 <div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
              	<th width="80">序号</th>
-              	<th width="200">圈舍编号</th>
-              	<th width="200">圈舍名称</th>
-              	<th width="200">圈舍类别</th>
-              	<th width="200">控制器编号</th>
+              	<th width="200">牛只编号</th>
+              	<th width="200">挤奶日期</th>
+              	<th width="200">班次</th>
+              	<th width="200">产量</th>
               	<th width="200">操作</th>
          	</tr>
-         	<s:iterator value="jslist" status="status" id="jsxx">
+         	<s:iterator value="cnlist" status="status" id="gtcnxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#jsxx.jsbh"/></td>
-							<td><s:property value="#jsxx.jsmc"/></td>
-							<td><s:property value="#jsxx.jslb"/></td>
+							<td><s:property value="#gtcnxx.nzjbxx.nzbh"/></td>
+							<td><s:date name="#gtcnxx.jnrq" format="yyyy-MM-dd HH-mm"/></td>
+							<td><s:property value="#gtcnxx.bc"/></td>
+							<td><s:property value="#gtcnxx.cl"/></td>
 							<td></td>
-							<td>
-								<a title="修改" onclick="edit('<s:property value="#jsxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-								<a title="删除" id="comsubmit_delete" promptInfo='确认删除圈舍[<s:property value="#jsxx.jsmc"/>]吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/jsgl/jsgl!delete.action?id=<s:property value="#jsxx.xh"/>" class="fa fa-remove cr-p">删除</a>
-							</td>
 						</tr>
 			</s:iterator>
   	 	</table>
@@ -90,9 +84,9 @@
            	</div>
 		</div>
   	 </div>
-  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
-     	showmap("圈舍信息管理 > 圈舍信息列表");
+     	showmap("产奶信息管理 > 个体产奶信息列表");
      	function search()
      	{
      		document.getElementById("frmSearch").submit();
@@ -114,4 +108,4 @@
      	}     	
      </script>
   </body>
-</html>
+ </html>

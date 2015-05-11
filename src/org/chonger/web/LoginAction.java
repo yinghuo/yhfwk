@@ -42,10 +42,6 @@ public class LoginAction extends ActionSupport {
 	
 	final boolean debug=true;
 	
-	public static final String LoginVcodeKey="_yh_trust_vdata_login";//验证码生成使用的sessionKey。
-	public static final String RegVcodeKey="_yh_trust_vdata_reg";
-	public static final String ForgetVcodeKey="_yh_trust_vdata_forget";
-	
 	private String loginName;
 	private String loginPwd;
 	private String loginVcode;
@@ -109,6 +105,35 @@ public class LoginAction extends ActionSupport {
 			infos.clear();
 			infos.put("login","fail");
 			infos.put("msg","请输入登陆密码！");
+			return "success";
+		}
+		if(StringUtil.IsEmpty(loginVcode))
+		{
+			infos.clear();
+			infos.put("login","fail");
+			infos.put("msg","请输入验证码！");
+			return "success";
+		}
+		
+		Object vobj=ServletActionContext.getRequest().getSession().getAttribute(ConstantKey.LoginVcodeKey);
+		if(vobj!=null)
+		{
+			if(!loginVcode.equals((String)vobj))
+			{
+				infos.clear();
+				infos.put("login","fail");
+				infos.put("msg","验证码错误！");
+
+				ServletActionContext.getRequest().getSession().setAttribute(ConstantKey.LoginVcodeKey,null);
+				
+				return "success";
+			}
+		}
+		else
+		{
+			infos.clear();
+			infos.put("login","fail");
+			infos.put("msg","验证码错误！");
 			return "success";
 		}
 		

@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.cngl.GTCNXX;
 import org.chonger.entity.jbxx.JSJBXX;
-import org.chonger.entity.jbxx.NCJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -120,6 +120,9 @@ public class NZJBXX {
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
 	private List<NZZSXX> zsxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<GTCNXX> gtcnxxList;
 	
 	@OneToOne(mappedBy="nzjbxx")
 	private NZLCXX nzlcxx;
@@ -314,5 +317,13 @@ public class NZJBXX {
 
 	public void setNzlcxx(NZLCXX nzlcxx) {
 		this.nzlcxx = nzlcxx;
+	}
+
+	public List<GTCNXX> getGtcnxxList() {
+		return gtcnxxList;
+	}
+
+	public void setGtcnxxList(List<GTCNXX> gtcnxxList) {
+		this.gtcnxxList = gtcnxxList;
 	}
 }

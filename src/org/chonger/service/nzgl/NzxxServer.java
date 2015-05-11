@@ -44,6 +44,24 @@ public class NzxxServer {
 		return null;
 	}
 	
+	/**
+	 * 根据牛只的编号查询牛只信息
+	 * @Title: queryNZByBH 
+	 * @Description: 
+	 * @param nzbh
+	 * @retrun NZJBXX 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public NZJBXX queryNZByBH(String nzbh)
+	{
+		List<NZJBXX> resultList=dao.find(getQueryString(null,null,null)+" and model.nzbh='"+nzbh+"'");
+		if(resultList!=null&&resultList.size()>0)
+			return resultList.get(0);
+		return null;
+	}
+	
 	public String getQueryString(String xh,String eb,String jbq)
 	{		
 		String sql="from NZJBXX model where 1=1 ";		

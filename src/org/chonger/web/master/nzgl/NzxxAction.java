@@ -89,11 +89,11 @@ public class NzxxAction extends ActionSupport {
 	/**保存数据操作*/
 	public String save() throws Exception{
 		try{
-			server.saveOrUpdate(nz);
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(nz.getXh())?"新增":"更新"+"牛只信息成功！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(nz.getXh())?"新增":"更新")+"牛只信息成功！");
+			server.saveOrUpdate(nz);			
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage(StringUtil.IsEmpty(nz.getXh())?"新增":"更新"+"牛只信息异常！");
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(nz.getXh())?"新增":"更新")+"牛只信息异常！");
 		}		
 		return "infos";
 	}

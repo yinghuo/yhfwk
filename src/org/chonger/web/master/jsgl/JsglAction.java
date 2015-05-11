@@ -92,11 +92,11 @@ public class JsglAction extends ActionSupport {
 	
 	public String save() throws Exception{		
 		try{
-			server.saveOrUpdate(js);			
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(js.getXh())?"新增":"更新"+"圈舍信息成功！");			
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(js.getXh())?"新增":"更新")+"圈舍信息成功！");		
+			server.saveOrUpdate(js);				
 		}catch(Exception ex)
 		{
-			jsonResult.sendErrorMessage(StringUtil.IsEmpty(js.getXh())?"新增":"更新"+"圈舍信息异常！");
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(js.getXh())?"新增":"更新")+"圈舍信息异常！");
 		}		
 		return "infos";
 	}
