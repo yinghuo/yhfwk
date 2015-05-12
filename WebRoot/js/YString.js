@@ -9,11 +9,11 @@
 */
 
 if(typeof("".trim)!="function")
-	String.prototype.trim=function(value)
+	String.prototype.trim=function()
 	{
-		if(typeof(value)!="undefined"&&typeof(value)=="String")
-			return StringUtils.Trim(value);
-		return value;
+		if(typeof(this)!="undefined"&&typeof(this)=="String")
+			return StringUtils.Trim(this);
+		return this;
 	}
 
 function StringUtils(){}

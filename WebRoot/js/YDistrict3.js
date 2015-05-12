@@ -395,5 +395,5 @@ function YDistrictItem(id,t)
 function StringUtils(){}
 StringUtils.IsBlank=function(value)
 {
-	return (typeof(value)=="undefined"||value.trim()=="");
+	return (typeof(value)=="undefined"||value.trin()=="");
 }
