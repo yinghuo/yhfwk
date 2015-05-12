@@ -1,9 +1,7 @@
 /*
-
 系统初始化表
 
-Version: v1.0
-Date: 2015-05-09 14:25:13
+Date: 2015-05-12 14:18:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +25,10 @@ CREATE TABLE `cddjb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of cddjb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `district`
@@ -3587,6 +3589,10 @@ CREATE TABLE `fqdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of fqdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `fqjbxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `fqjbxx`;
@@ -3603,6 +3609,10 @@ CREATE TABLE `fqjbxx` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of fqjbxx
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `fqkzqxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `fqkzqxx`;
@@ -3616,6 +3626,10 @@ CREATE TABLE `fqkzqxx` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of fqkzqxx
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `fqtsxx`
@@ -3642,13 +3656,17 @@ CREATE TABLE `fqtsxx` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of fqtsxx
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `gtcndjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `gtcndjb`;
 CREATE TABLE `gtcndjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `JNRQ` datetime default NULL,
   `BC` varchar(16) default NULL,
   `CL` decimal(10,0) default NULL,
@@ -3682,6 +3700,10 @@ CREATE TABLE `jbdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of jbdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `jsxxb`
 -- ----------------------------
 DROP TABLE IF EXISTS `jsxxb`;
@@ -3713,6 +3735,10 @@ CREATE TABLE `lcdjb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of lcdjb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `ncjbxxb`
@@ -3793,6 +3819,10 @@ CREATE TABLE `nzlcdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of nzlcdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `nzzsdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `nzzsdjb`;
@@ -3830,6 +3860,10 @@ CREATE TABLE `pzdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of pzdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `rsjcdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `rsjcdjb`;
@@ -3849,6 +3883,10 @@ CREATE TABLE `rsjcdjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of rsjcdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `xtcl`
 -- ----------------------------
 DROP TABLE IF EXISTS `xtcl`;
@@ -3864,6 +3902,10 @@ CREATE TABLE `xtcl` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of xtcl
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `xxtsgl`
 -- ----------------------------
 DROP TABLE IF EXISTS `xxtsgl`;
@@ -3877,6 +3919,10 @@ CREATE TABLE `xxtsgl` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xxtsgl
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `ygxxb`
@@ -3935,7 +3981,7 @@ INSERT INTO `yh_system_menus` VALUES ('af0a7e33-4e07-4fed-972a-c798616766cb', '�
 INSERT INTO `yh_system_menus` VALUES ('48a6b0a6-94fe-40b1-b0bc-1819025b386b', '产犊登记', null, '/master/fzgl/cddj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('31013884-4db1-46e8-a3af-42c106d156d1', '流产登记', null, '/master/fzgl/lcdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '4', '1');
 INSERT INTO `yh_system_menus` VALUES ('352fa9a5-17d5-4d79-82db-6b392bdad1e3', '产奶登记', null, '#', '0', '0', '', '5', '1');
-INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '个体产奶登记', null, '#', '0', '1', '352fa9a5-17d5-4d79-82db-6b392bdad1e3', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '个体产奶登记', null, '/master/cngl/gtcnxx.action', '0', '1', '352fa9a5-17d5-4d79-82db-6b392bdad1e3', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('f2ef60df-3c0d-479c-a3ea-abe162e749e9', '兽医保健', null, '#', '0', '0', '', '6', '1');
 INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '疾病登记', null, '#', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('d8ebffd9-60d9-4813-8ee6-9725ad7c5b60', '角色管理', null, '/master/system/role!listRoles.action', '0', '1', '1', '1', '1');
@@ -3992,7 +4038,7 @@ CREATE TABLE `yh_system_users` (
 -- Records of yh_system_users
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 22:12:21', '2015-05-08 20:32:42');
-INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:05:29', '2015-05-08 22:18:59');
+INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -4032,3 +4078,7 @@ CREATE TABLE `yyjlb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of yyjlb
+-- ----------------------------

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-09 14:26:37
+Date: 2015-05-12 14:26:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3674,8 +3674,8 @@ CREATE TABLE `fqtsxx` (
 DROP TABLE IF EXISTS `gtcndjb`;
 CREATE TABLE `gtcndjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `JNRQ` datetime default NULL,
   `BC` varchar(16) default NULL,
   `CL` decimal(10,0) default NULL,
@@ -3686,6 +3686,10 @@ CREATE TABLE `gtcndjb` (
 -- ----------------------------
 -- Records of gtcndjb
 -- ----------------------------
+INSERT INTO `gtcndjb` VALUES ('27490065-2a96-484b-9c6f-714c0cb239fa', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', '2015-05-06 00:00:00', '1', '2', '3');
+INSERT INTO `gtcndjb` VALUES ('73312efa-ab40-441c-981d-c87831297233', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', '2015-05-15 00:00:00', '2', '2', '2');
+INSERT INTO `gtcndjb` VALUES ('7fdbc6a3-67b5-4b56-9e70-c4cc3e2ad5a2', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', '2015-05-08 00:00:00', '1', '1', '1');
+INSERT INTO `gtcndjb` VALUES ('d6aed2e3-805c-4ca8-9907-44b346e1a4e6', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', '2015-05-09 00:00:00', '5', '5', '5');
 
 -- ----------------------------
 -- Table structure for `jbdjb`
@@ -4022,7 +4026,7 @@ INSERT INTO `yh_system_menus` VALUES ('af0a7e33-4e07-4fed-972a-c798616766cb', '�
 INSERT INTO `yh_system_menus` VALUES ('48a6b0a6-94fe-40b1-b0bc-1819025b386b', '产犊登记', null, '/master/fzgl/cddj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('31013884-4db1-46e8-a3af-42c106d156d1', '流产登记', null, '/master/fzgl/lcdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '4', '1');
 INSERT INTO `yh_system_menus` VALUES ('352fa9a5-17d5-4d79-82db-6b392bdad1e3', '产奶登记', null, '#', '0', '0', '', '5', '1');
-INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '个体产奶登记', null, '#', '0', '1', '352fa9a5-17d5-4d79-82db-6b392bdad1e3', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '个体产奶登记', null, '/master/cngl/gtcnxx.action', '0', '1', '352fa9a5-17d5-4d79-82db-6b392bdad1e3', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('f2ef60df-3c0d-479c-a3ea-abe162e749e9', '兽医保健', null, '#', '0', '0', '', '6', '1');
 INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '疾病登记', null, '#', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('d8ebffd9-60d9-4813-8ee6-9725ad7c5b60', '角色管理', null, '/master/system/role!listRoles.action', '0', '1', '1', '1', '1');
@@ -4079,8 +4083,8 @@ CREATE TABLE `yh_system_users` (
 -- Records of yh_system_users
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 22:12:21', '2015-05-08 20:32:42');
-INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:05:29', '2015-05-08 22:18:59');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-09 12:30:23', '2015-05-09 13:01:03');
+INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-11 20:18:16', '2015-05-11 20:23:17');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
