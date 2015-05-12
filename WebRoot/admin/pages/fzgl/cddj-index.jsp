@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
@@ -20,9 +21,9 @@
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          				<td><input id="" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 	          				<td>耳标编号：</td>
-	          				<td><input id="" type="text" name="" class="input-text lh25" value="" size="30"></td>
+	          				<td><input id="" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -62,8 +63,8 @@
 							<td><s:property value="#cdxx.jcy"/></td>
 							<td><s:property value="#cdxx.tesl"/></td>
 							<td>
-								<a onclick="edit('<s:property value="cdxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-								<a id="comsubmit_delete" promptInfo='确认删除该条产犊信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fzgl!delete.action?id=<s:property value="#cdxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+								<a onclick="edit('<s:property value="#cdxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条产犊信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/cddj!delete.action?id=<s:property value="#cdxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 					</s:iterator>
@@ -101,9 +102,27 @@
   	 </div>
      <script>
      	showmap("产犊信息管理 > 产犊信息列表");
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
+     	
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/cddj-add.jsp";
+     	}
+     	
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/cddj!edit.action?id="+id;
+     	}
+     	
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
      	}
      </script>
   </body>

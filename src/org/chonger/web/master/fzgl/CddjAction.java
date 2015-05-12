@@ -167,7 +167,7 @@ public class CddjAction extends ActionSupport {
 	public String delete() throws Exception{
 		try{
 			server.delete(id);
-			jsonResult.sendSuccessMessage("删除牛只信息成功！");
+			jsonResult.sendSuccessMessage("删除牛只产犊信息成功！");
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage(ex.getMessage());

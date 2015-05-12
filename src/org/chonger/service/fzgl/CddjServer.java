@@ -71,7 +71,7 @@ public class CddjServer {
 	public void saveOrUpdate(CDDJXX Cdxx)
 	{
 		if(Cdxx!=null) {
-			//权限校验 //TODO 添加牛只的圈舍是否合法
+			//权限校验 
 			User user=SessionUtils.getUser();
 			if(user!=null&&user.getRole().getRtype()==2)
 			{

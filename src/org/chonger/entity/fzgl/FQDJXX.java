@@ -48,7 +48,7 @@ public class FQDJXX
 	private String shy;//审核员
 	
 	@Column(name = "sfpz")
-	private boolean sfpz;//是否配种
+	private int sfpz;//是否配种
 	
 	@Column(name = "wpyy")
 	private String wpyy;//未配原因
@@ -120,11 +120,11 @@ public class FQDJXX
 		this.shy = shy;
 	}
 
-	public boolean isSfpz() {
+	public int getSfpz() {
 		return sfpz;
 	}
 
-	public void setSfpz(boolean sfpz) {
+	public void setSfpz(int sfpz) {
 		this.sfpz = sfpz;
 	}
 
