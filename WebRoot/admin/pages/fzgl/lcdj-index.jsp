@@ -94,6 +94,7 @@
            	</div>
 		</div>
   	 </div>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
      	showmap("流产信息管理 > 牛只流产信息列表");
      	function search()
