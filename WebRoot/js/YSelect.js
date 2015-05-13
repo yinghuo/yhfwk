@@ -100,20 +100,25 @@ function YSelect(id,tagid,u,func)
 		//设置属性
 		li.setAttribute("value",id);
 		
-		li.onmouseover=function(event)
+		li.onmouseover=function(e)
 		{
-			var _target=event.target;
+			//event=event?event:window.event;
+   			//var _target=event.srcElement?event.srcElement:event.target;
+   			e=e||event;
+   			var _target=e.srcElement?e.srcElement:e.target;
 			_target.style.backgroundColor="#ccc";
 		};
 		li.onmouseout=function(event)
 		{
-			var _target=event.target;
+			e=e||event;
+   			var _target=e.srcElement?e.srcElement:e.target;
 			_target.style.backgroundColor="";
 		};
 		li.onclick=function(event){
-		var _target=event.target;
-		//
-		var value=_target.getAttribute("value");
+			e=e||event;
+   			var _target=e.srcElement?e.srcElement:e.target;
+			//
+			var value=_target.getAttribute("value");
 					
 			if(call)call(showId,value,_target.innerHTML);
 			hiden();					
