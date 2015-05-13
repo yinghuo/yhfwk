@@ -100,6 +100,7 @@
            	</div>
 		</div>
   	 </div>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
      	showmap("产犊信息管理 > 产犊信息列表");
      	function search()
