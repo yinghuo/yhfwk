@@ -12,6 +12,7 @@ import org.chonger.service.fzgl.RjdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.SessionUtils;
+import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -58,6 +59,42 @@ public class RjdjAction extends ActionSupport {
 		this.rj = rj;
 	}
 
+	/** 参数列表 */
+	private String ncbh;// 牛场编号参数。
+
+	public String getNcbh() {
+		return ncbh;
+	}
+
+	public void setNcbh(String ncbh) {
+		this.ncbh = ncbh;
+	}
+
+	private String id;
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	/** 搜索查询参数定义 */
+	private String nzbh, ebbh;
+
+	public String getNzbh() {
+		return nzbh;
+	}
+
+	public void setNzbh(String bh) {
+		this.nzbh = bh;
+	}
+
+	public String getEbbh() {
+		return ebbh;
+	}
+
+	public void setEbbh(String ebbh) {
+		this.ebbh = ebbh;
+	}
+	
 	private List<RSJCXX> rjlist;
 
 	public List<RSJCXX> getRjlist() {
@@ -71,35 +108,43 @@ public class RjdjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(), pager.pageSize, p);
+		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
 		rjlist = pager.getDataSource();
 		return "rj-list.jsp";
 	}
 	
 	/** 保存数据操作 */
 	public String save() throws Exception {
-
 		try {
-			// 增加当前用户的信息
-			User user = SessionUtils.getUser();
+			server.saveOrUpdate(rj);
 
-			if (user != null) {
-				// 企业用户关联我的牛场信息
-				if (user.getRole().getRtype() == 2) {
-					NCJBXX ncxx = user.getNcjbxx();
-
-					if (ncxx != null) {
-						rj.setNcbh(ncxx.getXh());
-					}
-				}
-				server.saveOrUpdate(rj);
-
-				jsonResult.sendSuccessMessage("新增妊娠检查信息成功！");
-			} else {
-				jsonResult.sendSuccessMessage("请重新登录！");
-			}
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新" + "妊娠检查信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendErrorMessage("新增妊娠检查信息异常！");
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新" + "妊娠检查信息异常！");
+		}
+		return "infos";
+	}
+	
+	/**修改数据操作*/
+	public String edit() throws Exception{
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			rj=server.queryNZById(id);
+		}
+		return "edit.jsp";
+	}
+	
+	/**删除数据操作*/
+	public String delete() throws Exception{
+		try{
+			server.delete(id);
+			jsonResult.sendSuccessMessage("删除牛只妊检信息成功！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
 	}

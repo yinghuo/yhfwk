@@ -9,6 +9,7 @@
 <body>
 	<div class="box_center mt10">
   		<form id="frmfqdj" class="jqtransform">
+  			<input type="hidden" name="fq.xh" value="${fq.xh}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
 	  			<tr>
 					<td class="td_right">牛只编号：</td>
@@ -27,8 +28,8 @@
 					<td class="">
 						<select id="fqlx" name="fq.fqlx" class="select" >
 							<option value="">选择发情类型</option>
-						<y:EnumValues value="" enumName="FQLX">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${fq.fqlx}" enumName="FQLX">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -39,8 +40,8 @@
 					<td class="">
 						<select id="fxfs" name="fq.fxfs" class="select" >
 							<option value="">选择发现方式</option>
-						<y:EnumValues value="" enumName="FXFS">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${fq.fxfs}" enumName="FXFS">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -66,8 +67,8 @@
 					<td class="td_right">是否配种：</td>
 					<td class="">
 						<select id="sfpz" name="fq.sfpz" class="select" >
-						<y:EnumValues value="" enumName="SFPZ">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${fq.sfpz}" enumName="SFPZ">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -113,18 +114,17 @@
 					});
 		}
 		
-		
-		var select=new YSelect("selectfxr","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+		var select=new YSelect("selectshy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
 	  		
-	  		if(id=="selectfxr")
-	  		{
-		  		$("#fxrtxt").val(t);
-		 		$("#fxr").val(t);
-	 		}
-	 		else if(id=="selectshy")
+	  		if(id=="selectshy")
 	  		{
 		  		$("#shytxt").val(t);
 		 		$("#shy").val(t);
+	 		}
+	 		else if(id=="selectfxr")
+	  		{
+		  		$("#fxrtxt").val(t);
+		 		$("#fxr").val(t);
 	 		}
 		});
 			
@@ -135,7 +135,6 @@
 			else
 				select.show(id);
 		}
-		
 	</script>
 </body>
 </html>

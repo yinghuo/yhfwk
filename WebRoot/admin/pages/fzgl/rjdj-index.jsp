@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
@@ -54,15 +55,15 @@
 							<td>${status.count }</td>
 							<td><s:property value="#rjxx.nzbh"/></td>
 							<td><s:date name="#rjxx.jcrq" format="yyyy年MM月dd日"/></td>
-							<td><s:property value="#rjxx.jclx"/></td>
+							<td><y:EnumLabel enumName="RJJCLX" value="${rjxx.jclx}"/></td>
 							<td><s:property value="#rjxx.jcjg"/></td>
-							<td><s:property value="#rjxx.jcr"/></td>
+							<td><s:property value="#rjxx.jcy"/></td>
 							<td><s:property value="#rjxx.jcfs"/></td>
 							<td><s:property value="#rjxx.tszt"/></td>
-							<td><s:property value="#rjxx.nzxb"/></td>
+							<td><y:EnumLabel enumName="NZXB" value="${rjxx.nzxb}"/></td>
 							<td>
-								<a title="修改" onclick="edit()" class="fa fa-edit cr-p">修改</a>
-								<a title="删除" id="comsubmit_delete" promptInfo='？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fqdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+								<a title="修改" onclick="edit('<s:property value="#rjxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 			</s:iterator>
@@ -99,9 +100,27 @@
   	 </div>
      <script>
      	showmap("妊娠检查信息管理 > 牛只妊娠检查信息列表");
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
+     	
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjdj-add.jsp";
+     	}
+     	
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/rjdj!edit.action?id="+id;
+     	}
+     	
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
      	}
      </script>
   </body>

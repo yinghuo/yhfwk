@@ -9,6 +9,7 @@
   <body>
   	<div class="box_center mt10">
   		<form id="frmrjdj" class="jqtransform">
+  			<input type="hidden" name="rj.xh" value="${rj.xh}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
   				<tr>
 					<td class="td_right">牛只编号：</td>
@@ -27,8 +28,8 @@
 					<td class="">
 						<select id="jclx" name="rj.jclx" class="select" >
 							<option value="">请选择检查类型</option>
-						<y:EnumValues value="" enumName="RJJCLX">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${rj.jclx}" enumName="RJJCLX">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -61,11 +62,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="td_right">牛只性别：</td>
+					<td class="td_right">胎儿性别：</td>
 					<td class="">
 						<select id="nzxb" name="rj.nzxb" class="select" >
-						<y:EnumValues value="" enumName="NZXB">
-							<option value="${value}">${label}</option>
+						<option value="">请选择胎儿性别</option>
+						<y:EnumValues value="${rj.nzxb}" enumName="NZXB">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>

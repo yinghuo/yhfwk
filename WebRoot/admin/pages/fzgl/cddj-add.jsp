@@ -1,6 +1,7 @@
  <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
  <%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
  <%@ taglib prefix="s" uri="/struts-tags"%>
+ 
 <!doctype html>
 <html>
   <head>
@@ -9,6 +10,7 @@
   <body>
   	<div class="box_center mt10">
   		<form id="frmcddj" class="jqtransform">
+  			<input type="hidden" name="cd.xh" value="${cd.xh}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
   				<tr>
 					<td class="td_right">牛只编号：</td>
@@ -33,8 +35,8 @@
 					<td class="">
 						<select id="cdny" name="cd.cdny" class="select" >
 							<option value="">请选择产犊难易程度</option>
-						<y:EnumValues value="" enumName="CDNYCD">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${cd.cdny}" enumName="CDNYCD">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -45,8 +47,8 @@
 					<td class="">
 						<select id="tw" name="cd.tw" class="select" >
 							<option value="">请选择胎位</option>
-						<y:EnumValues value="" enumName="CDTW">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${cd.tw}" enumName="CDTW">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>

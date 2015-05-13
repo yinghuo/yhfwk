@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
@@ -16,7 +17,7 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/fzgl/pzdj.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
@@ -55,8 +56,8 @@
 					<td><s:property value="#pzxx.djlx"/></td>
 					<td><s:property value="#pzxx.pzy"/></td>
 					<td>
-						<a title="修改" onclick="edit('<s:property value="#nzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-						<a title="删除" id="comsubmit_delete" promptInfo='？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
 					</td>
 				</tr>
 			</s:iterator>
@@ -93,8 +94,26 @@
   	 </div>
      <script>
      	showmap("配种信息管理 > 牛只配种信息列表");
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
+     	
      	function add(){
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/pzdj-add.jsp";
+     	}
+
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/pzdj!edit.action?id="+id;
+     	}
+     	
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
      	}
      </script>
   </body>

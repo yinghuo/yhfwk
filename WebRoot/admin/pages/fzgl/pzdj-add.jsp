@@ -9,6 +9,7 @@
 <body>
 	<div class="box_center mt10">
   		<form id="frmpzdj" class="jqtransform">
+  			<input type="hidden" name="pz.xh" value="${pz.xh}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
   				<tr>
 					<td class="td_right">牛只编号：</td>

@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
@@ -53,13 +54,13 @@
 							<td>${status.count }</td>
 							<td><s:property value="#fqxx.nzbh"/></td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日"/></td>
-							<td><s:property value="#fqxx.fqlx"/></td>
-							<td><s:property value="#fqxx.fxfs"/></td>
+							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
+							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>
 							<td><s:property value="#fqxx.fxr"/></td>
-							<td><s:property value="#fqxx.sfpz"/></td>
+							<td><y:EnumLabel enumName="SFPZ" value="${fqxx.sfpz}"/></td>
 							<td>
-								<a title="修改" onclick="edit()" class="fa fa-edit cr-p">修改</a>
-								<a title="删除" id="comsubmit_delete" promptInfo='？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fqdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+								<a title="修改" onclick="edit('<s:property value="#fqxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条发情信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fqdj!delete.action?id=<s:property value="#fqxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 			</s:iterator>
@@ -98,11 +99,28 @@
      <script>
      	showmap("发情信息管理 > 发情信息列表");
      	
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
+     	
      	function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/fqdj-add.jsp";
      	}
      	
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/fqdj!edit.action?id="+id;
+     	}
+     	
+     	function deleteDone(data)
+     	{
+     		jsonResult(data,function(data){
+     			if(data["error"]==0)
+     				window.location.reload();
+     		});
+     	}
      </script>
   </body>
 </html>
