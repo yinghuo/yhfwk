@@ -3675,6 +3675,10 @@ CREATE TABLE `gtcndjb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of gtcndjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `jbdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `jbdjb`;
@@ -3716,6 +3720,10 @@ CREATE TABLE `jsxxb` (
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jsxxb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `lcdjb`
@@ -3769,6 +3777,10 @@ CREATE TABLE `ncjbxxb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of ncjbxxb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `nzjbxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `nzjbxx`;
@@ -3776,12 +3788,13 @@ CREATE TABLE `nzjbxx` (
   `XH` varchar(36) NOT NULL,
   `NCBH` varchar(36) NOT NULL,
   `NZBH` varchar(16) NOT NULL,
-  `EBBH` varchar(16) NOT NULL,
+  `EBBH` varchar(16) default NULL,
   `JBQBH` varchar(16) default NULL,
   `CSRQ` datetime default NULL,
   `XB` int(1) NOT NULL default '0',
   `LB` varchar(5) default NULL,
   `RQLX` char(2) default NULL,
+  `RQSJ` datetime default NULL,
   `YL` decimal(5,2) default NULL,
   `CSZ` decimal(10,2) default NULL,
   `JS` varchar(36) NOT NULL,
@@ -3793,9 +3806,14 @@ CREATE TABLE `nzjbxx` (
   `MQH` varchar(36) default NULL,
   `MRZT` char(2) default NULL,
   `FZZT` char(2) default NULL,
+  `NZZT` int(1) NOT NULL default '0',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzjbxx
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -3809,9 +3827,9 @@ CREATE TABLE `nzlcdjb` (
   `JS` varchar(36) default NULL,
   `NL` varchar(16) default NULL,
   `LQRQ` datetime NOT NULL,
-  `LQLX` varchar(16) NOT NULL,
+  `LQLX` int(1) NOT NULL,
   `LQTZ` decimal(10,0) NOT NULL,
-  `LQYY` varchar(128) NOT NULL,
+  `LQYY` int(1) NOT NULL,
   `QX` varchar(128) NOT NULL,
   `JSR` varchar(36) NOT NULL,
   `BZ` text,
@@ -3837,6 +3855,10 @@ CREATE TABLE `nzzsdjb` (
   `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzzsdjb
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `pzdjb`
@@ -3943,6 +3965,10 @@ CREATE TABLE `ygxxb` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Records of ygxxb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `yh_system_menus`
 -- ----------------------------
 DROP TABLE IF EXISTS `yh_system_menus`;
@@ -4038,7 +4064,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-07 22:12:21', '2015-05-08 20:32:42');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-08 20:32:42', '2015-05-14 16:42:54');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
 
 -- ----------------------------
@@ -4056,6 +4082,10 @@ CREATE TABLE `yh_system_users_info` (
   `U_INTEGRITY` double NOT NULL default '0',
   PRIMARY KEY  (`U_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of yh_system_users_info
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `yyjlb`

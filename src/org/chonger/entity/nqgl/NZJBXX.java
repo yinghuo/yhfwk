@@ -66,6 +66,9 @@ public class NZJBXX {
 	/**入群类型(自繁/购买)*/
 	private String rqlx;
 	
+	@Column(name="rqsj")
+	private Date rqsj;
+	
 	@Column(name = "yl")
 	/**月龄*/
 	private int yl;
@@ -109,6 +112,10 @@ public class NZJBXX {
 	@Column(name = "fzzt")
 	/**繁殖状态*/
 	private String fzzt;
+	
+	/**牛只状态*/
+	@Column(name="nzzt")
+	private int nzzt=0;
 	
 	@Column(name = "bz")
 	/**备注*/
@@ -325,5 +332,21 @@ public class NZJBXX {
 
 	public void setGtcnxxList(List<GTCNXX> gtcnxxList) {
 		this.gtcnxxList = gtcnxxList;
+	}
+
+	public Date getRqsj() {
+		return rqsj;
+	}
+
+	public void setRqsj(Date rqsj) {
+		this.rqsj = rqsj;
+	}
+
+	public int getNzzt() {
+		return nzzt;
+	}
+
+	public void setNzzt(int nzzt) {
+		this.nzzt = nzzt;
 	}
 }

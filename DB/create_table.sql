@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-14 16:53:01
+Date: 2015-05-14 20:29:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3804,12 +3804,13 @@ CREATE TABLE `nzjbxx` (
   `XH` varchar(36) NOT NULL,
   `NCBH` varchar(36) NOT NULL,
   `NZBH` varchar(16) NOT NULL,
-  `EBBH` varchar(16) NOT NULL,
+  `EBBH` varchar(16) default NULL,
   `JBQBH` varchar(16) default NULL,
   `CSRQ` datetime default NULL,
   `XB` int(1) NOT NULL default '0',
   `LB` varchar(5) default NULL,
   `RQLX` char(2) default NULL,
+  `RQSJ` datetime default NULL,
   `YL` decimal(5,2) default NULL,
   `CSZ` decimal(10,2) default NULL,
   `JS` varchar(36) NOT NULL,
@@ -3821,6 +3822,7 @@ CREATE TABLE `nzjbxx` (
   `MQH` varchar(36) default NULL,
   `MRZT` char(2) default NULL,
   `FZZT` char(2) default NULL,
+  `NZZT` int(1) NOT NULL default '0',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -3828,7 +3830,7 @@ CREATE TABLE `nzjbxx` (
 -- ----------------------------
 -- Records of nzjbxx
 -- ----------------------------
-INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', '2.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '');
+INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '2.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -3842,9 +3844,9 @@ CREATE TABLE `nzlcdjb` (
   `JS` varchar(36) default NULL,
   `NL` varchar(16) default NULL,
   `LQRQ` datetime NOT NULL,
-  `LQLX` varchar(16) NOT NULL,
+  `LQLX` int(1) NOT NULL,
   `LQTZ` decimal(10,0) NOT NULL,
-  `LQYY` varchar(128) NOT NULL,
+  `LQYY` int(1) NOT NULL,
   `QX` varchar(128) NOT NULL,
   `JSR` varchar(36) NOT NULL,
   `BZ` text,
@@ -3854,6 +3856,7 @@ CREATE TABLE `nzlcdjb` (
 -- ----------------------------
 -- Records of nzlcdjb
 -- ----------------------------
+INSERT INTO `nzlcdjb` VALUES ('e6740e78-80bf-4648-9baa-056ea5040ed8', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', null, null, null, '2015-05-14 00:00:00', '0', '11', '0', '11', '李四', '');
 
 -- ----------------------------
 -- Table structure for `nzzsdjb`
@@ -4085,7 +4088,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-08 20:32:42', '2015-05-14 16:42:54');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-14 16:44:18', '2015-05-14 16:52:29');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-14 20:12:52', '2015-05-14 20:26:05');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

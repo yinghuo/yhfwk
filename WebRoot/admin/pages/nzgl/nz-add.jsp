@@ -31,7 +31,7 @@
 				<tr>
 					<td class="td_right">电子耳标编号：</td>
 					<td class="">
-						<input type="text" id="ebbh" name="nz.ebbh" class="input-text lh30" value="${nz.ebbh}" size="80"><span class="required">*必填</span>
+						<input type="text" id="ebbh" name="nz.ebbh" class="input-text lh30" value="${nz.ebbh}" size="80">
 					</td>
 				</tr>
 				<tr>
@@ -71,13 +71,19 @@
 				<tr>
 					<td class="td_right">入群类型：</td>
 					<td class="">
-						<select id="rqlx" name="nz.rqlx" class="select" >
+						<select id="rqlx" name="nz.rqlx" class="select">
 							<option value="">请选择入群类型</option>
 							<y:EnumValues value="${nz.rqlx}" enumName="NZRQLX">
 								<option value="${value}" ${selected}>${label}</option>
 							</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_right">入群时间：</td>
+					<td class="">
+						<input type="text" id="rqsj" name="nz.rqsj" class="input-text lh30" readonly="readonly" value="<s:date name="nz.rqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -113,31 +119,31 @@
 				<tr>
 					<td class="td_right">产犊日期：</td>
 					<td class="">
-						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.cdrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
+						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.cdrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80">
 					</td>
 				</tr>
 				<tr>
-					<td class="td_right">父亲牛只：</td>
+					<td class="td_right">父编号：</td>
 					<td class="">
-						<input type="text" id="fqh" name="nz.fqh" class="input-text lh30" value="${nz.fqh}" size="80"><span class="required">*必填</span>
+						<input type="text" id="fqh" name="nz.fqh" class="input-text lh30" value="${nz.fqh}" size="80">
 					</td>
 				</tr>
 				<tr>
-					<td class="td_right">母亲牛只：</td>
+					<td class="td_right">母编号：</td>
 					<td class="">
-						<input type="text" id="mqh" name="nz.mqh" class="input-text lh30" value="${nz.mqh}" size="80"><span class="required">*必填</span>
+						<input type="text" id="mqh" name="nz.mqh" class="input-text lh30" value="${nz.mqh}" size="80">
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">泌乳状态：</td>
 					<td class="">
-						<input type="text" id="mrzt" name="nz.mrzt" class="input-text lh30" value="${nz.mrzt}" size="80"><span class="required">*必填</span>
+						<input type="text" id="mrzt" name="nz.mrzt" class="input-text lh30" value="${nz.mrzt}" size="80">
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">繁殖状态：</td>
 					<td class="">
-						<input type="text" id="fzzt" name="nz.fzzt" class="input-text lh30" value="${nz.fzzt}" size="80"><span class="required">*必填</span>
+						<input type="text" id="fzzt" name="nz.fzzt" class="input-text lh30" value="${nz.fzzt}" size="80">
 					</td>
 				</tr>
 				<tr>
@@ -170,12 +176,12 @@
      			alert("请选择牛只的圈舍！");
      			return false;
      		}
-     		else if(IsNull("ebbh",0))
+     		/*else if(IsNull("ebbh",0))
      		{
      			alert("请填写牛只耳标编号！");
      			return false;
      		}
-     		/*else if(IsNull("jbqbh",0))
+     		else if(IsNull("jbqbh",0))
      		{
      			alert("请填写牛只计步器编号！");
      			return false;
@@ -225,7 +231,7 @@
      			alert("请填写牛只的胎次！");
      			return false;
      		}
-     		else if(IsNull("cdrq",0))
+     		/*else if(IsNull("cdrq",0))
      		{
      			alert("请填写牛只的到产犊日期！");
      			return false;
@@ -249,7 +255,7 @@
      		{
      			alert("请填写牛只的繁殖状态！");
      			return false;
-     		}
+     		}*/
      		return true;
      	}
      
@@ -296,6 +302,23 @@
      		$("#widgetData_loadjs").attr("data","ncbh="+$("#nc").val());
      		$("#widgetData_loadjs").trigger("loaddata");
      	});
+     	
+     	$("#rqlx").on("change",function(e){
+     		if($("#rqlx").val()==0){
+     			copyvalue();
+     			$("#rqsj").attr("onfocus",null);
+     			$("#csrq").attr("onchange","copyvalue()");
+     		}else{
+     			$("#rqsj").val("");
+     			$("#rqsj").attr("onfocus","WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})");
+     			$("#csrq").attr("onchange",null);
+     		}
+     	});
+     	
+     	function copyvalue()
+     	{
+     		$("#rqsj").val($("#csrq").val());
+     	}
      	
      </script>
   </body>

@@ -68,7 +68,13 @@
 					<tr>
 						<td class="td_right">离群类型：</td>
 						<td class="">
-							<input type="text" id="lqlx" name="lc.lqlx" class="input-text lh30" value="" size="50"><span class="required">*必填</span>
+							<select id="lqlx" name="lc.lqlx" class="select">
+								<option value="">请选择离群类型</option>
+								<y:EnumValues value="${lc.lqlx}" enumName="LCDJLX">
+									<option value="${value}" ${selected}>${label}</option>
+								</y:EnumValues>
+							</select>
+							<span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
@@ -80,7 +86,13 @@
 					<tr>
 						<td class="td_right">离群原因：</td>
 						<td class="">
-							<input type="text" id="lqyy" name="lc.lqyy" class="input-text lh30" value="" size="50"><span class="required">*必填</span>
+							<select id="lqyy" name="lc.lqyy" class="select">
+								<option value="">请选择离群原因</option>
+								<y:EnumValues value="${lc.lqyy}" enumName="LCDJYY">
+									<option value="${value}" ${selected}>${label}</option>
+								</y:EnumValues>
+							</select>
+							<span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>

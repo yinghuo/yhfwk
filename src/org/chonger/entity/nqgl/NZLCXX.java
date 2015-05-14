@@ -48,13 +48,13 @@ public class NZLCXX {
 	private Date lqrq;//离群日期
 	
 	@Column(name = "lqlx")
-	private String lqlx;//离群类型
+	private int lqlx;//离群类型
 	
 	@Column(name = "lqtz")
 	private String lqtz;//离群体重
 	
 	@Column(name = "lqyy")
-	private String lqyy;//离群原因
+	private int lqyy;//离群原因
 	
 	@Column(name = "qx")
 	private String qx;//去向
@@ -125,11 +125,11 @@ public class NZLCXX {
 		this.lqrq = lqrq;
 	}
 
-	public String getLqlx() {
+	public int getLqlx() {
 		return lqlx;
 	}
 
-	public void setLqlx(String lqlx) {
+	public void setLqlx(int lqlx) {
 		this.lqlx = lqlx;
 	}
 
@@ -141,11 +141,11 @@ public class NZLCXX {
 		this.lqtz = lqtz;
 	}
 
-	public String getLqyy() {
+	public int getLqyy() {
 		return lqyy;
 	}
 
-	public void setLqyy(String lqyy) {
+	public void setLqyy(int lqyy) {
 		this.lqyy = lqyy;
 	}
 

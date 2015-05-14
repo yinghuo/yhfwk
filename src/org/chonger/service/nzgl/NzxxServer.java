@@ -69,6 +69,9 @@ public class NzxxServer {
 		if(!StringUtil.IsEmpty(eb))sql+=" and model.ebbh like '%"+eb+"%'";
 		if(!StringUtil.IsEmpty(jbq))sql+=" and model.jbqbh like '%"+jbq+"%'";
 		
+		//2015-05-14	Daniel	修复bug，增加牛只类型条件，状态0为正常牛只
+		sql+=" and model.nzzt = '0'";
+		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
@@ -87,10 +90,12 @@ public class NzxxServer {
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
+	 * 
+	 * @modify 2015-05-14	Daniel	1:修复bug，增加统计条件，统计正常牛只
 	 */
 	public long getNZCountByJSXX(String jsxh)
 	{
-		return dao.getCount("select count(*) from NZJBXX model where model.js='"+jsxh+"'");
+		return dao.getCount("select count(*) from NZJBXX model where model.js='"+jsxh+"' and model.nzzt='0'");
 	}
 	
 	/**
