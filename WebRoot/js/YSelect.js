@@ -108,13 +108,13 @@ function YSelect(id,tagid,u,func)
    			var _target=e.srcElement?e.srcElement:e.target;
 			_target.style.backgroundColor="#ccc";
 		};
-		li.onmouseout=function(event)
+		li.onmouseout=function(e)
 		{
 			e=e||event;
    			var _target=e.srcElement?e.srcElement:e.target;
 			_target.style.backgroundColor="";
 		};
-		li.onclick=function(event){
+		li.onclick=function(e){
 			e=e||event;
    			var _target=e.srcElement?e.srcElement:e.target;
 			//

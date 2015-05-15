@@ -20,6 +20,31 @@ public class ConstantEnum {
 	//如果需要使用枚举常量，可以在这里进行声明定义。
 	
 	/**
+	 * 定义牛只离场登记的离群原因
+	 */
+	public static enum LCDJYY implements BaseEnum<Integer>{
+		出售(0),死亡(1),乳腺疾病(2),肢蹄疾病(3),生殖疾病(4);
+		private int value;
+		LCDJYY(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义牛只离场登记的离群类型
+	 */
+	public static enum LCDJLX implements BaseEnum<Integer>{
+		出售(0),淘汰(1),死亡(2);
+		
+		private int value;
+		LCDJLX(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
 	 * 定义产犊登记的产犊胎位常量
 	 */
 	public static enum CDTW implements BaseEnum<Integer>{
@@ -132,6 +157,20 @@ public class ConstantEnum {
 		
 		private int value;
 		NZLB(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义牛只的状态常量
+	 */
+	public static enum NZZT implements BaseEnum<Integer>{
+		
+		正常(0),离场(1);
+		
+		private int value;
+		NZZT(int value){this.value=value;}
 		
 		@Override
 		public Integer getValue() {	return value;}

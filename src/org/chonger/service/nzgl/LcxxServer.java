@@ -1,5 +1,6 @@
 package org.chonger.service.nzgl;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.nqgl.NZLCXX;
@@ -28,6 +29,14 @@ public class LcxxServer {
 	@Autowired
 	private NzxxServer nzServer;
 	
+	/**
+	 * 查询牛只离场信息列表
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 * 
+	 */
 	public String getQueryString()
 	{
 		String sql="from NZLCXX model where 1=1 ";
@@ -48,6 +57,8 @@ public class LcxxServer {
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
+	 * 
+	 * @modify 2015-05-14 Daniel 新增牛只离场状态后牛只状态更新为0->1
 	 */
 	public void saveOrUpdate(NZLCXX lcxx) throws Exception
 	{
@@ -75,7 +86,14 @@ public class LcxxServer {
 					dao.save(lcxx);
 				}
 				else
-					dao.saveOrUpdate(lcxx);				
+					dao.saveOrUpdate(lcxx);
+				
+				//牛只信息变更
+				nz.setNzzt(ConstantEnum.NZZT.离场.getValue());
+				nzServer.saveOrUpdate(nz);
+				
+				//牛只离场后的其他数据清理工作
+				
 			}
 			else
 				throw new Exception("转舍的牛只信息错误！");
