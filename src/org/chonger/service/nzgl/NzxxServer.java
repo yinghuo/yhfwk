@@ -45,6 +45,21 @@ public class NzxxServer {
 	}
 	
 	/**
+	 * 加载所有牛只信息
+	 * @Title: getAllNZ 
+	 * @Description: Note(这里用一句话描述这个方法的作用) 
+	 * @return
+	 * @retrun List<NZJBXX> 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public List<NZJBXX> getAllNZ()
+	{
+		return dao.find(getQueryString(null,null,null));
+	}
+	
+	/**
 	 * 根据牛只的编号查询牛只信息
 	 * @Title: queryNZByBH 
 	 * @Description: 
@@ -80,6 +95,8 @@ public class NzxxServer {
 		
 		return sql;
 	}
+	
+	
 	
 	/**
 	 * 根据圈舍的编号查询该圈舍的牛只个数
