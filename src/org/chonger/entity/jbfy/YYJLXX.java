@@ -1,4 +1,4 @@
-package org.chonger.entity.sybj;
+package org.chonger.entity.jbfy;
 
 
 import java.util.Date;

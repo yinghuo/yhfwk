@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-14 20:29:55
+Date: 2015-05-15 10:19:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3692,6 +3692,28 @@ INSERT INTO `gtcndjb` VALUES ('7fdbc6a3-67b5-4b56-9e70-c4cc3e2ad5a2', 'd81ffad1-
 INSERT INTO `gtcndjb` VALUES ('d6aed2e3-805c-4ca8-9907-44b346e1a4e6', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', '2015-05-09 00:00:00', '5', '5', '5');
 
 -- ----------------------------
+-- Table structure for `htxtdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `htxtdjb`;
+CREATE TABLE `htxtdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(36) NOT NULL,
+  `XTRQ` datetime NOT NULL,
+  `ZQ` int(1) NOT NULL default '0',
+  `YQ` int(1) NOT NULL default '0',
+  `ZH` int(1) NOT NULL default '0',
+  `YH` int(1) NOT NULL default '0',
+  `SY` varchar(36) NOT NULL,
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of htxtdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `jbdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `jbdjb`;
@@ -3741,6 +3763,32 @@ INSERT INTO `jsxxb` VALUES ('ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', 'd81ffad1-e0
 INSERT INTO `jsxxb` VALUES ('a5f61758-61c9-45a1-afa2-d6f00e987d9e', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'JS002', '新建圈舍', '露天', '');
 
 -- ----------------------------
+-- Table structure for `jydjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `jydjb`;
+CREATE TABLE `jydjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(36) NOT NULL,
+  `JYRQ` datetime NOT NULL,
+  `JYYL` int(11) NOT NULL,
+  `JYXM` varchar(500) default NULL,
+  `YMMC` varchar(500) default NULL,
+  `JYLX` varchar(100) default NULL,
+  `SYJL` varchar(500) default NULL,
+  `PH` varchar(100) default NULL,
+  `ZZS` varchar(100) default NULL,
+  `JG` varchar(500) default NULL,
+  `SY` varchar(36) default NULL,
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of jydjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `lcdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `lcdjb`;
@@ -3761,6 +3809,30 @@ CREATE TABLE `lcdjb` (
 
 -- ----------------------------
 -- Records of lcdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `mydjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydjb`;
+CREATE TABLE `mydjb` (
+  `XH` varchar(36) NOT NULL COMMENT '序号',
+  `NCBH` varchar(36) NOT NULL COMMENT '牛场编号',
+  `NZBH` varchar(36) NOT NULL COMMENT '牛只编号',
+  `MYRQ` datetime NOT NULL COMMENT '免疫日期',
+  `MYXM` varchar(500) NOT NULL COMMENT '免疫项目',
+  `YMMC` varchar(500) NOT NULL COMMENT '疫苗名称',
+  `SYJL` varchar(500) NOT NULL COMMENT '使用剂量',
+  `PH` varchar(100) default NULL COMMENT '批号',
+  `ZZS` varchar(100) default NULL COMMENT '制造商',
+  `JG` varchar(100) default NULL COMMENT '结果',
+  `SY` varchar(36) default NULL COMMENT '兽医',
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydjb
 -- ----------------------------
 
 -- ----------------------------
@@ -3905,6 +3977,30 @@ CREATE TABLE `pzdjb` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `qcdjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `qcdjb`;
+CREATE TABLE `qcdjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(36) NOT NULL,
+  `QCRQ` datetime NOT NULL,
+  `QCFF` varchar(500) NOT NULL,
+  `YWMC` varchar(500) NOT NULL,
+  `SYJL` varchar(500) NOT NULL,
+  `ZZS` varchar(100) NOT NULL,
+  `PH` varchar(100) NOT NULL,
+  `QCXG` varchar(500) NOT NULL,
+  `SY` varchar(36) NOT NULL,
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of qcdjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `rsjcdjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `rsjcdjb`;
@@ -3925,6 +4021,28 @@ CREATE TABLE `rsjcdjb` (
 
 -- ----------------------------
 -- Records of rsjcdjb
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `xddjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `xddjb`;
+CREATE TABLE `xddjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `XDRQ` datetime NOT NULL,
+  `XDQY` varchar(500) NOT NULL,
+  `YJMC` varchar(500) NOT NULL,
+  `SYJL` varchar(500) NOT NULL,
+  `ZZS` varchar(100) NOT NULL,
+  `PH` varchar(100) NOT NULL,
+  `SY` varchar(36) NOT NULL,
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of xddjb
 -- ----------------------------
 
 -- ----------------------------
@@ -4028,10 +4146,10 @@ INSERT INTO `yh_system_menus` VALUES ('d41d97c3-3d88-412e-9d46-f59a19d0e5fa', '�
 INSERT INTO `yh_system_menus` VALUES ('af0a7e33-4e07-4fed-972a-c798616766cb', '妊检登记', null, '/master/fzgl/rjdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('48a6b0a6-94fe-40b1-b0bc-1819025b386b', '产犊登记', null, '/master/fzgl/cddj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('31013884-4db1-46e8-a3af-42c106d156d1', '流产登记', null, '/master/fzgl/lcdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '4', '1');
-INSERT INTO `yh_system_menus` VALUES ('352fa9a5-17d5-4d79-82db-6b392bdad1e3', '产奶登记', null, '#', '0', '0', '', '5', '1');
+INSERT INTO `yh_system_menus` VALUES ('352fa9a5-17d5-4d79-82db-6b392bdad1e3', '泌乳管理', null, '#', '0', '0', '', '5', '1');
 INSERT INTO `yh_system_menus` VALUES ('a49531a8-6e56-4771-9889-edf78b4ebae7', '个体产奶登记', null, '/master/cngl/gtcnxx.action', '0', '1', '352fa9a5-17d5-4d79-82db-6b392bdad1e3', '0', '1');
-INSERT INTO `yh_system_menus` VALUES ('f2ef60df-3c0d-479c-a3ea-abe162e749e9', '兽医保健', null, '#', '0', '0', '', '6', '1');
-INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '疾病登记', null, '#', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('f2ef60df-3c0d-479c-a3ea-abe162e749e9', '疾病防疫', null, '#', '0', '0', '', '6', '1');
+INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '疾病登记', null, '/master/jbfy/jbxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('d8ebffd9-60d9-4813-8ee6-9725ad7c5b60', '角色管理', null, '/master/system/role!listRoles.action', '0', '1', '1', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('979e846b-a625-4ff4-bdb4-cac85c4d6133', '员工信息管理', null, '/master/yggl/ygxx.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('13a74fbb-d638-4d88-94c3-d92f71b5b831', '数据管理', null, '#', '0', '0', '', '7', '1');
@@ -4041,6 +4159,11 @@ INSERT INTO `yh_system_menus` VALUES ('4cd2f1a6-8328-4c73-b85f-99cb7da45dec', '�
 INSERT INTO `yh_system_menus` VALUES ('26efff26-8d67-482c-bf13-01a0185e932b', '数据导出', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('e8b11752-8fb3-4d05-a48a-78de936d1ff3', '系统初始化', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('6dd6b862-cb5b-4fe8-becd-f79a7053f08f', '牛群概貌', null, '/master/index.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('0243c8b7-5a14-405a-952b-7e02440a43ac', '免疫登记', null, '/master/jbfy/myxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '1', '1');
+INSERT INTO `yh_system_menus` VALUES ('8be65c7c-2ad4-4e23-a514-bf67cd957960', '检疫登记', null, '/master/jbfy/jyxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '2', '1');
+INSERT INTO `yh_system_menus` VALUES ('23584149-25c2-49f1-9d5b-dd2eccfe0bc6', '驱虫登记', null, '/master/jbfy/qcxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '3', '1');
+INSERT INTO `yh_system_menus` VALUES ('2a126eb7-ec39-4676-8e3d-e1ce0e10d7a8', '护蹄修蹄登记', null, '/master/jbfy/htxtxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '4', '1');
+INSERT INTO `yh_system_menus` VALUES ('35f6bb6c-e827-4f32-8dad-0f29ec296374', '消毒登记', null, '/master/jbfy/xdxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '5', '1');
 
 -- ----------------------------
 -- Table structure for `yh_system_roles`
@@ -4086,9 +4209,9 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-08 20:32:42', '2015-05-14 16:42:54');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-14 16:42:54', '2015-05-15 09:59:41');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-14 20:12:52', '2015-05-14 20:26:05');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-15 10:15:14', '2015-05-15 10:17:33');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

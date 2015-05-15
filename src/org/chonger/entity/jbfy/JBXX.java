@@ -1,4 +1,4 @@
-package org.chonger.entity.sybj;
+package org.chonger.entity.jbfy;
 
 import java.util.Date;
 
@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "jbdjb")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class JXDJXX {
+public class JBXX {
 	@Id
 	@Column(name = "xh")
 	private String xh;//序号
