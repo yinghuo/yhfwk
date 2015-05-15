@@ -10,7 +10,7 @@
   <body>
  	
  	<script type="text/javascript">
-     	showmap("我的基础数据> 牛群概貌");
+     	showmap("疾病防疫管理 > 疾病登记列表");
     </script>
   </body>
  </html>
