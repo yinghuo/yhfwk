@@ -1,6 +1,8 @@
 package org.chonger.web.master.nzgl;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
@@ -119,5 +121,31 @@ public class NzxxAction extends ActionSupport {
 		}
 		return "infos";
 	}
+	
+	/**
+	 * 加载牛只信息
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String load()
+	{
+		List<NZJBXX> nzxxList=server.getAllNZ();
+		if(nzxxList!=null&&nzxxList.size()>0)
+		{
+			jsonResult.objListInitOrClear();
+			for(NZJBXX item : nzxxList)
+			{
+				Map<String,String> itemMap=new LinkedHashMap<String,String>();
+				itemMap.put("id",item.getXh());
+				itemMap.put("bh",item.getNzbh());
+				jsonResult.getObjList().add(itemMap);
+			}
+		}
+		
+		return "infolist";
+	}
+	
 }
 	

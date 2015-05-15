@@ -15,7 +15,11 @@
   				<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<input type="text" id="nzbh" name="cd.nzbh" class="input-text lh30" value="${cd.nzbh}" size="50"><span class="required">*必填</span>
+						<select id="nzbh" name="cd.nzbh" class="select">
+							<option value="">请选择产犊牛只</option>
+						</select>
+						<span class="required">*必填</span>
+						<div style="display:none" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/nzgl/nzxx!load.action" callfunction=",loadnzdone,"></div>
 					</td>
 				</tr>
   				<tr>
@@ -92,6 +96,7 @@
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
      <script type="text/javascript">
      	showmap("产犊信息管理 > 新增产犊信息");
      	
@@ -133,6 +138,23 @@
 				select.hiden();
 			else
 				select.show(id);
+		}
+     	
+     	function loadnzdone(data)
+		{
+			var selectControl=document.getElementById("nzbh");
+			var defval="${cd.nzbh}";
+     		selectControl.options.length = 1;
+			if(data)
+     		{
+     			for(var i=0;i<data.length;i++)
+				{
+					var items=data[i];
+					var optionItem=new Option(items.bh,items.id);
+					if(defval&&defval==items.id)optionItem.selected=true;
+					selectControl.options.add(optionItem);
+				}
+     		}
 		}
      	
      </script>

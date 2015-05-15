@@ -84,6 +84,19 @@
 			}
 		});
 	}
+	
+	function about()
+	{
+		$("#rightMain").attr("src","about.jsp");
+		$(".sideMenu ul li").removeClass("on");
+	}
+	
+	function me()
+	{
+		$("#rightMain").attr("src","profile.jsp");
+		$(".sideMenu ul li").removeClass("on");
+	}
+	
   </script>
   <title>欢迎使用牧场管理系统</title>
 </head>
@@ -93,12 +106,12 @@
         <div id="logo" class="fl"></div>
         <div id="photo_info" class="fr">
           <div id="photo" class="fl">
-            <a href="#"><img src="${pageContext.request.contextPath}/images/a.png" alt="" width="60" height="60"></a>
+            <a href="#" onclick="me()"><img src="${pageContext.request.contextPath}/images/a.png" alt="" width="60" height="60"></a>
           </div>
           <div id="base_info" class="fr">
             <div class="help_info">
               <a href="#" id="hp">&nbsp;</a>
-              <a href="#" id="gy">&nbsp;</a>
+              <a href="#" onclick="about()" id="gy">&nbsp;</a>
               <a href="#" onclick="logout()" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
