@@ -139,7 +139,7 @@ public class NzxxAction extends ActionSupport {
 			{
 				Map<String,String> itemMap=new LinkedHashMap<String,String>();
 				itemMap.put("id",item.getXh());
-				itemMap.put("bh",item.getNzbh());
+				itemMap.put("name",item.getNzbh());
 				jsonResult.getObjList().add(itemMap);
 			}
 		}

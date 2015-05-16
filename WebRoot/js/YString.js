@@ -11,9 +11,15 @@
 if(typeof("".trim)!="function")
 	String.prototype.trim=function()
 	{
-		if(typeof(this)!="undefined"&&typeof(this)=="String")
+		//if(typeof(this)!="undefined"&&typeof(this)=="String")
 			return StringUtils.Trim(this);
-		return this;
+		//return this;
+	}
+
+if(typeof("".startsWith)!="function")
+	String.prototype.startsWith=function(str)
+	{
+		return StringUtils.StartWith(this,str);
 	}
 
 function StringUtils(){}

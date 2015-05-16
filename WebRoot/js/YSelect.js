@@ -24,6 +24,8 @@ function YSelect(id,tagid,u,func)
 	
 	var dataControl;
 	
+	var controlIn=false;
+	
 	this.show=function(sid)
 	{
 		if(showControl!=null){
@@ -46,9 +48,12 @@ function YSelect(id,tagid,u,func)
 	
 	function hiden()
 	{
-		if(showControl!=null){
-			showControl.style.display="none";
-			showState=false;
+		if(!controlIn)
+		{
+			if(showControl!=null){
+				showControl.style.display="none";
+				showState=false;
+			}
 		}
 	}
 	
@@ -77,9 +82,7 @@ function YSelect(id,tagid,u,func)
 						}
 						
 						//重设大小
-						var _height=data.length*25;
-						if(_height<200)
-							showControl.style.height=_height+"px";
+						resetHeight(data.length);
 					}
 				},
 				error:function(xmlHttpRequest, error){
@@ -88,6 +91,51 @@ function YSelect(id,tagid,u,func)
 			});
 		}
 	};
+	
+	function resetHeight(length)
+	{
+		if(length==0)//无内容
+		{
+			//showControl.style.height="0px";
+			//重置已选择值
+			if(call)call(showId,"","");
+			hiden();
+		}
+		else
+		{
+			var _height=length*25;
+			if(_height<200)
+				showControl.style.height=_height+"px";
+		}
+	}
+	
+	//2015-05-16	新增筛选操作，按照指定值，展示指定的内容
+	function Screening(value)
+	{
+		//遍历所有的列表，展示前端匹配的值
+		var childs=dataControl.childNodes;
+		var scount=0;
+		for(var child in childs)
+		{
+			child=childs[child];
+			//var value=child.getAttribute("value");
+			var txt=child.innerHTML;
+			if(!StringUtils.IsBlank(txt))
+			{
+				if(txt.startsWith(value))
+				{
+					child.style.display="";
+					scount++;
+				}else
+					child.style.display="none";
+			}
+		}
+		
+		if(this.state)this.show();
+		
+		//统计显示个数，重订高度
+		resetHeight(scount);
+	}
 	
 	function insertData(id,name)
 	{
@@ -121,6 +169,7 @@ function YSelect(id,tagid,u,func)
 			var value=_target.getAttribute("value");
 					
 			if(call)call(showId,value,_target.innerHTML);
+			controlIn=false;
 			hiden();					
 		};
 				
@@ -138,6 +187,11 @@ function YSelect(id,tagid,u,func)
 		
 		dataControl.appendChild(li,null);
 		showControl.style.height="60px";
+	}
+	
+	function addEvent(el,type,func)
+	{
+		el.addEventListener ? el.addEventListener(type, fn, false) : el.attachEvent('on' + type, fn);
 	}
 	
 	/*var insertData=function()
@@ -196,6 +250,15 @@ function YSelect(id,tagid,u,func)
 		tagdiv.style.height="200px";
 		tagdiv.style.overflowY="auto";
 		
+		tagdiv.onmouseover=function(e)
+		{
+			controlIn=true;
+		};
+		tagdiv.onmouseout=function(e)
+		{
+			controlIn=false;
+		};
+		
 		//tagdiv.onmouseout=_self.hiden;
 		
 		//if(window.addEventListener)
@@ -233,6 +296,7 @@ function YSelect(id,tagid,u,func)
 		state: this.state,
 		url : url,
 		show : this.show,
-		hiden : hiden
+		hiden : hiden,
+		screening : Screening
 	}
 }
