@@ -52,7 +52,7 @@
          	<s:iterator value="fqlist" status="status" id="fqxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#fqxx.nzbh"/></td>
+							<td><s:property value="#fqxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>

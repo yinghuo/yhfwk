@@ -5,9 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -55,6 +59,18 @@ public class LCXX
 	
 	@Column(name = "bz")
 	private String bz;//备注
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nzbh",insertable = false, updatable = false)
+	private NZJBXX nzjbxx;
+	
+	public NZJBXX getNzjbxx() {
+		return nzjbxx;
+	}
+
+	public void setNzjbxx(NZJBXX nzjbxx) {
+		this.nzjbxx = nzjbxx;
+	}
 
 	public String getXh() {
 		return xh;

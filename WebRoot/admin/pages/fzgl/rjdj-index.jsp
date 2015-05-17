@@ -53,7 +53,7 @@
          	<s:iterator value="rjlist" status="status" id="rjxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#rjxx.nzbh"/></td>
+							<td><s:property value="#rjxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#rjxx.jcrq" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="RJJCLX" value="${rjxx.jclx}"/></td>
 							<td><s:property value="#rjxx.jcjg"/></td>

@@ -148,14 +148,21 @@
 			$("#nzbh").val(v);
 		});
 		
+		var nzList;
 		function nzSelect(id)
 		{
 			//筛选过滤
-			nzselect.screening($("#nzbhtxt").val());
+			nzList=nzselect.screening($("#nzbhtxt").val());
 		}
 		
 		function nzHiden()
 		{
+			if(nzList&&nzList.length>0)
+			{
+				var nzxx=nzList[0];
+				$("#nzbhtxt").val(nzxx[1]);
+				$("#nzbh").val(nzxx[0]);
+			}
 			nzselect.hiden();
 		}
 		

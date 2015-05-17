@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-15 10:19:16
+Date: 2015-05-17 17:45:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,6 +38,7 @@ CREATE TABLE `cddjb` (
 -- ----------------------------
 -- Records of cddjb
 -- ----------------------------
+INSERT INTO `cddjb` VALUES ('e2c35f57-c5d3-4a8b-a398-a6e351730502', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-04-08 00:00:00', '1', '0', '0', '张三', '11', '11', '张三', null);
 
 -- ----------------------------
 -- Table structure for `district`
@@ -3600,6 +3601,7 @@ CREATE TABLE `fqdjb` (
 -- ----------------------------
 -- Records of fqdjb
 -- ----------------------------
+INSERT INTO `fqdjb` VALUES ('0dbf0704-666a-4bd7-802c-d439b03fcf15', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-14 00:00:00', '0', '0', '张三、李四', '张三', '0', '123', '');
 
 -- ----------------------------
 -- Table structure for `fqjbxx`
@@ -3669,6 +3671,26 @@ CREATE TABLE `fqtsxx` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `gndjb`
+-- ----------------------------
+DROP TABLE IF EXISTS `gndjb`;
+CREATE TABLE `gndjb` (
+  `XH` varchar(36) NOT NULL,
+  `NCBH` varchar(36) NOT NULL,
+  `NZBH` varchar(36) NOT NULL,
+  `GNRQ` datetime NOT NULL,
+  `GNFF` varchar(500) NOT NULL,
+  `SYYW` varchar(500) NOT NULL,
+  `SY` varchar(100) NOT NULL,
+  `BZ` text,
+  PRIMARY KEY  (`XH`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gndjb
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `gtcndjb`
 -- ----------------------------
 DROP TABLE IF EXISTS `gtcndjb`;
@@ -3719,8 +3741,8 @@ CREATE TABLE `htxtdjb` (
 DROP TABLE IF EXISTS `jbdjb`;
 CREATE TABLE `jbdjb` (
   `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `FBRQ` datetime default NULL,
   `JBZL` varchar(16) default NULL,
   `JBMC` varchar(16) default NULL,
@@ -3810,6 +3832,7 @@ CREATE TABLE `lcdjb` (
 -- ----------------------------
 -- Records of lcdjb
 -- ----------------------------
+INSERT INTO `lcdjb` VALUES ('b3679c0c-98e1-4e2e-8cbf-4a902b43f3ac', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-13 00:00:00', '1', '1', '张三、李四', '1', '李四', '王五', '');
 
 -- ----------------------------
 -- Table structure for `mydjb`
@@ -3903,6 +3926,8 @@ CREATE TABLE `nzjbxx` (
 -- Records of nzjbxx
 -- ----------------------------
 INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '2.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '');
+INSERT INTO `nzjbxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '001', '', '', '2015-05-14 00:00:00', '0', '0', '0', '2015-05-14 00:00:00', '1.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', '2015-05-27 00:00:00', '1', '1', '1', '', '0', '');
+INSERT INTO `nzjbxx` VALUES ('ec155fa0-2b05-46b1-91ed-eafa64af475c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '012', '', '', '2015-05-22 00:00:00', '0', '1', '0', '2015-05-22 00:00:00', '1.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', null, '', '', '', '', '0', '');
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -3975,6 +4000,7 @@ CREATE TABLE `pzdjb` (
 -- ----------------------------
 -- Records of pzdjb
 -- ----------------------------
+INSERT INTO `pzdjb` VALUES ('5002e501-4465-4064-b414-25126a2c0d93', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-15 00:00:00', '1', '1', '张三', '2015-05-13 00:00:00', '0', '1', '李四', '0', '');
 
 -- ----------------------------
 -- Table structure for `qcdjb`
@@ -4022,6 +4048,7 @@ CREATE TABLE `rsjcdjb` (
 -- ----------------------------
 -- Records of rsjcdjb
 -- ----------------------------
+INSERT INTO `rsjcdjb` VALUES ('2111f356-5cc1-486c-a3f8-3f7b54103995', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-08 00:00:00', '1', '11', '张三、李四', '1', '1', '0', '');
 
 -- ----------------------------
 -- Table structure for `xddjb`
@@ -4164,6 +4191,7 @@ INSERT INTO `yh_system_menus` VALUES ('8be65c7c-2ad4-4e23-a514-bf67cd957960', '�
 INSERT INTO `yh_system_menus` VALUES ('23584149-25c2-49f1-9d5b-dd2eccfe0bc6', '驱虫登记', null, '/master/jbfy/qcxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('2a126eb7-ec39-4676-8e3d-e1ce0e10d7a8', '护蹄修蹄登记', null, '/master/jbfy/htxtxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '4', '1');
 INSERT INTO `yh_system_menus` VALUES ('35f6bb6c-e827-4f32-8dad-0f29ec296374', '消毒登记', null, '/master/jbfy/xdxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '5', '1');
+INSERT INTO `yh_system_menus` VALUES ('a65b21f6-492e-437c-bd16-e32b7353765b', '干奶登记', null, '#', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '5', '1');
 
 -- ----------------------------
 -- Table structure for `yh_system_roles`
@@ -4209,9 +4237,9 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-14 16:42:54', '2015-05-15 09:59:41');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-15 09:59:41', '2015-05-17 16:29:34');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-15 10:15:14', '2015-05-15 10:17:33');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-05-17 16:30:52', '2015-05-17 16:49:11');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

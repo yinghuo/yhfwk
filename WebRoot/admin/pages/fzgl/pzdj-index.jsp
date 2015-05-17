@@ -40,8 +40,8 @@
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
              	<th width="80">序号</th>
-              	<th width="120">牛只编号</th>
-              	<th>配种时间</th>
+              	<th>牛只编号</th>
+              	<th width="120">配种时间</th>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
               	<th>配种员</th>
@@ -50,7 +50,7 @@
          	<s:iterator value="pzlist" status="status" id="pzxx">
 				<tr>
 					<td>${status.count}</td>
-					<td><s:property value="#pzxx.nzbh"/></td>
+					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
 					<td><s:property value="#pzxx.djbh"/></td>
 					<td><s:property value="#pzxx.djlx"/></td>
