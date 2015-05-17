@@ -118,7 +118,6 @@
 		}
 		
 		var select=new YSelect("selectshy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
-	  		
 	  		if(id=="selectshy")
 	  		{
 		  		$("#shytxt").val(t);
@@ -129,14 +128,23 @@
 		  		$("#fxrtxt").val(t);
 		 		$("#fxr").val(t);
 	 		}
-		});
+		},true);
 		
 		function ygSelect(id)
 		{
 			if(select.state())
 				select.hiden();
 			else
-				select.show(id);
+			{
+				if(id=="selectshy")
+		  		{
+			  		select.show(id,$("#shytxt").val());
+		 		}
+		 		else if(id=="selectfxr")
+		  		{
+			  		select.show(id,$("#fxrtxt").val());
+		 		}
+			}
 		}
 		
 		var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
