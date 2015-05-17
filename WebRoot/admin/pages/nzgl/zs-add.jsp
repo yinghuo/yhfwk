@@ -119,14 +119,14 @@
 	     	var select=new YSelect("selectBtn","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
 	     		$("#jsrtxt").val(t);
 	     		$("#jsr").val(t);
-	     	});
+	     	},true);
 			
 			function ygSelect()
 			{
 				if(select.state())
 					select.hiden();
 				else
-					select.show();
+					select.show("",$("#jsrtxt").val());
 			}
 				     	
      		window.parent.selectMenu("9881e7c2-d5ca-4d5b-b567-f2607a4951ae");

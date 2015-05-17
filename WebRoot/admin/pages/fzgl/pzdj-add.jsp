@@ -136,14 +136,23 @@
 		  		$("#pzytxt").val(t);
 		 		$("#pzy").val(t);
 	 		}
-		});
+		},true);
 			
 		function ygSelect(id)
 		{
 			if(select.state())
 				select.hiden();
 			else
-				select.show(id);
+			{
+				if(id=="selectpzy")
+		  		{
+			  		select.show(id,$("#pzytxt").val());
+		 		}
+		 		else if(id=="selectfxr")
+		  		{
+			  		select.show(id,$("#fxrtxt").val());
+		 		}
+			}				
 		}
 		
 		var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
