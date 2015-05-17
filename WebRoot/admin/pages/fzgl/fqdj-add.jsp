@@ -14,11 +14,9 @@
 	  			<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<select id="nzbh" name="fq.nzbh" class="select">
-							<option value="">请选择发情牛只</option>
-						</select>
-						<span class="required">*必填</span>
-						<div style="display:none" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/nzgl/nzxx!load.action" callfunction=",loadnzdone,"></div>
+						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
+						<input type="hidden" id="nzbh" name="fq.nzbh" value="${fq.nzbh}">
+						<span class="required">*必填</span>						
 					</td>
 				</tr>
 				<tr>
@@ -132,7 +130,7 @@
 		 		$("#fxr").val(t);
 	 		}
 		});
-			
+		
 		function ygSelect(id)
 		{
 			if(select.state())
@@ -141,22 +139,22 @@
 				select.show(id);
 		}
 		
-		function loadnzdone(data)
+		var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
+			$("#nzbhtxt").val(t);
+			$("#nzbh").val(v);
+		});
+		
+		function nzSelect(id)
 		{
-			var selectControl=document.getElementById("nzbh");
-			var defval="${fq.nzbh}";
-     		selectControl.options.length = 1;
-			if(data)
-     		{
-     			for(var i=0;i<data.length;i++)
-				{
-					var items=data[i];
-					var optionItem=new Option(items.bh,items.id);
-					if(defval&&defval==items.id)optionItem.selected=true;
-					selectControl.options.add(optionItem);
-				}
-     		}
+			//筛选过滤
+			nzselect.screening($("#nzbhtxt").val());
 		}
+		
+		function nzHiden()
+		{
+			nzselect.hiden();
+		}
+
 	</script>
 </body>
 </html>
