@@ -55,7 +55,7 @@
 					<s:iterator value="cdlist" status="status" id="cdxx">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#cdxx.nzbh"/></td>
+							<td><s:property value="#cdxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#cdxx.cdlx"/></td>
 							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
