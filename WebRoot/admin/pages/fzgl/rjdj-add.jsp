@@ -114,14 +114,14 @@
      	var select=new YSelect("selectjcy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
 	  		$("#jcytxt").val(t);
 		 	$("#jcy").val(t);
-		});
+		},true);
 			
 		function ygSelect(id)
 		{
 			if(select.state())
 				select.hiden();
 			else
-				select.show(id);
+				select.show(id,$("#jcytxt").val());
 		}
      	
      	var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){

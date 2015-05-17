@@ -120,14 +120,27 @@
 		  		$("#lczrtxt").val(t);
 		 		$("#lczr").val(t);
 	 		}
-		});
+		},true);
 			
 		function ygSelect(id)
 		{
 			if(select.state())
 				select.hiden();
 			else
-				select.show(id);
+			{
+				if(id=="selectfxr")
+		  		{
+			  		select.show(id,$("#fxrtxt").val());
+		 		}
+		 		else if(id=="selecthsr")
+		  		{
+			  		select.show(id,$("#hsrtxt").val());
+		 		}
+		 		else if(id=="selectlczr")
+		  		{
+			  		select.show(id,$("#lczrtxt").val());
+		 		}
+			}				
 		}
 		
 		var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
