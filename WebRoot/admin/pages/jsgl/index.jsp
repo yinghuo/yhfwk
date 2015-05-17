@@ -99,7 +99,7 @@
      	}
      	function add()
      	{
-     		window.location.href="${pageContext.request.contextPath}/admin/pages/cngl/add.jsp";
+     		window.location.href="${pageContext.request.contextPath}/admin/pages/jsgl/add.jsp";
      	}
      	function deleteDone(data)
      	{
