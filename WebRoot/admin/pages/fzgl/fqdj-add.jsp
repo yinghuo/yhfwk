@@ -152,14 +152,31 @@
 			$("#nzbh").val(v);
 		});
 		
+		var nzList;
 		function nzSelect(id)
 		{
 			//筛选过滤
-			nzselect.screening($("#nzbhtxt").val());
+			nzList=nzselect.screening($("#nzbhtxt").val());
 		}
 		
 		function nzHiden()
 		{
+			if(nzList)
+			{
+				if(nzList.length>0)
+				{
+					//只有一个唯一的值
+					var nzxx=nzList[0];
+					$("#nzbhtxt").val(nzxx[1]);
+					$("#nzbh").val(nzxx[0]);
+				}
+				/*else
+				{
+					//存在多个值
+					$("#nzbhtxt").val("");
+					$("#nzbh").val("");
+				}*/
+			}
 			nzselect.hiden();
 		}
 

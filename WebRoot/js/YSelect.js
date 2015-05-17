@@ -1,6 +1,7 @@
 /**
 
-	modify： 2015-05-17	Daniel 	新增多选框模式
+	modify	2015-05-17	Daniel 	新增多选框模式
+	modify	2015-05-17	Daniel	1：修复文本输入正确离开后进行校验和赋值
 */
 //为指定的元素初始化下拉框,tag为内容标记的名称
 function YSelect(id,tagid,u,func,ischeck)
@@ -120,21 +121,30 @@ function YSelect(id,tagid,u,func,ischeck)
 	}
 	
 	//2015-05-16	新增筛选操作，按照指定值，展示指定的内容
+	//2015-05-17	新增返回值列表，筛序结果进行返回以待后续处理。
 	function Screening(value)
 	{
 		//遍历所有的列表，展示前端匹配的值
 		var childs=dataControl.childNodes;
 		var scount=0;
+		var returnList=new Array();
 		for(var child in childs)
 		{
 			child=childs[child];
 			//var value=child.getAttribute("value");
-			var txt=child.innerHTML;
+			var txt=child.innerHTML;			
+			
 			if(!StringUtils.IsBlank(txt))
 			{
+				var valueItem=child.getAttribute("value");
+				
 				if(txt.startsWith(value))
 				{
 					child.style.display="";
+					var returnObj=new Array(2);
+					returnObj[0]=valueItem;
+					returnObj[1]=txt;
+					returnList[scount]=returnObj;
 					scount++;
 				}else
 					child.style.display="none";
@@ -145,7 +155,10 @@ function YSelect(id,tagid,u,func,ischeck)
 		
 		//统计显示个数，重订高度
 		resetHeight(scount);
+		
+		return returnList;
 	}
+	
 	
 	//2015-05-17	新增多选框赋值
 	function getCheckList()
