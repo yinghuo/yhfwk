@@ -256,10 +256,6 @@ function YSelect(id,tagid,u,func,ischeck)
 	function insertData(id,name)
 	{
 		var li=document.createElement("li");
-		if(ischeckBox)
-			li.innerHTML="<input type='checkbox'>"+name;
-		else
-			li.innerHTML=name;
 		li.style.height="25px";
 		li.style.paddingLeft="6px";
 		li.style.lineHeight="25px";
@@ -297,16 +293,41 @@ function YSelect(id,tagid,u,func,ischeck)
 			else
 			{
 				//勾选框
-				var meCheckbox=_target.childNodes.item(0);
-				meCheckbox.checked=!meCheckbox.checked;
-				_target.setAttribute("checked",meCheckbox.checked);
+				//2015-05-17	Daneil	修复bug，判断点击的是li还是checkBox
+				if(_target.tagName=="INPUT")
+				{
+					//_target=_target.parentNode;
+					_target.parentNode.setAttribute("checked",_target.checked);
+				}
+				else
+				{
+					var meCheckbox=_target.childNodes.item(0);
+					meCheckbox.checked=!meCheckbox.checked;
+					_target.setAttribute("checked",meCheckbox.checked);
+				}
 				//勾选赋值，显示所有的值
 				var checkedList=getCheckList();
 				if(call)call(showId,checkedList[0],checkedList[1]);
-				controlIn=false;
+				controlIn=false;				
 			}				
 		};
-				
+		
+		if(ischeckBox)
+		{
+			//var cBox=document.createElement("input");
+			//cBox.type="checkbox";
+			//cBox.onclick=function(e)
+			//{
+			//	alert('');
+			//};
+			//li.appendChild(cBox,null);
+			//li.appendChild(name,null);
+			//li.innerHTML+=name;
+			li.innerHTML="<input type='checkbox'>"+name;
+						
+		}else
+			li.innerHTML=name;
+			
 		dataControl.appendChild(li,null);
 	}
 	
