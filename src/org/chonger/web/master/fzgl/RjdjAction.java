@@ -116,13 +116,13 @@ public class RjdjAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新") + "妊娠检查信息成功！");
+			
 			server.saveOrUpdate(rj);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
-					: "更新" + "妊娠检查信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
-					: "更新" + "妊娠检查信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新") + "妊娠检查信息异常！");
 		}
 		return "infos";
 	}
