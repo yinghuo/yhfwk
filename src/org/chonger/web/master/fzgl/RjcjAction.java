@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 /**
- * 妊娠检查登记的常用Action处理
+ * 妊娠初检登记的常用Action处理
  * @ClassName: LcdjAction
- * @Description: 妊娠检查登记管理Action
+ * @Description: 妊娠初检登记管理Action
  * @author Liuzq
  * @date 2015-4-16 
  * @version V1.0
@@ -28,8 +28,8 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
 	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
-	@Result(name = "rj-list.jsp", location = "/admin/pages/fzgl/rjdj-index.jsp"),
-	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/rjdj-add.jsp")
+	@Result(name = "rj-list.jsp", location = "/admin/pages/fzgl/rjcj-index.jsp"),
+	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/rjcj-add.jsp")
 })
 public class RjcjAction extends ActionSupport {
 	
@@ -114,12 +114,12 @@ public class RjcjAction extends ActionSupport {
 	public String save() throws Exception {
 		try {
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
-					: "更新") + "妊娠检查信息成功！");
+					: "更新") + "妊娠初检信息成功！");
 			
 			server.saveOrUpdate(rj);
 		} catch (Exception ex) {
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
-					: "更新") + "妊娠检查信息异常！");
+					: "更新") + "妊娠初检信息异常！");
 		}
 		return "infos";
 	}
@@ -138,7 +138,7 @@ public class RjcjAction extends ActionSupport {
 	public String delete() throws Exception{
 		try{
 			server.delete(id);
-			jsonResult.sendSuccessMessage("删除牛只妊检信息成功！");
+			jsonResult.sendSuccessMessage("删除牛只妊检初检信息成功！");
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage(ex.getMessage());

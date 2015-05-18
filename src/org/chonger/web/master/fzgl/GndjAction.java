@@ -5,57 +5,62 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.chonger.entity.fzgl.RJFJXX;
-import org.chonger.service.fzgl.RjfjServer;
+import org.chonger.entity.fzgl.GNDJXX;
+import org.chonger.service.fzgl.GndjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 /**
- * 妊娠复检登记的常用Action处理
- * @ClassName: LcdjAction
- * @Description: 妊娠复检登记管理Action
+ * 干奶登记的常用Action处理
+ * 
+ * @ClassName: FqdjAction
+ * @Description: 干奶登记管理Action
  * @author Liuzq
- * @date 2015-4-16 
+ * @date 2015-4-16
  * @version V1.0
- *
+ * 
  */
 @SuppressWarnings("serial")
-@ParentPackage("json-default") 
-@Results({ 
-	@Result(name = "error", location = "/error.jsp"),
-	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
-	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
-	@Result(name = "fj-list.jsp", location = "/admin/pages/fzgl/rjfj-index.jsp"),
-	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/rjfj-add.jsp")
-})
-public class RjfjAction extends ActionSupport {
-	
+@ParentPackage("json-default")
+@Results({
+		@Result(name = "error", location = "/error.jsp"),
+		@Result(name = "infos", type = "json", params = { "root",
+				"jsonResult.infos" }),
+		@Result(name = "infolist", type = "json", params = { "root",
+				"jsonResult.objList" }),
+		@Result(name = "list.jsp", location = "/admin/pages/fzgl/gndj-index.jsp"),
+		@Result(name = "edit.jsp", location = "/admin/pages/fzgl/gndj-add.jsp") })
+public class GndjAction extends ActionSupport {
+
 	@Autowired
-	private RjfjServer server;
-	
-	public RjfjAction(){
-		jsonResult=new JsonResultUtils();
+	private GndjServer server;
+
+	public GndjAction() {
+		jsonResult = new JsonResultUtils();
 	}
-	
-	/**返回的json消息*/
+
+	/** 返回的json消息 */
 	private JsonResultUtils jsonResult;
-	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 
-	/**妊娠检查登记实体*/
-	private RJFJXX fj;
-
+	public JsonResultUtils getJsonResult() {
+		return jsonResult;
+	}
 	
-	public RJFJXX getFj() {
-		return fj;
+	/** 发情登记实体 */
+	private GNDJXX gn;
+
+	public GNDJXX getGn() {
+		return gn;
 	}
 
-	public void setFj(RJFJXX fj) {
-		this.fj = fj;
+	public void setGn(GNDJXX gn) {
+		this.gn = gn;
 	}
-
+	
 	/** 参数列表 */
 	private String ncbh;// 牛场编号参数。
 
@@ -91,35 +96,38 @@ public class RjfjAction extends ActionSupport {
 	public void setEbbh(String ebbh) {
 		this.ebbh = ebbh;
 	}
-	
-	private List<RJFJXX> fjlist;
 
-	public List<RJFJXX> getFjlist() {
-		return fjlist;
+	private List<GNDJXX> gnlist;
+
+	public List<GNDJXX> getGnlist() {
+		return gnlist;
 	}
-	/**列表翻页组件*/
+
+	/** 列表翻页组件 */
 	@Autowired
-	public RollPage<RJFJXX> pager;
+	public RollPage<GNDJXX> pager;
 	private int p;
-	public void setP(int p) {		this.p = p;	}
-	
+
+	public void setP(int p) {
+		this.p = p;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
-		fjlist = pager.getDataSource();
-		return "fj-list.jsp";
+		gnlist = pager.getDataSource();
+		return "list.jsp";
 	}
 	
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fj.getXh()) ? "新增"
-					: "更新") + "妊娠复检信息成功！");
-			
-			server.saveOrUpdate(fj);
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(gn.getXh()) ? "新增"
+					: "更新") + "干奶信息成功！");
+			server.saveOrUpdate(gn);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fj.getXh()) ? "新增"
-					: "更新") + "妊娠复检信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(gn.getXh()) ? "新增"
+					: "更新") + "干奶信息异常！");
 		}
 		return "infos";
 	}
@@ -129,7 +137,7 @@ public class RjfjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			fj=server.queryNZById(id);
+			gn=server.queryNZById(id);
 		}
 		return "edit.jsp";
 	}
@@ -138,13 +146,11 @@ public class RjfjAction extends ActionSupport {
 	public String delete() throws Exception{
 		try{
 			server.delete(id);
-			jsonResult.sendSuccessMessage("删除牛只妊娠复检信息成功！");
+			jsonResult.sendSuccessMessage("删除牛只干奶信息成功！");
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
 	}
-	
 }
-	

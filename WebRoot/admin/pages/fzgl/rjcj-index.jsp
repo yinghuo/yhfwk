@@ -17,7 +17,7 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/fzgl/rjdj.action" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/fzgl/rjcj.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
@@ -41,29 +41,23 @@
   	 		<tr>
              	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
-              	<th width="200">检查日期</th>
-              	<th width="200">检查类型</th>
-              	<th width="200">检查结果</th>
-              	<th width="200">检查人</th>
-              	<th width="200">检查方式</th>
-              	<th width="200">胎儿状况</th>
-              	<th width="200">牛只性别</th>
+              	<th width="200">初检日期</th>
+              	<th width="200">初检结果</th>
+              	<th width="200">初检员</th>
+              	<th width="200">初检方式</th>
               	<th width="200">操作</th>
          	</tr>
-         	<s:iterator value="rjlist" status="status" id="rjxx">
+         	<s:iterator value="rjlist" status="status" id="rjcj">
 						<tr>
 							<td>${status.count }</td>
-							<td><s:property value="#rjxx.nzjbxx.nzbh"/></td>
-							<td><s:date name="#rjxx.jcrq" format="yyyy年MM月dd日"/></td>
-							<td><y:EnumLabel enumName="RJJCLX" value="${rjxx.jclx}"/></td>
-							<td><s:property value="#rjxx.jcjg"/></td>
-							<td><s:property value="#rjxx.jcy"/></td>
-							<td><s:property value="#rjxx.jcfs"/></td>
-							<td><s:property value="#rjxx.tszt"/></td>
-							<td><y:EnumLabel enumName="NZXB" value="${rjxx.nzxb}"/></td>
+							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>
+							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
+							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
+							<td><s:property value="#rjcj.cjy"/></td>
+							<td><y:EnumLabel enumName="CJFS" value="${rjcj.cjfs}" /></td>
 							<td>
-								<a title="修改" onclick="edit('<s:property value="#rjxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+								<a title="修改" onclick="edit('<s:property value="#rjcj.xh"/>')" class="fa fa-edit cr-p">修改</a>
+								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjcj!delete.action?id=<s:property value="#rjcj.xh"/>" class="fa fa-remove cr-p">删除</a>
 							</td>
 						</tr>
 			</s:iterator>
@@ -76,21 +70,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/fzgl/rjdj.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/fzgl/rjcj.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/fzgl/rjdj.action?p=${pageIndex}${searchString}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/fzgl/rjcj.action?p=${pageIndex}${searchString}">${pageIndex}</a></li>
 							</s:else>
 						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/fzgl/rjdj.action?p=${pageNowNum+1}${searchString}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/fzgl/rjcj.action?p=${pageNowNum+1}${searchString}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>
@@ -100,7 +94,7 @@
   	 </div>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
      <script>
-     	showmap("妊娠检查信息管理 > 牛只妊娠检查信息列表");
+     	showmap("妊娠检查信息管理 > 牛只妊娠初检信息列表");
      	function search()
      	{
      		document.getElementById("frmSearch").submit();
@@ -108,12 +102,12 @@
      	
      	function add()
      	{
-     		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjdj-add.jsp";
+     		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjcj-add.jsp";
      	}
      	
      	function edit(id)
      	{
-     		window.location.href="${pageContext.request.contextPath}/master/fzgl/rjdj!edit.action?id="+id;
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/rjcj!edit.action?id="+id;
      	}
      	
      	function deleteDone(data)

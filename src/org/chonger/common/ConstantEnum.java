@@ -190,5 +190,32 @@ public class ConstantEnum {
 		public Integer getValue() {	return value;}
 	}
 	
+	/**
+	 * 定义牛只妊娠初检结果
+	 */
+	public static enum CJJG implements BaseEnum<Integer>{
+		
+		已孕(0),未孕(1),待查(9);
+		
+		private int value;
+		CJJG(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义牛只妊娠初检方式
+	 */
+	public static enum CJFS implements BaseEnum<Integer>{
+		
+		直肠(0),孕酮(1),超声(2),其他(9);
+		
+		private int value;
+		CJFS(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
 	
 }

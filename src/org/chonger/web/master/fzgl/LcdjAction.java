@@ -131,16 +131,9 @@ public class LcdjAction extends ActionSupport {
 					: "更新") + "流产信息成功！");
 			
 			server.saveOrUpdate(lc);
-<<<<<<< HEAD
 		} catch (Exception ex) {
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(lc.getXh()) ? "新增"
 					: "更新") + "流产信息异常！");
-=======
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(lc.getXh()) ? "新增" : "更新" + "流产信息成功！");
-		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(lc.getXh()) ? "新增" : "更新" + "流产信息异常！");
->>>>>>> remotes/origin_yinghuo/master
 		}
 		return "infos";
 	}
