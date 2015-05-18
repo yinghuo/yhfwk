@@ -63,9 +63,25 @@ public class YgxxAction extends ActionSupport {
 	private String id;
 	public void setId(String id) {	this.id = id;	}
 	
+	/**搜索查询参数定义*/
+	private String bh,xm;
+	public String getBh() {	return bh;}
+	public void setBh(String bh) {	this.bh = bh;}
+	public String getXm() {	return xm;}
+	public void setXm(String xm) {	this.xm = xm;}
+	
+	/**搜索参数获取，方便翻页使用*/
+	public String getSearchString()
+	{
+		String searchString="";
+		if(!StringUtil.IsEmpty(bh))searchString+=("&bh="+bh);
+		if(!StringUtil.IsEmpty(xm))searchString+=("&xm="+xm);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(null,null),pager.pageSize,p);
+		pager.init(server.getQueryString(bh,xm),pager.pageSize,p);
 		yglist=pager.getDataSource();
 		return "list.jsp";
 	}

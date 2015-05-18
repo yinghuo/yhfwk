@@ -37,9 +37,10 @@ public class LcxxServer {
 	 * @version V1.0
 	 * 
 	 */
-	public String getQueryString()
+	public String getQueryString(String bh)
 	{
 		String sql="from NZLCXX model where 1=1 ";
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.nzjbxx.nzbh like '%"+bh+"%' ";
 		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)

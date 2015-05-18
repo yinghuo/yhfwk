@@ -77,10 +77,10 @@ public class NzxxServer {
 		return null;
 	}
 	
-	public String getQueryString(String xh,String eb,String jbq)
+	public String getQueryString(String bh,String eb,String jbq)
 	{		
 		String sql="from NZJBXX model where 1=1 ";		
-		if(!StringUtil.IsEmpty(xh))sql+=" and model.xh='"+xh+"' ";
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.nzbh like '%"+bh+"%' ";
 		if(!StringUtil.IsEmpty(eb))sql+=" and model.ebbh like '%"+eb+"%'";
 		if(!StringUtil.IsEmpty(jbq))sql+=" and model.jbqbh like '%"+jbq+"%'";
 		

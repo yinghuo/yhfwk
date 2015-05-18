@@ -17,13 +17,13 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/fzgl/cddj.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
-	          				<td><input id="" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
+	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 	          				<td>耳标编号：</td>
-	          				<td><input id="" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
+	          				<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 	          			</tr>
 	          		</table>
 	          		</form>

@@ -45,17 +45,18 @@ public class GndjServer {
 	
 	public String getQueryString(String nzbh,String ebbh)
 	{
-		String sql="from GNDJXX model where 1=1 ";
+		String sql="from GNDJXX model where 1=1 ";		
+		if(!StringUtil.IsEmpty(nzbh))sql+=" and model.nzjbxx.nzbh like '%"+nzbh+"%' ";		
+		if(!StringUtil.IsEmpty(ebbh))sql+=" and model.nzjbxx.ebbh like '%"+ebbh+"%' ";
+		
+		//2015-05-18	Daniel	修复bug，增加牛只类型条件，状态0为正常牛只
+		sql+=" and model.nzjbxx.nzzt = '0' ";
+		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
-		
-		if(!StringUtil.IsEmpty(nzbh))sql+=" and model.nzbh='"+nzbh+"' ";
-		
-		//if(!StringUtil.IsEmpty(ebbh))sql+=" and model.ebbh like '%"+ebbh+"%'";
-		
 		return sql;
 	}
 	

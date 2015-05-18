@@ -86,7 +86,7 @@
 		  		$("#sytxt").val(t);
 		 		$("#sy").val(t);
 	 		}
-		},false);
+		},true);
 		
 		function ygSelect(id)
 		{

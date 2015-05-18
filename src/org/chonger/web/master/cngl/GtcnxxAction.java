@@ -68,6 +68,13 @@ public class GtcnxxAction extends ActionSupport {
 	public String getBh() {	return bh;	}
 	public void setBh(String bh) {	this.bh = bh;	}
 	
+	/** 搜索参数获取，方便翻页使用 */
+	public String getSearchString() {
+		String searchString = "";
+		if (!StringUtil.IsEmpty(bh))searchString += ("&bh=" + bh);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		pager.init(server.getQueryString(bh),pager.pageSize,p);
@@ -79,16 +86,16 @@ public class GtcnxxAction extends ActionSupport {
 		try{
 			
 			//根据牛只信息获取牛只编号
-			NZJBXX nzxx=nzServer.queryNZByBH(cn.getNzbh());
+			//NZJBXX nzxx=nzServer.queryNZByBH(cn.getNzbh());
 			
-			if(nzxx!=null)
-			{	
+			//if(nzxx!=null)
+			//{	
 				jsonResult.sendSuccessMessage((StringUtil.IsEmpty(cn.getXh())?"新增":"更新")+"个体产奶信息成功！");
-				cn.setNzbh(nzxx.getXh());
+				//cn.setNzbh(nzxx.getXh());
 				server.saveOrUpdate(cn);				
-			}else{
-				jsonResult.sendErrorMessage((StringUtil.IsEmpty(cn.getXh())?"新增":"更新")+"个体产奶信息错误，无效的牛只信息！");
-			}
+			//}else{
+			//	jsonResult.sendErrorMessage((StringUtil.IsEmpty(cn.getXh())?"新增":"更新")+"个体产奶信息错误，无效的牛只信息！");
+			//}
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage((StringUtil.IsEmpty(cn.getXh())?"新增":"更新")+"个体产奶信息异常！");

@@ -62,9 +62,22 @@ public class LcxxAction extends ActionSupport {
 	private String id;	
 	public void setId(String id) {		this.id = id;	}
 	
+	/**搜索查询参数定义*/
+	private String bh;
+	public String getBh() {	return bh;	}
+	public void setBh(String bh) {	this.bh = bh;	}
+	
+	/**搜索参数获取，方便翻页使用*/
+	public String getSearchString()
+	{
+		String searchString="";
+		if(!StringUtil.IsEmpty(bh))searchString+=("&bh="+bh);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(lcServer.getQueryString(),pager.pageSize,p);
+		pager.init(lcServer.getQueryString(bh),pager.pageSize,p);
 		lclist=pager.getDataSource();
 		return "list.jsp";
 	}

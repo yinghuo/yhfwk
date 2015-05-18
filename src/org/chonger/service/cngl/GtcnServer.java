@@ -29,7 +29,10 @@ public class GtcnServer {
 	public String getQueryString(String bh)
 	{
 		String sql="from GTCNXX model where 1=1 ";		
-		if(!StringUtil.IsEmpty(bh))sql+=" and model.nzbh='"+bh+"' ";
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.nzjbxx.nzbh like '%"+bh+"%' ";
+		
+		//2015-05-18	Daniel	修复bug，增加牛只类型条件，状态0为正常牛只
+		sql+=" and model.nzjbxx.nzzt = '0'";
 		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)

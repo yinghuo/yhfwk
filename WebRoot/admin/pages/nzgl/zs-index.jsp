@@ -16,7 +16,7 @@
 	          		</div>
 	          	</div>
 	          	<div class="box_center pt5 pb5">
-	          		<form id="frmSearch" action="" method="post">
+	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/nzgl/lcxx.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
@@ -43,7 +43,6 @@
               	<th width="200">转出圈舍</th>
               	<th width="200">转入圈舍</th>
               	<th width="200">经手人</th>
-              	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="zslist" status="status" id="zsxx">
 				<tr>
@@ -53,9 +52,6 @@
 					<td><s:property value="#zsxx.zcjsxx.jsmc"/></td>
 					<td><s:property value="#zsxx.zrjsxx.jsmc"/></td>
 					<td><s:property value="#zsxx.jsr"/></td>
-					<td>
-						<a >删除</a>
-					</td>
 				</tr>
 			</s:iterator>
   	 	</table>
@@ -67,21 +63,21 @@
 							<li class="first-child disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum-1}">上一页</a></li>
+							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">
 								<li class="active"><span>${pageIndex}</span></li>
 							</s:if>
 							<s:else>
-								<li><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageIndex}">${pageIndex}</a></li>
+								<li><a href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageIndex}${searchString}">${pageIndex}</a></li>
 							</s:else>
 						</i:PageNum>
 						<s:if test="#attr.IsLast">
 							<li class="disabled"><span>下一页</span></li>
 						</s:if>
 						<s:else>
-							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum+1}">下一页</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/master/nzgl/zsxx.action?p=${pageNowNum+1}${searchString}">下一页</a></li>
 						</s:else>
 						<li class="last-child"><span>共${pageMaxNum}页</span></li>
             		</i:Page>
@@ -91,6 +87,10 @@
   	 </div>
      <script>
      	showmap("牛只信息管理 > 转舍信息列表");
+     	function search()
+     	{
+     		document.getElementById("frmSearch").submit();
+     	}
      </script>
   </body>
 </html>

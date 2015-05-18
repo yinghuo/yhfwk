@@ -13,25 +13,27 @@
 					<tr>
 						<td class="td_right">牛只编号：</td>
 						<td class="">
-							<input type="text" id="nzbh" name="cn.nzbh" class="input-text lh30" value="${cn.nzbh}" size="80"><span class="required">*必填</span>
+							<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
+							<input type="hidden" id="nzbh" name="cn.nzbh" value="${cn.nzbh}">
+							<span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
 						<td class="td_right">挤奶日期：</td>
 						<td class="">
-							<input type="text" id="jnrq" name="cn.jnrq" readonly="readonly" class="input-text lh30" value="<s:date name="cn.jnrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
+							<input type="text" id="jnrq" name="cn.jnrq" readonly="readonly" class="input-text lh30" value="<s:date name="cn.jnrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
 						<td class="td_right">班次：</td>
 						<td class="">
-							<input type="text" id="bc" name="cn.bc" class="input-text lh30" value="${cn.bc}" size="80"><span class="required">*必填</span>
+							<input type="text" id="bc" name="cn.bc" class="input-text lh30" value="${cn.bc}" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
 						<td class="td_right">产量：</td>
 						<td class="">
-							<input type="text" id="cl" name="cn.cl" class="input-text lh30" value="${cn.cl}" size="80"><span class="required">*必填</span>
+							<input type="text" id="cl" name="cn.cl" class="input-text lh30" value="${cn.cl}" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
@@ -48,7 +50,8 @@
 			</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
-     <script type="text/javascript">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
+    <script type="text/javascript">
      	showmap("产奶信息管理 > <s:if test="nc==null">新增</s:if><s:else>更新</s:else>个体产奶信息");
      	function validata()
      	{
@@ -83,6 +86,29 @@
      				window.location.href="${pageContext.request.contextPath}/master/cngl/gtcnxx.action";
      		});
      	}
+     	
+     	var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
+			$("#nzbhtxt").val(t);
+			$("#nzbh").val(v);
+		});
+		
+		var nzList;
+		function nzSelect(id)
+		{
+			//筛选过滤
+			nzList=nzselect.screening($("#nzbhtxt").val());
+		}
+		
+		function nzHiden()
+		{
+			if(nzList&&nzList.length>0)
+			{
+				var nzxx=nzList[0];
+				$("#nzbhtxt").val(nzxx[1]);
+				$("#nzbh").val(nzxx[0]);
+			}
+			nzselect.hiden();
+		}
      </script>
   </body>
 </html>

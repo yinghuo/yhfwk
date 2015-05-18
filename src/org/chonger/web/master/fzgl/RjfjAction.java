@@ -45,67 +45,41 @@ public class RjfjAction extends ActionSupport {
 	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 
 	/**妊娠检查登记实体*/
-	private RJFJXX fj;
-
-	
-	public RJFJXX getFj() {
-		return fj;
-	}
-
-	public void setFj(RJFJXX fj) {
-		this.fj = fj;
-	}
-
-	/** 参数列表 */
-	private String ncbh;// 牛场编号参数。
-
-	public String getNcbh() {
-		return ncbh;
-	}
-
-	public void setNcbh(String ncbh) {
-		this.ncbh = ncbh;
-	}
-
-	private String id;
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	/** 搜索查询参数定义 */
-	private String nzbh, ebbh;
-
-	public String getNzbh() {
-		return nzbh;
-	}
-
-	public void setNzbh(String bh) {
-		this.nzbh = bh;
-	}
-
-	public String getEbbh() {
-		return ebbh;
-	}
-
-	public void setEbbh(String ebbh) {
-		this.ebbh = ebbh;
-	}
+	private RJFJXX fj;	
+	public RJFJXX getFj() {return fj;}
+	public void setFj(RJFJXX fj) {this.fj = fj;}
 	
 	private List<RJFJXX> fjlist;
-
-	public List<RJFJXX> getFjlist() {
-		return fjlist;
-	}
+	public List<RJFJXX> getFjlist() {return fjlist;}
+	
 	/**列表翻页组件*/
 	@Autowired
 	public RollPage<RJFJXX> pager;
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	
+	private String id;
+	public void setId(String id) {this.id = id;}
+	
+	/** 搜索查询参数定义 */
+	private String bh, eb;
+	public String getBh() {	return bh;	}
+	public void setBh(String bh) {this.bh = bh;}
+	public String getEb() {	return eb;	}
+	public void setEb(String eb) {this.eb = eb;}
+	
+	/**搜索参数获取，方便翻页使用*/
+	public String getSearchString()
+	{
+		String searchString="";
+		if(!StringUtil.IsEmpty(bh))searchString+=("&bh="+bh);
+		if(!StringUtil.IsEmpty(eb))searchString+=("&eb="+eb);
+		return searchString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
+		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
 		fjlist = pager.getDataSource();
 		return "fj-list.jsp";
 	}

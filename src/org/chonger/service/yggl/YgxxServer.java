@@ -42,9 +42,11 @@ public class YgxxServer {
 		return null;
 	}
 	
-	public String getQueryString(String bh,String mc)
+	public String getQueryString(String bh,String xm)
 	{
 		String sql="from YGJBXX model where 1=1 ";		
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.ygbh like '%"+bh+"%' ";
+		if(!StringUtil.IsEmpty(xm))sql+=" and model.ygmc like '%"+xm+"%'";
 		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)

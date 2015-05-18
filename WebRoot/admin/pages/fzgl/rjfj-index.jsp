@@ -17,18 +17,14 @@
 				</div>
 			</div>
 			<div class="box_center pt5 pb5">
-				<form id="frmSearch"
-					action="${pageContext.request.contextPath}/master/fzgl/rjfj.action"
-					method="post">
+				<form id="frmSearch" action="${pageContext.request.contextPath}/master/fzgl/rjfj.action" method="post">
 					<table class="form_table" border="0" cellpadding="0"
 						cellspacing="0">
 						<tr>
 							<td>牛只编号：</td>
-							<td><input id="bh" type="text" name="bh"
-								class="input-text lh25" value="${bh}" size="30"></td>
+							<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 							<td>耳标编号：</td>
-							<td><input id="" type="text" name="" class="input-text lh25"
-								value="" size="30"></td>
+							<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 						</tr>
 					</table>
 				</form>
@@ -36,10 +32,8 @@
 		</div>
 		<div class="pb5 pt5 pr10">
 			<div class="search_bar_btn" style="text-align: right;">
-				<input type="button" name="button" onClick="search()"
-					class="btn btn82 btn_search" value="查询"> <input
-					type="button" name="button" onClick="add()"
-					class="btn btn82 btn_add" value="新增">
+				<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询"> 
+				<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
 			</div>
 		</div>
 	</div>
@@ -65,12 +59,10 @@
 					<td><s:property value="#rjfj.fjy" /></td>
 					<td><s:property value="#rjfj.tezk" /></td>
 					<td><y:EnumLabel enumName="NZXB" value="${rjfj.nzxb}" /></td>
-					<td><a title="修改"
-						onclick="edit('<s:property value="#rjfj.xh"/>')"
-						class="fa fa-edit cr-p">修改</a> <a title="删除" id="comsubmit_delete"
-						promptInfo='确认删除该条妊娠复检信息吗？' callfunction=",deleteDone,"
-						url="${pageContext.request.contextPath}/master/fzgl/rjfj!delete.action?id=<s:property value="#rjfj.xh"/>"
-						class="fa fa-remove cr-p">删除</a></td>
+					<td>
+						<a title="修改" onclick="edit('<s:property value="#rjfj.xh"/>')"	class="fa fa-edit cr-p">修改</a> 
+						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊娠复检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjfj!delete.action?id=<s:property value="#rjfj.xh"/>" class="fa fa-remove cr-p">删除</a>
+					</td>
 				</tr>
 			</s:iterator>
 		</table>

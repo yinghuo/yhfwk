@@ -33,7 +33,7 @@ public class JsglServer {
 	public String getQueryString(String bh,String mc)
 	{
 		String sql="from JSJBXX model where 1=1 ";		
-		if(!StringUtil.IsEmpty(bh))sql+=" and model.jsbh='"+bh+"' ";
+		if(!StringUtil.IsEmpty(bh))sql+=" and model.jsbh like '%"+bh+"%' ";
 		if(!StringUtil.IsEmpty(mc))sql+=" and model.jsmc like '%"+mc+"%'";
 		
 		User user=SessionUtils.getUser();

@@ -32,12 +32,11 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage("json-default")
 @Results({
 		@Result(name = "error", location = "/error.jsp"),
-		@Result(name = "infos", type = "json", params = { "root",
-				"jsonResult.infos" }),
-		@Result(name = "infolist", type = "json", params = { "root",
-				"jsonResult.objList" }),
+		@Result(name = "infos", type = "json", params = { "root","jsonResult.infos" }),
+		@Result(name = "infolist", type = "json", params = { "root","jsonResult.objList" }),
 		@Result(name = "cd-list.jsp", location = "/admin/pages/fzgl/cddj-index.jsp"),
-		@Result(name = "edit.jsp", location = "/admin/pages/fzgl/cddj-add.jsp") })
+		@Result(name = "edit.jsp", location = "/admin/pages/fzgl/cddj-add.jsp") 
+})
 public class CddjAction extends ActionSupport {
 
 	@Autowired
@@ -49,91 +48,44 @@ public class CddjAction extends ActionSupport {
 
 	/** 返回的json消息 */
 	private JsonResultUtils jsonResult;
-
-	public JsonResultUtils getJsonResult() {
-		return jsonResult;
-	}
+	public JsonResultUtils getJsonResult() {return jsonResult;}
 
 	/** 产犊登记实体 */
 	private CDDJXX cd;
-
-	public CDDJXX getCd() {
-		return cd;
-	}
-
-	public void setCd(CDDJXX cd) {
-		this.cd = cd;
-	}
+	public CDDJXX getCd() {return cd;}
+	public void setCd(CDDJXX cd) {this.cd = cd;}
 
 	private List<CDDJXX> cdlist;
-
-	public List<CDDJXX> getCdlist() {
-		return cdlist;
-	}
+	public List<CDDJXX> getCdlist() {return cdlist;}
 
 	/** 列表翻页组件 */
 	@Autowired
 	public RollPage<CDDJXX> pager;
-
-	public RollPage<CDDJXX> getPager() {
-		return pager;
-	}
-
+	public RollPage<CDDJXX> getPager() {return pager;}
 	private int p;
-
-	public void setP(int p) {
-		this.p = p;
-	}
-
-	/** 参数列表 */
-	private String ncbh;// 牛场编号参数。
-
-	public String getNcbh() {
-		return ncbh;
-	}
-
-	public void setNcbh(String ncbh) {
-		this.ncbh = ncbh;
-	}
+	public void setP(int p) {this.p = p;}
 
 	private String id;
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	public void setId(String id) {this.id = id;}
 
 	/** 搜索查询参数定义 */
-	private String nzbh, ebbh;
-
-	public String getNzbh() {
-		return nzbh;
-	}
-
-	public void setNzbh(String bh) {
-		this.nzbh = bh;
-	}
-
-	public String getEbbh() {
-		return ebbh;
-	}
-
-	public void setEbbh(String ebbh) {
-		this.ebbh = ebbh;
-	}
-
+	private String bh, eb;
+	public String getBh() {return bh;}
+	public void setBh(String bh) {this.bh = bh;}
+	public String getEb() {return eb;}
+	public void setEb(String eb) {this.eb = eb;}
+	
 	/** 搜索参数获取，方便翻页使用 */
 	public String getSearchString() {
 		String searchString = "";
-		if (!StringUtil.IsEmpty(nzbh))
-			searchString += ("&nzbh=" + nzbh);
-		if (!StringUtil.IsEmpty(ebbh))
-			searchString += ("&ebbh=" + ebbh);
+		if (!StringUtil.IsEmpty(bh))searchString += ("&bh=" + bh);
+		if (!StringUtil.IsEmpty(eb))searchString += ("&eb=" + eb);
 		return searchString;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(null, null), pager.pageSize, p);
+		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
 		cdlist = pager.getDataSource();
 		return "cd-list.jsp";
 	}
