@@ -49,69 +49,39 @@ public class HtxtxxAction extends ActionSupport {
 	
 	/** 发情登记实体 */
 	private HTXTXX ht;
-
-	public HTXTXX getHt() {
-		return ht;
-	}
-
-	public void setHt(HTXTXX ht) {
-		this.ht = ht;
-	}
+	public HTXTXX getHt() {return ht;}
+	public void setHt(HTXTXX ht) {this.ht = ht;}
 	
-	/** 参数列表 */
-	private String ncbh;// 牛场编号参数。
-
-	public String getNcbh() {
-		return ncbh;
-	}
-
-	public void setNcbh(String ncbh) {
-		this.ncbh = ncbh;
-	}
-
 	private String id;
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	public void setId(String id) {this.id = id;}
 	
-	/** 搜索查询参数定义 */
-	private String nzbh, ebbh;
-
-	public String getNzbh() {
-		return nzbh;
-	}
-
-	public void setNzbh(String bh) {
-		this.nzbh = bh;
-	}
-
-	public String getEbbh() {
-		return ebbh;
-	}
-
-	public void setEbbh(String ebbh) {
-		this.ebbh = ebbh;
-	}
-
 	private List<HTXTXX> htlist;
-
-	public List<HTXTXX> getHtlist() {
-		return htlist;
-	}
+	public List<HTXTXX> getHtlist() {return htlist;}
 
 	/** 列表翻页组件 */
 	@Autowired
 	public RollPage<HTXTXX> pager;
 	private int p;
-
-	public void setP(int p) {
-		this.p = p;
+	public void setP(int p) {this.p = p;}
+	
+	/** 搜索查询参数定义 */
+	private String bh, eb;
+	public String getBh() {	return bh;}
+	public void setBh(String bh) {this.bh = bh;}
+	public String getEb() {return eb;}
+	public void setEb(String eb) {this.eb = eb;}
+	
+	/** 搜索参数获取，方便翻页使用 */
+	public String getSearchString() {
+		String searchString = "";
+		if (!StringUtil.IsEmpty(bh))searchString += ("&bh=" + bh);
+		if (!StringUtil.IsEmpty(eb))searchString += ("&eb=" + eb);
+		return searchString;
 	}
 
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
+		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
 		htlist = pager.getDataSource();
 		return "list.jsp";
 	}

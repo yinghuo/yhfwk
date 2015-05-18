@@ -49,57 +49,33 @@ public class XdxxAction extends ActionSupport {
 	
 	/** 发情登记实体 */
 	private XDXX xd;
-
-	public XDXX getXd() {
-		return xd;
-	}
-
-	public void setXd(XDXX xd) {
-		this.xd = xd;
-	}
-	
-	/** 参数列表 */
-	private String ncbh;// 牛场编号参数。
-
-	public String getNcbh() {
-		return ncbh;
-	}
-
-	public void setNcbh(String ncbh) {
-		this.ncbh = ncbh;
-	}
-
+	public XDXX getXd() {return xd;}
+	public void setXd(XDXX xd) {this.xd = xd;}
+		
 	private String id;
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	public void setId(String id) {this.id = id;}
 	
-	/** 搜索查询参数定义 */
-	private String xdrq;
-
-	public String getXdrq() {
-		return xdrq;
-	}
-
-	public void setXdrq(String xdrq) {
-		this.xdrq = xdrq;
-	}
-
 	private List<XDXX> xdlist;
-
-	public List<XDXX> getXdlist() {
-		return xdlist;
-	}
+	public List<XDXX> getXdlist() {return xdlist;}
 
 	/** 列表翻页组件 */
 	@Autowired
 	public RollPage<XDXX> pager;
 	private int p;
-
-	public void setP(int p) {
-		this.p = p;
+	public void setP(int p) {this.p = p;}
+	
+	/** 搜索查询参数定义 */
+	private String xdrq;
+	public String getXdrq() {return xdrq;}
+	public void setXdrq(String xdrq) {this.xdrq = xdrq;	}
+	
+	/** 搜索参数获取，方便翻页使用 */
+	public String getSearchString() {
+		String searchString = "";
+		if (!StringUtil.IsEmpty(xdrq))searchString += ("&xdrq=" + xdrq);
+		return searchString;
 	}
+	
 
 	@Override
 	public String execute() throws Exception {

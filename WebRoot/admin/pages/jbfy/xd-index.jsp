@@ -24,10 +24,7 @@
 						cellspacing="0">
 						<tr>
 							<td>消毒日期：</td>
-							<td><input type="text" id="xdrq" name="xd.xdrq"
-								class="input-text lh30" readonly="readonly"
-								value="<s:date name="xd.xdrq" format="yyyy-MM-dd"/>"
-								onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="50">
+							<td><input type="text" id="xdrq" name="xdrq" class="input-text lh30" readonly="readonly" value="${xdrq}" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="50">
 						</tr>
 					</table>
 				</form>

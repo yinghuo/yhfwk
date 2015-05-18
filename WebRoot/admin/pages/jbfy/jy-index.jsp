@@ -24,11 +24,9 @@
 						cellspacing="0">
 						<tr>
 							<td>牛只编号：</td>
-							<td><input id="bh" type="text" name="bh"
-								class="input-text lh25" value="${bh}" size="30"></td>
+							<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 							<td>耳标编号：</td>
-							<td><input id="" type="text" name="" class="input-text lh25"
-								value="" size="30"></td>
+							<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 						</tr>
 					</table>
 				</form>

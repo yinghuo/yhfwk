@@ -42,76 +42,43 @@ public class JbxxAction extends ActionSupport {
 
 	/** 返回的json消息 */
 	private JsonResultUtils jsonResult;
-
-	public JsonResultUtils getJsonResult() {
-		return jsonResult;
-	}
+	public JsonResultUtils getJsonResult() {return jsonResult;}
 	
 	/** 发情登记实体 */
 	private JBXX jb;
-
-	public JBXX getJb() {
-		return jb;
-	}
-
-	public void setJb(JBXX jb) {
-		this.jb = jb;
-	}
+	public JBXX getJb() {return jb;	}
+	public void setJb(JBXX jb) {this.jb = jb;}
 	
-	/** 参数列表 */
-	private String ncbh;// 牛场编号参数。
-
-	public String getNcbh() {
-		return ncbh;
-	}
-
-	public void setNcbh(String ncbh) {
-		this.ncbh = ncbh;
-	}
-
-	private String id;
-
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	/** 搜索查询参数定义 */
-	private String nzbh, ebbh;
-
-	public String getNzbh() {
-		return nzbh;
-	}
-
-	public void setNzbh(String bh) {
-		this.nzbh = bh;
-	}
-
-	public String getEbbh() {
-		return ebbh;
-	}
-
-	public void setEbbh(String ebbh) {
-		this.ebbh = ebbh;
-	}
-
 	private List<JBXX> jblist;
-
-	public List<JBXX> getJblist() {
-		return jblist;
-	}
+	public List<JBXX> getJblist() {return jblist;}
 
 	/** 列表翻页组件 */
 	@Autowired
 	public RollPage<JBXX> pager;
 	private int p;
-
-	public void setP(int p) {
-		this.p = p;
+	public void setP(int p) {this.p = p;}
+	
+	private String id;
+	public void setId(String id) {this.id = id;}
+	
+	/** 搜索查询参数定义 */
+	private String bh, eb;
+	public String getBh() {	return bh;}
+	public void setBh(String bh) {this.bh = bh;}
+	public String getEb() {return eb;}
+	public void setEb(String eb) {this.eb = eb;}
+	
+	/** 搜索参数获取，方便翻页使用 */
+	public String getSearchString() {
+		String searchString = "";
+		if (!StringUtil.IsEmpty(bh))searchString += ("&bh=" + bh);
+		if (!StringUtil.IsEmpty(eb))searchString += ("&eb=" + eb);
+		return searchString;
 	}
-
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
+		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
 		jblist = pager.getDataSource();
 		return "list.jsp";
 	}

@@ -15,7 +15,7 @@
 	  			<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
+						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${my.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
 						<input type="hidden" id="nzbh" name="my.nzbh" value="${my.nzbh}">
 						<span class="required">*必填</span>						
 					</td>
@@ -112,7 +112,7 @@
 		  		$("#sytxt").val(t);
 		 		$("#sy").val(t);
 	 		}
-		});
+		},true);
 		
 		function ygSelect(id)
 		{
@@ -136,7 +136,7 @@
 		function nzSelect(id)
 		{
 			//筛选过滤
-			nzselect.screening($("#nzbhtxt").val());
+			nzList=nzselect.screening($("#nzbhtxt").val());
 		}
 		
 		function nzHiden()

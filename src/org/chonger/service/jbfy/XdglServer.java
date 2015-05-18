@@ -46,15 +46,13 @@ public class XdglServer {
 	public String getQueryString(String xdrq)
 	{
 		String sql="from XDXX model where 1=1 ";
+		if(!StringUtil.IsEmpty(xdrq))sql+=" and model.xdrq='"+xdrq+"' ";
+		
 		User user=SessionUtils.getUser();
 		if(user!=null&&user.getRole().getRtype()==2)
 		{
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
-		
-		if(!StringUtil.IsEmpty(xdrq))sql+=" and model.xdrq='"+xdrq+"' ";
-		
-		//if(!StringUtil.IsEmpty(ebbh))sql+=" and model.ebbh like '%"+ebbh+"%'";
 		
 		return sql;
 	}

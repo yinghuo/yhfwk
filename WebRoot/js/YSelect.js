@@ -2,6 +2,7 @@
 
 	modify	2015-05-17	Daniel 	新增多选框模式
 	modify	2015-05-17	Daniel	1：修复文本输入正确离开后进行校验和赋值
+	modify	2015-05-18	Daniel	1：修复id定位高度滚动问题
 */
 //为指定的元素初始化下拉框,tag为内容标记的名称
 function YSelect(id,tagid,u,func,ischeck)
@@ -11,6 +12,7 @@ function YSelect(id,tagid,u,func,ischeck)
 	var rect=control.getBoundingClientRect();
 	var height=control.offsetHeight;
 	var width=control.offsetWidth;
+	var scrolltop=0;
 	//console.log("元素Left:"+rect.left);
 	//console.log("元素Top:"+rect.top);
 	//console.log("元素Height:"+height);
@@ -38,9 +40,10 @@ function YSelect(id,tagid,u,func,ischeck)
 				rect=control.getBoundingClientRect();
 				height=control.offsetHeight;
 				width=control.offsetWidth;
+				scrolltop=getScrollTop();
 				
 				showControl.style.left=rect.left+"px";
-				showControl.style.top=(rect.top+height)+"px";
+				showControl.style.top=(rect.top+height-scrolltop)+"px";
 				showControl.style.width=width+"px";
 			}
 			
@@ -55,6 +58,17 @@ function YSelect(id,tagid,u,func,ischeck)
 			showControl.style.display="block";
 			showState=true;
 		}
+	}
+	
+	function getScrollTop(){
+		if(document.documentElement&&document.documentElement.scrollTop)
+	    {
+	        scrolltop=document.documentElement.scrollTop;
+	    }
+	    else if(document.body)
+	    {
+	        scrolltop=document.body.scrollTop;
+	    }
 	}
 	
 	function hiden()
@@ -393,7 +407,8 @@ function YSelect(id,tagid,u,func,ischeck)
 	
 	var createTag=function(id)
 	{
-		var tagdiv=document.createElement("div");
+		scrolltop=getScrollTop();
+		var tagdiv=document.createElement("div");		
 		tagdiv.id=id;
 		tagdiv.style.position="absolute";
 		tagdiv.style.display="none";

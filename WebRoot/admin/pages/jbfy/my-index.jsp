@@ -17,18 +17,13 @@
 				</div>
 			</div>
 			<div class="box_center pt5 pb5">
-				<form id="frmSearch"
-					action="${pageContext.request.contextPath}/master/jbfy/myxx.action"
-					method="post">
-					<table class="form_table" border="0" cellpadding="0"
-						cellspacing="0">
+				<form id="frmSearch" action="${pageContext.request.contextPath}/master/jbfy/myxx.action" method="post">
+					<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td>牛只编号：</td>
-							<td><input id="bh" type="text" name="bh"
-								class="input-text lh25" value="${bh}" size="30"></td>
+							<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 							<td>耳标编号：</td>
-							<td><input id="" type="text" name="" class="input-text lh25"
-								value="" size="30"></td>
+							<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
 						</tr>
 					</table>
 				</form>
@@ -36,10 +31,8 @@
 		</div>
 		<div class="pb5 pt5 pr10">
 			<div class="search_bar_btn" style="text-align: right;">
-				<input type="button" name="button" onClick="search()"
-					class="btn btn82 btn_search" value="查询"> <input
-					type="button" name="button" onClick="add()"
-					class="btn btn82 btn_add" value="新增">
+				<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询"> 
+				<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
 			</div>
 		</div>
 	</div>
@@ -118,25 +111,22 @@
 		src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript">
      	showmap("疾病防疫管理 > 免疫登记列表");
-    function search() {
-				document.getElementById("frmSearch").submit();
-			}
-
-			function add() {
-				window.location.href = "${pageContext.request.contextPath}/admin/pages/jbfy/my-add.jsp";
-			}
-
-			function edit(id) {
-				window.location.href = "${pageContext.request.contextPath}/master/jbfy/myxx!edit.action?id="
-						+ id;
-			}
-
-			function deleteDone(data) {
-				jsonResult(data, function(data) {
-					if (data["error"] == 0)
-						window.location.reload();
-				});
-			}
+    	function search() {
+			document.getElementById("frmSearch").submit();
+		}
+		
+		function add() {
+			window.location.href = "${pageContext.request.contextPath}/admin/pages/jbfy/my-add.jsp";
+		}
+		function edit(id) {
+			window.location.href = "${pageContext.request.contextPath}/master/jbfy/myxx!edit.action?id="+ id;
+		}
+		function deleteDone(data) {
+			jsonResult(data, function(data) {
+				if (data["error"] == 0)
+					window.location.reload();
+			});
+		}
 	</script>
 </body>
 </html>

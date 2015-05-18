@@ -98,7 +98,7 @@
 		  		$("#sytxt").val(t);
 		 		$("#sy").val(t);
 	 		}
-		});
+		},true);
 		
 		function ygSelect(id)
 		{
