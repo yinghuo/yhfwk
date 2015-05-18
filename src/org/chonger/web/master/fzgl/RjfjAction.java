@@ -5,21 +5,18 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.chonger.entity.fzgl.PZDJXX;
-import org.chonger.entity.jbxx.NCJBXX;
-import org.chonger.entity.system.User;
-import org.chonger.service.fzgl.PzdjServer;
+import org.chonger.entity.fzgl.RJFJXX;
+import org.chonger.service.fzgl.RjfjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
-import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
 /**
- * 配种登记的常用Action处理
+ * 妊娠检查登记的常用Action处理
  * @ClassName: LcdjAction
- * @Description: 配种登记管理Action
+ * @Description: 妊娠检查登记管理Action
  * @author Liuzq
  * @date 2015-4-16 
  * @version V1.0
@@ -31,15 +28,15 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "error", location = "/error.jsp"),
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
 	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
-	@Result(name = "pz-list.jsp", location = "/admin/pages/fzgl/pzdj-index.jsp"),
-	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/pzdj-add.jsp")
+	@Result(name = "rj-list.jsp", location = "/admin/pages/fzgl/rjdj-index.jsp"),
+	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/rjdj-add.jsp")
 })
-public class PzdjAction extends ActionSupport {
+public class RjfjAction extends ActionSupport {
 	
 	@Autowired
-	private PzdjServer server;
+	private RjfjServer server;
 	
-	public PzdjAction(){
+	public RjfjAction(){
 		jsonResult=new JsonResultUtils();
 	}
 	
@@ -47,25 +44,18 @@ public class PzdjAction extends ActionSupport {
 	private JsonResultUtils jsonResult;
 	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 
-	/**配种登记实体*/
-	private PZDJXX pz;
+	/**妊娠检查登记实体*/
+	private RJFJXX rj;
 
 	
-	public PZDJXX getPz() {
-		return pz;
+	public RJFJXX getRj() {
+		return rj;
 	}
 
-	public void setPz(PZDJXX pz) {
-		this.pz = pz;
+	public void setRj(RJFJXX rj) {
+		this.rj = rj;
 	}
 
-
-	private List<PZDJXX> pzlist;
-
-	
-	public List<PZDJXX> getPzlist() {
-		return pzlist;
-	}
 	/** 参数列表 */
 	private String ncbh;// 牛场编号参数。
 
@@ -102,29 +92,34 @@ public class PzdjAction extends ActionSupport {
 		this.ebbh = ebbh;
 	}
 	
+	private List<RJFJXX> rjlist;
+
+	public List<RJFJXX> getRjlist() {
+		return rjlist;
+	}
 	/**列表翻页组件*/
 	@Autowired
-	public RollPage<PZDJXX> pager;
+	public RollPage<RJFJXX> pager;
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	
 	@Override
 	public String execute() throws Exception {
 		pager.init(server.getQueryString(nzbh, ebbh), pager.pageSize, p);
-		pzlist = pager.getDataSource();
-		return "pz-list.jsp";
+		rjlist = pager.getDataSource();
+		return "rj-list.jsp";
 	}
-
+	
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新") + "配种信息成功！");
-			
-			server.saveOrUpdate(pz);
+			server.saveOrUpdate(rj);
+
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新" + "妊娠检查信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新") + "配种信息异常！");
+			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(rj.getXh()) ? "新增"
+					: "更新" + "妊娠检查信息异常！");
 		}
 		return "infos";
 	}
@@ -134,7 +129,7 @@ public class PzdjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			pz=server.queryNZById(id);
+			rj=server.queryNZById(id);
 		}
 		return "edit.jsp";
 	}
@@ -143,14 +138,13 @@ public class PzdjAction extends ActionSupport {
 	public String delete() throws Exception{
 		try{
 			server.delete(id);
-			jsonResult.sendSuccessMessage("删除牛只配种信息成功！");
+			jsonResult.sendSuccessMessage("删除牛只妊检信息成功！");
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
 	}
-
 	
 }
 	

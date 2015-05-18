@@ -119,13 +119,13 @@ public class JbxxAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jb.getXh()) ? "新增"
+					: "更新") + "疾病登记信息成功！");
+			
 			server.saveOrUpdate(jb);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(jb.getXh()) ? "新增"
-					: "更新" + "疾病登记信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(jb.getXh()) ? "新增"
-					: "更新" + "疾病登记信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jb.getXh()) ? "新增"
+					: "更新") + "疾病登记信息异常！");
 		}
 		return "infos";
 	}

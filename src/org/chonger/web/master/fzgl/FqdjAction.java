@@ -125,13 +125,12 @@ public class FqdjAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fq.getXh()) ? "新增"
+					: "更新") + "发情信息成功！");
 			server.saveOrUpdate(fq);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(fq.getXh()) ? "新增"
-					: "更新" + "发情信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(fq.getXh()) ? "新增"
-					: "更新" + "发情信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fq.getXh()) ? "新增"
+					: "更新") + "发情信息异常！");
 		}
 		return "infos";
 	}

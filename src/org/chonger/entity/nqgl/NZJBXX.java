@@ -18,7 +18,8 @@ import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.LCXX;
 import org.chonger.entity.fzgl.PZDJXX;
-import org.chonger.entity.fzgl.RSJCXX;
+import org.chonger.entity.fzgl.RJCJXX;
+import org.chonger.entity.fzgl.RJFJXX;
 import org.chonger.entity.jbxx.JSJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -143,7 +144,10 @@ public class NZJBXX {
 	private List<PZDJXX> pzdjxxList;
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
-	private List<RSJCXX> rjdjxxList;
+	private List<RJCJXX> rjcjxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<RJFJXX> rjfjxxList;
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
 	private List<CDDJXX> cddjxxList;
@@ -386,14 +390,6 @@ public class NZJBXX {
 		this.pzdjxxList = pzdjxxList;
 	}
 
-	public List<RSJCXX> getRjdjxxList() {
-		return rjdjxxList;
-	}
-
-	public void setRjdjxxList(List<RSJCXX> rjdjxxList) {
-		this.rjdjxxList = rjdjxxList;
-	}
-
 	public List<CDDJXX> getCddjxxList() {
 		return cddjxxList;
 	}
@@ -408,5 +404,21 @@ public class NZJBXX {
 
 	public void setLcdjxxList(List<LCXX> lcdjxxList) {
 		this.lcdjxxList = lcdjxxList;
+	}
+
+	public List<RJCJXX> getRjcjxxList() {
+		return rjcjxxList;
+	}
+
+	public void setRjcjxxList(List<RJCJXX> rjcjxxList) {
+		this.rjcjxxList = rjcjxxList;
+	}
+
+	public List<RJFJXX> getRjfjxxList() {
+		return rjfjxxList;
+	}
+
+	public void setRjfjxxList(List<RJFJXX> rjfjxxList) {
+		this.rjfjxxList = rjfjxxList;
 	}
 }

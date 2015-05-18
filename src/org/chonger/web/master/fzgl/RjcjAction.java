@@ -5,13 +5,10 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-import org.chonger.entity.fzgl.RSJCXX;
-import org.chonger.entity.jbxx.NCJBXX;
-import org.chonger.entity.system.User;
-import org.chonger.service.fzgl.RjdjServer;
+import org.chonger.entity.fzgl.RJCJXX;
+import org.chonger.service.fzgl.RjcjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
-import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,12 +31,12 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "rj-list.jsp", location = "/admin/pages/fzgl/rjdj-index.jsp"),
 	@Result(name = "edit.jsp", location = "/admin/pages/fzgl/rjdj-add.jsp")
 })
-public class RjdjAction extends ActionSupport {
+public class RjcjAction extends ActionSupport {
 	
 	@Autowired
-	private RjdjServer server;
+	private RjcjServer server;
 	
-	public RjdjAction(){
+	public RjcjAction(){
 		jsonResult=new JsonResultUtils();
 	}
 	
@@ -48,14 +45,14 @@ public class RjdjAction extends ActionSupport {
 	public JsonResultUtils getJsonResult() {	return jsonResult;	}
 
 	/**妊娠检查登记实体*/
-	private RSJCXX rj;
+	private RJCJXX rj;
 
 	
-	public RSJCXX getRj() {
+	public RJCJXX getRj() {
 		return rj;
 	}
 
-	public void setRj(RSJCXX rj) {
+	public void setRj(RJCJXX rj) {
 		this.rj = rj;
 	}
 
@@ -95,14 +92,14 @@ public class RjdjAction extends ActionSupport {
 		this.ebbh = ebbh;
 	}
 	
-	private List<RSJCXX> rjlist;
+	private List<RJCJXX> rjlist;
 
-	public List<RSJCXX> getRjlist() {
+	public List<RJCJXX> getRjlist() {
 		return rjlist;
 	}
 	/**列表翻页组件*/
 	@Autowired
-	public RollPage<RSJCXX> pager;
+	public RollPage<RJCJXX> pager;
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	

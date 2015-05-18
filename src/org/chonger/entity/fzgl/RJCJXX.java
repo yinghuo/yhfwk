@@ -1,6 +1,5 @@
 package org.chonger.entity.fzgl;
 
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,18 +13,19 @@ import javax.persistence.Table;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 /**
- * 妊娠监测信息实体类
+ * 妊检初检信息实体类
  * 
  * @author Daniel
- * @create 2015-03-08
+ * @create 2015-05-18
  * @version 1.0
  */
 @Entity
-@Table(name = "rsjcdjb")
+@Table(name = "rjcjdjb")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class RSJCXX
-{
+public class RJCJXX {
+	
 	@Id
 	@Column(name = "xh")
 	private String xh;//序号
@@ -36,26 +36,17 @@ public class RSJCXX
 	@Column(name = "nzbh")
 	private String nzbh;//牛只编号
 	
-	@Column(name = "jcrq")
-	private Date jcrq;//检查日期
+	@Column(name = "cjrq")
+	private Date cjrq;//初检日期
 	
-	@Column(name = "jclx")
-	private String jclx;//检查类型
+	@Column(name = "cjjg")	
+	private int cjjg;//初检结果，已孕、未孕、待查
 	
-	@Column(name = "jcjg")
-	private String jcjg;//检查结果
+	@Column(name = "cjy")
+	private String cjy;//初检员
 	
-	@Column(name = "jcy")
-	private String jcy;//检查人
-	
-	@Column(name = "jcfs")
-	private String jcfs;//检查方式
-	
-	@Column(name = "tszt")
-	private String tszt;//胎儿状况
-	
-	@Column(name = "nzxb")
-	private String nzxb;//牛只性别
+	@Column(name = "cjfs")
+	private int cjfs;//直肠、孕酮、超声、其他
 	
 	@Column(name = "bz")
 	private String bz;//备注
@@ -71,7 +62,7 @@ public class RSJCXX
 	public void setNzjbxx(NZJBXX nzjbxx) {
 		this.nzjbxx = nzjbxx;
 	}
-
+	
 	public String getXh() {
 		return xh;
 	}
@@ -96,60 +87,36 @@ public class RSJCXX
 		this.nzbh = nzbh;
 	}
 
-	public Date getJcrq() {
-		return jcrq;
+	public Date getCjrq() {
+		return cjrq;
 	}
 
-	public void setJcrq(Date jcrq) {
-		this.jcrq = jcrq;
+	public void setCjrq(Date cjrq) {
+		this.cjrq = cjrq;
 	}
 
-	public String getJclx() {
-		return jclx;
+	public int getCjjg() {
+		return cjjg;
 	}
 
-	public void setJclx(String jclx) {
-		this.jclx = jclx;
+	public void setCjjg(int cjjg) {
+		this.cjjg = cjjg;
 	}
 
-	public String getJcjg() {
-		return jcjg;
+	public String getCjy() {
+		return cjy;
 	}
 
-	public void setJcjg(String jcjg) {
-		this.jcjg = jcjg;
+	public void setCjy(String cjy) {
+		this.cjy = cjy;
 	}
 
-	public String getJcy() {
-		return jcy;
+	public int getCjfs() {
+		return cjfs;
 	}
 
-	public void setJcy(String jcy) {
-		this.jcy = jcy;
-	}
-
-	public String getJcfs() {
-		return jcfs;
-	}
-
-	public void setJcfs(String jcfs) {
-		this.jcfs = jcfs;
-	}
-
-	public String getTszt() {
-		return tszt;
-	}
-
-	public void setTszt(String tszt) {
-		this.tszt = tszt;
-	}
-
-	public String getNzxb() {
-		return nzxb;
-	}
-
-	public void setNzxb(String nzxb) {
-		this.nzxb = nzxb;
+	public void setCjfs(int cjfs) {
+		this.cjfs = cjfs;
 	}
 
 	public String getBz() {
@@ -159,4 +126,8 @@ public class RSJCXX
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
+	
+	
+	
 }
+
