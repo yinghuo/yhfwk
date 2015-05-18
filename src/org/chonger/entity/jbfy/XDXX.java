@@ -5,9 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -52,7 +56,7 @@ public class XDXX
 	
 	@Column(name = "bz")
 	private String bz;//备注
-
+	
 	public String getXh()
 	{
 		return this.xh;

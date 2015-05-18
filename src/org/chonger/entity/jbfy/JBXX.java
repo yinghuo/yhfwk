@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -31,7 +35,7 @@ public class JBXX {
 	private String nzbh;//牛只编号
 	
 	@Column(name = "fbrq")
-	private String fbrq;//发病日期
+	private Date fbrq;//发病日期
 	
 	@Column(name = "jbzl")
 	private String jbzl;//疾病种类
@@ -52,7 +56,7 @@ public class JBXX {
 	private String czqk;//处置情况
 	
 	@Column(name = "fsqn")
-	private boolean fsqn;//是否弃奶
+	private String fsqn;//是否弃奶
 	
 	@Column(name = "yyrq")
 	private Date yyrq;//用药日期
@@ -64,13 +68,25 @@ public class JBXX {
 	private int yycs;//用药次数
 	
 	@Column(name = "jsxyrq")
-	private String jsxyrq;//结束休药日期
+	private Date jsxyrq;//结束休药日期
 	
 	@Column(name = "sys")
 	private String sys;//兽医师
 	
 	@Column(name = "bz")
 	private String bz;//备注
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="nzbh",insertable = false, updatable = false)
+	private NZJBXX nzjbxx;
+	
+	public NZJBXX getNzjbxx() {
+		return nzjbxx;
+	}
+
+	public void setNzjbxx(NZJBXX nzjbxx) {
+		this.nzjbxx = nzjbxx;
+	}
 
 	public String getXh() {
 		return xh;
@@ -96,11 +112,11 @@ public class JBXX {
 		this.nzbh = nzbh;
 	}
 
-	public String getFbrq() {
+	public Date getFbrq() {
 		return fbrq;
 	}
 
-	public void setFbrq(String fbrq) {
+	public void setFbrq(Date fbrq) {
 		this.fbrq = fbrq;
 	}
 
@@ -152,11 +168,11 @@ public class JBXX {
 		this.czqk = czqk;
 	}
 
-	public boolean isFsqn() {
+	public String getFsqn() {
 		return fsqn;
 	}
 
-	public void setFsqn(boolean fsqn) {
+	public void setFsqn(String fsqn) {
 		this.fsqn = fsqn;
 	}
 
@@ -184,11 +200,11 @@ public class JBXX {
 		this.yycs = yycs;
 	}
 
-	public String getJsxyrq() {
+	public Date getJsxyrq() {
 		return jsxyrq;
 	}
 
-	public void setJsxyrq(String jsxyrq) {
+	public void setJsxyrq(Date jsxyrq) {
 		this.jsxyrq = jsxyrq;
 	}
 
