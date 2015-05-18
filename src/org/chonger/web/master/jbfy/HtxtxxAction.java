@@ -119,13 +119,13 @@ public class HtxtxxAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(ht.getXh()) ? "新增"
+					: "更新") + "护蹄修蹄信息成功！");
+			
 			server.saveOrUpdate(ht);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(ht.getXh()) ? "新增"
-					: "更新" + "护蹄修蹄信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(ht.getXh()) ? "新增"
-					: "更新" + "护蹄修蹄信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(ht.getXh()) ? "新增"
+					: "更新") + "护蹄修蹄信息异常！");
 		}
 		return "infos";
 	}

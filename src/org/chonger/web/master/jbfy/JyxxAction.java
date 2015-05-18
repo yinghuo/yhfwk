@@ -119,13 +119,13 @@ public class JyxxAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jy.getXh()) ? "新增"
+					: "更新") + "检疫登记信息成功！");
+			
 			server.saveOrUpdate(jy);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(jy.getXh()) ? "新增"
-					: "更新" + "检疫登记信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(jy.getXh()) ? "新增"
-					: "更新" + "检疫登记信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jy.getXh()) ? "新增"
+					: "更新") + "检疫登记信息异常！");
 		}
 		return "infos";
 	}

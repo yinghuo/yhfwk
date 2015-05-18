@@ -1,11 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib uri="http://open.rockontrol/form" prefix="r" %>
+<%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
+<%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
 
 <!doctype html>
 <html>
   <head>
-    <%@include file='/admin/pages/importResource.jsp'%>
+    <%@include file='/admin/pages/import.jsp'%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
     <link  rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css" />
      <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit.js"></script>

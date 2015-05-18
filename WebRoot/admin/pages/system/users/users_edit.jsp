@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-	<%@include file='/admin/pages/importResource.jsp'%>
+	<%@include file='/admin/pages/import.jsp'%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/iframe.js"></script>
   	<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
   	

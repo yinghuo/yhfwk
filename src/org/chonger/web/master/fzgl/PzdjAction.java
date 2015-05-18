@@ -118,13 +118,13 @@ public class PzdjAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
+					: "更新") + "配种信息成功！");
+			
 			server.saveOrUpdate(pz);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新" + "配种信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新" + "配种信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
+					: "更新") + "配种信息异常！");
 		}
 		return "infos";
 	}

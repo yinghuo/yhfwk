@@ -126,11 +126,14 @@ public class LcdjAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
+			
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(lc.getXh()) ? "新增"
+					: "更新") + "流产信息成功！");
+			
 			server.saveOrUpdate(lc);
-
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(lc.getXh()) ? "新增" : "更新" + "流产信息成功！");
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage(StringUtil.IsEmpty(lc.getXh()) ? "新增" : "更新" + "流产信息异常！");
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(lc.getXh()) ? "新增"
+					: "更新") + "流产信息异常！");
 		}
 		return "infos";
 	}
