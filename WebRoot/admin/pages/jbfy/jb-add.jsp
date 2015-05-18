@@ -128,7 +128,58 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
-			
+			if (IsNull("fbrq", 0)) {
+				alert("请填写发病日期！");
+				return false;
+			}
+			if (IsNull("jbzl", 0)) {
+				alert("请填写疾病种类！");
+				return false;
+			}
+			if (IsNull("jbmc", 0)) {
+				alert("请填写疾病名称！");
+				return false;
+			}
+			if (IsNull("zyzz", 0)) {
+				alert("请填写主要症状！");
+				return false;
+			}
+			if (IsNull("fbyy", 0)) {
+				alert("请填写发病原因！");
+				return false;
+			}
+			if (IsNull("yzcd", 0)) {
+				alert("请填写严重程度！");
+				return false;
+			}
+			if (IsNull("czqk", 0)) {
+				alert("请填写处置情况！");
+				return false;
+			}
+			if (IsNull("fsqn", 0)) {
+				alert("请填写是否弃奶！");
+				return false;
+			}
+			if (IsNull("yyrq", 0)) {
+				alert("请填写用药日期！");
+				return false;
+			}
+			if (IsNull("yflj", 0)) {
+				alert("请填写药费累计！");
+				return false;
+			}
+			if (IsNull("yycs", 0)) {
+				alert("请填写用药次数！");
+				return false;
+			}
+			if (IsNull("jsxyrq", 0)) {
+				alert("请填写结束休药日期！");
+				return false;
+			}
+			if (IsNull("sys", 0)) {
+				alert("请填写兽医！");
+				return false;
+			}
 			return true;
 		}
 

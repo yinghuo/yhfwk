@@ -23,7 +23,7 @@
 				<tr>
 					<td class="td_right">修蹄日期：</td>
 					<td class="">
-						<input type="text" id="fqsj" name="ht.xtrq" class="input-text lh30" readonly="readonly" value="<s:date name="ht.xtrq" format="yyyy-MM-dd"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="50"><span class="required">*必填</span>
+						<input type="text" id="xtrq" name="ht.xtrq" class="input-text lh30" readonly="readonly" value="<s:date name="ht.xtrq" format="yyyy-MM-dd"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="50"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -99,6 +99,30 @@
      	function validata() {
 			if (IsNull("nzbh", 0)) {
 				alert("请填写牛只编号！");
+				return false;
+			}
+			if (IsNull("xtrq", 0)) {
+				alert("请填写护蹄修蹄日期！");
+				return false;
+			}
+			if (IsNull("zq", 0)) {
+				alert("请选择是否为左前肢！");
+				return false;
+			}
+			if (IsNull("yq", 0)) {
+				alert("请选择是否为右前肢！");
+				return false;
+			}
+			if (IsNull("zh", 0)) {
+				alert("请选择是否为左后肢！");
+				return false;
+			}
+			if (IsNull("yh", 0)) {
+				alert("请选择是否为右后肢！");
+				return false;
+			}
+			if (IsNull("sy", 0)) {
+				alert("请选择兽医！");
 				return false;
 			}
 			return true;

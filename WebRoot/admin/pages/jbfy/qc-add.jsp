@@ -93,6 +93,39 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
+			if (IsNull("qcrq", 0)) {
+				alert("请填写驱虫日期！");
+				return false;
+			}
+			if (IsNull("qcff", 0)) {
+				alert("请填写驱虫方法！");
+				return false;
+			}
+			if (IsNull("ywmc", 0)) {
+				alert("请填写药物名称！");
+				return false;
+			}
+			if (IsNull("syjl", 0)) {
+				alert("请填写使用剂量！");
+				return false;
+			}
+			if (IsNull("ph", 0)) {
+				alert("请填写批号！");
+				return false;
+			}
+			if (IsNull("zzs", 0)) {
+				alert("请填写制造商！");
+				return false;
+			}
+			if (IsNull("qcxg", 0)) {
+				alert("请填写驱虫效果！");
+				return false;
+			}
+			if (IsNull("sy", 0)) {
+				alert("请填写兽医！");
+				return false;
+			}
+			
 			return true;
 		}
 
