@@ -79,6 +79,30 @@
 				alert("请填写消毒日期！");
 				return false;
 			}
+			if (IsNull("xdqy", 0)) {
+				alert("请填写消毒区域！");
+				return false;
+			}
+			if (IsNull("yjmc", 0)) {
+				alert("请填写药剂名称！");
+				return false;
+			}
+			if (IsNull("syjl", 0)) {
+				alert("请填写使用剂量！");
+				return false;
+			}
+			if (IsNull("ph", 0)) {
+				alert("请填写批号！");
+				return false;
+			}
+			if (IsNull("zzs", 0)) {
+				alert("请填写制造商！");
+				return false;
+			}
+			if (IsNull("sy", 0)) {
+				alert("请填写兽医！");
+				return false;
+			}
 			return true;
 		}
  		

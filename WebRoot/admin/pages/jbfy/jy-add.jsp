@@ -105,6 +105,46 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
+			if (IsNull("jyrq", 0)) {
+				alert("请填写检疫日期！");
+				return false;
+			}
+			if (IsNull("jyyl", 0)) {
+				alert("请填写检疫月龄！");
+				return false;
+			}
+			if (IsNull("jyxm", 0)) {
+				alert("请填写检疫项目！");
+				return false;
+			}
+			if (IsNull("ymmc", 0)) {
+				alert("请填写疫苗名称！");
+				return false;
+			}
+			if (IsNull("jylx", 0)) {
+				alert("请填写检疫类型！");
+				return false;
+			}
+			if (IsNull("syjl", 0)) {
+				alert("请填写使用剂量！");
+				return false;
+			}
+			if (IsNull("ph", 0)) {
+				alert("请填写批号！");
+				return false;
+			}
+			if (IsNull("zzs", 0)) {
+				alert("请填写制造商！");
+				return false;
+			}
+			if (IsNull("jg", 0)) {
+				alert("请填写结果！");
+				return false;
+			}
+			if (IsNull("sy", 0)) {
+				alert("请填写兽医！");
+				return false;
+			}
 			return true;
 		}
 
