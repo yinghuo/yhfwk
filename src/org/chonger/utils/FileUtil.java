@@ -23,7 +23,7 @@ public class FileUtil {
 	private static final String FUNCTIONDATE="#dt";
 	
 	// 定义项目使用的文件路径
-	public static final String LECTUREIMAGEPATH = "/files/lecture";
+	public static final String IMPORTDATA = "/files/temp/data";
 	
 	//使用函数标记，表示为日期分类 20140724
 	//modify Daniel 将pathTag重命名为
@@ -40,15 +40,11 @@ public class FileUtil {
 	 * @return 真实的服务器路径
 	 */
 	public static String getServicePath(String path) {
-		
-		//String localPath=ServletActionContext.getServletContext().getInitParameter("imageLocalServer");
-		//return localPath+path;//
 		return ServletActionContext.getServletContext().getRealPath("/")+path;
 	}
 	
 	public static String getRemotePath(String path)
 	{
-		//return ServletActionContext.getServletContext().getInitParameter("imageServer")+functionParamFilter(path);
 		return ServletActionContext.getServletContext().getContextPath()+functionParamFilter(path);
 	}
 	
@@ -67,11 +63,6 @@ public class FileUtil {
 		if(!serpath.startsWith("/"))
 			serpath=pathConvert(serpath, '/', '\\');
 		createFilePath(serpath);
-//		if (serpath == null) {
-//			serpath = ServletActionContext.getServletContext().getRealPath("/");
-//			File pathFile = createFilePath(serpath+);
-//			return pathFile.getAbsolutePath();
-//		}
 		return serpath;
 	}
 	

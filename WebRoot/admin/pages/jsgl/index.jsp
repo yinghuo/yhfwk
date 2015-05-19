@@ -32,8 +32,15 @@
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
 	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
-	          			<input type="button" name="button" onClick="import()" class="btn btn82 btn_export" value="导入">
-	          			<input type="button" name="button" onClick="export()" class="btn btn82 btn_export" value="导出">
+	          			
+	          			<div class="fileButton" style="display:inline-block;">
+	          				<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
+			          			<input type="button" onClick="dataImport()" class="btn btn82 btn_export" value="导入">
+			          			<input type="hidden" name="fileType" value="0">
+			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
+		          			</form>
+	          			</div>
+	          			<!--<input type="button" name="button" onClick="dataExport()" class="btn btn82 btn_export" value="导出">-->
 	          		</div>
 	         </div>
 	 </div>
@@ -93,6 +100,8 @@
 		</div>
   	 </div>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
      <script>
      	showmap("圈舍信息管理 > 圈舍信息列表");
      	function search()
@@ -113,7 +122,9 @@
      	function edit(id)
      	{
      		window.location.href="${pageContext.request.contextPath}/master/jsgl/jsgl!edit.action?id="+id;
-     	}     	
+     	}
+     	
+     		
      </script>
   </body>
 </html>

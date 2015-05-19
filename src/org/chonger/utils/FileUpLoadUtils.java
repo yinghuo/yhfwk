@@ -54,10 +54,11 @@ public class FileUpLoadUtils {
 		
 		String[] returnValue=new String[4];
 		returnValue[0]=upfileFileName;
+		String filex=upfileFileName.substring(upfileFileName.lastIndexOf("."));//Daniel 添加文件后缀
 		if(rename2uuid)
 			upfileFileName= CommUUID.getUUID();
 		returnValue[1]=upfileFileName;
-		returnValue[3]=realPath+File.separatorChar+upfileFileName;
+		returnValue[3]=realPath+File.separatorChar+upfileFileName+filex;//数据解析需要扩展名
 		FileUtil.fileMoveTo(upfile,	new File(returnValue[3]));
 		returnValue[2]=FileUtil.getRemotePath(pathTag)+"/"+upfileFileName;
 		return returnValue;

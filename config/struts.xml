@@ -9,6 +9,7 @@
 	<constant name="struts.custom.i18n.resources" value="message" />
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
 	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true" /> 
+	<constant name="struts.multipart.maxSize" value="20971520"/>
 
 	<!-- 用于CRUD Action的parent package -->
 	<package name="crud-default" extends="convention-default">
@@ -25,7 +26,6 @@
 
 		<default-interceptor-ref name="crudStack" />
 	</package>
-	<constant name="struts.custom.i18n.resources" value="message"></constant>
 	<!-- 
 		使用Convention插件,实现约定大于配置的零配置文件风格.
 	           特殊的Result路径在Action类中使用@Result设定. 

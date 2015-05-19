@@ -417,3 +417,18 @@ input.ext_btn_big,button.ext_btn_big{
 	color:red;
 	margin-left:6px;
 }
+
+.fileButton{
+	position:relative;
+}
+
+.fileInput{
+	position:absolute;
+	top:0;
+	left:0;
+	width:82px;
+	height:35px;
+	font-size:20px;
+	opacity:0;
+	filter:alpha(opacity=0);
+}
