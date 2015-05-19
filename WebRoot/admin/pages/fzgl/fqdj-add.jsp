@@ -105,6 +105,37 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
+			else if(IsNull("fqsj",0))
+     		{
+     			alert("请填写发情日期！");
+     			return false;
+     		}
+     		else if(IsNull("fqlx",0))
+     		{
+     			alert("请选择发情类型！");
+     			return false;
+     		}
+     		else if(IsNull("fxfs",0))
+     		{
+     			alert("请选择发现方式！");
+     			return false;
+     		}
+     		else if(IsNull("fxr",0))
+     		{
+     			alert("请填写发现人！");
+     			return false;
+     		}
+     		else if(IsNull("shy",0))
+     		{
+     			alert("请填写审核员！");
+     			return false;
+     		}
+     		else if(IsNull("wpyy",0))
+     		{
+     			alert("请填写未配原因！");
+     			return false;
+     		}
+     		
 			return true;
 		}
 

@@ -112,6 +112,51 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
+			else if(IsNull("pzsj",0))
+     		{
+     			alert("请填写配种时间！");
+     			return false;
+     		}
+     		else if(IsNull("djbh",0))
+     		{
+     			alert("请填写冻精编号！");
+     			return false;
+     		}
+     		else if(IsNull("djlx",0))
+     		{
+     			alert("请填写冻精类型！");
+     			return false;
+     		}
+     		else if(IsNull("pzy",0))
+     		{
+     			alert("请选择配种员！");
+     			return false;
+     		}
+     		else if(IsNull("fqsj",0))
+     		{
+     			alert("请填写发情时间！");
+     			return false;
+     		}
+     		else if(IsNull("fqlx",0))
+     		{
+     			alert("请选择发情类型！");
+     			return false;
+     		}
+     		else if(IsNull("fxfs",0))
+     		{
+     			alert("请选择发现方式！");
+     			return false;
+     		}
+     		else if(IsNull("fxr",0))
+     		{
+     			alert("请选择发现人！");
+     			return false;
+     		}
+     		else if(IsNull("sl",0))
+     		{
+     			alert("请填写数量！");
+     			return false;
+     		}
 			return true;
 		}
 

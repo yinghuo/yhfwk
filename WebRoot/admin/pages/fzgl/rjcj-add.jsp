@@ -82,6 +82,26 @@
      			alert("请填写牛只编号！");
      			return false;
      		}
+     		else if(IsNull("cjrq",0))
+     		{
+     			alert("请填写检查日期！");
+     			return false;
+     		}
+     		else if(IsNull("cjjg",0))
+     		{
+     			alert("请选择初检结果！");
+     			return false;
+     		}
+     		else if(IsNull("cjy",0))
+     		{
+     			alert("请选择初检员！");
+     			return false;
+     		}
+     		else if(IsNull("cjfs",0))
+     		{
+     			alert("请选择初检方式！");
+     			return false;
+     		}
      		return true;
      	}
      

@@ -92,6 +92,42 @@
      			alert("请填写牛只编号！");
      			return false;
      		}
+     		else if(IsNull("lcrq",0))
+     		{
+     			alert("请填写流产日期！");
+     			return false;
+     		}
+     		else if(IsNull("lcyy",0))
+     		{
+     			alert("请填写流产原因！");
+     			return false;
+     		}
+     		else if(IsNull("telx",0))
+     		{
+     			alert("请填写胎儿类型！");
+     			return false;
+     		}
+     		else if(IsNull("fxr",0))
+     		{
+     			alert("请填写发现人！");
+     			return false;
+     		}
+     		else if(IsNull("fxfs",0))
+     		{
+     			alert("请填写发现方式！");
+     			return false;
+     		}
+     		else if(IsNull("hsr",0))
+     		{
+     			alert("请填写核实人！");
+     			return false;
+     		}
+     		else if(IsNull("lczr",0))
+     		{
+     			alert("请填写流产证人！");
+     			return false;
+     		}
+     		
      		return true;
      	}
      

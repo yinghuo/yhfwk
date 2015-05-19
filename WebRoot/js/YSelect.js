@@ -12,7 +12,7 @@ function YSelect(id,tagid,u,func,ischeck)
 	var rect=control.getBoundingClientRect();
 	var height=control.offsetHeight;
 	var width=control.offsetWidth;
-	var scrolltop=0;
+	//var scrolltop=0;
 	//console.log("元素Left:"+rect.left);
 	//console.log("元素Top:"+rect.top);
 	//console.log("元素Height:"+height);
@@ -40,10 +40,9 @@ function YSelect(id,tagid,u,func,ischeck)
 				rect=control.getBoundingClientRect();
 				height=control.offsetHeight;
 				width=control.offsetWidth;
-				scrolltop=getScrollTop();
-				
+				var scrolltop=getScrollTop();
 				showControl.style.left=rect.left+"px";
-				showControl.style.top=(rect.top+height-scrolltop)+"px";
+				showControl.style.top=(rect.top+height+scrolltop)+"px";
 				showControl.style.width=width+"px";
 			}
 			
@@ -61,14 +60,16 @@ function YSelect(id,tagid,u,func,ischeck)
 	}
 	
 	function getScrollTop(){
+		var scrollTop=0;
 		if(document.documentElement&&document.documentElement.scrollTop)
 	    {
-	        scrolltop=document.documentElement.scrollTop;
+	        scrollTop=document.documentElement.scrollTop;
 	    }
 	    else if(document.body)
 	    {
-	        scrolltop=document.body.scrollTop;
+	        scrollTop=document.body.scrollTop;
 	    }
+	    return scrollTop;
 	}
 	
 	function hiden()

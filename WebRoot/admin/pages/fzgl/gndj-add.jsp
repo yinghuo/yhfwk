@@ -68,6 +68,26 @@
 				alert("请填写牛只编号！");
 				return false;
 			}
+			else if(IsNull("gnrq",0))
+     		{
+     			alert("请填写干奶日期！");
+     			return false;
+     		}
+     		else if(IsNull("gnff",0))
+     		{
+     			alert("请填写干奶方法！");
+     			return false;
+     		}
+     		else if(IsNull("syyw",0))
+     		{
+     			alert("请填写使用药物！");
+     			return false;
+     		}
+     		else if(IsNull("sy",0))
+     		{
+     			alert("请选择兽医！");
+     			return false;
+     		}
 			return true;
 		}
 

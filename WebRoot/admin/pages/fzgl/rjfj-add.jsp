@@ -82,6 +82,31 @@
      			alert("请填写牛只编号！");
      			return false;
      		}
+     		else if(IsNull("fjrq",0))
+     		{
+     			alert("请填写复检日期！");
+     			return false;
+     		}
+     		else if(IsNull("fjjg",0))
+     		{
+     			alert("请填写复检结果！");
+     			return false;
+     		}
+     		else if(IsNull("fjy",0))
+     		{
+     			alert("请填写复检员！");
+     			return false;
+     		}
+     		else if(IsNull("tezk",0))
+     		{
+     			alert("请填写胎儿状况！");
+     			return false;
+     		}
+     		else if(IsNull("nzxb",0))
+     		{
+     			alert("请填写牛只性别！");
+     			return false;
+     		}
      		return true;
      	}
      
