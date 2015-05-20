@@ -91,7 +91,7 @@ function selectFileDone(data)
 			
 		//提示是否继续
 		ymask.showbtn(
-			"浏览数据项",
+			"预览数据",
 			function(){
 				unbindload();
 				ymask.showtxt("浏览导入数据细项，正在跳转....");
@@ -99,7 +99,7 @@ function selectFileDone(data)
 			},
 			"直接导入",
 			function(){
-				alert("点击了导入");
+				importData();
 			}
 		);
 	}
@@ -109,6 +109,34 @@ function selectFileDone(data)
 		alert(data.msg);
 		unbindload();
 	}	
+}
+
+function importData()
+{
+	
+	if(!confirm('确认导入数据吗？')){
+		return false;
+	}
+
+	$.ajax({
+		url:urldomain+"/master/data/import!importData.action",
+		type:"get",
+		beforeSend:function(xhr){
+			if(ymask==null)ymask=new YMask();
+			ymask.show("请稍等，数据正在导入中....");	
+		},
+		success:function(data){
+			ymask.close();
+			unbindload();
+			jsonResult(data,function(data){
+			 	if(data["error"]==0)
+			   		window.location.href=urldomain+data["url"];
+			});
+		},
+		error:function(xmlHttpRequest, error){
+			ymask.close();
+		}
+	});	
 }
 
 function unbindload()

@@ -35,7 +35,7 @@
 	          			
 	          			<div class="fileButton" style="display:inline-block;">
 	          				<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
-			          			<input type="button" onClick="dataImport()" class="btn btn82 btn_export" value="导入">
+			          			<input type="button" class="btn btn82 btn_export" value="导入">
 			          			<input type="hidden" name="fileType" value="0">
 			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
 		          			</form>

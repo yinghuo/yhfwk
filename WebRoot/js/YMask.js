@@ -166,6 +166,8 @@ function YMask(element)
 	{
 		showDiv.style.display="none";
 		showLoadingDiv.style.display="none";
+		if(btnDiv)
+			btnDiv.style.display="none";
 	}
 	
 	return{

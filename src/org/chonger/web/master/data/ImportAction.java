@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.service.data.ExportServer;
 import org.chonger.service.data.ImportServer;
 import org.chonger.utils.FileUpLoadUtils;
 import org.chonger.utils.FileUtil;
@@ -61,9 +62,9 @@ public class ImportAction extends ActionSupport {
 	private int fileType;
 	public int getFileType() {return fileType;}
 	public void setFileType(int fileType) {this.fileType = fileType;}
-	
+
 	private final int JSDATA=0;//圈舍数据导入
-	
+	private final int YGDATA=1;//员工数据导入
 	
 	
 	@Override
@@ -78,18 +79,23 @@ public class ImportAction extends ActionSupport {
 				String filePath=fileParams[3];
 				//文件识别处理
 				List<String[]> dataList=null;
+				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATATYPESESSIONKEY,fileType);
 				switch(fileType)
 				{
 					case 0:
-						dataList=server.readerJSXXExcel(filePath);
+						dataList=server.readerExcel(filePath,ExportServer.JSXXColumnNames);
+						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.JSXXColumnNames);
 						break;
-				
+					case 1:
+						dataList=server.readerExcel(filePath,ExportServer.YGXXColumnNames);
+						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.YGXXColumnNames);
+						break;
 				}
 				
 				if(dataList!=null)
 				{
 					//数据解析完成，缓存session
-					ActionContext.getContext().getSession().put(ImportServer.IMPORTSESSIONKEY, dataList);
+					ActionContext.getContext().getSession().put(ImportServer.IMPORTDATASESSIONKEY, dataList);
 					jsonResult.sendSuccessMessage(dataList.size()+"");
 				}
 				else
@@ -105,11 +111,60 @@ public class ImportAction extends ActionSupport {
 		{
 			jsonResult.sendErrorMessage("数据导入异常："+ex.getMessage());
 		}
-		
 		return "infos";
 	};
 	
-	
+	/**
+	 * 将用户当前的识别数据导入到数据库中
+	 * @throws Exception
+	 * @retrun String 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String importData() throws Exception{
+		jsonResult.infosInitOrClear();
+		Object typeObject=ActionContext.getContext().getSession().get(ImportServer.IMPORTDATATYPESESSIONKEY);
+		Object dataListObject=ActionContext.getContext().getSession().get(ImportServer.IMPORTDATASESSIONKEY);
+		if(typeObject!=null&&dataListObject!=null)
+		{
+			try
+			{
+				fileType=Integer.parseInt(typeObject.toString());
+				List<String[]> dataList=(List<String[]>)dataListObject;
+				String url=null;
+				switch(fileType)
+				{
+					case 0:
+						//调用数据保存函数
+						server.insertJSXX(dataList);
+						url="/master/jsgl/jsgl.action";
+						break;
+					case 1:
+						//调用数据保存函数
+						server.insertYGXX(dataList);
+						url="/master/yggl/ygxx.action";
+						break;
+				}
+								
+				jsonResult.sendSuccessMessage("导入数据成功！");
+				jsonResult.getInfos().put("url",url);
+				
+			}catch(Exception ex)
+			{
+				jsonResult.sendErrorMessage("导入数据异常，请报告管理员！"+ex.getMessage());
+			}finally{
+				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATATYPESESSIONKEY,null);
+				ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, null);
+				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATASESSIONKEY, null);
+			}
+		}
+		else
+		{
+			jsonResult.sendErrorMessage("无法找到可以导入的数据！");
+		}
+		
+		return "infos";
+	}
 	
 	
 	
