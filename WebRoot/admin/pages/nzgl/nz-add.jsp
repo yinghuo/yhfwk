@@ -43,7 +43,7 @@
 				<tr>
 					<td class="td_right">出生日期：</td>
 					<td class="">
-						<input type="text" id="csrq" name="nz.csrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.csrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
+						<input type="text" id="csrq" name="nz.csrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.csrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',maxDate:'%y-%M-%d %H:%m',onpicked:function(){csrqChange();}})" size="80"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -83,13 +83,13 @@
 				<tr>
 					<td class="td_right">入群时间：</td>
 					<td class="">
-						<input type="text" id="rqsj" name="nz.rqsj" class="input-text lh30" readonly="readonly" value="<s:date name="nz.rqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80"><span class="required">*必填</span>
+						<input type="text" id="rqsj" name="nz.rqsj" class="input-text lh30" readonly="readonly" value="<s:date name="nz.rqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',maxDate:'%y-%M-%d %H:%m'})" size="80"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">月龄：</td>
 					<td class="">
-						<input type="text" id="yl" name="nz.yl" class="input-text lh30" value="${nz.yl}" size="80"><span class="required">*必填</span>
+						<input type="text" id="yl" class="input-text lh30" readonly="readonly" value="${nz.yl}" size="80">
 					</td>
 				</tr>
 				<tr>
@@ -119,7 +119,7 @@
 				<tr>
 					<td class="td_right">产犊日期：</td>
 					<td class="">
-						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.cdrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="80">
+						<input type="text" id="cdrq" name="nz.cdrq" class="input-text lh30" readonly="readonly" value="<s:date name="nz.cdrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',maxDate:'%y-%M-%d %H:%m'})" size="80">
 					</td>
 				</tr>
 				<tr>
@@ -206,11 +206,11 @@
      			alert("请选择牛只的入群类型！");
      			return false;
      		}
-     		else if(IsNull("yl",0))
+     		/*else if(IsNull("yl",0))
      		{
      			alert("请填写牛只的月龄！");
      			return false;
-     		}
+     		}*/
      		else if(IsNull("csz",0))
      		{
      			alert("请填写牛只的出生重量！");
@@ -304,16 +304,37 @@
      	});
      	
      	$("#rqlx").on("change",function(e){
-     		if($("#rqlx").val()==0){
+     		if($("#rqlx").val()=="0"){
      			copyvalue();
      			$("#rqsj").attr("onfocus",null);
-     			$("#csrq").attr("onchange","copyvalue()");
+     			//$("#csrq").attr("onchange","copyvalue()");
      		}else{
      			$("#rqsj").val("");
      			$("#rqsj").attr("onfocus","WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})");
-     			$("#csrq").attr("onchange",null);
+     			//$("#csrq").attr("onchange",null);
      		}
      	});
+     	
+     	function csrqChange(){
+     		//计算月龄
+     		var srDate=new Date(Date.parse($("#csrq").val().replace(/-/g,"/"))); 
+     		var srM=srDate.getYear()*12 + srDate.getMonth();
+     		var nDate=new Date();     		
+     		var nM=nDate.getYear()*12 + nDate.getMonth();
+     		//计算月份
+     		//console.log("相差月份："+(nM-srM));
+     		var yl=nM-srM;
+     		$("#yl").val(yl);
+     		
+     		//根据月龄计算类型
+     		
+     		
+     		//出生日期改变
+     		if($("#rqlx").val()=="0")
+     		{
+     			copyvalue();
+     		}
+     	}
      	
      	function copyvalue()
      	{

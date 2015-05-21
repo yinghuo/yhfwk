@@ -149,11 +149,12 @@ public class ConstantEnum {
 		
 		哺乳犊牛(0),
 		断奶犊牛(1),
-		育成牛(2),
-		青年牛(3),
-		泌乳牛(4),
-		干奶牛(5),
-		留养公牛(6);
+		小育成牛(2),
+		大青年牛(3),
+		妊娠前期青年母牛(4),
+		妊娠后期青年母牛(5),
+		成年母牛(6),
+		留养公牛(7);
 		
 		private int value;
 		NZLB(int value){this.value=value;}

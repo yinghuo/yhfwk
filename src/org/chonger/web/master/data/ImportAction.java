@@ -65,7 +65,7 @@ public class ImportAction extends ActionSupport {
 
 	private final int JSDATA=0;//圈舍数据导入
 	private final int YGDATA=1;//员工数据导入
-	
+	private final int NZDATA=2;//牛只数据导入
 	
 	@Override
 	public String execute() throws Exception {

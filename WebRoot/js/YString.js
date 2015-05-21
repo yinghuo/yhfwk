@@ -12,7 +12,7 @@ if(typeof("".trim)!="function")
 	String.prototype.trim=function()
 	{
 		//if(typeof(this)!="undefined"&&typeof(this)=="String")
-			return StringUtils.Trim(this);
+			return this.replace(/(^\s*)|(\s*$)/g,'');
 		//return this;
 	}
 
@@ -27,10 +27,7 @@ StringUtils.IsBlank=function(value)
 {
 	return (value==null||typeof(value)=="undefined"||value.trim()=="");
 }
-StringUtils.Trim=function(value)
-{
-	return value.replace(/(^\s*)|(\s*$)/g,'');
-}
+
 StringUtils.StartWith=function(str,val)
 {
  	if(!StringUtils.IsBlank(str)&&!StringUtils.IsBlank(val))
