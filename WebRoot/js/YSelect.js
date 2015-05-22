@@ -194,7 +194,7 @@ function YSelect(id,tagid,u,func,ischeck)
 			var labelItem=child.getAttribute("text");
 			var checked=child.getAttribute("checked");
 			
-			if(checked=="true")
+			if(checked||checked=="true")
 			{
 				var valueList=returnValue[0];
 				if(valueList.length>1)
