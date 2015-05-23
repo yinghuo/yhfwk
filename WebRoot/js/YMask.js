@@ -1,6 +1,7 @@
 /**
 	
 */
+var ymask;
 
 function YMask(element)
 {

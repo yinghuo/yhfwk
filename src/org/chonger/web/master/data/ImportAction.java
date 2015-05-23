@@ -62,10 +62,6 @@ public class ImportAction extends ActionSupport {
 	private int fileType;
 	public int getFileType() {return fileType;}
 	public void setFileType(int fileType) {this.fileType = fileType;}
-
-	private final int JSDATA=0;//圈舍数据导入
-	private final int YGDATA=1;//员工数据导入
-	private final int NZDATA=2;//牛只数据导入
 	
 	@Override
 	public String execute() throws Exception {
@@ -82,11 +78,11 @@ public class ImportAction extends ActionSupport {
 				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATATYPESESSIONKEY,fileType);
 				switch(fileType)
 				{
-					case 0:
+					case DataType.JSDATA:
 						dataList=server.readerExcel(filePath,ExportServer.JSXXColumnNames);
 						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.JSXXColumnNames);
 						break;
-					case 1:
+					case DataType.YGDATA:
 						dataList=server.readerExcel(filePath,ExportServer.YGXXColumnNames);
 						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.YGXXColumnNames);
 						break;
@@ -134,12 +130,12 @@ public class ImportAction extends ActionSupport {
 				String url=null;
 				switch(fileType)
 				{
-					case 0:
+					case DataType.JSDATA:
 						//调用数据保存函数
 						server.insertJSXX(dataList);
 						url="/master/jsgl/jsgl.action";
 						break;
-					case 1:
+					case DataType.YGDATA:
 						//调用数据保存函数
 						server.insertYGXX(dataList);
 						url="/master/yggl/ygxx.action";
@@ -153,9 +149,9 @@ public class ImportAction extends ActionSupport {
 			{
 				jsonResult.sendErrorMessage("导入数据异常，请报告管理员！"+ex.getMessage());
 			}finally{
-				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATATYPESESSIONKEY,null);
-				ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, null);
-				ActionContext.getContext().getSession().put(ImportServer.IMPORTDATASESSIONKEY, null);
+				ActionContext.getContext().getSession().remove(ImportServer.IMPORTDATATYPESESSIONKEY);
+				ActionContext.getContext().getSession().remove(ImportServer.IMPORTHEADSESSIONKEY);
+				ActionContext.getContext().getSession().remove(ImportServer.IMPORTDATASESSIONKEY);
 			}
 		}
 		else

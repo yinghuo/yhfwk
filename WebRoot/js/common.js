@@ -13,6 +13,12 @@ function autoHiden(event)
 	}
 }
 
+function unbindload()
+{
+	//解除绑定离开事件
+	$(window).unbind('beforeunload');
+}
+
 $(function(){
 	//表格行，鼠标放上去变色
 	$(".tr:odd").css("background", "#FFFCEA");

@@ -3,7 +3,6 @@
 */
 
 var importExcelExtention=".xls,.xlsx";
-var ymask;
 
 $(function(){
 	
@@ -137,10 +136,4 @@ function importData()
 			ymask.close();
 		}
 	});	
-}
-
-function unbindload()
-{
-	//解除绑定离开事件
-	$(window).unbind('beforeunload');
 }

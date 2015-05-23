@@ -40,7 +40,7 @@
 			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
 		          			</form>
 	          			</div>
-	          			<!--<input type="button" name="button" onClick="dataExport()" class="btn btn82 btn_export" value="导出">-->
+	          			<input type="button" name="button" data="0" onClick="dataExport()" class="btn btn82 btn_export" value="导出">
 	          		</div>
 	         </div>
 	 </div>
@@ -102,6 +102,7 @@
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
      <script>
      	showmap("圈舍信息管理 > 圈舍信息列表");
      	function search()

@@ -1,8 +1,8 @@
 package org.chonger.service.data;
 
-import info.yinghuo.excel.ExcelReader;
-import info.yinghuo.excel.SheetReader;
-import info.yinghuo.excel.TableReader;
+import info.yinghuo.excel.reader.ExcelReader;
+import info.yinghuo.excel.reader.SheetReader;
+import info.yinghuo.excel.reader.TableReader;
 
 import java.io.IOException;
 import java.util.List;
