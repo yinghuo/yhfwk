@@ -61,6 +61,11 @@ public class CddjServer {
 		return sql;
 	}
 	
+	public List<CDDJXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 保存或更新牛只信息
 	 * @Title: saveOrUpdate 

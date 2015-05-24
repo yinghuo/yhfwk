@@ -33,6 +33,14 @@
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
 	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+	          			<div class="fileButton" style="display:inline-block;">
+	          				<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
+			          			<input type="button" class="btn btn82 btn_export" value="导入">
+			          			<input type="hidden" name="fileType" value="14">
+			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
+		          			</form>
+	          			</div>
+	          			<input type="button" name="button" data="14" onClick="dataExport()" class="btn btn82 btn_export" value="导出">
 	          		</div>
 	         </div>
 	 </div>
@@ -57,7 +65,7 @@
 						<tr>
 							<td>${status.count }</td>
 							<td><s:property value="#jb.nzjbxx.nzbh"/></td>
-							<td><s:date name="#jb.fbrq" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#jb.fbrq" format="yyyy-MM-dd"/></td>
 							<td><s:property value="#jb.jbzl"/></td>
 							<td><s:property value="#jb.jbmc"/></td>
 							<td><s:property value="#jb.zyzz"/></td>
@@ -104,6 +112,9 @@
 		</div>
   	 </div>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
  	<script type="text/javascript">
      	showmap("疾病防疫管理 > 疾病登记列表");
      	function search()

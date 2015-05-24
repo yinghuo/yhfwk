@@ -1,5 +1,7 @@
 package org.chonger.service.cngl;
 
+import java.util.List;
+
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.cngl.GTCNXX;
 import org.chonger.entity.jbxx.NCJBXX;
@@ -41,6 +43,11 @@ public class GtcnServer {
 		}
 		
 		return sql;
+	}
+	
+	public List<GTCNXX> findAll()
+	{
+		return dao.find(getQueryString(null));
 	}
 	
 	/**个体产奶信息*/

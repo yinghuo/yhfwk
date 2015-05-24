@@ -34,10 +34,16 @@
 		</div>
 		<div class="pb5 pt5 pr10">
 			<div class="search_bar_btn" style="text-align: right;">
-				<input type="button" name="button" onClick="search()"
-					class="btn btn82 btn_search" value="查询"> <input
-					type="button" name="button" onClick="add()"
-					class="btn btn82 btn_add" value="新增">
+				<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询"> 
+				<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+				<div class="fileButton" style="display:inline-block;">
+	          		<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
+			       		<input type="button" class="btn btn82 btn_export" value="导入">
+			         	<input type="hidden" name="fileType" value="17">
+			        	<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
+		       		</form>
+	         	</div>
+	          	<input type="button" name="button" data="17" onClick="dataExport()" class="btn btn82 btn_export" value="导出">
 			</div>
 		</div>
 	</div>
@@ -62,7 +68,7 @@
 				<tr>
 					<td>${status.count }</td>
 					<td><s:property value="#qc.nzjbxx.nzbh" /></td>
-					<td><s:date name="#qc.qcrq" format="yyyy年MM月dd日" /></td>
+					<td><s:date name="#qc.qcrq" format="yyyy-MM-dd" /></td>
 					<td><s:property value="#qc.qcff" /></td>
 					<td><s:property value="#qc.ywmc" /></td>
 					<td><s:property value="#qc.syjl" /></td>
@@ -112,8 +118,10 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
 	<script type="text/javascript">
 	showmap("疾病防疫管理 > 驱虫登记列表");
     function search() {

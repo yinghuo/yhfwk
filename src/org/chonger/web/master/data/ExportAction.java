@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.service.data.DataType;
 import org.chonger.service.data.ExportServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.YhFileInputStream;
@@ -75,6 +76,82 @@ public class ExportAction extends ActionSupport {
 					dataList=server.selectJSXX();
 					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.JSXXColumnNames);
 					break;
+				case DataType.YGDATA:
+					dataList=server.selectYGXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.YGXXColumnNames);
+					break;
+				case DataType.NZDATA:
+					dataList=server.selectNZXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZXXColumnNames);
+					break;
+				case DataType.ZSDATA:
+					dataList=server.selectZSXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.ZSXXColumnNames);
+					break;
+				case DataType.LCDATA:
+					dataList=server.selectLCXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.LCXXColumnNames);
+					break;
+				case DataType.FQXXDATA:
+					dataList=server.selectNZFQXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZFQXXColumnNames);
+					break;
+				case DataType.PZXXDATA:
+					dataList=server.selectNZPZXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZPZXXColumnNames);
+					break;
+				case DataType.RJCJDATA:
+					dataList=server.selectNZRJCJXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZRJCJXXColumnNames);
+					break;
+				case DataType.RJFJDATA:
+					dataList=server.selectRJFJXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZRJFJXXColumnNames);
+					break;
+				case DataType.GNXXDATA:
+					dataList=server.selectNZGNXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZGNXXColumnNames);
+					break;
+				case DataType.CDXXDATA:
+					dataList=server.selectNZCDXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZCDXXColumnNames);
+					break;
+				case DataType.LCXXDATA:
+					dataList=server.selectNZLCXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZLCXXColumnNames);
+					break;
+				case DataType.GTCNXXDATA:
+					dataList=server.selectNZGTCNXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZGTCNXXColumnNames);
+					break;
+				case DataType.QTCNXXDATA:
+					dataList=server.selectNZQTCNXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZQTCNXXColumnNames);
+					break;
+				case DataType.JBXXDATA:
+					dataList=server.selectNZJBXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZJBXXColumnNames);
+					break;
+				case DataType.MYXXDATA:
+					dataList=server.selectNZMYXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZMYXXColumnNames);
+					break;
+				case DataType.JYXXDATA:
+					dataList=server.selectNZJYXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZJYXXColumnNames);
+					break;
+				case DataType.QCXXDATA:
+					dataList=server.selectNZQCXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZQCXXColumnNames);
+					break;
+				case DataType.HTXTXXDATA:
+					dataList=server.selectNZHTXTXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.NZHTXTXXColumnNames);
+					break;
+				case DataType.XDXXDATA:
+					dataList=server.selectXDXX();
+					ActionContext.getContext().getSession().put(ExportServer.EXPORTHEADSESSIONKEY, ExportServer.XDXXColumnNames);
+					break;
 			}
 			ActionContext.getContext().getSession().put(ExportServer.EXPORTDATASESSIONKEY, dataList);
 			jsonResult.sendSuccessMessage(dataList.size()+"");
@@ -123,6 +200,15 @@ public class ExportAction extends ActionSupport {
 		return "infos";
 	}
 	
+	/**
+	 * 导出文件下载
+	 * @return
+	 * @throws Exception
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
 	public String download() throws Exception{
 		String filepath=null;
 		int fileType=-1;
@@ -141,6 +227,60 @@ public class ExportAction extends ActionSupport {
 					break;
 				case DataType.YGDATA:
 					downloadFileName="员工信息";
+					break;
+				case DataType.NZDATA:
+					downloadFileName="牛只信息";
+					break;
+				case DataType.ZSDATA:
+					downloadFileName="牛只转舍信息";
+					break;
+				case DataType.LCDATA:
+					downloadFileName="牛只离场信息";
+					break;
+				case DataType.FQXXDATA:
+					downloadFileName="牛只发情登记信息";
+					break;
+				case DataType.PZXXDATA:
+					downloadFileName="牛只配种登记信息";
+					break;
+				case DataType.RJCJDATA:
+					downloadFileName="牛只妊检初检登记信息";
+					break;
+				case DataType.RJFJDATA:
+					downloadFileName="牛只妊检复检登记信息";
+					break;
+				case DataType.GNXXDATA:
+					downloadFileName="牛只干奶登记信息";
+					break;
+				case DataType.CDXXDATA:
+					downloadFileName="牛只产犊登记信息";
+					break;
+				case DataType.LCXXDATA:
+					downloadFileName="牛只流产登记信息";
+					break;
+				case DataType.GTCNXXDATA:
+					downloadFileName="牛只个体产奶登记信息";
+					break;
+				case DataType.QTCNXXDATA:
+					downloadFileName="牛只群体产奶登记信息";
+					break;
+				case DataType.JBXXDATA:
+					downloadFileName="牛只疾病登记信息";
+					break;
+				case DataType.MYXXDATA:
+					downloadFileName="牛只免疫登记信息";
+					break;
+				case DataType.JYXXDATA:
+					downloadFileName="牛只检疫登记信息";
+					break;
+				case DataType.QCXXDATA:
+					downloadFileName="牛只驱虫登记信息";
+					break;
+				case DataType.HTXTXXDATA:
+					downloadFileName="牛只护蹄修蹄登记信息";
+					break;
+				case DataType.XDXXDATA:
+					downloadFileName="消毒登记信息";
 					break;
 			}
 		}

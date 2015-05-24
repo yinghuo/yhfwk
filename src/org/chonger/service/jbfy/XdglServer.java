@@ -57,6 +57,11 @@ public class XdglServer {
 		return sql;
 	}
 	
+	public List<XDXX> findAll()
+	{
+		return dao.find(getQueryString(null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

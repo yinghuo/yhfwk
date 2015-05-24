@@ -60,6 +60,11 @@ public class GndjServer {
 		return sql;
 	}
 	
+	public List<GNDJXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

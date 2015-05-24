@@ -30,6 +30,14 @@
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
 	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+	          			<div class="fileButton" style="display:inline-block;">
+	          				<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
+			          			<input type="button" class="btn btn82 btn_export" value="导入">
+			          			<input type="hidden" name="fileType" value="12">
+			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">
+		          			</form>
+	          			</div>
+	          			<input type="button" name="button" data="12" onClick="dataExport()" class="btn btn82 btn_export" value="导出">
 	          		</div>
 	         </div>
 	 </div>
@@ -85,6 +93,9 @@
 		</div>
   	 </div>
 	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
      <script>
      	showmap("产奶信息管理 > 个体产奶信息列表");
      	function search()

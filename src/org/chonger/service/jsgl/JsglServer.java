@@ -1,6 +1,8 @@
 package org.chonger.service.jsgl;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.jbxx.JSJBXX;
@@ -54,9 +56,32 @@ public class JsglServer {
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public List<JSJBXX> finaAll()
+	public List<JSJBXX> findAll()
 	{
 		return dao.find(getQueryString(null,null));
+	}
+	
+	/**
+	 * 获取圈舍的编号和id的字典
+	 * @return
+	 * @retrun Map<String,String> 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public Map<String,String> findBh$IdMap()
+	{
+		List<JSJBXX> jsxxList=findAll();
+		Map<String,String> jsxxMap=null;
+		if(jsxxList!=null)
+		{
+			jsxxMap=new LinkedHashMap<String,String>();
+			for(JSJBXX jsxx : jsxxList)
+			{
+				jsxxMap.put(jsxx.getJsbh(),jsxx.getXh());
+			}
+		}
+		return jsxxMap;
 	}
 	
 	/**

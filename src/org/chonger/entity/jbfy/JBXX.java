@@ -56,7 +56,7 @@ public class JBXX {
 	private String czqk;//处置情况
 	
 	@Column(name = "fsqn")
-	private String fsqn;//是否弃奶
+	private int fsqn;//是否弃奶
 	
 	@Column(name = "yyrq")
 	private Date yyrq;//用药日期
@@ -168,11 +168,11 @@ public class JBXX {
 		this.czqk = czqk;
 	}
 
-	public String getFsqn() {
+	public int getFsqn() {
 		return fsqn;
 	}
 
-	public void setFsqn(String fsqn) {
+	public void setFsqn(int fsqn) {
 		this.fsqn = fsqn;
 	}
 

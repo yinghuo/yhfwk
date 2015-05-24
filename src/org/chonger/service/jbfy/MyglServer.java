@@ -63,6 +63,11 @@ public class MyglServer {
 		return sql;
 	}
 	
+	public List<MYXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

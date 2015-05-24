@@ -60,6 +60,11 @@ public class QcglServer {
 		return sql;
 	}
 	
+	public List<QCXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

@@ -3,7 +3,6 @@ package org.chonger.service.jbfy;
 import java.util.List;
 
 import org.chonger.dao.CommonDAO;
-import org.chonger.entity.jbfy.JBXX;
 import org.chonger.entity.jbfy.JYXX;
 import org.chonger.entity.system.User;
 import org.chonger.utils.CommUUID;
@@ -60,6 +59,10 @@ public class JyglServer {
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		return sql;
+	}
+	
+	public List<JYXX> findAll(){
+		return dao.find(getQueryString(null,null));
 	}
 	
 	/**

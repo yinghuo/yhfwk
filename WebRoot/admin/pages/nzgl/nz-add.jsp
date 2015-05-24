@@ -50,8 +50,8 @@
 					<td class="td_right">性别：</td>
 					<td class="">
 						<select id="xb" name="nz.xb" class="select" >
-							<y:EnumValues value="" enumName="NZXB">
-								<option value="${value}">${label}</option>
+							<y:EnumValues value="${nz.xb}" enumName="NZXB">
+								<option value="${value}" ${selected}>${label}</option>
 							</y:EnumValues>
 						</select>
 					</td>

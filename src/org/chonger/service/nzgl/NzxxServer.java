@@ -1,7 +1,9 @@
 
 package org.chonger.service.nzgl;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
@@ -57,6 +59,28 @@ public class NzxxServer {
 	public List<NZJBXX> getAllNZ()
 	{
 		return dao.find(getQueryString(null,null,null));
+	}
+	
+	/**
+	 * 获取牛只的编号和id的字典
+	 * @retrun Map<String,String> 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public Map<String,String> findBh$IdMap()
+	{
+		List<NZJBXX> nzxxList=getAllNZ();
+		Map<String,String> nzxxMap=null;
+		if(nzxxList!=null)
+		{
+			nzxxMap=new LinkedHashMap<String,String>();
+			for(NZJBXX nzxx : nzxxList)
+			{
+				nzxxMap.put(nzxx.getNzbh(),nzxx.getXh());
+			}			
+		}
+		return nzxxMap;
 	}
 	
 	/**

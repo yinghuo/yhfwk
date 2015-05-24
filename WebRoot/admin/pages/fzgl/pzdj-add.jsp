@@ -56,8 +56,8 @@
 					<td class="">
 						<select id="fqlx" name="pz.fqlx" class="select" >
 							<option value="">选择发情类型</option>
-						<y:EnumValues value="" enumName="FQLX">
-							<option value="${value}">${label}</option>
+						<y:EnumValues value="${pz.fqlx}" enumName="FQLX">
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>
@@ -67,9 +67,9 @@
 					<td class="td_right">发现方式：</td>
 					<td class="">
 						<select id="fxfs" name="pz.fxfs" class="select" >
-							<option value="">选择发现方式</option>
+							<option value="${pz.fxfs}">选择发现方式</option>
 						<y:EnumValues value="" enumName="FXFS">
-							<option value="${value}">${label}</option>
+							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
 						<span class="required">*必填</span>

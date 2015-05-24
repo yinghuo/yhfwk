@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-05-20 11:14:49
+Date: 2015-05-24 16:17:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3698,7 +3698,7 @@ CREATE TABLE `gtcndjb` (
   `NZBH` varchar(36) default NULL,
   `JNRQ` datetime default NULL,
   `BC` varchar(16) default NULL,
-  `CL` decimal(10,0) default NULL,
+  `CL` decimal(10,2) default NULL,
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -3744,7 +3744,7 @@ CREATE TABLE `jbdjb` (
   `FBYY` varchar(16) default NULL,
   `YZCD` varchar(16) default NULL,
   `CZQK` varchar(32) default NULL,
-  `FSQN` char(1) default NULL COMMENT '1是\r\n            0否',
+  `FSQN` int(1) default NULL COMMENT '1是\r\n            0否',
   `YYRQ` datetime default NULL,
   `YFLJ` decimal(10,2) default NULL,
   `YYCS` decimal(3,0) default NULL,
@@ -4043,34 +4043,12 @@ CREATE TABLE `rjfjdjb` (
   `FJY` varchar(100) NOT NULL,
   `TEZK` varchar(200) NOT NULL,
   `NZXB` int(2) NOT NULL,
-  `BZ` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of rjfjdjb
--- ----------------------------
-
--- ----------------------------
--- Table structure for `rsjcdjb`
--- ----------------------------
-DROP TABLE IF EXISTS `rsjcdjb`;
-CREATE TABLE `rsjcdjb` (
-  `XH` varchar(36) NOT NULL,
-  `NCBH` varchar(36) default NULL,
-  `NZBH` varchar(36) default NULL,
-  `JCRQ` datetime default NULL,
-  `JCLX` varchar(16) default NULL COMMENT '初检\r\n            复检',
-  `JCJG` varchar(64) default NULL COMMENT '人工\r\n            计步器',
-  `JCY` varchar(36) default NULL,
-  `JCFS` varchar(16) default NULL COMMENT '直肠/孕酮/超声/其他',
-  `TSZT` varchar(16) default NULL,
-  `NZXB` varchar(16) default '2' COMMENT '0母1公2未确认',
-  `BZ` varchar(128) default NULL,
+  `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of rsjcdjb
+-- Records of rjfjdjb
 -- ----------------------------
 
 -- ----------------------------
@@ -4200,10 +4178,8 @@ INSERT INTO `yh_system_menus` VALUES ('5e498a89-cc2c-4e2d-b8f1-16ecbcdd24e2', '�
 INSERT INTO `yh_system_menus` VALUES ('d8ebffd9-60d9-4813-8ee6-9725ad7c5b60', '角色管理', null, '/master/system/role!listRoles.action', '0', '1', '1', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('979e846b-a625-4ff4-bdb4-cac85c4d6133', '员工信息管理', null, '/master/yggl/ygxx.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '3', '1');
 INSERT INTO `yh_system_menus` VALUES ('13a74fbb-d638-4d88-94c3-d92f71b5b831', '数据管理', null, '#', '0', '0', '', '7', '1');
-INSERT INTO `yh_system_menus` VALUES ('335ea9de-07ea-4c3a-ab9c-a03b2edfcafc', '数据导入', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('e82d8bb0-5f60-43ed-8cc8-61a1f28e2ba6', '控制器信息管理', null, '#', '0', '1', '6d07a593-4daa-43ea-9ee5-12be440bce2f', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('4cd2f1a6-8328-4c73-b85f-99cb7da45dec', '计步器信息管理', null, '#', '0', '1', '6d07a593-4daa-43ea-9ee5-12be440bce2f', '2', '1');
-INSERT INTO `yh_system_menus` VALUES ('26efff26-8d67-482c-bf13-01a0185e932b', '数据导出', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('e8b11752-8fb3-4d05-a48a-78de936d1ff3', '系统初始化', null, '#', '0', '1', '13a74fbb-d638-4d88-94c3-d92f71b5b831', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('6dd6b862-cb5b-4fe8-becd-f79a7053f08f', '牛群概貌', null, '/master/index.action', '0', '1', '1b9139be-09af-4667-a634-98dc61906543', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('0243c8b7-5a14-405a-952b-7e02440a43ac', '免疫登记', null, '/master/jbfy/myxx.action', '0', '1', 'f2ef60df-3c0d-479c-a3ea-abe162e749e9', '1', '1');
@@ -4235,7 +4211,7 @@ CREATE TABLE `yh_system_roles` (
 -- ----------------------------
 INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefad', '超级管理员', null, '1', '0', null, '1', '1');
 INSERT INTO `yh_system_roles` VALUES ('bfe348a5-73e1-4d91-9853-e685c46109a9', '系统管理员', null, '7122ab89-6599-43f5-885e-08ba737e2f60', '0', null, '1', '0');
-INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefae', '企业用户', null, '6dd6b862-cb5b-4fe8-becd-f79a7053f08f,54af0c61-e2ba-4216-8281-da5e14bcf9fe,8c3ed385-cc3c-4416-a6ce-9043bf8fe844,979e846b-a625-4ff4-bdb4-cac85c4d6133,b953f0d0-a0f3-462b-9726-bc72012ac760,6d07a593-4daa-43ea-9ee5-12be440bce2f,60ae96d5-72a9-4d58-bbe3-1166252529ce,352fa9a5-17d5-4d79-82db-6b392bdad1e3,f2ef60df-3c0d-479c-a3ea-abe162e749e9,13a74fbb-d638-4d88-94c3-d92f71b5b831', '0', null, '2', '0');
+INSERT INTO `yh_system_roles` VALUES ('b05f9a5d-10c7-466f-833a-3ab9928fefae', '企业用户', null, '6dd6b862-cb5b-4fe8-becd-f79a7053f08f,54af0c61-e2ba-4216-8281-da5e14bcf9fe,8c3ed385-cc3c-4416-a6ce-9043bf8fe844,979e846b-a625-4ff4-bdb4-cac85c4d6133,b953f0d0-a0f3-462b-9726-bc72012ac760,6d07a593-4daa-43ea-9ee5-12be440bce2f,60ae96d5-72a9-4d58-bbe3-1166252529ce,352fa9a5-17d5-4d79-82db-6b392bdad1e3,f2ef60df-3c0d-479c-a3ea-abe162e749e9,e8b11752-8fb3-4d05-a48a-78de936d1ff3', '0', null, '2', '0');
 
 -- ----------------------------
 -- Table structure for `yh_system_users`
@@ -4258,7 +4234,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-17 16:29:34', '2015-05-18 14:34:10');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-18 14:34:10', '2015-05-24 16:15:51');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-05-08 22:18:59', '2015-05-11 15:46:59');
 
 -- ----------------------------

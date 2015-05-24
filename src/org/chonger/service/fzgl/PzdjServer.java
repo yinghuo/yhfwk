@@ -61,6 +61,11 @@ public class PzdjServer {
 		return sql;
 	}
 	
+	public List<PZDJXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

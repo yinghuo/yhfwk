@@ -60,6 +60,11 @@ public class RjcjServer {
 		return sql;
 	}
 	
+	public List<RJCJXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

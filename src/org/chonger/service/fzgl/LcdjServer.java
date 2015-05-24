@@ -61,6 +61,11 @@ public class LcdjServer {
 		return sql;
 	}
 	
+	public List<LCXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

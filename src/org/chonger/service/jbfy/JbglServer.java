@@ -60,6 +60,11 @@ public class JbglServer {
 		return sql;
 	}
 	
+	public List<JBXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

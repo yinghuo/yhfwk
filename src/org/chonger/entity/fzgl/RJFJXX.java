@@ -49,7 +49,7 @@ public class RJFJXX {
 	private String tezk;//胎儿状况
 	
 	@Column(name="nzxb")
-	private String nzxb;//牛只性别
+	private int nzxb;//牛只性别
 	
 	@Column(name="bz")
 	private String bz;//备注
@@ -122,11 +122,11 @@ public class RJFJXX {
 		this.tezk = tezk;
 	}
 
-	public String getNzxb() {
+	public int getNzxb() {
 		return nzxb;
 	}
 
-	public void setNzxb(String nzxb) {
+	public void setNzxb(int nzxb) {
 		this.nzxb = nzxb;
 	}
 

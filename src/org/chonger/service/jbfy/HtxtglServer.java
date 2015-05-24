@@ -57,10 +57,12 @@ public class HtxtglServer {
 		{
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
-		
-		
-		
 		return sql;
+	}
+	
+	public List<HTXTXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
 	}
 	
 	/**

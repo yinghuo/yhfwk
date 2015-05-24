@@ -60,6 +60,11 @@ public class FqdjServer {
 		return sql;
 	}
 	
+	public List<FQDJXX> findAll()
+	{
+		return dao.find(getQueryString(null,null));
+	}
+	
 	/**
 	 * 
 	 * @Title: delete 

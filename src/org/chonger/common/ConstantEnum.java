@@ -189,6 +189,7 @@ public class ConstantEnum {
 		
 		@Override
 		public Integer getValue() {	return value;}
+		
 	}
 	
 	/**
