@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.chonger.entity.cngl.GTCNXX;
 import org.chonger.entity.fzgl.CDDJXX;
@@ -21,6 +22,7 @@ import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.fzgl.RJCJXX;
 import org.chonger.entity.fzgl.RJFJXX;
 import org.chonger.entity.jbxx.JSJBXX;
+import org.chonger.utils.DateTimeUtil;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -75,7 +77,7 @@ public class NZJBXX {
 	@Column(name="rqsj")
 	private Date rqsj;
 	
-	@Column(name = "yl")
+	//@Column(name = "yl")
 	/**月龄*/
 	private int yl;
 	
@@ -237,8 +239,12 @@ public class NZJBXX {
 	public void setRqlx(String rqlx) {
 		this.rqlx = rqlx;
 	}
-
+	
+	@Transient
 	public int getYl() {
+		//计算月龄
+		if(this.getCsrq()!=null)
+			yl=(yl=DateTimeUtil.getMonthNow(this.getCsrq()))<0?0:yl;
 		return yl;
 	}
 

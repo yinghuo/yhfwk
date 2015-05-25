@@ -68,4 +68,39 @@ public class DateTimeUtil {
 		SimpleDateFormat sdf = new SimpleDateFormat(df);
 		return sdf.format(currentTime);
 	}
+	
+	/**
+	 * 获取两个日期之间的相差月数
+	 * @param beginDate
+	 * @param endDate
+	 * @retrun int 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public static int getMonth(Date beginDate,Date endDate)
+	{
+		if(beginDate!=null&&endDate!=null)
+		{
+			int bcount=beginDate.getYear()*12+beginDate.getMonth();
+			int ecount=endDate.getYear()*12+endDate.getMonth();
+			
+			return Math.abs(ecount-bcount);
+		}
+		return -1;
+	}
+	
+	/**
+	 * 获取指定日期和当前日期的相差月数
+	 * @param beginDate
+	 * @retrun int 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public static int getMonthNow(Date beginDate)
+	{
+		return getMonth(beginDate,new Date());
+	}
+	
 }
