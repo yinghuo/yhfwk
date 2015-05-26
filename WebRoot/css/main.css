@@ -133,6 +133,7 @@
 	width: 100%;
 	border-top: 1px solid #d3dbde;
 	border-right: 1px solid #d3dbde;
+	border-collapse: collapse;
 }
 .list_table th{
 height: 37px;

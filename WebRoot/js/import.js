@@ -118,7 +118,7 @@ function importData()
 	}
 
 	$.ajax({
-		url:urldomain+"/master/data/import!importData.action",
+		url:urldomain+"/master/data/import!importData.action?t="+new Date().getTime(),
 		type:"get",
 		beforeSend:function(xhr){
 			if(ymask==null)ymask=new YMask();

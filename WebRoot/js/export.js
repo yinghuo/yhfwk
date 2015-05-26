@@ -66,7 +66,7 @@ function readFileDone(data)
 function downloadFile()
 {
 	 $.ajax({
-    	url:urldomain+"/master/data/export!exportData.action",
+    	url:urldomain+"/master/data/export!exportData.action?t="+new Date().getTime(),
 		type:"get",
 		success:function(data){
 			unbindload();

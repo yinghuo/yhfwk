@@ -33,8 +33,8 @@
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
 	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
-	          			<div class="fileButton" style="display:inline-block;">
-	          				<form id="importform" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
+	          			<div class="fileButton" style="display:inline;">
+	          				<form id="importform" style="display:inline;" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
 			          			<input type="button" class="btn btn82 btn_export" value="导入">
 			          			<input type="hidden" name="fileType" value="11">
 			          			<input id="imgfile" class="fileInput cr-p" accept=".xlsx,.xls" type="file" name="upfile">

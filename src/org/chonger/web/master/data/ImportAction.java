@@ -13,6 +13,7 @@ import org.chonger.service.data.ImportServer;
 import org.chonger.utils.FileUpLoadUtils;
 import org.chonger.utils.FileUtil;
 import org.chonger.utils.JsonResultUtils;
+import org.chonger.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -180,7 +181,9 @@ public class ImportAction extends ActionSupport {
 		{
 			jsonResult.sendErrorMessage("数据导入异常："+ex.getMessage());
 		}
-		return "infos";
+		JsonUtils.sendJson(jsonResult.getInfos());
+		//return "infos";
+		return null;
 	};
 	
 	/**

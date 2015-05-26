@@ -122,6 +122,7 @@ function YMask(element)
 			btnLeft.style.float="left";
 			btnLeft.style.marginLeft="30px";
 			btnLeft.style.textAlign="center";
+			btnLeft.style.display="inline-block";
 			btnLeft.setAttribute("class","ext_btn_submit cr-p");
 			
 			btnRight=document.createElement("div");
