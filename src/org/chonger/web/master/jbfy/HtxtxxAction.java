@@ -94,7 +94,7 @@ public class HtxtxxAction extends ActionSupport {
 			
 			server.saveOrUpdate(ht);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(ht.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(ht.getXh()) ? "新增"
 					: "更新") + "护蹄修蹄信息异常！");
 		}
 		return "infos";

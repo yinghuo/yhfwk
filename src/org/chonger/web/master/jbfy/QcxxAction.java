@@ -94,7 +94,7 @@ public class QcxxAction extends ActionSupport {
 			
 			server.saveOrUpdate(qc);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(qc.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(qc.getXh()) ? "新增"
 					: "更新") + "驱虫登记信息异常！");
 		}
 		return "infos";

@@ -92,7 +92,7 @@ public class XdxxAction extends ActionSupport {
 			
 			server.saveOrUpdate(xd);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(xd.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(xd.getXh()) ? "新增"
 					: "更新") + "消毒登记信息异常！");
 		}
 		return "infos";

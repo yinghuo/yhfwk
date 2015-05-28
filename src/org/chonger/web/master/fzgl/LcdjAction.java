@@ -98,7 +98,7 @@ public class LcdjAction extends ActionSupport {
 			
 			server.saveOrUpdate(lc);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(lc.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(lc.getXh()) ? "新增"
 					: "更新") + "流产信息异常！");
 		}
 		return "infos";

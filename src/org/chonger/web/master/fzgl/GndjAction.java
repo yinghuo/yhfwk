@@ -94,7 +94,7 @@ public class GndjAction extends ActionSupport {
 					: "更新") + "干奶信息成功！");
 			server.saveOrUpdate(gn);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(gn.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(gn.getXh()) ? "新增"
 					: "更新") + "干奶信息异常！");
 		}
 		return "infos";

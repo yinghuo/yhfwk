@@ -59,7 +59,7 @@
 				<tr>
 					<td class="td_right">类别：</td>
 					<td class="">
-						<select id="lb" name="nz.lb" class="select" >
+						<select id="lb" class="select" disabled="true">
 							<option value="">请选择牛只类别</option>
 							<y:EnumValues value="${nz.lb}" enumName="NZLB">
 								<option value="${value}" ${selected}>${label}</option>
@@ -327,13 +327,29 @@
      		$("#yl").val(yl);
      		
      		//根据月龄计算类型
-     		
+     		var lb=getLBfromYl(yl);
+     		if(lb==-1)
+     			$("#lb").val("");
+     		else
+     			$("#lb").val(lb);
      		
      		//出生日期改变
      		if($("#rqlx").val()=="0")
      		{
      			copyvalue();
      		}
+     	}
+     	
+     	//根据月龄计算类别
+     	function getLBfromYl(yl)
+     	{
+     		if(yl<3)
+     			return 0;
+     		if(yl<6)
+     			return 1;
+     		if(yl<12)
+     			return 2;
+     		return 3;
      	}
      	
      	function copyvalue()

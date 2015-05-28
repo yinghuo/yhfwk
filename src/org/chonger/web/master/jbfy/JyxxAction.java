@@ -94,7 +94,7 @@ public class JyxxAction extends ActionSupport {
 			
 			server.saveOrUpdate(jy);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jy.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(jy.getXh()) ? "新增"
 					: "更新") + "检疫登记信息异常！");
 		}
 		return "infos";

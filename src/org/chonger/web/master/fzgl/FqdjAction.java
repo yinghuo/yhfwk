@@ -100,7 +100,7 @@ public class FqdjAction extends ActionSupport {
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fq.getXh())?"新增":"更新")+"发情信息成功！");
 			server.saveOrUpdate(fq);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(fq.getXh())?"新增":"更新")+"发情信息异常！");
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(fq.getXh())?"新增":"更新")+"发情信息异常！");
 		}
 		return "infos";
 	}

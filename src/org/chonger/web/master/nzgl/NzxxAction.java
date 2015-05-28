@@ -92,7 +92,9 @@ public class NzxxAction extends ActionSupport {
 	public String save() throws Exception{
 		try{
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(nz.getXh())?"新增":"更新")+"牛只信息成功！");
-			server.saveOrUpdate(nz);			
+			//根据牛只月龄计算牛只的类别
+			server.updateLBFromYL(nz);
+			server.saveOrUpdate(nz);
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage((StringUtil.IsEmpty(nz.getXh())?"新增":"更新")+"牛只信息异常！");

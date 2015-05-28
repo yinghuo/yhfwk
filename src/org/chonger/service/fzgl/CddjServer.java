@@ -2,9 +2,12 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum.NZLB;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.CDDJXX;
+import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -24,6 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class CddjServer {
 	@Autowired
 	private CommonDAO<CDDJXX> dao;
+	
+	@Autowired
+	private NzxxServer nzServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只产犊信息
@@ -85,6 +91,11 @@ public class CddjServer {
 				Cdxx.setNcbh(user.getNcjbxx().getXh());
 			}
 			
+			//产犊的牛只自动更新为泌乳牛
+			NZJBXX nzxx=nzServer.queryNZById(Cdxx.getNzbh());
+			nzxx.setLb(NZLB.成年母牛.getValue()+"");
+			nzServer.saveOrUpdate(nzxx);
+			
 			if(StringUtil.IsEmpty(Cdxx.getXh()))
 			{
 				//牛只序号为空，表示新增，进行自动编号
@@ -95,7 +106,7 @@ public class CddjServer {
 				dao.saveOrUpdate(Cdxx);
 		}
 	}
-
+	
 	
 	/**
 	 * 

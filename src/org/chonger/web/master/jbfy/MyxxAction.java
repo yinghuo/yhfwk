@@ -93,7 +93,7 @@ public class MyxxAction extends ActionSupport {
 					: "更新") + "免疫登记信息成功！");
 			server.saveOrUpdate(my);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(my.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(my.getXh()) ? "新增"
 					: "更新") + "免疫登记信息异常！");
 		}
 		return "infos";

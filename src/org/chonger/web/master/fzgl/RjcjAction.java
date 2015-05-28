@@ -93,7 +93,7 @@ public class RjcjAction extends ActionSupport {
 			
 			server.saveOrUpdate(rj);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
 					: "更新") + "妊娠初检信息异常！");
 		}
 		return "infos";

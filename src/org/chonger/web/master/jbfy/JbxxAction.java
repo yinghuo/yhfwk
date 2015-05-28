@@ -91,7 +91,7 @@ public class JbxxAction extends ActionSupport {
 			
 			server.saveOrUpdate(jb);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jb.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(jb.getXh()) ? "新增"
 					: "更新") + "疾病登记信息异常！");
 		}
 		return "infos";

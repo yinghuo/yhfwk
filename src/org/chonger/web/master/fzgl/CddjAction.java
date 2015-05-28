@@ -98,7 +98,7 @@ public class CddjAction extends ActionSupport {
 					: "更新") + "产犊信息成功！");
 			server.saveOrUpdate(cd);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增"
 					: "更新") + "产犊信息异常！");
 		}
 		return "infos";

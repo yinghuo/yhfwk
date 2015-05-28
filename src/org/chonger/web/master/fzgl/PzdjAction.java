@@ -96,7 +96,7 @@ public class PzdjAction extends ActionSupport {
 			
 			server.saveOrUpdate(pz);
 		} catch (Exception ex) {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
 					: "更新") + "配种信息异常！");
 		}
 		return "infos";
