@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="timer" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="MyScheduledTimerTask"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="CleanEntryEventCacheTask" class="org.chonger.service.task.MyTest"></bean>
+	
+	<bean id="MyScheduledTimerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask">
+			<ref bean="CleanEntryEventCacheTask"/>
+		</property>
+		<property name="delay">
+			<value>10000</value>
+		</property>
+		<property name="period">
+			<value>60000</value>
+		</property>
+	</bean>
+	
+</beans>
+
