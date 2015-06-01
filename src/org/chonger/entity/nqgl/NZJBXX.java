@@ -133,6 +133,9 @@ public class NZJBXX {
 	@JoinColumn(name="js",insertable = false, updatable = false)
 	private JSJBXX jsjbxx;
 	
+	@OneToOne(mappedBy="nzxx")
+	private NZLBXX nzlbxx;
+	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
 	private List<NZZSXX> zsxxList;
 	
@@ -426,5 +429,13 @@ public class NZJBXX {
 
 	public void setRjfjxxList(List<RJFJXX> rjfjxxList) {
 		this.rjfjxxList = rjfjxxList;
+	}
+
+	public NZLBXX getNzlbxx() {
+		return nzlbxx;
+	}
+
+	public void setNzlbxx(NZLBXX nzlbxx) {
+		this.nzlbxx = nzlbxx;
 	}
 }

@@ -2,12 +2,14 @@ package org.chonger.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateTimeUtil {
 	public static final String YMD = "yyyy-MM-dd";
 	public static final String YMDHMS = "yyyy-MM-dd hh:mm:ss";//@2014-03-06 add Daniel
 	public static SimpleDateFormat sdfYMDHMS;
+	public static SimpleDateFormat sdfYMD=new SimpleDateFormat(YMD);  
 	
 	public static int timeCompare(Date t1, Date t2) {
 		return t1.compareTo(t2);
@@ -101,6 +103,35 @@ public class DateTimeUtil {
 	public static int getMonthNow(Date beginDate)
 	{
 		return getMonth(beginDate,new Date());
+	}
+	
+	/**
+	 * 获取两个日期之间的相差天数（从0点开始计算）
+	 * @param beginDate
+	 * @param endDate
+	 * @retrun int 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public static int getDayBetween(Date beginDate,Date endDate)
+	{
+		try {
+			beginDate=sdfYMD.parse(sdfYMD.format(beginDate));
+			endDate=sdfYMD.parse(sdfYMD.format(endDate)); 
+			Calendar cal = Calendar.getInstance();    
+			cal.setTime(beginDate);    
+			long time1 = cal.getTimeInMillis();                 
+			cal.setTime(endDate);    
+			long time2 = cal.getTimeInMillis();         
+			long between_days=(time2-time1)/(1000*3600*24);  
+			         
+			return Integer.parseInt(String.valueOf(between_days));       
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 	
 }
