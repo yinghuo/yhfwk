@@ -9,7 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath*:/applicationContext*.xml,
-			classpath*:/schedulingContext-timer.xml,
+			<!-- classpath*:/schedulingContext-timer.xml, -->
 		</param-value>
 	</context-param>
 	

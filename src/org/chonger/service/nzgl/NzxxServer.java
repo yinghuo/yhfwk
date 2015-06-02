@@ -186,19 +186,27 @@ public class NzxxServer {
 			//依据牛只月龄计算牛只类别
 			NZLB nzlb=getNZLB(nzxx.getYl());
 			//更新牛只类别
-			nzxx.setLb(nzlb.getValue()+"");
+			if(nzlb==NZLB.大育成牛)
+			{
+				if(nzxx.getXb()==0)
+					nzxx.setLb(nzlb.getValue()+"");
+				else
+					nzxx.setLb(NZLB.留养公牛.getValue()+"");
+			}
+			else
+				nzxx.setLb(nzlb.getValue()+"");
 		}
 	}
 	
 	public NZLB getNZLB(int yl)
 	{
-		if(yl<3)
+		if(yl<=3)
 			return NZLB.哺乳犊牛;
-		if(yl<6)
+		if(yl<=6)
 			return NZLB.断奶犊牛;
-		if(yl<12)
+		if(yl<=12)
 			return NZLB.小育成牛;
-		return NZLB.大青年牛;
+		return NZLB.大育成牛;
 	}
 	
 	/**

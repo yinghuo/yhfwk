@@ -1568,3 +1568,6 @@
 .fa-remove:before{
 	content: "\f00d";
 }
+.fa-beaker:before{
+	content: "\f0c3";
+}

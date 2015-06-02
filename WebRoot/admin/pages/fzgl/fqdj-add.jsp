@@ -65,7 +65,7 @@
 						&nbsp;<a id="selectshy" onclick="ygSelect('selectshy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
-				<tr>
+				<%/*<tr>
 					<td class="td_right">是否配种：</td>
 					<td class="">
 						<select id="sfpz" name="fq.sfpz" class="select" >
@@ -81,7 +81,7 @@
 					<td class="">
 						<input type="text" id="wpyy" name="fq.wpyy" class="input-text lh30" value="${fq.wpyy}" size="50"><span class="required">*必填</span>
 					</td>
-				</tr>
+				</tr>*/%>
 				<tr>
 					<td class="td_right">备注：</td>
 					<td class="">
@@ -130,11 +130,11 @@
      			alert("请填写审核员！");
      			return false;
      		}
-     		else if(IsNull("wpyy",0))
+     		/*else if(IsNull("wpyy",0))
      		{
      			alert("请填写未配原因！");
      			return false;
-     		}
+     		}*/
      		
 			return true;
 		}

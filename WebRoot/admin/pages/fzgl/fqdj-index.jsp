@@ -69,6 +69,7 @@
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#fqxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条发情信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/fqdj!delete.action?id=<s:property value="#fqxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+								<a title="配种" onclick="" class="fa fa-beaker cr-p">配种</a>
 							</td>
 						</tr>
 			</s:iterator>

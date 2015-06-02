@@ -150,7 +150,7 @@ public class ConstantEnum {
 		哺乳犊牛(0),
 		断奶犊牛(1),
 		小育成牛(2),
-		大青年牛(3),
+		大育成牛(3),
 		妊娠前期青年母牛(4),
 		妊娠后期青年母牛(5),
 		成年母牛(6),
@@ -162,6 +162,24 @@ public class ConstantEnum {
 		@Override
 		public Integer getValue() {	return value;}
 	}
+	
+	/**
+	 * 定义牛只的类别状态常量
+	 */
+	public static enum NZLBZT implements BaseEnum<Integer>{
+		
+		发情期(0),
+		已配种(1),
+		空杯期(2);
+		
+		private int value;
+		NZLBZT(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	
 	
 	/**
 	 * 定义牛只的状态常量

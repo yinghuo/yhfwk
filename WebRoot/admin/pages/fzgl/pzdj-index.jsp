@@ -66,6 +66,7 @@
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+						<a title="初检" onclick="" class="fa fa-medkit cr-p">初检</a>
 					</td>
 				</tr>
 			</s:iterator>

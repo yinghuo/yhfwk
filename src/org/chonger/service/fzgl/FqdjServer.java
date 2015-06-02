@@ -1,11 +1,18 @@
 package org.chonger.service.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
+import org.chonger.common.ConstantEnum.NZLBZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +31,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class FqdjServer {
 	@Autowired
 	private CommonDAO<FQDJXX> dao;
+	
+	@Autowired
+	private NzxxServer nzServer;
+	
+	@Autowired
+	private NzlbServer lbServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只产犊信息
@@ -104,6 +117,9 @@ public class FqdjServer {
 	public void saveOrUpdate(FQDJXX Fqxx)
 	{
 		if(Fqxx!=null) {
+			
+			NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
+			
 			//权限校验 
 			User user=SessionUtils.getUser();
 			if(user!=null&&user.getRole().getRtype()==2)
@@ -119,6 +135,19 @@ public class FqdjServer {
 			}
 			else
 				dao.saveOrUpdate(Fqxx);
+			
+			//计算发情后的最佳配种时间 +8-12小时
+			Date tssj=DateTimeUtil.addDate(Fqxx.getFqsj(), 0, 0,0,8,0,0);
+			
+			//更新牛只的类别详细信息
+			NZLBXX lbxx=nzxx.getNzlbxx();
+			if(lbxx==null)
+				lbxx=new NZLBXX();
+			lbxx.setLb(NZLBZT.发情期.getValue());
+			lbxx.setSj(Fqxx.getFqsj());
+			lbxx.setTssj(tssj);
+			lbServer.saveOrUpdate(lbxx, nzxx);
+			//发出消息
 		}
 	}
 }

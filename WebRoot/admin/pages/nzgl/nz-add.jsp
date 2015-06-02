@@ -49,7 +49,7 @@
 				<tr>
 					<td class="td_right">性别：</td>
 					<td class="">
-						<select id="xb" name="nz.xb" class="select" >
+						<select id="xb" name="nz.xb" class="select" onChange="xbChange()">
 							<y:EnumValues value="${nz.xb}" enumName="NZXB">
 								<option value="${value}" ${selected}>${label}</option>
 							</y:EnumValues>
@@ -315,6 +315,18 @@
      		}
      	});
      	
+     	//性别改变
+     	function xbChange()
+     	{
+     		if($("#lb").val()==3||$("#lb").val()==7)
+     		{
+     			if($("#xb").val()==0)
+     				$("#lb").val(3);
+     			else
+     				$("#lb").val(7);
+     		}
+     	}
+     	
      	function csrqChange(){
      		//计算月龄
      		var srDate=new Date(Date.parse($("#csrq").val().replace(/-/g,"/"))); 
@@ -324,6 +336,10 @@
      		//计算月份
      		//console.log("相差月份："+(nM-srM));
      		var yl=nM-srM;
+     		//添加满月计算
+     		if(nDate.getDate()>srDate.getDate())
+     			yl++;
+     		
      		$("#yl").val(yl);
      		
      		//根据月龄计算类型
@@ -331,7 +347,13 @@
      		if(lb==-1)
      			$("#lb").val("");
      		else
-     			$("#lb").val(lb);
+     		{
+     			//添加性别的选择
+     			if($("#xb").val()==0)
+     				$("#lb").val(lb);
+     			else if(lb==3)
+     				$("#lb").val(7);
+     		}
      		
      		//出生日期改变
      		if($("#rqlx").val()=="0")

@@ -1,5 +1,7 @@
 package org.chonger.entity.nqgl;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +33,10 @@ public class NZLBXX {
 	
 	@Column(name = "sj")
 	/*时间*/
-	private DateTime sj;
+	private Date sj;
+	
+	@Column(name="tssj")
+	private Date tssj;
 	
 	@Column(name = "lb")
 	/*类别*/
@@ -41,6 +46,10 @@ public class NZLBXX {
 	/*天数*/
 	private int day;
 	
+	@Column(name="tid")
+	/*关联目标的id*/
+	private String tid;
+		
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "xh")
 	private NZJBXX nzxx;
@@ -77,11 +86,27 @@ public class NZLBXX {
 		this.day = day;
 	}
 
-	public DateTime getSj() {
+	public Date getSj() {
 		return sj;
 	}
 
-	public void setSj(DateTime sj) {
+	public void setSj(Date sj) {
 		this.sj = sj;
+	}
+
+	public Date getTssj() {
+		return tssj;
+	}
+
+	public void setTssj(Date tssj) {
+		this.tssj = tssj;
+	}
+
+	public String getTid() {
+		return tid;
+	}
+
+	public void setTid(String tid) {
+		this.tid = tid;
 	}
 }
