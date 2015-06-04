@@ -59,7 +59,7 @@
 				<tr>
 					<td class="td_right">类别：</td>
 					<td class="">
-						<select id="lb" class="select" disabled="true">
+						<select id="lb" class="select" disabled="disabled">
 							<option value="">请选择牛只类别</option>
 							<y:EnumValues value="${nz.lb}" enumName="NZLB">
 								<option value="${value}" ${selected}>${label}</option>

@@ -1,12 +1,17 @@
 package org.chonger.service.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
+import org.chonger.common.ConstantEnum.NZLBZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
+import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzlbServer;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +31,23 @@ public class PzdjServer {
 	@Autowired
 	private CommonDAO<PZDJXX> dao;
 	
+	@Autowired
+	private FqdjServer fqServer;
+	
+	@Autowired
+	private NzlbServer lbServer;
+	
 	/**
-	 * 依据牛只的id信息查询牛只配种信息
-	 * @Title: queryNZById 
+	 * 根据配种ID获取配种信息
+	 * @Title: getPzxxById 
 	 * @Description: 
 	 * @param id
 	 * @retrun PZDJXX 
 	 * @throws 
-	 * @author liuzq
+	 * @author Daniel
 	 * @version V1.0
 	 */
-	public PZDJXX queryNZById(String id)
+	public PZDJXX getPzxxById(String id)
 	{
 		List<PZDJXX> resultList=dao.find(getQueryString(null, null)+" and model.xh='"+id+"'");
 		if(resultList!=null&&resultList.size()>0)
@@ -117,6 +128,24 @@ public class PzdjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Pzxx.setXh(CommUUID.getUUID());
 				dao.save(Pzxx);
+				
+				//modify 2015-06-03	Daniel 1：新增配种信息保存时修改发情信息
+				//更新发情信息
+				FQDJXX _fqxx=fqServer.getFqxxById(Pzxx.getFqid());
+				_fqxx.setSfpz(1);
+				fqServer.saveOrUpdate(_fqxx);
+				//更新牛只信息
+				NZLBXX _lbxx=lbServer.getNzlbxxById(Pzxx.getNzbh());
+				if(_lbxx==null)//牛只不存在类型信息，一般这里应该会出现，添加以防万一
+					_lbxx=new NZLBXX();
+				//修改牛只类别信息
+				_lbxx.setSj(Pzxx.getPzsj());//更新配置时间
+				_lbxx.setTid(Pzxx.getXh());//绑定事件对象
+				_lbxx.setLb(NZLBZT.已配种.getValue());//更新已配种信息
+				_lbxx.setDay(DateTimeUtil.getDayBetween(Pzxx.getPzsj(), new Date()));//更新配种时间
+				_lbxx.setTssj(null);
+				lbServer.saveOrUpdate(_lbxx,Pzxx.getNzbh());
+				
 			}
 			else
 				dao.saveOrUpdate(Pzxx);

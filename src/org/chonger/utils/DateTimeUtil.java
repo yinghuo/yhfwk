@@ -192,16 +192,19 @@ public class DateTimeUtil {
 	{
 		Date date=DateTimeUtil.parseDate2YMDHMS("2014-09-02 10:23:34");
 		
-		Date dateDone=DateTimeUtil.addDate(date, 0,3, 0);
+		//Date dateDone=DateTimeUtil.addDate(date, 0,3, 0);
 		
-		System.out.println(DateTimeUtil.formatDateToString(dateDone));
+		//System.out.println(DateTimeUtil.formatDateToString(dateDone));
 		
 		//月计算
-		Date datend=DateTimeUtil.parseDate2YMDHMS("2015-01-15 14:23:27");
+		//Date datend=DateTimeUtil.parseDate2YMDHMS("2015-01-15 14:23:27");
+		Date datend=DateTimeUtil.parseDate2YMDHMS("2014-09-02 14:23:27");
 		
-		int m=DateTimeUtil.getMonth(date, datend);
+		//int m=DateTimeUtil.getMonth(date, datend);
 		
-		System.out.println("月："+m);
+		//System.out.println("月："+m);
+		
+		System.out.println(DateTimeUtil.getDayBetween(date, datend));
 		
 	}
 	

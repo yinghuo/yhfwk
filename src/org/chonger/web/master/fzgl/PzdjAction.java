@@ -1,17 +1,18 @@
 package org.chonger.web.master.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
-import org.chonger.entity.jbxx.NCJBXX;
-import org.chonger.entity.system.User;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.service.fzgl.PzdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
-import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +39,8 @@ public class PzdjAction extends ActionSupport {
 	
 	@Autowired
 	private PzdjServer server;
+	@Autowired
+	private FqdjServer fqServer;
 	
 	public PzdjAction(){
 		jsonResult=new JsonResultUtils();
@@ -57,6 +60,7 @@ public class PzdjAction extends ActionSupport {
 	
 	private String id;
 	public void setId(String id) {this.id = id;}
+	public String getId() {return id;}
 	
 	/**列表翻页组件*/
 	@Autowired
@@ -83,7 +87,8 @@ public class PzdjAction extends ActionSupport {
 	@Override
 	
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
+		//modify 2015-06-04	Daniel	添加排序，按照配种时间排序
+		pager.init(server.getQueryString(bh, eb) + " order by model.pzsj desc ", pager.pageSize, p);
 		pzlist = pager.getDataSource();
 		return "pz-list.jsp";
 	}
@@ -91,8 +96,8 @@ public class PzdjAction extends ActionSupport {
 	/** 保存数据操作 */
 	public String save() throws Exception {
 		try {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新") + "配种信息成功！");
+			
+			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增" : "更新") + "配种信息成功！");
 			
 			server.saveOrUpdate(pz);
 		} catch (Exception ex) {
@@ -107,7 +112,7 @@ public class PzdjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			pz=server.queryNZById(id);
+			pz=server.getPzxxById(id);
 		}
 		return "edit.jsp";
 	}
@@ -123,7 +128,32 @@ public class PzdjAction extends ActionSupport {
 		}
 		return "infos";
 	}
-
+	
+	/**对已发情的牛只增加配种*/
+	public String addPz() throws Exception{
+		
+		//依据发情的ID加载发情的牛只
+		if(!StringUtil.IsEmpty(id))
+		{
+			//加载发情信息
+			FQDJXX _fqxx=fqServer.getFqxxById(id);
+			if(_fqxx!=null)
+			{
+				//转换发情信息为配种信息
+				NZJBXX _nzjbxx=_fqxx.getNzjbxx();
+				pz=new PZDJXX();
+				pz.setNzjbxx(_nzjbxx);
+				pz.setNzbh(_nzjbxx.getXh());
+				pz.setPzsj(new Date());
+				pz.setFqsj(_fqxx.getFqsj());
+				pz.setFqlx(_fqxx.getFqlx());
+				pz.setFxfs(_fqxx.getFxfs());
+			}
+		}
+		
+		return "edit.jsp";
+	}
+	
 	
 }
 	

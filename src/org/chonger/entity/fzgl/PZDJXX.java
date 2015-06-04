@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
@@ -65,7 +66,10 @@ public class PZDJXX
 	
 	@Column(name = "bz")
 	private String bz;//备注
-
+	
+	@Transient
+	private String fqid;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)
 	private NZJBXX nzjbxx;
@@ -180,6 +184,14 @@ public class PZDJXX
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public String getFqid() {
+		return fqid;
+	}
+
+	public void setFqid(String fqid) {
+		this.fqid = fqid;
 	}
 
 }

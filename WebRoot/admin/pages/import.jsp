@@ -15,6 +15,12 @@
 	function showmap(val)
 	{
 		window.parent.endShow(val);
-	}	
+	}
+	
+	function selectMenu(id)
+	{
+		window.parent.selectMenu(id);
+	}
+	
 </script>
 

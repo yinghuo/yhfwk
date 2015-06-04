@@ -14,7 +14,9 @@ import org.chonger.service.ncgl.NcglServer;
 import org.chonger.service.system.UserManager;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.SHAUtils;
 import org.chonger.utils.SessionUtils;
+import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -65,6 +67,14 @@ public class NcglAction extends ActionSupport {
 	private List<NCJBXX> nclist;
 	public List<NCJBXX> getNclist() {		return nclist;	}
 	
+	private boolean edit;
+	public boolean getEdit() {return edit;}
+	public void setEdit(boolean edit) {	this.edit = edit;}
+	
+	private String id;
+	public String getId() {return id;}
+	public void setId(String id) {this.id = id;	}
+	
 	/**列表翻页组件*/
 	@Autowired
 	public RollPage<NCJBXX> pager;
@@ -103,28 +113,73 @@ public class NcglAction extends ActionSupport {
 				}
 				else if(user.getRole().getRtype()==1)//管理员调用牛场保存的函数
 				{
-					if(u!=null)//用户信息不为空，提交的是授权信息
+					//modify 新增管理员修改操作
+					if(nc!=null&&!StringUtil.IsEmpty(nc.getXh()))
 					{
-						//进行信息检测
-						if(!server.checkNCBHExist(nc.getNcbh()))
+						//修改操作，加载牛只信息、用户信息
+						NCJBXX _ncjbxx=server.findNcxxById(nc.getXh());
+						if(_ncjbxx!=null)
 						{
-							//检测登陆名是否存在
-							if(!userManager.checkLoginNameExist(u.getUloginname()))
+							User _user=userManager.findUserById(_ncjbxx.getYhid());
+							if(_user!=null)
 							{
-								server.authorize(nc,u);
-								jsonResult.sendSuccessMessage("新的牛场授权开通成功！");
-								return "infos";
+								//更新牛场信息
+								nc.setNcbh(_ncjbxx.getNcbh());
+								nc.setYhid(_ncjbxx.getYhid());
+								nc.setNcxz(_ncjbxx.getNcxz());
+								nc.setPzy(_ncjbxx.getPzy());
+								nc.setPzhdg(_ncjbxx.getPzhdg());
+								nc.setFqxtsybz(_ncjbxx.getFqxtsybz());
+								nc.setLxyx(_ncjbxx.getLxyx());
+								nc.setKddz(_ncjbxx.getKddz());
+								nc.setBz(_ncjbxx.getBz());
+								
+								//更新用户信息
+								_user.setUloginname(u.getUloginname());
+								_user.getUserInfo().setPhonenum(u.getUserInfo().getPhonenum());
+								_user.getUserInfo().setEmail(u.getUserInfo().getEmail());
+								if(!StringUtil.IsEmpty(u.getUpassword()))//用户密码更新
+								{
+									_user.setUpassword(SHAUtils.CreateSHAKey(u.getUpassword()));
+								}
 							}
 							else
 							{
-								jsonResult.sendErrorMessage("管理员登录名已经存在，请重新分配登录名！");
+								jsonResult.sendErrorMessage("非法的牛场信息更新操作！");
 								return "infos";
 							}
 						}
 						else
 						{
-							jsonResult.sendErrorMessage("牛场编号已经存在，请确实是否重复授权！");
+							jsonResult.sendErrorMessage("非法的牛场信息更新操作！");
 							return "infos";
+						}
+					}
+					else
+					{
+						if(u!=null)//用户信息不为空，提交的是授权信息
+						{
+							//进行信息检测
+							if(!server.checkNCBHExist(nc.getNcbh()))
+							{
+								//检测登陆名是否存在
+								if(!userManager.checkLoginNameExist(u.getUloginname()))
+								{
+									server.authorize(nc,u);
+									jsonResult.sendSuccessMessage("新的牛场授权开通成功！");
+									return "infos";
+								}
+								else
+								{
+									jsonResult.sendErrorMessage("管理员登录名已经存在，请重新分配登录名！");
+									return "infos";
+								}
+							}
+							else
+							{
+								jsonResult.sendErrorMessage("牛场编号已经存在，请确实是否重复授权！");
+								return "infos";
+							}
 						}
 					}
 				}
@@ -146,6 +201,21 @@ public class NcglAction extends ActionSupport {
 		
 		return "infos";
 	}
+	
+	/**编辑数据*/
+	public String edit() throws Exception{
+		
+		//根据ID加载牧场信息
+		if(!StringUtil.IsEmpty(id))
+		{
+			nc=server.findNcxxById(id);
+			u=userManager.findUserById(nc.getYhid());
+			edit=true;
+		}
+		return "edit.jsp";
+	}
+	
+	
 	
 	
 //	public String loadname() throws Exception{

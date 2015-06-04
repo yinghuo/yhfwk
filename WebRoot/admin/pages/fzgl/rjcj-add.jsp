@@ -14,7 +14,8 @@
   				<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${rj.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
+						<%//<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${rj.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50"> %>
+						<input type="text" id="nzbhtxt" value="${rj.nzjbxx.nzbh}" readonly="readonly" class="input-text lh30 cr-na" size="50">
 						<input type="hidden" id="nzbh" name="rj.nzbh" value="${rj.nzbh}">
 						<span class="required">*必填</span>
 					</td>
@@ -67,14 +68,15 @@
   		</form>
   	</div>
   	<div class="btns">
-		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/rjcj!save.action" name="frmrjcj" class="btn btn82 btn_add" type="button" value=" <s:if test="rj==null">新增</s:if><s:else>更新</s:else> "/>
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/rjcj!save.action" name="frmrjcj" class="btn btn82 btn_add" type="button" value=" <s:if test="rj.xh==null">新增</s:if><s:else>更新</s:else> "/>
 	</div>
 	<script src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
     <script type="text/javascript">
-     	showmap("妊娠检查信息管理 > 新增妊娠初检信息");
+     	showmap("妊娠检查信息管理 > <s:if test="rj.xh==null">新增</s:if><s:else>修改</s:else>妊娠初检信息");
+     	selectMenu("af0a7e33-4e07-4fed-972a-c798616766cb");
      	function validata()
      	{
      		if(IsNull("nzbh",0))
@@ -126,7 +128,7 @@
 				select.show(id,$("#cjytxt").val());
 		}
      	
-     	var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
+     	/*var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
 			$("#nzbhtxt").val(t);
 			$("#nzbh").val(v);
 		});
@@ -147,7 +149,7 @@
 				$("#nzbh").val(nzxx[0]);
 			}
 			nzselect.hiden();
-		}
+		}*/
      	
      </script>
   </body>

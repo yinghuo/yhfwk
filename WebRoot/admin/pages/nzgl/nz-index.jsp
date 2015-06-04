@@ -52,9 +52,8 @@
              	<th width="80">序号</th>
               	<th width="120">牛只编号</th>
               	<th width="120">所属圈舍</th>
-              	<th width="120">耳标编号</th>
-              	<th width="120">计步器编号</th>
               	<th width="120">类别</th>
+              	<th width="100">状态</th>
               	<th width="120">入群类型</th>
               	<th width="120">出生日期</th>
               	<th width="80">性别</th>
@@ -64,10 +63,14 @@
 				<tr>
 					<td>${status.count}</td>
 					<td><s:property value="#nzxx.nzbh"/></td>
-					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>
-					<td><s:property value="#nzxx.ebbh"/></td>
-					<td><s:property value="#nzxx.jbqbh"/></td>
+					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>					
 					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>
+					<s:if test="#nzxx.nzlbxx!=null">
+						<td><y:EnumLabel enumName="NZLBZT" value="${nzxx.nzlbxx.lb}"/></td>
+					</s:if>
+					<s:else>
+						<td></td>
+					</s:else>
 					<td><y:EnumLabel enumName="NZRQLX" value="${nzxx.rqlx}"/></td>
 					<td><s:date name="#nzxx.csrq" format="yyyy-MM-dd"/></td>
 					<td><y:EnumLabel enumName="NZXB" value="${nzxx.xb}"/></td>

@@ -89,7 +89,8 @@ public class FqdjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
+		//modify 2015-06-03	Daniel	添加排序，需要配种的排在前面
+		pager.init(server.getQueryString(bh, eb)+" order by model.sfpz ", pager.pageSize, p);
 		fqlist = pager.getDataSource();
 		return "fq-list.jsp";
 	}
@@ -110,7 +111,7 @@ public class FqdjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			fq=server.queryNZById(id);
+			fq=server.getFqxxById(id);
 		}
 		return "edit.jsp";
 	}

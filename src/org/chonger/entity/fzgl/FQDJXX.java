@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
@@ -159,6 +160,5 @@ public class FQDJXX
 	public void setBz(String bz) {
 		this.bz = bz;
 	}
-	
 	
 }

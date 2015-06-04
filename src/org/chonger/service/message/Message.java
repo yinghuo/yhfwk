@@ -7,5 +7,5 @@ package org.chonger.service.message;
  *
  */
 public interface Message {
-
+	boolean sendMessage();
 }

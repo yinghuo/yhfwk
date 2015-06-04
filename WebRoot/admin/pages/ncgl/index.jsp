@@ -59,8 +59,7 @@
 					<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
 					<td><s:property value="#ncxx.user.uloginname"/></td>
 					<td>
-						<a >修改</a>
-						<a >删除</a>
+						<a title="修改" onclick="edit('<s:property value="#ncxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 					</td>
 				</tr>
 			</s:iterator>
@@ -99,6 +98,10 @@
      	showmap("牧场信息管理 > 牛场授权列表");
      	function add(){
      		window.location.href="${pageContext.request.contextPath}/admin/pages/ncgl/add.jsp";
+     	}
+     	function edit(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/ncgl/ncgl!edit.action?id="+id;
      	}
      </script>
   </body>

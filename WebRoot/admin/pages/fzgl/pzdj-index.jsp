@@ -32,7 +32,7 @@
 	         <div class="pb5 pt5 pr10">
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
-	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+	          			<%//<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">%>
 	          			<div class="fileButton" style="display:inline;">
 	          				<form id="importform" style="display:inline;" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
 			          			<input type="button" class="btn btn82 btn_export" value="导入">
@@ -50,6 +50,7 @@
              	<th width="80">序号</th>
               	<th>牛只编号</th>
               	<th width="120">配种时间</th>
+              	<th>配种天数</th>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
               	<th>配种员</th>
@@ -60,13 +61,20 @@
 					<td>${status.count}</td>
 					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
+					<td>
+						<s:if test="#pzxx.nzjbxx.nzlbxx!=null && #pzxx.nzjbxx.nzlbxx.lb==1">
+							<s:property value="#pzxx.nzjbxx.nzlbxx.day"/>天
+						</s:if>
+					</td>
 					<td><s:property value="#pzxx.djbh"/></td>
 					<td><s:property value="#pzxx.djlx"/></td>
 					<td><s:property value="#pzxx.pzy"/></td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
-						<a title="初检" onclick="" class="fa fa-medkit cr-p">初检</a>
+						<s:if test="#pzxx.nzjbxx.nzlbxx!=null && #pzxx.nzjbxx.nzlbxx.lb==1">
+							<a title="初检" onclick="chujian('<s:property value="#pzxx.xh"/>')" class="fa fa-medkit cr-p">初检</a>
+						</s:if>
 					</td>
 				</tr>
 			</s:iterator>
@@ -112,10 +120,15 @@
      		document.getElementById("frmSearch").submit();
      	}
      	
-     	function add(){
+     	<%/*function add(){
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/pzdj-add.jsp";
-     	}
-
+     	}*/%>
+		
+		function chujian(id)
+		{
+			window.location.href="${pageContext.request.contextPath}/master/fzgl/rjcj!addCj.action?id="+id;
+		}
+		
      	function edit(id)
      	{
      		window.location.href="${pageContext.request.contextPath}/master/fzgl/pzdj!edit.action?id="+id;

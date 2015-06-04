@@ -32,7 +32,7 @@
 	         <div class="pb5 pt5 pr10">
 	          		<div class="search_bar_btn" style="text-align:right;">
 	          			<input type="button" name="button" onClick="search()" class="btn btn82 btn_search" value="查询">
-	          			<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">
+	          			<%//<input type="button" name="button" onClick="add()" class="btn btn82 btn_add" value="新增">%>
 	          			<div class="fileButton" style="display:inline;">
 	          				<form id="importform" style="display:inline;" action="${pageContext.request.contextPath}/master/data/import.action" method='post' enctype='multipart/form-data'>
 			          			<input type="button" class="btn btn82 btn_export" value="导入">
@@ -111,10 +111,10 @@
      		document.getElementById("frmSearch").submit();
      	}
      	
-     	function add()
+     	<%/*function add()
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjcj-add.jsp";
-     	}
+     	}*/%>
      	
      	function edit(id)
      	{

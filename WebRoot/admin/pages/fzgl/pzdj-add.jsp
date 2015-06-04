@@ -10,12 +10,14 @@
 	<div class="box_center mt10">
   		<form id="frmpzdj" class="jqtransform">
   			<input type="hidden" name="pz.xh" value="${pz.xh}">
+  			<input type="hidden" name="pz.fqid" value="${id}">
   			<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
   				<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${pz.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
-						<input type="hidden" id="nzbh" name="pz.nzbh" value="${pz.nzbh}">
+						<%//<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${pz.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50"> %>
+						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${pz.nzjbxx.nzbh}" readonly="readonly" class="input-text lh30 cr-na" size="50">
+						<input type="hidden" id="nzbh" name="pz.nzbh" value="${pz.nzbh}"> 
 						<span class="required">*必填</span>
 					</td>
 				</tr>
@@ -48,13 +50,13 @@
 				<tr>
 					<td class="td_right">发情时间：</td>
 					<td class="">
-						<input type="text" id="fqsj" name="pz.fqsj" class="input-text lh30" readonly="readonly" value="<s:date name="pz.fqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+						<input type="text" id="fqsj" name="pz.fqsj" class="input-text lh30 cr-na" readonly="readonly" value="<s:date name="pz.fqsj" format="yyyy-MM-dd HH:mm"/>" size="50"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">发情类型：</td>
 					<td class="">
-						<select id="fqlx" name="pz.fqlx" class="select" >
+						<select id="fqlx" name="pz.fqlx" class="select cr-na" disabled="disabled">
 							<option value="">选择发情类型</option>
 						<y:EnumValues value="${pz.fqlx}" enumName="FQLX">
 							<option value="${value}" ${selected}>${label}</option>
@@ -66,9 +68,9 @@
 				<tr>
 					<td class="td_right">发现方式：</td>
 					<td class="">
-						<select id="fxfs" name="pz.fxfs" class="select" >
+						<select id="fxfs" name="pz.fxfs" class="select cr-na" disabled="disabled">
 							<option value="${pz.fxfs}">选择发现方式</option>
-						<y:EnumValues value="" enumName="FXFS">
+						<y:EnumValues value="${pz.fxfs}" enumName="FXFS">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
@@ -99,14 +101,15 @@
 		</form>
 	</div>
 	<div class="btns">
-		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/pzdj!save.action" name="frmpzdj" class="btn btn82 btn_add" type="button" value=" <s:if test="pz==null">新增</s:if><s:else>更新</s:else> "/>
+		<input id="comsubmit_save" callfunction=",savedone," validata="validata" url="${pageContext.request.contextPath}/master/fzgl/pzdj!save.action" name="frmpzdj" class="btn btn82 btn_add" type="button" value=" <s:if test="pz.xh==null">新增</s:if><s:else>更新</s:else> "/>
 	</div>
 	<script	src="${pageContext.request.contextPath}/plugins/My97DatePicker/WdatePicker.js"></script>
 	<script type="text/javascript"	src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script type="text/javascript">
-		showmap("配种信息管理 > 新增配种信息");
+		showmap("配种信息管理 > <s:if test="pz.xh==null">新增</s:if><s:else>修改</s:else>配种信息");
+		selectMenu("d41d97c3-3d88-412e-9d46-f59a19d0e5fa");
 		function validata() {
 			if (IsNull("nzbh", 0)) {
 				alert("请填写牛只编号！");
@@ -200,7 +203,7 @@
 			}				
 		}
 		
-		var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
+		/*var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
 			$("#nzbhtxt").val(t);
 			$("#nzbh").val(v);
 		});
@@ -221,7 +224,7 @@
 				$("#nzbh").val(nzxx[0]);
 			}
 			nzselect.hiden();
-		}
+		}*/
 		
 	</script>
 </body>

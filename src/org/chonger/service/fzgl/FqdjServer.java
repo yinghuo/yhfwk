@@ -38,24 +38,6 @@ public class FqdjServer {
 	@Autowired
 	private NzlbServer lbServer;
 	
-	/**
-	 * 依据牛只的id信息查询牛只产犊信息
-	 * @Title: queryNZById 
-	 * @Description: 
-	 * @param id
-	 * @retrun FQDJXX 
-	 * @throws 
-	 * @author liuzq
-	 * @version V1.0
-	 */
-	public FQDJXX queryNZById(String id)
-	{
-		List<FQDJXX> resultList=dao.find(getQueryString(null, null)+" and model.xh='"+id+"'");
-		if(resultList!=null&&resultList.size()>0)
-			return resultList.get(0);
-		return null;
-	}
-	
 	public String getQueryString(String nzbh,String ebbh)
 	{
 		String sql="from FQDJXX model where 1=1 ";		
@@ -71,6 +53,22 @@ public class FqdjServer {
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
 		return sql;
+	}
+	
+	/**
+	 * 根据发情ID获取发情信息
+	 * @param id
+	 * @retrun FQDJXX 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public FQDJXX getFqxxById(String id)
+	{
+		List<FQDJXX> fqxxList=dao.find(getQueryString(null,null)+" and model.xh = '"+id+"'");
+		if(fqxxList!=null&&fqxxList.size()>0)
+			return fqxxList.get(0);
+		return null;
 	}
 	
 	public List<FQDJXX> findAll()
@@ -118,7 +116,7 @@ public class FqdjServer {
 	{
 		if(Fqxx!=null) {
 			
-			NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
+			//NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
 			
 			//权限校验 
 			User user=SessionUtils.getUser();
@@ -140,13 +138,14 @@ public class FqdjServer {
 			Date tssj=DateTimeUtil.addDate(Fqxx.getFqsj(), 0, 0,0,8,0,0);
 			
 			//更新牛只的类别详细信息
-			NZLBXX lbxx=nzxx.getNzlbxx();
-			if(lbxx==null)
-				lbxx=new NZLBXX();
-			lbxx.setLb(NZLBZT.发情期.getValue());
-			lbxx.setSj(Fqxx.getFqsj());
-			lbxx.setTssj(tssj);
-			lbServer.saveOrUpdate(lbxx, nzxx);
+			//NZLBXX lbxx=nzxx.getNzlbxx();
+			NZLBXX _lbxx=lbServer.getNzlbxxById(Fqxx.getNzbh());
+			if(_lbxx==null)
+				_lbxx=new NZLBXX();
+			_lbxx.setLb(NZLBZT.发情期.getValue());
+			_lbxx.setSj(Fqxx.getFqsj());
+			_lbxx.setTssj(tssj);
+			lbServer.saveOrUpdate(_lbxx, Fqxx.getNzbh());
 			//发出消息
 		}
 	}

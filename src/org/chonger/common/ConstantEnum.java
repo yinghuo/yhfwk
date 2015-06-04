@@ -170,7 +170,13 @@ public class ConstantEnum {
 		
 		发情期(0),
 		已配种(1),
-		空杯期(2);
+		已初检(2),
+		已复检(3),
+		空杯期(4),
+		干奶期(5),
+		妊娠期(6),
+		围产期(7),
+		泌乳期(8);
 		
 		private int value;
 		NZLBZT(int value){this.value=value;}

@@ -5,7 +5,10 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.fzgl.RJCJXX;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.service.fzgl.PzdjServer;
 import org.chonger.service.fzgl.RjcjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
@@ -35,6 +38,8 @@ public class RjcjAction extends ActionSupport {
 	
 	@Autowired
 	private RjcjServer server;
+	@Autowired
+	private PzdjServer pzServer;
 	
 	public RjcjAction(){
 		jsonResult=new JsonResultUtils();
@@ -60,6 +65,7 @@ public class RjcjAction extends ActionSupport {
 	
 	private String id;
 	public void setId(String id) {this.id = id;}
+	public String getId() {return id;}
 	
 	/** 搜索查询参数定义 */
 	private String bh, eb;	
@@ -119,6 +125,28 @@ public class RjcjAction extends ActionSupport {
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
+	}
+	
+	/**对已发情的牛只增加初检*/
+	public String addCj() throws Exception
+	{
+		//根据ID查询配种信息
+		if(!StringUtil.IsEmpty(id))
+		{
+			//加载配种信息
+			PZDJXX _pzxx=pzServer.getPzxxById(id);
+			if(_pzxx!=null)
+			{
+				//转换配种信息为初检信息
+				NZJBXX _nzjbxx=_pzxx.getNzjbxx();
+				rj=new RJCJXX();
+				rj.setNzbh(_nzjbxx.getXh());
+				rj.setNzjbxx(_nzjbxx);
+				rj.setCjjg(-1);
+				rj.setCjfs(-1);
+			}
+		}
+		return "edit.jsp";
 	}
 	
 }

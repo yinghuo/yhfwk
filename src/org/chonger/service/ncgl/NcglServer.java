@@ -70,6 +70,22 @@ public class NcglServer {
 	}
 	
 	/**
+	 * 根据牛场的xh查询牛场信息
+	 * @param id
+	 * @retrun NCJBXX 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public NCJBXX findNcxxById(String id)
+	{
+		List<NCJBXX> resultNcxxList=dao.find(getQueryString()+" where model.xh='"+id+"'");
+		if(resultNcxxList!=null&&resultNcxxList.size()>0)
+			return resultNcxxList.get(0);
+		return null;
+	}
+	
+	/**
 	 * 牛场授权信息，平台管理员使用
 	 * @param Ncxx
 	 * @param user
