@@ -91,7 +91,7 @@ public class ConstantEnum {
 	 */
 	public static enum SFPZ implements BaseEnum<Integer>{
 		
-		否(0),是(1);
+		未配(0),已配(1);
 		
 		private int value;
 		SFPZ(int value){this.value=value;}
@@ -162,7 +162,11 @@ public class ConstantEnum {
 		@Override
 		public Integer getValue() {	return value;}
 	}
-	
+	/*
+	 * 哺乳犊牛、断奶犊牛，小育成牛、大育成牛，妊娠前期青年母牛，妊娠后期青年母牛，妊娠前期成年母牛，妊娠后期成年母牛，留养公牛，这是类别
+空怀牛，干奶牛，泌乳牛，这是状态，查询、显示需要   分娩期
+	 * 
+	 * */
 	/**
 	 * 定义牛只的类别状态常量
 	 */
@@ -174,9 +178,11 @@ public class ConstantEnum {
 		已复检(3),
 		空杯期(4),
 		干奶期(5),
-		妊娠期(6),
-		围产期(7),
-		泌乳期(8);
+		妊娠前期(6),
+		妊娠后期(7),
+		围产期(8),
+		泌乳期(9),
+		分娩期(10);
 		
 		private int value;
 		NZLBZT(int value){this.value=value;}

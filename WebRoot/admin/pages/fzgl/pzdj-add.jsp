@@ -16,7 +16,7 @@
 					<td class="td_right">牛只编号：</td>
 					<td class="">
 						<%//<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${pz.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50"> %>
-						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${pz.nzjbxx.nzbh}" readonly="readonly" class="input-text lh30 cr-na" size="50">
+						<input type="text" id="nzbhtxt"  value="${pz.nzjbxx.nzbh}" readonly="readonly" class="input-text lh30 cr-na" size="50">
 						<input type="hidden" id="nzbh" name="pz.nzbh" value="${pz.nzbh}"> 
 						<span class="required">*必填</span>
 					</td>

@@ -3,6 +3,7 @@ package org.chonger.service.nzgl;
 import java.util.Date;
 import java.util.List;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.common.ConstantEnum.NZLB;
 import org.chonger.common.ConstantEnum.NZLBZT;
 import org.chonger.dao.CommonDAO;
@@ -73,7 +74,7 @@ public class NzlbServer {
 	/**
 	 * 计算牛只类别
 	 */
-	public void setNzlb(NZJBXX nzxx)
+	public void updateNzlb(NZJBXX nzxx)
 	{
 		String lb=nzxx.getLb();		
 		NZLBXX lbxx=nzxx.getNzlbxx();//获取牛只的状态信息
@@ -137,21 +138,21 @@ public class NzlbServer {
 					{
 						//该牛只处于发情状态
 						//提示需要配种信息
+						//TODO 提示消息
 					}
 					else if(lbxx.getLb()==NZLBZT.已配种.getValue())//已配种，记录配种的天数，提示初检
 					{
 						//计算配种的天数
 						int count=lbxx.getDay();
 						lbxx.setDay(count++);
+						saveOrUpdate(lbxx, nzxx.getXh());
 						
 						//判断天数是否达到提示天数
 						if(count>=26)
 						{
 							//提示初检信息
-							
-						}
-						
-						saveOrUpdate(lbxx, nzxx.getNzbh());
+							//TODO 提示消息
+						}						
 					}
 					
 				}
@@ -168,8 +169,35 @@ public class NzlbServer {
 		{
 			//牛只为妊娠期，依据计算的天数进行前、后期判断。最后一次配种时间开始计算
 			//自动更新妊娠后期
+			if(lbxx!=null)//状态不是空，更新妊娠天数
+			{
+				//计算配种的天数
+				int count=lbxx.getDay();
+				lbxx.setDay(count++);
+				saveOrUpdate(lbxx, nzxx.getXh());
+				
+				//60天后提示复检
+				if(count==60)
+				{
+					//TODO 提示信息
+					
+				}
+				
+			}
+			else//新建状态
+			{
+				//如果类型数据缺失？
+				
+			}
 			
-			
+			//判断月数，满6个月为后期
+			int yl=DateTimeUtil.getMonth(lbxx.getSj(),new Date());
+			if(yl>6)
+			{
+				//更新为后期
+				nzxx.setLb(ConstantEnum.NZLB.妊娠后期青年母牛.getValue()+"");
+				nzServer.saveOrUpdate(nzxx);
+			}			
 		}
 		else if("5".equals(lb))//妊娠后期
 		{

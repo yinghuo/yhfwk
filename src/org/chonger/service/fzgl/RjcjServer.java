@@ -2,9 +2,14 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.RJCJXX;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -25,9 +30,14 @@ public class RjcjServer {
 	@Autowired
 	private CommonDAO<RJCJXX> dao;
 	
+	@Autowired
+	private NzxxServer nzServer;	
+	@Autowired
+	private NzlbServer lbServer;
+	
 	/**
-	 * 依据牛只的id信息查询牛只妊检信息
-	 * @Title: queryNZById 
+	 * 根据ID查询妊检初检信息
+	 * @Title: getCjxxById 
 	 * @Description: 
 	 * @param id
 	 * @retrun RJCJXX 
@@ -35,7 +45,7 @@ public class RjcjServer {
 	 * @author liuzq
 	 * @version V1.0
 	 */
-	public RJCJXX queryNZById(String id)
+	public RJCJXX getCjxxById(String id)
 	{
 		List<RJCJXX> resultList=dao.find(getQueryString(null, null)+" and model.xh='"+id+"'");
 		if(resultList!=null&&resultList.size()>0)
@@ -116,6 +126,29 @@ public class RjcjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Rjxx.setXh(CommUUID.getUUID());
 				dao.save(Rjxx);
+				
+				//modify 2015-06-04	Daniel 1：新增初检信息的自动计算逻辑
+				//判断初检结果是否是已怀孕？进入妊娠期，当前类别中日期为配种时间，继续计算天数。：进入空杯期，空杯时间从上一次发情计算
+				NZJBXX _nzxx=nzServer.queryNZById(Rjxx.getNzbh());
+				NZLBXX _nzlb=_nzxx.getNzlbxx();
+				if(Rjxx.getCjjg()==ConstantEnum.CJJG.已孕.getValue())
+				{
+					//已孕
+					//更新牛只的状态为妊娠，第一胎为妊娠前期青年母牛
+					_nzxx.setLb(ConstantEnum.NZLB.妊娠前期青年母牛.getValue()+"");
+					
+					//更新牛只列别信息 
+					_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
+					
+					nzServer.saveOrUpdate(_nzxx);
+				}
+				else
+				{
+					//未孕
+					//
+				}
+				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
+				
 			}
 			else
 				dao.saveOrUpdate(Rjxx);

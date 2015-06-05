@@ -1,5 +1,6 @@
 package org.chonger.web.master.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -86,7 +87,7 @@ public class RjcjAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(bh, eb), pager.pageSize, p);
+		pager.init(server.getQueryString(bh, eb)+" order by model.cjrq desc", pager.pageSize, p);
 		rjlist = pager.getDataSource();
 		return "rj-list.jsp";
 	}
@@ -99,6 +100,7 @@ public class RjcjAction extends ActionSupport {
 			
 			server.saveOrUpdate(rj);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			jsonResult.sendErrorMessage((StringUtil.IsEmpty(rj.getXh()) ? "新增"
 					: "更新") + "妊娠初检信息异常！");
 		}
@@ -110,7 +112,7 @@ public class RjcjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			rj=server.queryNZById(id);
+			rj=server.getCjxxById(id);
 		}
 		return "edit.jsp";
 	}
@@ -138,10 +140,10 @@ public class RjcjAction extends ActionSupport {
 			if(_pzxx!=null)
 			{
 				//转换配种信息为初检信息
-				NZJBXX _nzjbxx=_pzxx.getNzjbxx();
 				rj=new RJCJXX();
-				rj.setNzbh(_nzjbxx.getXh());
-				rj.setNzjbxx(_nzjbxx);
+				rj.setNzbh(_pzxx.getNzbh());
+				rj.setNzjbxx(_pzxx.getNzjbxx());
+				rj.setCjrq(new Date());
 				rj.setCjjg(-1);
 				rj.setCjfs(-1);
 			}

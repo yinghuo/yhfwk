@@ -51,6 +51,7 @@
               	<th width="200">牛只编号</th>
               	<th width="200">初检日期</th>
               	<th width="200">初检结果</th>
+              	<th width="200">妊娠天数</th>
               	<th width="200">初检员</th>
               	<th width="200">初检方式</th>
               	<th width="200">操作</th>
@@ -61,11 +62,19 @@
 							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>
 							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
+							<td>
+								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && (#rjcj.nzjbxx.nzlbxx.lb==5||#rjcj.nzjbxx.nzlbxx.lb==6)">
+									<s:property value="#rjcj.nzjbxx.nzlbxx.day"/>天
+								</s:if>
+							</td>
 							<td><s:property value="#rjcj.cjy"/></td>
 							<td><y:EnumLabel enumName="CJFS" value="${rjcj.cjfs}" /></td>
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#rjcj.xh"/>')" class="fa fa-edit cr-p">修改</a>
 								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjcj!delete.action?id=<s:property value="#rjcj.xh"/>" class="fa fa-remove cr-p">删除</a>
+								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && (#rjcj.nzjbxx.nzlbxx.lb==5||#rjcj.nzjbxx.nzlbxx.lb==6)">
+									<a title="复检" onclick="fujian('<s:property value="#rjcj.xh"/>')" class="fa fa-medkit cr-p">复检</a>
+								</s:if>
 							</td>
 						</tr>
 			</s:iterator>
@@ -115,6 +124,11 @@
      	{
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjcj-add.jsp";
      	}*/%>
+     	
+     	function fujian(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/rjfj!addFj.action?id="+id;
+     	}
      	
      	function edit(id)
      	{

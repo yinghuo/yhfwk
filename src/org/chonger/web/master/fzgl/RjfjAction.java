@@ -1,11 +1,14 @@
 package org.chonger.web.master.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.fzgl.RJCJXX;
 import org.chonger.entity.fzgl.RJFJXX;
+import org.chonger.service.fzgl.RjcjServer;
 import org.chonger.service.fzgl.RjfjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
@@ -35,6 +38,8 @@ public class RjfjAction extends ActionSupport {
 	
 	@Autowired
 	private RjfjServer server;
+	@Autowired
+	private RjcjServer cjServer;
 	
 	public RjfjAction(){
 		jsonResult=new JsonResultUtils();
@@ -118,6 +123,27 @@ public class RjfjAction extends ActionSupport {
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
+	}
+	
+	/**对牛只添加复检信息*/
+	public String addFj() throws Exception
+	{
+		//根据ID查询初检信息
+		if(!StringUtil.IsEmpty(id))
+		{
+			//根据ID查询初检信息
+			RJCJXX _cjxx=cjServer.getCjxxById(id);
+			if(_cjxx!=null)
+			{
+				fj=new RJFJXX();
+				fj.setNzbh(_cjxx.getNcbh());
+				fj.setNzjbxx(_cjxx.getNzjbxx());
+				fj.setFjrq(new Date());
+				fj.setNzxb(-1);
+			}
+		}
+		
+		return "edit.jsp";
 	}
 	
 }

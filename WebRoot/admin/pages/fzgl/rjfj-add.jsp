@@ -14,7 +14,8 @@
   				<tr>
 					<td class="td_right">牛只编号：</td>
 					<td class="">
-						<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${fj.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50">
+						<%//<input type="text" id="nzbhtxt" onKeyup="nzSelect('nzbhtxt')" value="${fj.nzjbxx.nzbh}" onFocus="nzSelect('nzbhtxt')" onblur="nzHiden()" class="input-text lh30" size="50"> %>
+						<input type="text" id="nzbhtxt"  value="${fj.nzjbxx.nzbh}" readonly="readonly" class="input-text lh30 cr-na" size="50">
 						<input type="hidden" id="nzbh" name="fj.nzbh" value="${fj.nzbh}">
 						<span class="required">*必填</span>
 					</td>
@@ -131,7 +132,7 @@
 				select.show(id,$("#fjytxt").val());
 		}
      	
-     	var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
+     	/*var nzselect=new YSelect("nzbhtxt","selectNz","${pageContext.request.contextPath}/master/nzgl/nzxx!load.action",function(id,v,t){
 			$("#nzbhtxt").val(t);
 			$("#nzbh").val(v);
 		});
@@ -152,7 +153,7 @@
 				$("#nzbh").val(nzxx[0]);
 			}
 			nzselect.hiden();
-		}
+		}*/
      	
      </script>
   </body>
