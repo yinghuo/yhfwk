@@ -165,7 +165,8 @@ public class NzlbServer {
 			
 			//初检登记，会更新牛只的类别状态为青年牛，进入妊娠期，更新牛只的类别信息为妊娠，记录最后配种时间(不用变更时间)，并计算天数，依据平均280天计算产期
 		}
-		else if("4".equals(lb))
+		//else if("4".equals(lb))//不应检测牛只的类型，应该检测牛只的状态
+		else if(lbxx.getLb()==NZLBZT.妊娠前期.getValue())
 		{
 			//牛只为妊娠期，依据计算的天数进行前、后期判断。最后一次配种时间开始计算
 			//自动更新妊娠后期
@@ -199,7 +200,8 @@ public class NzlbServer {
 				nzServer.saveOrUpdate(nzxx);
 			}			
 		}
-		else if("5".equals(lb))//妊娠后期
+		//else if("5".equals(lb))//妊娠后期
+		else if(lbxx.getLb()==NZLBZT.妊娠后期.getValue())
 		{
 			//
 			//干奶期，产前60天进行干奶操作
@@ -210,6 +212,7 @@ public class NzlbServer {
 		else if("6".equals(lb))//泌乳期天数
 		{
 			//280~320
+			
 		}
 		//
 		

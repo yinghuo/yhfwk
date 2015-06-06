@@ -101,6 +101,13 @@ public class CddjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Cdxx.setXh(CommUUID.getUUID());
 				dao.save(Cdxx);
+				
+				//modify 2015-06-05	Daniel	1：添加产犊业务逻辑
+				//更新牛只的胎次数量、状态进入成年母牛
+				nzxx.setLb(NZLB.成年母牛.getValue()+"");
+				
+				//牛只状态进入泌乳期
+				
 			}
 			else
 				dao.saveOrUpdate(Cdxx);

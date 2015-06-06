@@ -135,7 +135,7 @@ public class RjcjServer {
 				{
 					//已孕
 					//更新牛只的状态为妊娠，第一胎为妊娠前期青年母牛
-					_nzxx.setLb(ConstantEnum.NZLB.妊娠前期青年母牛.getValue()+"");
+					_nzxx.setLb(_nzxx.getTc()<=0?ConstantEnum.NZLB.妊娠前期青年母牛.getValue()+"":ConstantEnum.NZLB.成年母牛.getValue()+"");
 					
 					//更新牛只列别信息 
 					_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
