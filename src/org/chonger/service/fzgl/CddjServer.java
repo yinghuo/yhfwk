@@ -91,11 +91,6 @@ public class CddjServer {
 				Cdxx.setNcbh(user.getNcjbxx().getXh());
 			}
 			
-			//产犊的牛只自动更新为泌乳牛
-			NZJBXX nzxx=nzServer.queryNZById(Cdxx.getNzbh());
-			nzxx.setLb(NZLB.成年母牛.getValue()+"");
-			nzServer.saveOrUpdate(nzxx);
-			
 			if(StringUtil.IsEmpty(Cdxx.getXh()))
 			{
 				//牛只序号为空，表示新增，进行自动编号
@@ -103,11 +98,14 @@ public class CddjServer {
 				dao.save(Cdxx);
 				
 				//modify 2015-06-05	Daniel	1：添加产犊业务逻辑
+				NZJBXX nzxx=nzServer.queryNZById(Cdxx.getNzbh());
 				//更新牛只的胎次数量、状态进入成年母牛
 				nzxx.setLb(NZLB.成年母牛.getValue()+"");
 				
 				//牛只状态进入泌乳期
 				
+				
+				nzServer.saveOrUpdate(nzxx);
 			}
 			else
 				dao.saveOrUpdate(Cdxx);
