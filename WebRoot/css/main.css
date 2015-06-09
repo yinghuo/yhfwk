@@ -433,3 +433,13 @@ input.ext_btn_big,button.ext_btn_big{
 	opacity:0;
 	filter:alpha(opacity=0);
 }
+
+/* 选项卡组件样式定义 */
+.tab{
+	
+}
+
+.tab .tab_title{
+	background-color:#3EAFE0;
+	color:#fff;
+}

@@ -11,11 +11,11 @@
 <body>
 	<div class="box">
 		<div class="box_border">
-			<div class="box_top">
+			<!-- <div class="box_top">
 				<div class="box_top">
 					<b class="pl15">查询搜索</b>
 				</div>
-			</div>
+			</div> -->
 			<div class="box_center pt5 pb5">
 				<form id="frmSearch"
 					action="${pageContext.request.contextPath}/master/jbfy/jyxx.action"

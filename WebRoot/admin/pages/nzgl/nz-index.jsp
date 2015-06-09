@@ -11,11 +11,11 @@
   <body>
   	<div class="box">
 	  		<div class="box_border">
-	        	<div class="box_top">
+	        	<!-- <div class="box_top">
 	          		<div class="box_top">	          		
 	          			<b class="pl15">查询搜索</b>
 	          		</div>
-	          	</div>
+	          	</div> -->
 	          	<div class="box_center pt5 pb5">
 	          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/nzgl/nzxx.action" method="post">
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
@@ -62,7 +62,7 @@
          	<s:iterator value="nzlist" status="status" id="nzxx">
 				<tr>
 					<td>${status.count}</td>
-					<td><s:property value="#nzxx.nzbh"/></td>
+					<td><a href="${pageContext.request.contextPath}/admin/pages/nzgl/nz-info.jsp"><s:property value="#nzxx.nzbh"/></a></td>
 					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>					
 					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>
 					<s:if test="#nzxx.nzlbxx!=null">
