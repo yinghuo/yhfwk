@@ -3,26 +3,41 @@
 	"http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="timer" class="org.springframework.scheduling.timer.TimerFactoryBean">
+	<!-- <bean id="timer" class="org.springframework.scheduling.timer.TimerFactoryBean">
 		<property name="scheduledTimerTasks">
 			<list>
 				<ref local="MyScheduledTimerTask"/>
 			</list>
 		</property>
+	</bean> -->
+	
+	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="nzlbTrigger"/> 
+			</list>
+		</property>
+		<property name="jobFactory">
+             <bean class="org.chonger.service.task.JobFactory" />
+         </property>
 	</bean>
 	
-	<bean id="CleanEntryEventCacheTask" class="org.chonger.service.task.MyTest"></bean>
+	<bean id="nzlbUpdateTask" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="org.chonger.service.task.NzlbTask"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sessionFactory" value-ref="sessionFactory"></entry>
+			</map>
+		</property>
+	</bean>
 	
-	<bean id="MyScheduledTimerTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
-		<property name="timerTask">
-			<ref bean="CleanEntryEventCacheTask"/>
+	<bean id="nzlbTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="nzlbUpdateTask"/>
 		</property>
-		<property name="delay">
-			<value>10000</value>
-		</property>
-		<property name="period">
-			<value>60000</value>
-		</property>
+		<property name="cronExpression">
+			<value>0/10 * * * * ?</value>
+		</property>		
 	</bean>
 </beans>
 

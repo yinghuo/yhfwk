@@ -137,7 +137,7 @@
      	function validata()
      	{
      		$("#ssqy").val(district.getSelectValue());
-     		var edit=${edit};
+     		var edit="${edit}";
      		if(IsNull("ncbh",0))
      		{
      			alert("请填写牛场编号！");
