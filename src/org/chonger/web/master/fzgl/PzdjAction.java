@@ -148,6 +148,7 @@ public class PzdjAction extends ActionSupport {
 				pz.setFqsj(_fqxx.getFqsj());
 				pz.setFqlx(_fqxx.getFqlx());
 				pz.setFxfs(_fqxx.getFxfs());
+				pz.setFxr(_fqxx.getFxr());
 			}
 		}
 		

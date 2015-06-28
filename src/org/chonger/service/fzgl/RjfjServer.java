@@ -2,10 +2,14 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.dao.CommonDAO;
-import org.chonger.entity.fzgl.RJCJXX;
 import org.chonger.entity.fzgl.RJFJXX;
+import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -26,6 +30,11 @@ public class RjfjServer {
 	@Autowired
 	private CommonDAO<RJFJXX> dao;
 	
+	@Autowired
+	private NzxxServer nzServer;	
+	@Autowired
+	private NzlbServer lbServer;
+	
 	/**
 	 * 依据牛只的id信息查询牛只妊检信息
 	 * @Title: queryNZById 
@@ -36,7 +45,7 @@ public class RjfjServer {
 	 * @author liuzq
 	 * @version V1.0
 	 */
-	public RJFJXX queryNZById(String id)
+	public RJFJXX getFjxxById(String id)
 	{
 		List<RJFJXX> resultList=dao.find(getQueryString(null, null)+" and model.xh='"+id+"'");
 		if(resultList!=null&&resultList.size()>0)
@@ -58,6 +67,10 @@ public class RjfjServer {
 		{
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
+		
+		//Daniel 添加排序
+		sql+=" order by model.fjrq desc";
+		
 		return sql;
 	}
 	
@@ -117,6 +130,16 @@ public class RjfjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Rjxx.setXh(CommUUID.getUUID());
 				dao.save(Rjxx);
+				
+				//modify 2015-06-23	Daniel 1：新增复检信息的自动计算逻辑
+				//复检不用更新牛只基本信息
+				NZJBXX _nzxx=nzServer.queryNZById(Rjxx.getNzbh());
+				NZLBXX _nzlb=_nzxx.getNzlbxx();
+				
+				//更新牛只的类别为已复检
+				_nzlb.setLb(ConstantEnum.NZLBZT.已复检.getValue());
+				
+				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 			}
 			else
 				dao.saveOrUpdate(Rjxx);

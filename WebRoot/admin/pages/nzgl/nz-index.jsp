@@ -62,7 +62,7 @@
          	<s:iterator value="nzlist" status="status" id="nzxx">
 				<tr>
 					<td>${status.count}</td>
-					<td><a href="${pageContext.request.contextPath}/admin/pages/nzgl/nz-info.jsp"><s:property value="#nzxx.nzbh"/></a></td>
+					<td><a href="${pageContext.request.contextPath}/master/nzgl/nzxx!info.action?id=<s:property value="#nzxx.xh"/>"><s:property value="#nzxx.nzbh"/></a></td>
 					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>					
 					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>
 					<s:if test="#nzxx.nzlbxx!=null">

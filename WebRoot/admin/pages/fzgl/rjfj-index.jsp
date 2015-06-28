@@ -70,6 +70,9 @@
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#rjfj.xh"/>')"	class="fa fa-edit cr-p">修改</a> 
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊娠复检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjfj!delete.action?id=<s:property value="#rjfj.xh"/>" class="fa fa-remove cr-p">删除</a>
+						<s:if test="#rjfj.nzjbxx.nzlbxx!=null && #rjfj.nzjbxx.nzlbxx.lb==3">
+							<a title="复检" onclick="fujian('<s:property value="#rjfj.xh"/>')" class="fa fa-medkit cr-p">复检</a>
+						</s:if>
 					</td>
 				</tr>
 			</s:iterator>
@@ -124,6 +127,11 @@
      		window.location.href="${pageContext.request.contextPath}/admin/pages/fzgl/rjfj-add.jsp";
      	}
      	*/%>
+     	
+     	function fujian(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/fzgl/rjfj!addFj1.action?id="+id;
+     	}
      	
      	function edit(id)
      	{

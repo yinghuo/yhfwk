@@ -108,7 +108,7 @@ public class RjfjAction extends ActionSupport {
 		
 		if(!StringUtil.IsEmpty(id))
 		{
-			fj=server.queryNZById(id);
+			fj=server.getFjxxById(id);
 		}
 		return "edit.jsp";
 	}
@@ -125,7 +125,7 @@ public class RjfjAction extends ActionSupport {
 		return "infos";
 	}
 	
-	/**对牛只添加复检信息*/
+	/**对牛只添加复检信息，参数为初检信息的ID，在初检信息上新增复检信*/
 	public String addFj() throws Exception
 	{
 		//根据ID查询初检信息
@@ -136,8 +136,29 @@ public class RjfjAction extends ActionSupport {
 			if(_cjxx!=null)
 			{
 				fj=new RJFJXX();
-				fj.setNzbh(_cjxx.getNcbh());
+				fj.setNzbh(_cjxx.getNzbh());
 				fj.setNzjbxx(_cjxx.getNzjbxx());
+				fj.setFjrq(new Date());
+				fj.setNzxb(-1);
+			}
+		}
+		
+		return "edit.jsp";
+	}
+	
+	/**对牛只添加复检信息，参数为复检信息的ID，在复检信息上新增复检信息*/
+	public String addFj1() throws Exception
+	{
+		//根据ID查询初检信息
+		if(!StringUtil.IsEmpty(id))
+		{
+			//根据ID查询初检信息
+			RJFJXX _fjxx=server.getFjxxById(id);
+			if(_fjxx!=null)
+			{
+				fj=new RJFJXX();
+				fj.setNzbh(_fjxx.getNzbh());
+				fj.setNzjbxx(_fjxx.getNzjbxx());
 				fj.setFjrq(new Date());
 				fj.setNzxb(-1);
 			}

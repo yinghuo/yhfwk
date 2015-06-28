@@ -82,7 +82,7 @@
 					<td class="">
 						<input type="text" id="fxrtxt" readonly="readonly" class="input-text lh30" value="${pz.fxr}" size="35">
 						<input type="hidden" id="fxr" name="pz.fxr" value="${pz.fxr}">
-						&nbsp;<a id="selectfxr" onclick="ygSelect('selectfxr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
+						<!-- &nbsp;<a id="selectfxr" onclick="ygSelect('selectfxr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span> -->
 					</td>
 				</tr>
 				<tr>
@@ -172,7 +172,7 @@
 					});
 		}
 		
-		var select=new YSelect("selectfxr","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
+		var select=new YSelect("selectpzy","selectUser","${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",function(id,v,t){
 	  		
 	  		if(id=="selectfxr")
 	  		{

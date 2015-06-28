@@ -88,6 +88,12 @@ public class NzlbTask extends QuartzJobBean {
 	//新增配种信息后，更新牛只状态为妊娠前期，开始更新天数信息。
 	//
 	
+	//2015-06-26
+	//牛只分为 牛只类别 牛只繁殖状态 牛只泌乳状态
+	//在牛只成长阶段使用牛只类别进行判断
+	//牛只繁殖状态  发情期、妊娠前期、空怀期、围产前期、围产后期
+	//牛只泌乳状态  泌乳盛期、中期、后期、干奶期
+	
 	/**
 	 * 更新牛只信息
 	 * @param nzxx
@@ -100,6 +106,8 @@ public class NzlbTask extends QuartzJobBean {
 	{
 		String lb=nzxx.getLb();		
 		NZLBXX lbxx=nzxx.getNzlbxx();//获取牛只的状态信息
+		
+		if(lbxx==null)return;
 		
 		//判断牛只的状态
 		if("0".equals(lb))//哺乳犊牛，0-3个月龄。提前2天提示断奶
@@ -150,7 +158,7 @@ public class NzlbTask extends QuartzJobBean {
 			//体重达到370Kg,身高130cm
 			//是否有发情登记信息？发情信息时间大于15个月龄时间  发情登记信息需要变更牛只的列别状态表，设置为已发情，并记录时间
 			
-			//获取大青年牛的月龄
+			//获取大青年牛的月龄   //TODO 无需判断月龄
 			int yl=DateTimeUtil.getMonthNow(nzxx.getCsrq());
 			if(yl>15)
 			{

@@ -318,10 +318,13 @@
      	//性别改变
      	function xbChange()
      	{
-     		if($("#lb").val()==3||$("#lb").val()==7)
+     		if($("#lb").val()==3||$("#lb").val()==6||$("#lb").val()==7)
      		{
      			if($("#xb").val()==0)
-     				$("#lb").val(3);
+     				if($("#lb").val()==6)
+     					$("#lb").val(6);
+     				else
+     					$("#lb").val(3);
      			else
      				$("#lb").val(7);
      		}
@@ -351,7 +354,7 @@
      			//添加性别的选择
      			if($("#xb").val()==0)
      				$("#lb").val(lb);
-     			else if(lb==3)
+     			else if(lb==6||lb==3)
      				$("#lb").val(7);
      		}
      		
@@ -371,7 +374,9 @@
      			return 1;
      		if(yl<12)
      			return 2;
-     		return 3;
+     		if(yl<24)
+     			return 3;
+     		return 6;
      	}
      	
      	function copyvalue()

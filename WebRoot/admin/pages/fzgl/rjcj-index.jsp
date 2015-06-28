@@ -72,7 +72,7 @@
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#rjcj.xh"/>')" class="fa fa-edit cr-p">修改</a>
 								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjcj!delete.action?id=<s:property value="#rjcj.xh"/>" class="fa fa-remove cr-p">删除</a>
-								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && (#rjcj.nzjbxx.nzlbxx.lb==5||#rjcj.nzjbxx.nzlbxx.lb==6)">
+								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && #rjcj.nzjbxx.nzlbxx.lb==2">
 									<a title="复检" onclick="fujian('<s:property value="#rjcj.xh"/>')" class="fa fa-medkit cr-p">复检</a>
 								</s:if>
 							</td>

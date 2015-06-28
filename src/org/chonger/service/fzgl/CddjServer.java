@@ -2,11 +2,14 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.common.ConstantEnum.NZLB;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzlbServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
@@ -30,6 +33,9 @@ public class CddjServer {
 	
 	@Autowired
 	private NzxxServer nzServer;
+	
+	@Autowired
+	private NzlbServer lbServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只产犊信息
@@ -98,14 +104,17 @@ public class CddjServer {
 				dao.save(Cdxx);
 				
 				//modify 2015-06-05	Daniel	1：添加产犊业务逻辑
-				NZJBXX nzxx=nzServer.queryNZById(Cdxx.getNzbh());
+				NZJBXX _nzxx=nzServer.queryNZById(Cdxx.getNzbh());
+				NZLBXX _nzlb=_nzxx.getNzlbxx();
 				//更新牛只的胎次数量、状态进入成年母牛
-				nzxx.setLb(NZLB.成年母牛.getValue()+"");
+				_nzxx.setTc(_nzxx.getTc()+1);
+				_nzxx.setLb(NZLB.成年母牛.getValue()+"");
 				
 				//牛只状态进入泌乳期
+				_nzlb.setLb(ConstantEnum.NZLBZT.泌乳期.getValue());
 				
-				
-				nzServer.saveOrUpdate(nzxx);
+				nzServer.saveOrUpdate(_nzxx);
+				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 			}
 			else
 				dao.saveOrUpdate(Cdxx);

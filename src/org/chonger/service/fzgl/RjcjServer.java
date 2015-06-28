@@ -137,15 +137,18 @@ public class RjcjServer {
 					//更新牛只的状态为妊娠，第一胎为妊娠前期青年母牛
 					_nzxx.setLb(_nzxx.getTc()<=0?ConstantEnum.NZLB.妊娠前期青年母牛.getValue()+"":ConstantEnum.NZLB.成年母牛.getValue()+"");
 					
-					//更新牛只列别信息 
-					_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
+					//更新牛只列别信息 已初检
+					//_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
+					_nzlb.setLb(ConstantEnum.NZLBZT.已初检.getValue());
 					
 					nzServer.saveOrUpdate(_nzxx);
 				}
 				else
 				{
 					//未孕
-					//
+					//更新牛只列别信息 空杯期
+					_nzlb.setLb(ConstantEnum.NZLBZT.空杯期.getValue());
+					
 				}
 				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 				

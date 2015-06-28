@@ -31,7 +31,8 @@ import com.opensymphony.xwork2.ActionSupport;
 	@Result(name = "infos", type = "json", params = { "root", "jsonResult.infos"}),
 	@Result(name = "infolist", type = "json", params = { "root", "jsonResult.objList"}),
 	@Result(name = "list.jsp", location = "/admin/pages/nzgl/nz-index.jsp"),
-	@Result(name = "edit.jsp", location = "/admin/pages/nzgl/nz-add.jsp")
+	@Result(name = "edit.jsp", location = "/admin/pages/nzgl/nz-add.jsp"),
+	@Result(name = "info.jsp", location = "/admin/pages/nzgl/nz-info.jsp")
 })
 public class NzxxAction extends ActionSupport {
 	
@@ -83,7 +84,7 @@ public class NzxxAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(bh,jbq,eb),pager.pageSize,p);
+		pager.init(server.getQueryString(bh,eb,jbq),pager.pageSize,p);
 		nzlist=pager.getDataSource();
 		return "list.jsp";
 	}
@@ -122,6 +123,22 @@ public class NzxxAction extends ActionSupport {
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
+	}
+	
+	/**
+	 * 加载牛只的其他信息
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String info()
+	{
+		if(!StringUtil.IsEmpty(id))
+		{
+			nz=server.queryNZById(id);
+		}
+		return "info.jsp";
 	}
 	
 	/**
