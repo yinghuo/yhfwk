@@ -3,12 +3,13 @@ package org.chonger.service.fzgl;
 import java.util.List;
 
 import org.chonger.common.ConstantEnum;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.RJCJXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
-import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
-import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
@@ -31,9 +32,10 @@ public class RjcjServer {
 	private CommonDAO<RJCJXX> dao;
 	
 	@Autowired
-	private NzxxServer nzServer;	
+	private NzxxServer nzServer;
+	
 	@Autowired
-	private NzlbServer lbServer;
+	private NzfzServer fzServer;
 	
 	/**
 	 * 根据ID查询妊检初检信息
@@ -130,27 +132,33 @@ public class RjcjServer {
 				//modify 2015-06-04	Daniel 1：新增初检信息的自动计算逻辑
 				//判断初检结果是否是已怀孕？进入妊娠期，当前类别中日期为配种时间，继续计算天数。：进入空杯期，空杯时间从上一次发情计算
 				NZJBXX _nzxx=nzServer.queryNZById(Rjxx.getNzbh());
-				NZLBXX _nzlb=_nzxx.getNzlbxx();
+				//NZLBXX _nzlb=_nzxx.getNzlbxx();
+				NZFZZTXX _fzzt=_nzxx.getNzfzzt();
 				if(Rjxx.getCjjg()==ConstantEnum.CJJG.已孕.getValue())
 				{
 					//已孕
 					//更新牛只的状态为妊娠，第一胎为妊娠前期青年母牛
-					_nzxx.setLb(_nzxx.getTc()<=0?ConstantEnum.NZLB.妊娠前期青年母牛.getValue()+"":ConstantEnum.NZLB.成年母牛.getValue()+"");
+					if(_nzxx.getTc()<=0)
+					{
+						_nzxx.setLb(ConstantEnum.NZLB.青年母牛.getValue()+"");
+						nzServer.saveOrUpdate(_nzxx);
+					}
 					
 					//更新牛只列别信息 已初检
 					//_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
-					_nzlb.setLb(ConstantEnum.NZLBZT.已初检.getValue());
+					//_nzlb.setLb(ConstantEnum.NZLBZT.已初检.getValue());
+					_fzzt.setZt(NZFZZT.妊娠前期.getValue());
 					
-					nzServer.saveOrUpdate(_nzxx);
 				}
 				else
 				{
 					//未孕
-					//更新牛只列别信息 空杯期
-					_nzlb.setLb(ConstantEnum.NZLBZT.空杯期.getValue());
-					
+					//更新牛只列别信息 空怀期
+					//_nzlb.setLb(ConstantEnum.NZLBZT.空怀期.getValue());
+					_fzzt.setZt(NZFZZT.空怀期.getValue());					
 				}
-				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
+				//lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
+				fzServer.saveOrUpDate(_nzxx.getXh(), _fzzt);
 				
 			}
 			else

@@ -151,10 +151,9 @@ public class ConstantEnum {
 		断奶犊牛(1),
 		小育成牛(2),
 		大育成牛(3),
-		妊娠前期青年母牛(4),
-		妊娠后期青年母牛(5),
-		成年母牛(6),
-		留养公牛(7);
+		青年母牛(4),
+		成年母牛(5),
+		留养公牛(6);
 		
 		private int value;
 		NZLB(int value){this.value=value;}
@@ -162,6 +161,45 @@ public class ConstantEnum {
 		@Override
 		public Integer getValue() {	return value;}
 	}
+	
+	/*
+	 * 定义牛只的繁殖状态常量
+	 */
+	public static enum NZFZZT implements BaseEnum<Integer>{
+		
+		发情期(0),
+		妊娠前期(1),
+		妊娠后期(2),
+		围产前期(3),
+		围产后期(4),
+		泌乳期(5),
+		干奶期(6),
+		空怀期(7),
+		流产(8);
+		
+		private int value;
+		NZFZZT(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}		
+	}
+	
+	/*
+	 * 定义牛只的泌乳状态常量
+	 */
+	public static enum NZMRZT implements BaseEnum<Integer>{
+		
+		泌乳盛期(0),
+		泌乳中期(1),
+		泌乳后期(2);		
+		
+		private int value;
+		NZMRZT(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}		
+	}
+	
 	/*
 	 * 哺乳犊牛、断奶犊牛，小育成牛、大育成牛，妊娠前期青年母牛，妊娠后期青年母牛，妊娠前期成年母牛，妊娠后期成年母牛，留养公牛，这是类别
 空怀牛，干奶牛，泌乳牛，这是状态，查询、显示需要   分娩期
@@ -170,42 +208,42 @@ public class ConstantEnum {
 	/**
 	 * 定义牛只的类别状态常量
 	 */
-	public static enum NZLBZT implements BaseEnum<Integer>{
-		
-		发情期(0),
-		已配种(1),//无效
-		已初检(2),//无效 //已初检|妊娠前期  已初检|空杯期
-		已复检(3),//无效
-		
-		空杯期(4),
-		
-		//流产
-		
-		干奶期(5),//216天
-		
-		妊娠前期(6),
-		妊娠后期(7),
-		
-		围产期(8),//产前21天 前期、产犊后围产后期 15天
-		
-		//泌乳盛期 到产牛后100天 
-		//泌乳中期 101-200
-		//泌乳后期 201 
-		
-		//216进入干奶期
-		
-		//干奶期60天 
-		
-		
-		泌乳期(9);
-		//分娩期(10);
-		
-		private int value;
-		NZLBZT(int value){this.value=value;}
-		
-		@Override
-		public Integer getValue() {	return value;}
-	}
+//	public static enum NZLBZT implements BaseEnum<Integer>{
+//		
+//		发情期(0),
+//		已配种(1),//无效
+//		已初检(2),//无效 //已初检|妊娠前期  已初检|空杯期
+//		已复检(3),//无效
+//		
+//		空杯期(4),
+//		
+//		//流产
+//		
+//		干奶期(5),//216天
+//		
+//		妊娠前期(6),
+//		妊娠后期(7),
+//		
+//		围产期(8),//产前21天 前期、产犊后围产后期 15天
+//		
+//		//泌乳盛期 到产牛后100天 
+//		//泌乳中期 101-200
+//		//泌乳后期 201 
+//		
+//		//216进入干奶期
+//		
+//		//干奶期60天 
+//		
+//		
+//		泌乳期(9);
+//		//分娩期(10);
+//		
+//		private int value;
+//		NZLBZT(int value){this.value=value;}
+//		
+//		@Override
+//		public Integer getValue() {	return value;}
+//	}
 	
 	
 	

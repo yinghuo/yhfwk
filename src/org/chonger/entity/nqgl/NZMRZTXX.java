@@ -10,22 +10,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import jxl.write.DateTime;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * 牛只类别信息
+ * 牛只泌乳状态信息
  * 
  * @author Daniel
  * @create 2015-05-30
  * @version 1.0
  */
 @Entity
-@Table(name = "nzlbxx")
+@Table(name = "nzmrztxx")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class NZLBXX {
+public class NZMRZTXX {
 	@Id
 	@Column(name = "xh")
 	/**序号*/
@@ -36,11 +34,12 @@ public class NZLBXX {
 	private Date sj;
 	
 	@Column(name="tssj")
+	/*提示时间*/
 	private Date tssj;
 	
-	@Column(name = "lb")
-	/*类别*/
-	private int lb;
+	@Column(name = "zt")
+	/*状态*/
+	private int zt;
 	
 	@Column(name="day")
 	/*天数*/
@@ -70,12 +69,12 @@ public class NZLBXX {
 		this.xh = xh;
 	}
 
-	public int getLb() {
-		return lb;
+	public int getZt() {
+		return zt;
 	}
 
-	public void setLb(int lb) {
-		this.lb = lb;
+	public void setZt(int zt) {
+		this.zt = zt;
 	}
 
 	public int getDay() {

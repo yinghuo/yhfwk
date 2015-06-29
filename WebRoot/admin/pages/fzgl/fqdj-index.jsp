@@ -48,8 +48,8 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
+              	<th width="200">当前情期</th>
               	<th width="200">发情时间</th>
               	<th width="200">发情类型</th>
               	<th width="200">发现方式</th>
@@ -59,8 +59,8 @@
          	</tr>
          	<s:iterator value="fqlist" status="status" id="fqxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#fqxx.nzjbxx.nzbh"/></td>
+							<td><s:property value="#fqxx.nzjbxx.qq"/></td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>

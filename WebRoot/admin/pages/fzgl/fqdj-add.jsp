@@ -19,6 +19,12 @@
 						<span class="required">*必填</span>						
 					</td>
 				</tr>
+				<%/*<tr>
+					<td class="td_right">当前情期：</td>
+					<td class="">
+						<div class="input-text lh30">${fq.nzjbxx.qq+1}</div>
+					</td>
+				</tr>*/%>
 				<tr>
 					<td class="td_right">发情时间：</td>
 					<td class="">

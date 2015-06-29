@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-06-12 09:10:46
+Date: 2015-06-29 19:08:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3915,6 +3915,25 @@ CREATE TABLE `ncjbxxb` (
 INSERT INTO `ncjbxxb` VALUES ('d81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '201500001', '我的房山牛场1', '租用', '苏庄西大街10号', '110111', '北京伊利乳业有限公司', '张三', '15120070638', '李四', '13739140537', '王五', 'A', '2015-05-08 00:00:00', '2015-05-30 00:00:00', '12345678901', 'xb278@qq.com', '北京市', '', 'f0482464-454d-4a44-b008-dbae061d298a');
 
 -- ----------------------------
+-- Table structure for `nzfzztxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `nzfzztxx`;
+CREATE TABLE `nzfzztxx` (
+  `xh` varchar(36) NOT NULL,
+  `sj` datetime NOT NULL COMMENT '时间信息',
+  `tssj` datetime default NULL COMMENT '推算时间',
+  `zt` int(11) NOT NULL COMMENT '0:是否配种，',
+  `day` int(11) NOT NULL default '0',
+  `tid` varchar(36) default NULL COMMENT '目标的序号编号',
+  PRIMARY KEY  (`xh`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzfzztxx
+-- ----------------------------
+INSERT INTO `nzfzztxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-01 00:00:00', '2015-06-01 08:00:00', '0', '20', 'eb3492d1-7946-4d21-8e9e-2e87acb19d00');
+
+-- ----------------------------
 -- Table structure for `nzjbxx`
 -- ----------------------------
 DROP TABLE IF EXISTS `nzjbxx`;
@@ -3939,8 +3958,9 @@ CREATE TABLE `nzjbxx` (
   `FQH` varchar(36) default NULL,
   `MQH` varchar(36) default NULL,
   `MRZT` char(2) default NULL,
-  `FZZT` char(2) default NULL,
-  `NZZT` int(1) NOT NULL default '0',
+  `FZZT` int(1) NOT NULL default '-1',
+  `NZZT` int(1) NOT NULL default '-1',
+  `QQ` int(2) NOT NULL default '0' COMMENT '发情情期',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -3948,30 +3968,12 @@ CREATE TABLE `nzjbxx` (
 -- ----------------------------
 -- Records of nzjbxx
 -- ----------------------------
-INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '0.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '');
-INSERT INTO `nzjbxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '001', '', '', '2015-01-01 00:00:00', '0', '0', '0', '2015-01-01 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', '2015-05-27 00:00:00', '1', '1', '1', '', '0', '');
-INSERT INTO `nzjbxx` VALUES ('ec155fa0-2b05-46b1-91ed-eafa64af475c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '012', '', '', '2015-05-22 00:00:00', '0', '1', '0', '2015-05-22 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', null, '', '', '', '', '0', '');
-INSERT INTO `nzjbxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'DR001', '', '', '2014-01-01 00:00:00', '0', '6', '0', '2014-01-01 00:00:00', '16.00', '12.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '优', '白色', '1', '2015-05-02 00:00:00', '', '', '', '', '0', '');
-INSERT INTO `nzjbxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'T001', '', '', '2014-01-02 00:00:00', '0', '4', '0', '2014-01-02 00:00:00', '17.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '0', null, '', '', '', '', '0', '');
-
--- ----------------------------
--- Table structure for `nzlbxx`
--- ----------------------------
-DROP TABLE IF EXISTS `nzlbxx`;
-CREATE TABLE `nzlbxx` (
-  `xh` varchar(36) NOT NULL,
-  `sj` datetime NOT NULL COMMENT '时间信息',
-  `tssj` datetime default NULL COMMENT '推算时间',
-  `lb` int(11) NOT NULL COMMENT '0:是否配种，',
-  `day` int(11) NOT NULL default '0',
-  `tid` varchar(36) default NULL COMMENT '目标的序号编号',
-  PRIMARY KEY  (`xh`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of nzlbxx
--- ----------------------------
-INSERT INTO `nzlbxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-03 00:00:00', null, '5', '20', 'eb3492d1-7946-4d21-8e9e-2e87acb19d00');
+INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '0.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '1', '');
+INSERT INTO `nzjbxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '001', '', '', '2015-01-01 00:00:00', '0', '0', '0', '2015-01-01 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', '2015-05-27 00:00:00', '1', '1', '1', '0', '0', '1', '');
+INSERT INTO `nzjbxx` VALUES ('ec155fa0-2b05-46b1-91ed-eafa64af475c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '012', '', '', '2015-05-22 00:00:00', '0', '1', '0', '2015-05-22 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', null, '', '', '', '0', '0', '1', '');
+INSERT INTO `nzjbxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'DR001', '', '', '2014-01-01 00:00:00', '0', '6', '0', '2014-01-01 00:00:00', '16.00', '12.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '优', '白色', '1', '2015-05-02 00:00:00', '', '', '', '0', '0', '1', '');
+INSERT INTO `nzjbxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'T001', '', '', '2014-01-02 00:00:00', '0', '4', '0', '2014-01-02 00:00:00', '17.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '0', null, '', '', '0', '0', '0', '2', '');
+INSERT INTO `nzjbxx` VALUES ('', '', '', null, null, null, '0', null, null, null, null, null, '', null, null, null, null, null, null, null, '-1', '-1', '0', null);
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -3998,6 +4000,25 @@ CREATE TABLE `nzlcdjb` (
 -- Records of nzlcdjb
 -- ----------------------------
 INSERT INTO `nzlcdjb` VALUES ('e6740e78-80bf-4648-9baa-056ea5040ed8', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '77b80d7c-cc60-4a0e-9208-980d65cd0cf9', null, null, null, '2015-05-14 00:00:00', '0', '11', '0', '11', '李四', '');
+
+-- ----------------------------
+-- Table structure for `nzmrztxx`
+-- ----------------------------
+DROP TABLE IF EXISTS `nzmrztxx`;
+CREATE TABLE `nzmrztxx` (
+  `xh` varchar(36) NOT NULL,
+  `sj` datetime NOT NULL COMMENT '时间信息',
+  `tssj` datetime default NULL COMMENT '推算时间',
+  `zt` int(11) NOT NULL,
+  `day` int(11) NOT NULL default '0',
+  `tid` varchar(36) default NULL COMMENT '目标的序号编号',
+  PRIMARY KEY  (`xh`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nzmrztxx
+-- ----------------------------
+INSERT INTO `nzmrztxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-01 00:00:00', '2015-06-01 08:00:00', '0', '20', 'eb3492d1-7946-4d21-8e9e-2e87acb19d00');
 
 -- ----------------------------
 -- Table structure for `nzzsdjb`
@@ -4047,6 +4068,7 @@ CREATE TABLE `pzdjb` (
 INSERT INTO `pzdjb` VALUES ('5002e501-4465-4064-b414-25126a2c0d93', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-15 00:00:00', '1', '1', '张三', '2015-05-13 00:00:00', '0', '1', '李四', '0', '');
 INSERT INTO `pzdjb` VALUES ('a9c38f39-a0cb-4d74-948f-541c7094e0a4', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-05-24 00:00:00', 'A001', 'A', '李四', '2015-05-15 00:00:00', '0', '1', '张三', '2', '这里是备注');
 INSERT INTO `pzdjb` VALUES ('eb3492d1-7946-4d21-8e9e-2e87acb19d00', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-03 00:00:00', '001', '购买', '张三', '2015-06-01 00:00:00', null, null, '李四', '0', '');
+INSERT INTO `pzdjb` VALUES ('422e98e0-eebc-4eb3-b82f-7d013f95e208', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-29 00:00:00', '1111', '2222', '张三', '2015-06-01 00:00:00', null, null, '张三', '1', '');
 
 -- ----------------------------
 -- Table structure for `qcdjb`
@@ -4118,6 +4140,7 @@ CREATE TABLE `rjfjdjb` (
 -- ----------------------------
 INSERT INTO `rjfjdjb` VALUES ('2a2d8eaf-2221-4985-931e-1c01bb00c433', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-12 00:00:00', '111', '张三、李四', '111', '0', '');
 INSERT INTO `rjfjdjb` VALUES ('7108833d-90a4-4fad-82e7-94e8de802166', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-05-24 09:03:00', '复检正常', '张三', '稳定', '0', '这里是备注');
+INSERT INTO `rjfjdjb` VALUES ('6e16b1c7-f639-403a-8d0a-5d06a65bcf17', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-23 00:00:00', '第一次复检正常', '张三', '正常', '0', '');
 
 -- ----------------------------
 -- Table structure for `xddjb`
@@ -4329,8 +4352,8 @@ CREATE TABLE `yh_system_users` (
 -- Records of yh_system_users
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-24 16:15:51', '2015-06-03 10:22:09');
-INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-03 14:25:36', '2015-06-03 20:28:18');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-06-05 20:14:45', '2015-06-09 21:24:17');
+INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-12 09:43:57', '2015-06-12 09:47:57');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-06-29 15:34:39', '2015-06-29 15:57:51');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

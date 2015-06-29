@@ -37,7 +37,6 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
               	<th width="200">所属圈舍</th>
               	<th width="200">离群日期</th>
@@ -48,7 +47,6 @@
          	</tr>
          	<s:iterator value="lclist" status="status" id="lcxx">
 				<tr>
-					<td>${status.count}</td>
 					<td><s:property value="#lcxx.nzjbxx.nzbh"/></td>
 					<td><s:property value="#lcxx.nzjbxx.jsjbxx.jsbh"/></td>
 					<td><s:date name="#lcxx.lqrq" format="yyyy-MM-dd HH:mm"/></td>

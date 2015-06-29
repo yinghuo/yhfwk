@@ -48,7 +48,6 @@
 		  <div class="box span10 oh mt5">
 		  	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 		  	 		<tr>
-		             	<th width="80">序号</th>
 		              	<th width="">员工编号</th>
 		              	<th width="">员工名称</th>
 		              	<th width="200">员工类别</th>
@@ -57,7 +56,6 @@
 		         	</tr>
 		         	<s:iterator value="yglist" status="status" id="ygxx">
 								<tr>
-									<td>${status.count }</td>
 									<td><s:property value="#ygxx.ygbh"/></td>
 									<td><s:property value="#ygxx.ygmc"/></td>
 									<td><s:property value="#ygxx.yglb"/></td>

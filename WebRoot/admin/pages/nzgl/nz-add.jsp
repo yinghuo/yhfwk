@@ -134,7 +134,7 @@
 						<input type="text" id="mqh" name="nz.mqh" class="input-text lh30" value="${nz.mqh}" size="80">
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td class="td_right">泌乳状态：</td>
 					<td class="">
 						<input type="text" id="mrzt" name="nz.mrzt" class="input-text lh30" value="${nz.mrzt}" size="80">
@@ -145,13 +145,13 @@
 					<td class="">
 						<input type="text" id="fzzt" name="nz.fzzt" class="input-text lh30" value="${nz.fzzt}" size="80">
 					</td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td class="td_right">备注信息：</td>
 					<td class="">
 						<textarea id="bz" name="nz.bz" cols="80" rows="10" class="textarea">${nz.bz}</textarea>
 					</td>
-				</tr>
+				</tr> 
   			</table>
   		</form>
   	</div>
@@ -318,15 +318,15 @@
      	//性别改变
      	function xbChange()
      	{
-     		if($("#lb").val()==3||$("#lb").val()==6||$("#lb").val()==7)
+     		if($("#lb").val()==3||$("#lb").val()==5||$("#lb").val()==6)
      		{
      			if($("#xb").val()==0)
      				if($("#lb").val()==6)
-     					$("#lb").val(6);
+     					$("#lb").val(5);
      				else
      					$("#lb").val(3);
      			else
-     				$("#lb").val(7);
+     				$("#lb").val(6);
      		}
      	}
      	
@@ -354,8 +354,8 @@
      			//添加性别的选择
      			if($("#xb").val()==0)
      				$("#lb").val(lb);
-     			else if(lb==6||lb==3)
-     				$("#lb").val(7);
+     			else if(lb==5)
+     				$("#lb").val(6);
      		}
      		
      		//出生日期改变
@@ -376,7 +376,7 @@
      			return 2;
      		if(yl<24)
      			return 3;
-     		return 6;
+     		return 5;
      	}
      	
      	function copyvalue()

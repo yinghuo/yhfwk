@@ -49,7 +49,6 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="120">牛只编号</th>
               	<th width="120">所属圈舍</th>
               	<th width="120">类别</th>
@@ -61,7 +60,6 @@
          	</tr>
          	<s:iterator value="nzlist" status="status" id="nzxx">
 				<tr>
-					<td>${status.count}</td>
 					<td><a href="${pageContext.request.contextPath}/master/nzgl/nzxx!info.action?id=<s:property value="#nzxx.xh"/>"><s:property value="#nzxx.nzbh"/></a></td>
 					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>					
 					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>

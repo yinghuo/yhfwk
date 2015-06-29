@@ -47,10 +47,10 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th>牛只编号</th>
               	<th width="120">配种时间</th>
-              	<th>配种天数</th>
+              	<th>情期</th>
+              	<th>繁殖天数</th>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
               	<th>配种员</th>
@@ -58,13 +58,16 @@
          	</tr>
          	<s:iterator value="pzlist" status="status" id="pzxx">
 				<tr>
-					<td>${status.count}</td>
 					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
+					<td><s:property value="#pzxx.nzjbxx.qq"/></td>
 					<td>
-						<s:if test="#pzxx.nzjbxx.nzlbxx!=null && #pzxx.nzjbxx.nzlbxx.lb==1">
-							<s:property value="#pzxx.nzjbxx.nzlbxx.day"/>天
+						<s:if test="#pzxx.nzjbxx.nzfzzt!=null">
+							<s:property value="#pzxx.nzjbxx.nzfzzt.day"/>天
 						</s:if>
+						<s:else>
+							0天
+						</s:else>
 					</td>
 					<td><s:property value="#pzxx.djbh"/></td>
 					<td><s:property value="#pzxx.djlx"/></td>
@@ -72,7 +75,7 @@
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
-						<s:if test="#pzxx.nzjbxx.nzlbxx!=null && #pzxx.nzjbxx.nzlbxx.lb==1">
+						<s:if test="#pzxx.nzjbxx.nzfzzt!=null && #pzxx.nzjbxx.nzfzzt.zt==0">
 							<a title="初检" onclick="chujian('<s:property value="#pzxx.xh"/>')" class="fa fa-medkit cr-p">初检</a>
 						</s:if>
 					</td>

@@ -7,7 +7,10 @@ import java.util.Map;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.common.ConstantEnum;
 import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.service.nzgl.NzfzServer;
+import org.chonger.service.nzgl.NzmrServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
@@ -38,6 +41,11 @@ public class NzxxAction extends ActionSupport {
 	
 	@Autowired
 	private NzxxServer server;
+	
+	@Autowired
+	private NzfzServer fzServer;
+	@Autowired
+	private NzmrServer mrServer;
 	
 	public NzxxAction(){
 		jsonResult=new JsonResultUtils();
@@ -96,6 +104,15 @@ public class NzxxAction extends ActionSupport {
 			//根据牛只月龄计算牛只的类别
 			server.updateLBFromYL(nz);
 			server.saveOrUpdate(nz);
+			
+			//modify 2015-06-28 1：更新牛只信息时同步更新牛只的繁殖状态和泌乳状态，老牛可能会填写信息
+			//如果是母牛则更新状态
+			if(nz.getXb()==ConstantEnum.NZXB.母.getValue())
+			{
+				fzServer.saveOrUpDate(nz,nz.getFzzt());
+				mrServer.saveOrUpDate(nz, nz.getMrzt());
+			}
+			
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage((StringUtil.IsEmpty(nz.getXh())?"新增":"更新")+"牛只信息异常！");

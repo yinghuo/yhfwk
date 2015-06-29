@@ -3,13 +3,13 @@ package org.chonger.service.fzgl;
 import java.util.Date;
 import java.util.List;
 
-import org.chonger.common.ConstantEnum.NZLBZT;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
-import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
-import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.DateTimeUtil;
@@ -36,7 +36,7 @@ public class FqdjServer {
 	private NzxxServer nzServer;
 	
 	@Autowired
-	private NzlbServer lbServer;
+	private NzfzServer fzServer;
 	
 	public String getQueryString(String nzbh,String ebbh)
 	{
@@ -130,6 +130,12 @@ public class FqdjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Fqxx.setXh(CommUUID.getUUID());
 				dao.save(Fqxx);
+				
+				//更新牛只情期数据
+				NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
+				nzxx.setQq(nzxx.getQq()+1);
+				nzServer.saveOrUpdate(nzxx);
+				
 			}
 			else
 				dao.saveOrUpdate(Fqxx);
@@ -139,13 +145,24 @@ public class FqdjServer {
 			
 			//更新牛只的类别详细信息
 			//NZLBXX lbxx=nzxx.getNzlbxx();
-			NZLBXX _lbxx=lbServer.getNzlbxxById(Fqxx.getNzbh());
-			if(_lbxx==null)
-				_lbxx=new NZLBXX();
-			_lbxx.setLb(NZLBZT.发情期.getValue());
-			_lbxx.setSj(Fqxx.getFqsj());
-			_lbxx.setTssj(tssj);
-			lbServer.saveOrUpdate(_lbxx, Fqxx.getNzbh());
+//			NZLBXX _lbxx=lbServer.getNzlbxxById(Fqxx.getNzbh());
+//			if(_lbxx==null)
+//				_lbxx=new NZLBXX();
+//			_lbxx.setLb(NZLBZT.发情期.getValue());
+//			_lbxx.setSj(Fqxx.getFqsj());
+//			_lbxx.setTssj(tssj);
+//			lbServer.saveOrUpdate(_lbxx, Fqxx.getNzbh());
+			
+			//更新繁殖状态信息
+			//牛只在新增发情登记的同时，需要更新繁殖状态为发情期
+			NZFZZTXX fzzt=fzServer.findEntity(Fqxx.getNzbh());
+			if(fzzt==null)
+				fzzt=new NZFZZTXX();
+			fzzt.setZt(NZFZZT.发情期.getValue());
+			fzzt.setSj(Fqxx.getFqsj());
+			fzzt.setTssj(tssj);
+			fzServer.saveOrUpDate(Fqxx.getNzbh(), fzzt);			
+			
 			//发出消息
 		}
 	}

@@ -37,7 +37,6 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
               	<th width="200">转舍日期</th>
               	<th width="200">转出圈舍</th>
@@ -46,7 +45,6 @@
          	</tr>
          	<s:iterator value="zslist" status="status" id="zsxx">
 				<tr>
-					<td>${status.count}</td>
 					<td><s:property value="#zsxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#zsxx.zsrq" format="yyyy-MM-dd HH:mm"/></td>
 					<td><s:property value="#zsxx.zcjsxx.jsmc"/></td>

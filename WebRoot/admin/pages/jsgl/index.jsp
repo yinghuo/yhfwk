@@ -47,7 +47,6 @@
   	 <div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">圈舍编号</th>
               	<th width="200">圈舍名称</th>
               	<th width="200">圈舍类别</th>
@@ -56,7 +55,6 @@
          	</tr>
          	<s:iterator value="jslist" status="status" id="jsxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#jsxx.jsbh"/></td>
 							<td><s:property value="#jsxx.jsmc"/></td>
 							<td><s:property value="#jsxx.jslb"/></td>

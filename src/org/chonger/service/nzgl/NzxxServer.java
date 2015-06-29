@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.chonger.common.ConstantEnum;
 import org.chonger.common.ConstantEnum.NZLB;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
@@ -206,7 +207,9 @@ public class NzxxServer {
 			return NZLB.断奶犊牛;
 		if(yl<=12)
 			return NZLB.小育成牛;
-		return NZLB.大育成牛;
+		if(yl<24)
+			return NZLB.大育成牛;
+		return NZLB.青年母牛;
 	}
 	
 	/**

@@ -115,15 +115,19 @@ public class NZJBXX {
 	
 	@Column(name = "mrzt")
 	/**泌乳状态*/
-	private String mrzt;
+	private int mrzt=-1;
 	
 	@Column(name = "fzzt")
 	/**繁殖状态*/
-	private String fzzt;
+	private int fzzt=-1;
 	
 	/**牛只状态*/
 	@Column(name="nzzt")
 	private int nzzt=0;
+	
+	/**牛只情期*/
+	@Column(name="qq")
+	private int qq=0;
 	
 	@Column(name = "bz")
 	/**备注*/
@@ -134,7 +138,10 @@ public class NZJBXX {
 	private JSJBXX jsjbxx;
 	
 	@OneToOne(mappedBy="nzxx")
-	private NZLBXX nzlbxx;
+	private NZFZZTXX nzfzzt;
+	
+	@OneToOne(mappedBy="nzxx")
+	private NZMRZTXX nzmrzt;
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
 	private List<NZZSXX> zsxxList;
@@ -161,7 +168,7 @@ public class NZJBXX {
 	private List<LCXX> lcdjxxList;
 	
 	@OneToOne(mappedBy="nzjbxx")
-	private NZLCXX nzlcxx;
+	private NZLCXX nzlcxx;	
 	
 	public JSJBXX getJsjbxx() {
 		return jsjbxx;
@@ -319,19 +326,19 @@ public class NZJBXX {
 		this.mqh = mqh;
 	}
 
-	public String getMrzt() {
+	public int getMrzt() {
 		return mrzt;
 	}
 
-	public void setMrzt(String mrzt) {
+	public void setMrzt(int mrzt) {
 		this.mrzt = mrzt;
 	}
 
-	public String getFzzt() {
+	public int getFzzt() {
 		return fzzt;
 	}
 
-	public void setFzzt(String fzzt) {
+	public void setFzzt(int fzzt) {
 		this.fzzt = fzzt;
 	}
 
@@ -431,11 +438,29 @@ public class NZJBXX {
 		this.rjfjxxList = rjfjxxList;
 	}
 
-	public NZLBXX getNzlbxx() {
-		return nzlbxx;
+	public NZFZZTXX getNzfzzt() {
+		return nzfzzt;
 	}
 
-	public void setNzlbxx(NZLBXX nzlbxx) {
-		this.nzlbxx = nzlbxx;
+	public void setNzfzzt(NZFZZTXX nzfzzt) {
+		this.nzfzzt = nzfzzt;
 	}
+
+	public NZMRZTXX getNzmrzt() {
+		return nzmrzt;
+	}
+
+	public void setNzmrzt(NZMRZTXX nzmrzt) {
+		this.nzmrzt = nzmrzt;
+	}
+
+	public int getQq() {
+		return qq;
+	}
+
+	public void setQq(int qq) {
+		this.qq = qq;
+	}
+
+	
 }

@@ -1,17 +1,15 @@
 package org.chonger.service.fzgl;
 
-import java.util.Date;
 import java.util.List;
 
-import org.chonger.common.ConstantEnum.NZLBZT;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
-import org.chonger.entity.nqgl.NZLBXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.system.User;
-import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.utils.CommUUID;
-import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +33,7 @@ public class PzdjServer {
 	private FqdjServer fqServer;
 	
 	@Autowired
-	private NzlbServer lbServer;
+	private NzfzServer fzServer;
 	
 	/**
 	 * 根据配种ID获取配种信息
@@ -135,16 +133,23 @@ public class PzdjServer {
 				_fqxx.setSfpz(1);
 				fqServer.saveOrUpdate(_fqxx);
 				//更新牛只信息
-				NZLBXX _lbxx=lbServer.getNzlbxxById(Pzxx.getNzbh());
-				if(_lbxx==null)//牛只不存在类型信息，一般这里应该会出现，添加以防万一
-					_lbxx=new NZLBXX();
-				//修改牛只类别信息
-				_lbxx.setSj(Pzxx.getPzsj());//更新配置时间
-				_lbxx.setTid(Pzxx.getXh());//绑定事件对象
-				_lbxx.setLb(NZLBZT.已配种.getValue());//更新已配种信息
-				_lbxx.setDay(DateTimeUtil.getDayBetween(Pzxx.getPzsj(), new Date()));//更新配种时间
-				_lbxx.setTssj(null);
-				lbServer.saveOrUpdate(_lbxx,Pzxx.getNzbh());
+//				NZLBXX _lbxx=lbServer.getNzlbxxById(Pzxx.getNzbh());
+//				if(_lbxx==null)//牛只不存在类型信息，一般这里应该会出现，添加以防万一
+//					_lbxx=new NZLBXX();
+//				//修改牛只类别信息
+//				_lbxx.setSj(Pzxx.getPzsj());//更新配置时间
+//				_lbxx.setTid(Pzxx.getXh());//绑定事件对象
+//				_lbxx.setLb(NZLBZT.已配种.getValue());//更新已配种信息
+//				_lbxx.setDay(DateTimeUtil.getDayBetween(Pzxx.getPzsj(), new Date()));//更新配种时间
+//				_lbxx.setTssj(null);
+//				lbServer.saveOrUpdate(_lbxx,Pzxx.getNzbh());
+				
+//				NZFZZTXX fzzt=fzServer.findEntity(Pzxx.getNzbh());
+//				if(fzzt==null)
+//					fzzt=new NZFZZTXX();
+//				fzzt.setSj(Pzxx.getPzsj());
+//				fzzt.setTid(Pzxx.getXh());
+//				fzzt.setZt(NZFZZT)
 				
 			}
 			else
