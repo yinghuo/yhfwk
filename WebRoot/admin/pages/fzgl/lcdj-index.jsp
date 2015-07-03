@@ -47,7 +47,6 @@
   	 <div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
               	<th width="200">流产日期</th>
               	<th width="200">流产原因</th>
@@ -58,7 +57,6 @@
          	</tr>
          	<s:iterator value="lclist" status="status" id="lcxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#lcxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#lcxx.lcrq" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#lcxx.lcyy"/></td>

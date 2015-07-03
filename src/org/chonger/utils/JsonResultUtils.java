@@ -29,18 +29,18 @@ public class JsonResultUtils implements Serializable {
 	/**
 	 * 执行OK的常用值
 	 */
-	public static final String OKVALUE=0+"";
+	public static final int OKVALUE=0;
 	/**
 	 * 执行Error的常用值
 	 */
 	public static final String ERRORVALUE=1+"";
 	
 	/**json格式的简单消息。{"error":0,"message","消息内容"}*/
-	private Map<String,String> infos;
-	public void setInfos(Map<String, String> infos) {
+	private Map<String,Object> infos;
+	public void setInfos(Map<String, Object> infos) {
 		this.infos = infos;
 	}
-	public Map<String, String> getInfos() {
+	public Map<String, Object> getInfos() {
 		return infos;
 	}
 	
@@ -50,7 +50,7 @@ public class JsonResultUtils implements Serializable {
 	public void infosInitOrClear()
 	{
 		if(infos==null)
-			infos=new LinkedHashMap<String,String>();
+			infos=new LinkedHashMap<String,Object>();
 		else
 			infos.clear();
 	}

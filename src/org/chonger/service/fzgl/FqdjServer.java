@@ -161,6 +161,7 @@ public class FqdjServer {
 			fzzt.setZt(NZFZZT.发情期.getValue());
 			fzzt.setSj(Fqxx.getFqsj());
 			fzzt.setTssj(tssj);
+			fzzt.setTid(Fqxx.getXh());//关联发情信息
 			fzServer.saveOrUpDate(Fqxx.getNzbh(), fzzt);			
 			
 			//发出消息

@@ -99,10 +99,10 @@
 			</div>
 		</div>
 		<div class="box span10 oh tab_content">
+			<%//发情信息 %>
 			<div class="tab-view">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 					<tr>
-						<th width="80">序号</th>
 						<th width="120">发情时间</th>
 						<th width="120">发情类型</th>
 						<th width="120">发现方式</th>
@@ -111,7 +111,6 @@
 					</tr>
 					<s:iterator value="nz.fqdjxxList" status="status" id="fqxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日" /></td>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}" /></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}" /></td>
@@ -121,10 +120,10 @@
 					</s:iterator>
 				</table>
 			</div>
+			<%//配种信息 %>
 			<div class="tab-view">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 					<tr>
-						<th width="80">序号</th>
 						<th width="120">发情时间</th>
 						<th width="120">配种时间</th>
 						<th width="120">冻精编号</th>
@@ -133,7 +132,6 @@
 					</tr>
 					<s:iterator value="nz.pzdjxxList" status="status" id="pzxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:date name="#pzxx.fqsj" format="yyyy年MM月dd日" /></td>
 							<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日" /></td>
 							<td><s:property value="#pzxx.djbh" /></td>
@@ -143,14 +141,193 @@
 					</s:iterator>
 				</table>
 			</div>
+			<%//初检信息 %>
 			<div class="tab-view">
-				2
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">初检日期</th>
+						<th width="120">初检结果</th>
+						<th width="120">初检员</th>
+						<th width="120">初检方式</th>
+					</tr>
+					<s:iterator value="nz.rjcjxxList" status="status" id="cjxx">
+						<tr>
+							<td><s:date name="#cjxx.cjrq" format="yyyy年MM月dd日" /></td>
+							<td><y:EnumLabel enumName="CJJG" value="${cjxx.cjjg}" /></td>
+							<td><s:property value="#cjxx.cjy"/></td>
+							<td><y:EnumLabel enumName="CJFS" value="${cjxx.cjfs}" /></td>
+						</tr>
+					</s:iterator>
+				</table>
 			</div>
+			<%//复检信息 %>
 			<div class="tab-view">
-				3
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">复检日期</th>
+						<th width="120">复检结果</th>
+						<th width="120">复检员</th>
+					</tr>
+					<s:iterator value="nz.rjfjxxList" status="status" id="fjxx">
+						<tr>
+							<td><s:date name="#fjxx.fjrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#fjxx.fjjg"/></td>
+							<td><s:property value="#fjxx.fjy"/></td>
+						</tr>
+					</s:iterator>
+				</table>
 			</div>
+			<%//流产信息 %>
 			<div class="tab-view">
-				4
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">流产日期</th>
+						<th width="120">流产原因</th>
+						<th width="120">胎儿类型</th>
+						<th width="200">发现人</th>
+              			<th width="200">发现方式</th>
+					</tr>
+					<s:iterator value="nz.lcdjxxList" status="status" id="lcxx">
+						<tr>
+							<td><s:date name="#lcxx.lcrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#lcxx.lcyy"/></td>
+							<td><s:property value="#lcxx.telx"/></td>
+							<td><s:property value="#lcxx.fxr"/></td>
+							<td><s:property value="#lcxx.fxfs"/></td>
+						</tr>
+					</s:iterator>
+				</table>
+			</div>
+			<%//产犊信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">产犊时间</th>
+						<th width="120">产犊类型</th>
+						<th width="120">产犊难易</th>
+						<th width="200">胎位</th>
+              			<th width="200">接产员</th>
+              			<th width="200">胎儿数量</th>
+					</tr>
+					<s:iterator value="nz.cddjxxList" status="status" id="cdxx">
+						<tr>
+							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#cdxx.cdlx"/></td>
+							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
+							<td><y:EnumLabel enumName="CDTW" value="${cdxx.tw}"/></td>
+							<td><s:property value="#cdxx.jcy"/></td>
+							<td><s:property value="#cdxx.tesl"/></td>
+						</tr>
+					</s:iterator>
+				</table>
+			</div>
+			<%//干奶信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">干奶日期</th>
+						<th width="120">干奶方法</th>
+						<th width="120">使用药物</th>
+						<th width="200">兽医</th>
+					</tr>
+				</table>
+			</div>
+			<%//产奶信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="120">挤奶日期</th>
+						<th width="120">早班产量</th>
+						<th width="120">午班产量</th>
+						<th width="200">晚班产量</th>
+              			<th width="200">总产量</th>
+					</tr>
+					<s:iterator value="nz.gtcnxxList" status="status" id="cnxx">
+						<tr>
+							<td><s:date name="#cnxx.jnrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#cnxx.scl"/></td>
+							<td><s:property value="#cnxx.xcl"/></td>
+							<td><s:property value="#cnxx.wcl"/></td>
+							<td><s:property value="#cnxx.scl+#cnxx.xcl+#cnxx.wcl"/></td>
+						</tr>
+					</s:iterator>
+				</table>
+			</div>
+			<%//疾病信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="200">发病日期</th>
+		              	<th width="200">疾病种类</th>
+		              	<th width="200">疾病名称</th>
+		              	<th width="200">主要症状</th>
+		              	<th width="200">发病原因</th>
+		              	<th width="200">严重程度</th>
+		              	<th width="200">处置情况</th>
+		              	<th width="200">是否弃奶</th>
+		              	<th width="200">兽医</th>
+					</tr>
+				</table>
+			</div>
+			<%//免疫信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="200">免疫日期</th>
+						<th width="200">免疫项目</th>
+						<th width="200">疫苗名称</th>
+						<th width="200">使用剂量</th>
+						<th width="200">批号</th>
+						<th width="200">制造商</th>
+						<th width="200">结果</th>
+						<th width="200">兽医</th>
+					</tr>
+				</table>
+			</div>
+			<%//检疫信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="200">检疫日期</th>
+						<th width="200">检疫月龄</th>
+						<th width="200">检疫项目</th>
+						<th width="200">疫苗名称</th>
+						<th width="200">检疫类型</th>
+						<th width="200">使用剂量</th>
+						<th width="200">批号</th>
+						<th width="200">制造商</th>
+						<th width="200">结果</th>
+						<th width="200">兽医</th>
+					</tr>
+				</table>
+			</div>
+			<%//驱虫信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="200">驱虫日期</th>
+						<th width="200">驱虫方法</th>
+						<th width="200">药物名称</th>
+						<th width="200">使用剂量</th>
+						<th width="200">批号</th>
+						<th width="200">制造商</th>
+						<th width="200">驱虫效果</th>
+						<th width="200">兽医</th>
+					</tr>
+				</table>
+			</div>
+			<%//护蹄修蹄信息 %>
+			<div class="tab-view">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
+					<tr>
+						<th width="200">修蹄日期</th>
+						<th width="200">左前肢</th>
+						<th width="200">左后肢</th>
+						<th width="200">右前肢</th>
+						<th width="200">右后肢</th>
+						<th width="200">兽医</th>
+					</tr>
+				</table>
 			</div>
 		</div>
 		</tab>

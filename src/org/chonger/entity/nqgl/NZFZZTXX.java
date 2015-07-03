@@ -50,7 +50,14 @@ public class NZFZZTXX {
 	@Column(name="tid")
 	/*关联目标的id*/
 	private String tid;
-		
+	
+	@Column(name="bj")
+	/*标记*/
+	private int bj;//1:已配种(未启用) 2：已初检
+	
+	@Column(name="cs")
+	private int cs;//次数
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "xh")
 	private NZJBXX nzxx;
@@ -109,5 +116,21 @@ public class NZFZZTXX {
 
 	public void setTid(String tid) {
 		this.tid = tid;
+	}
+
+	public int getBj() {
+		return bj;
+	}
+
+	public void setBj(int bj) {
+		this.bj = bj;
+	}
+
+	public int getCs() {
+		return cs;
+	}
+
+	public void setCs(int cs) {
+		this.cs = cs;
 	}
 }

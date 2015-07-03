@@ -1,5 +1,6 @@
 package org.chonger.service.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.chonger.common.ConstantEnum;
@@ -12,6 +13,7 @@ import org.chonger.entity.system.User;
 import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +150,12 @@ public class RjcjServer {
 					//_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
 					//_nzlb.setLb(ConstantEnum.NZLBZT.已初检.getValue());
 					_fzzt.setZt(NZFZZT.妊娠前期.getValue());
+					_fzzt.setBj(1);//已初检
+					
+					//计算预产期
+					//配种时间开始+280天预产期
+					Date chanqi=DateTimeUtil.addDate(_fzzt.getSj(), 0, 0, 280);//计算预产期
+					_fzzt.setTssj(chanqi);
 					
 				}
 				else

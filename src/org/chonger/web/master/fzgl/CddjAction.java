@@ -5,11 +5,14 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.system.User;
 import org.chonger.service.fzgl.CddjServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.SessionUtils;
@@ -41,7 +44,9 @@ public class CddjAction extends ActionSupport {
 
 	@Autowired
 	private CddjServer server;
-
+	@Autowired
+	private NzxxServer nzServer;
+	
 	public CddjAction() {
 		jsonResult = new JsonResultUtils();
 	}
@@ -94,12 +99,20 @@ public class CddjAction extends ActionSupport {
 	public String save() throws Exception {
 
 		try {
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增"
-					: "更新") + "产犊信息成功！");
-			server.saveOrUpdate(cd);
+			
+			//检查牛只是否可以进行产犊登记
+			NZJBXX _nzxx=nzServer.queryNZById(cd.getNzbh());
+			if(_nzxx==null||_nzxx.getNzfzzt()==null||_nzxx.getNzfzzt().getZt()!=NZFZZT.围产前期.getValue())
+			{
+				jsonResult.sendErrorMessage("该牛只当前未处于产犊状态，无法进行产犊登记！");
+			}
+			else
+			{				
+				jsonResult.sendSuccessMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增" : "更新") + "产犊信息成功！");
+				server.saveOrUpdate(cd);
+			}
 		} catch (Exception ex) {
-			jsonResult.sendErrorMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增"
-					: "更新") + "产犊信息异常！");
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(cd.getXh()) ? "新增" : "更新") + "产犊信息异常！");
 		}
 		return "infos";
 	}

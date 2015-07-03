@@ -173,9 +173,8 @@ public class ConstantEnum {
 		围产前期(3),
 		围产后期(4),
 		泌乳期(5),
-		干奶期(6),
-		空怀期(7),
-		流产(8);
+		空怀期(6),
+		流产(7);
 		
 		private int value;
 		NZFZZT(int value){this.value=value;}
@@ -191,7 +190,8 @@ public class ConstantEnum {
 		
 		泌乳盛期(0),
 		泌乳中期(1),
-		泌乳后期(2);		
+		泌乳后期(2),		
+		干奶期(3);
 		
 		private int value;
 		NZMRZT(int value){this.value=value;}

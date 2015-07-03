@@ -47,32 +47,35 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
               	<th width="200">牛只编号</th>
-              	<th width="200">初检日期</th>
-              	<th width="200">初检结果</th>
-              	<th width="200">妊娠天数</th>
-              	<th width="200">初检员</th>
-              	<th width="200">初检方式</th>
-              	<th width="200">操作</th>
+              	<th>繁殖状态</th>
+              	<th>繁殖天数</th>
+              	<th>初检日期</th>
+              	<th>初检结果</th>              	
+              	<th>初检员</th>
+              	<th>初检方式</th>
+              	<th width="160">操作</th>
          	</tr>
          	<s:iterator value="rjlist" status="status" id="rjcj">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>
+							<td><y:EnumLabel enumName="NZFZZT" value="${rjcj.nzjbxx.nzfzzt.zt}" /></td>
+							<td>
+								<s:if test="#rjcj.nzjbxx.nzfzzt!=null">
+									<s:property value="#rjcj.nzjbxx.nzfzzt.day"/>天
+								</s:if>
+								<s:else>
+									无
+								</s:else>
+							</td>
 							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
-							<td>
-								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && (#rjcj.nzjbxx.nzlbxx.lb==5||#rjcj.nzjbxx.nzlbxx.lb==6)">
-									<s:property value="#rjcj.nzjbxx.nzlbxx.day"/>天
-								</s:if>
-							</td>
 							<td><s:property value="#rjcj.cjy"/></td>
 							<td><y:EnumLabel enumName="CJFS" value="${rjcj.cjfs}" /></td>
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#rjcj.xh"/>')" class="fa fa-edit cr-p">修改</a>
 								<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjcj!delete.action?id=<s:property value="#rjcj.xh"/>" class="fa fa-remove cr-p">删除</a>
-								<s:if test="#rjcj.nzjbxx.nzlbxx!=null && #rjcj.nzjbxx.nzlbxx.lb==2">
+								<s:if test="#rjcj.nzjbxx.nzfzzt!=null && (#rjcj.nzjbxx.nzfzzt.zt==1||#rjcj.nzjbxx.nzfzzt.zt==2||#rjcj.nzjbxx.nzfzzt.zt==3)">
 									<a title="复检" onclick="fujian('<s:property value="#rjcj.xh"/>')" class="fa fa-medkit cr-p">复检</a>
 								</s:if>
 							</td>

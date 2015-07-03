@@ -98,6 +98,9 @@ public class CommonDAO<T> extends HibernateDao<T,String> {
 		}
 	}
 	
+	
+	
+	
 	/**
 	 * 执行含有count(*)的hql语句，获取统计结果
 	 * @param hql

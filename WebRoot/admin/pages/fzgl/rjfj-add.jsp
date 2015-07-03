@@ -40,7 +40,7 @@
 						&nbsp;<a id="selectfjy" onclick="ygSelect('selectfjy')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td class="td_right">胎儿状况：</td>
 					<td class="">
 						<input type="text" id="tezk" name="fj.tezk" class="input-text lh30" value="${fj.tezk}" size="50"><span class="required">*必填</span>
@@ -57,7 +57,7 @@
 						</select>
 						<span class="required">*必填</span>
 					</td>
-				</tr>
+				</tr> -->				
 				<tr>
 					<td class="td_right">备注：</td>
 					<td class="">

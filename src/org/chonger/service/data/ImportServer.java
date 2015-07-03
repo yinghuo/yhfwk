@@ -254,8 +254,8 @@ public class ImportServer {
 							nzxx.setCdrq(DateTimeUtil.parseDate2YMDHMS(dataItem[12]));
 							nzxx.setFqh(dataItem[13]);
 							nzxx.setMqh(dataItem[14]);
-							nzxx.setMrzt(dataItem[15]);
-							nzxx.setFzzt(dataItem[16]);
+							nzxx.setMrzt(Integer.parseInt(dataItem[15]));
+							nzxx.setFzzt(Integer.parseInt(dataItem[16]));
 							nzxx.setBz(dataItem[17]);
 							
 							nzxxServer.saveOrUpdate(nzxx);
@@ -667,7 +667,7 @@ public class ImportServer {
 							gtcnxx.setNzbh(nzxxMap.get(nzbh));
 							gtcnxx.setJnrq(DateTimeUtil.parseDate2YMDHMS(dataItem[1]));
 							gtcnxx.setBc(dataItem[2]);
-							gtcnxx.setCl(Double.parseDouble(dataItem[3]));
+							//gtcnxx.setCl(Double.parseDouble(dataItem[3]));
 							gtcnxx.setBz(dataItem[4]);
 							
 							gtcnServer.saveOrUpdate(gtcnxx);

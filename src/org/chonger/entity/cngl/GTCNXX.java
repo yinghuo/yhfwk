@@ -41,8 +41,14 @@ public class GTCNXX {
 	@Column(name = "bc")
 	private String bc;//班次
 	
-	@Column(name = "cl")
-	private double cl;//产量
+	@Column(name = "scl")
+	private double scl=0;//上午产量
+	
+	@Column(name = "xcl")
+	private double xcl=0;//下午产量
+	
+	@Column(name = "wcl")
+	private double wcl=0;//晚上产量
 	
 	@Column(name = "bz")
 	private String bz;//备注
@@ -91,12 +97,28 @@ public class GTCNXX {
 		this.bc = bc;
 	}
 
-	public double getCl() {
-		return cl;
+	public double getScl() {
+		return scl;
 	}
 
-	public void setCl(double cl) {
-		this.cl = cl;
+	public void setScl(double scl) {
+		this.scl = scl;
+	}
+
+	public double getXcl() {
+		return xcl;
+	}
+
+	public void setXcl(double xcl) {
+		this.xcl = xcl;
+	}
+
+	public double getWcl() {
+		return wcl;
+	}
+
+	public void setWcl(double wcl) {
+		this.wcl = wcl;
 	}
 
 	public String getBz() {

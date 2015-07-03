@@ -103,6 +103,20 @@ public class NzxxServer {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param lb
+	 * @return
+	 * @retrun List<NZJBXX> 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public List<NZJBXX> queryNZByLB(int lb)
+	{
+		return dao.find(getQueryString(null,null,null)+" and model.lb='"+lb+"'");		
+	}
+	
 	public String getQueryString(String bh,String eb,String jbq)
 	{		
 		String sql="from NZJBXX model where 1=1 ";		
@@ -241,4 +255,20 @@ public class NzxxServer {
 			}
 		}
 	}
+	
+	/**
+	 * 对牛只的信息按照类别进行统计
+	 * @retrun void 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public List<Object> queryByGroupLb()
+	{
+		String hql="select model.lb, count(*) from NZJBXX model group by model.lb";
+		
+		List<Object> objList=dao.find(hql);
+		return objList;
+	}
+	
 }

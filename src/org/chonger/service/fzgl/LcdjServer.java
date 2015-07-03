@@ -2,10 +2,15 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.LCXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
+import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzfzServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -25,6 +30,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class LcdjServer {
 	@Autowired
 	private CommonDAO<LCXX> dao;
+	
+	@Autowired
+	private NzxxServer nzServer;
+	
+	@Autowired
+	private NzfzServer fzServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只流产信息
@@ -117,6 +128,17 @@ public class LcdjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Lcxx.setXh(CommUUID.getUUID());
 				dao.save(Lcxx);
+				
+				//流产后登记牛只的繁殖状态为流产状态
+				//modify 2015-07-01	Daniel	1：添加产犊业务逻辑
+				NZJBXX _nzxx=nzServer.queryNZById(Lcxx.getNzbh());
+				NZFZZTXX _fzxx=_nzxx.getNzfzzt();
+				if(_fzxx==null)
+					_fzxx=new NZFZZTXX();
+				
+				_fzxx.setZt(NZFZZT.流产.getValue());
+				fzServer.saveOrUpDate(_nzxx, NZFZZT.流产.getValue());
+				
 			}
 			else
 				dao.saveOrUpdate(Lcxx);

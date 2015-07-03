@@ -49,30 +49,39 @@
 		<table width="100%" border="0" cellpadding="0" cellspacing="0"
 			class="list_table ta-c">
 			<tr>
-				<th width="80">序号</th>
-				<th width="200">牛只编号</th>
-				<th width="200">复检日期</th>
-				<th width="200">复检结果</th>
-				<th width="200">复检员</th>
-				<th width="200">胎儿状况</th>
-				<th width="200">牛只性别</th>
-				<th width="200">操作</th>
+				<th>牛只编号</th>
+				<th>繁殖状态</th>
+              	<th>繁殖天数</th>
+				<th>复检日期</th>
+				<th>复检结果</th>
+				<th>复检员</th>
+				<!-- <th>胎儿状况</th>
+				<th>牛只性别</th> -->
+				<th width="160">操作</th>
 			</tr>
 			<s:iterator value="fjlist" status="status" id="rjfj">
 				<tr>
-					<td>${status.count }</td>
 					<td><s:property value="#rjfj.nzjbxx.nzbh" /></td>
+					<td><y:EnumLabel enumName="NZFZZT" value="${rjfj.nzjbxx.nzfzzt.zt}" /></td>
+					<td>
+						<s:if test="#rjfj.nzjbxx.nzfzzt!=null">
+							<s:property value="#rjfj.nzjbxx.nzfzzt.day"/>天
+						</s:if>
+						<s:else>
+							无
+						</s:else>
+					</td>
 					<td><s:date name="#rjfj.fjrq" format="yyyy年MM月dd日" /></td>
 					<td><s:property value="#rjfj.fjjg" /></td>
 					<td><s:property value="#rjfj.fjy" /></td>
-					<td><s:property value="#rjfj.tezk" /></td>
-					<td><y:EnumLabel enumName="NZXB" value="${rjfj.nzxb}" /></td>
+					<!-- <td><s:property value="#rjfj.tezk" /></td>
+					<td><y:EnumLabel enumName="NZXB" value="${rjfj.nzxb}" /></td> -->
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#rjfj.xh"/>')"	class="fa fa-edit cr-p">修改</a> 
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条妊娠复检信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/rjfj!delete.action?id=<s:property value="#rjfj.xh"/>" class="fa fa-remove cr-p">删除</a>
-						<s:if test="#rjfj.nzjbxx.nzlbxx!=null && #rjfj.nzjbxx.nzlbxx.lb==3">
+						<%/*<s:if test="#rjfj.nzjbxx.nzlbxx!=null && #rjfj.nzjbxx.nzlbxx.lb==3">
 							<a title="复检" onclick="fujian('<s:property value="#rjfj.xh"/>')" class="fa fa-medkit cr-p">复检</a>
-						</s:if>
+						</s:if>*/%>
 					</td>
 				</tr>
 			</s:iterator>

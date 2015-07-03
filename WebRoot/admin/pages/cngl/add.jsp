@@ -23,17 +23,23 @@
 						<td class="">
 							<input type="text" id="jnrq" name="cn.jnrq" readonly="readonly" class="input-text lh30" value="<s:date name="cn.jnrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
 						</td>
-					</tr>
+					</tr>					
 					<tr>
-						<td class="td_right">班次：</td>
+						<td class="td_right">早班产量：</td>
 						<td class="">
-							<input type="text" id="bc" name="cn.bc" class="input-text lh30" value="${cn.bc}" size="50"><span class="required">*必填</span>
+							<input type="text" id="scl" name="cn.scl" class="input-text lh30" value="${cn.scl}" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
-						<td class="td_right">产量：</td>
+						<td class="td_right">午班产量：</td>
 						<td class="">
-							<input type="text" id="cl" name="cn.cl" class="input-text lh30" value="${cn.cl}" size="50"><span class="required">*必填</span>
+							<input type="text" id="xcl" name="cn.xcl" class="input-text lh30" value="${cn.xcl}" size="50"><span class="required">*必填</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_right">晚班产量：</td>
+						<td class="">
+							<input type="text" id="wcl" name="cn.wcl" class="input-text lh30" value="${cn.wcl}" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>
 					<tr>
@@ -55,7 +61,6 @@
      	showmap("产奶信息管理 > <s:if test="nc==null">新增</s:if><s:else>更新</s:else>个体产奶信息");
      	function validata()
      	{
-     		debugger;
      		if(IsNull("nzbh",0))
      		{
      			alert("请填写牛只编号！");
@@ -66,7 +71,7 @@
      			alert("请填写挤奶日期！");
      			return false;
      		}
-     		else if(IsNull("bc",0))
+     		/*else if(IsNull("bc",0))
      		{
      			alert("请填写挤奶班次！");
      			return false;
@@ -75,7 +80,7 @@
      		{
      			alert("请填写挤奶产量！");
      			return false;
-     		}
+     		}*/
      		return true;
      	}
      

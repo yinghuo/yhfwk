@@ -1,6 +1,7 @@
 package org.chonger.web.master.nzgl;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,9 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.common.ConstantEnum;
+import org.chonger.common.ConstantEnum.NZMRZT;
 import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.entity.nqgl.NZMRZTXX;
 import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.service.nzgl.NzmrServer;
 import org.chonger.service.nzgl.NzxxServer;
@@ -181,6 +184,127 @@ public class NzxxAction extends ActionSupport {
 		}
 		
 		return "infolist";
+	}
+	
+	/**
+	 * 获取当前牛只的统计信息
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String loadType()
+	{
+		jsonResult.infosInitOrClear();
+		try
+		{
+			//查询统计结果
+			List<Object> countResult=server.queryByGroupLb();
+			
+			//统计分类 哺乳犊牛、断奶犊牛、小育成牛、大育成牛、青年母牛、成年母牛、留养公牛
+			List<Object[]> lbList=new LinkedList<Object[]>();
+			lbList.add(new Object[]{"哺乳犊牛",0});
+			lbList.add(new Object[]{"断奶犊牛",0});
+			lbList.add(new Object[]{"小育成牛",0});
+			lbList.add(new Object[]{"大育成牛",0});
+			lbList.add(new Object[]{"青年母牛",0});
+			lbList.add(new Object[]{"成年母牛",0});
+			lbList.add(new Object[]{"留养公牛",0});
+			
+			
+			if(countResult!=null&&countResult.size()>0)
+			{
+				for(int i=0;i<countResult.size();i++)
+				{
+					Object[] values=(Object[])countResult.get(i);
+					
+					if(values[0]!=null&&!StringUtil.IsEmpty(values[0].toString()))
+					{
+						//判断类别序号，计入统计
+						if(values[0].equals("0"))
+						{
+							lbList.get(0)[1]=values[1];
+						}
+						else if(values[0].equals("1"))
+						{
+							lbList.get(1)[1]=values[1];
+						}
+						else if(values[0].equals("2"))
+						{
+							lbList.get(2)[1]=values[1];
+						}
+						else if(values[0].equals("3"))
+						{
+							lbList.get(3)[1]=values[1];
+						}
+						else if(values[0].equals("4"))
+						{
+							lbList.get(4)[1]=values[1];
+						}
+						else if(values[0].equals("5"))
+						{
+							lbList.get(5)[1]=values[1];
+						}
+						else if(values[0].equals("6"))
+						{
+							lbList.get(6)[1]=values[1];
+						}
+					}				
+				}
+			}
+			
+			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
+			jsonResult.getInfos().put("data",lbList);
+			
+		}catch(Exception ex)
+		{
+			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.ERRORVALUE);
+			jsonResult.getInfos().put(JsonResultUtils.MESSAGE,"未完成的统计查询！");
+		}
+		
+		return "infos";
+	}
+	
+	/**
+	 * 获取泌乳牛统计信息
+	 * @retrun String 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String loadCount()
+	{
+		jsonResult.infosInitOrClear();
+		jsonResult.getInfos().put("a",0);
+		jsonResult.getInfos().put("m",0);
+		jsonResult.getInfos().put("g",0);
+		
+		//获取繁殖中的泌乳牛
+		List<NZJBXX> nzxxList=server.queryNZByLB(ConstantEnum.NZLB.成年母牛.getValue());
+		
+		if(nzxxList!=null&&nzxxList.size()>0)
+		{
+			jsonResult.getInfos().put("a",nzxxList.size());
+			int miru=0;
+			int gann=0;
+			//通知牛只的泌乳状态
+			for(NZJBXX nzxx : nzxxList)
+			{
+				NZMRZTXX mrzt=nzxx.getNzmrzt();
+				if(mrzt!=null)
+				{
+					if(mrzt.getZt()==NZMRZT.干奶期.getValue())
+						gann+=1;
+					else
+						miru+=1;
+				}
+			}
+			jsonResult.getInfos().put("m",miru);
+			jsonResult.getInfos().put("g",gann);
+			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
+		}
+		
+		return "infos";
 	}
 	
 }

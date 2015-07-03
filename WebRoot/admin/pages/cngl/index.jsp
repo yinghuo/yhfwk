@@ -44,20 +44,20 @@
 	 <div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-             	<th width="80">序号</th>
-              	<th width="200">牛只编号</th>
-              	<th width="200">挤奶日期</th>
-              	<th width="200">班次</th>
-              	<th width="200">产量</th>
-              	<th width="200">操作</th>
+              	<th>牛只编号</th>
+              	<th>挤奶日期</th>
+              	<th>早班产量</th>
+              	<th>午班产量</th>
+              	<th>晚班产量</th>
+              	<th width="160">操作</th>
          	</tr>
          	<s:iterator value="cnlist" status="status" id="gtcnxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#gtcnxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#gtcnxx.jnrq" format="yyyy-MM-dd HH-mm"/></td>
-							<td><s:property value="#gtcnxx.bc"/></td>
-							<td><s:property value="#gtcnxx.cl"/></td>
+							<td><s:property value="#gtcnxx.scl"/></td>
+							<td><s:property value="#gtcnxx.xcl"/></td>
+							<td><s:property value="#gtcnxx.wcl"/></td>
 							<td></td>
 						</tr>
 			</s:iterator>

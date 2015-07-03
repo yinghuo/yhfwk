@@ -48,7 +48,6 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 				<thead>
 					<tr>
-						<th>序号</th>
 						<th>牛只编号</th>
 						<th>产犊时间</th>
 						<th>产犊类型</th>
@@ -62,7 +61,6 @@
 				<tbody>
 					<s:iterator value="cdlist" status="status" id="cdxx">
 						<tr>
-							<td>${status.count }</td>
 							<td><s:property value="#cdxx.nzjbxx.nzbh"/></td>
 							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#cdxx.cdlx"/></td>

@@ -50,6 +50,7 @@
               	<th>牛只编号</th>
               	<th width="120">配种时间</th>
               	<th>情期</th>
+              	<th>繁殖状态</th>
               	<th>繁殖天数</th>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
@@ -61,6 +62,7 @@
 					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
 					<td><s:property value="#pzxx.nzjbxx.qq"/></td>
+					<td><y:EnumLabel enumName="NZFZZT" value="${pzxx.nzjbxx.nzfzzt.zt}" /></td>
 					<td>
 						<s:if test="#pzxx.nzjbxx.nzfzzt!=null">
 							<s:property value="#pzxx.nzjbxx.nzfzzt.day"/>天
@@ -74,7 +76,7 @@
 					<td><s:property value="#pzxx.pzy"/></td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=" class="fa fa-remove cr-p">删除</a>
+						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=<s:property value="#pzxx.xh"/>" class="fa fa-remove cr-p">删除</a>
 						<s:if test="#pzxx.nzjbxx.nzfzzt!=null && #pzxx.nzjbxx.nzfzzt.zt==0">
 							<a title="初检" onclick="chujian('<s:property value="#pzxx.xh"/>')" class="fa fa-medkit cr-p">初检</a>
 						</s:if>

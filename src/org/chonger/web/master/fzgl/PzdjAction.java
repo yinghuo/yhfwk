@@ -6,11 +6,13 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.service.fzgl.PzdjServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.StringUtil;
@@ -41,6 +43,8 @@ public class PzdjAction extends ActionSupport {
 	private PzdjServer server;
 	@Autowired
 	private FqdjServer fqServer;
+	@Autowired
+	private NzxxServer nzServer;
 	
 	public PzdjAction(){
 		jsonResult=new JsonResultUtils();
@@ -97,12 +101,20 @@ public class PzdjAction extends ActionSupport {
 	public String save() throws Exception {
 		try {
 			
-			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增" : "更新") + "配种信息成功！");
+			//检测当前牛只是否可以进行配种
+			NZJBXX _nzxx=nzServer.queryNZById(pz.getNzbh());
 			
-			server.saveOrUpdate(pz);
+			if(_nzxx==null||_nzxx.getNzfzzt()==null||_nzxx.getNzfzzt().getZt()!=NZFZZT.发情期.getValue())
+			{
+				jsonResult.sendErrorMessage("该牛只当前未发情，不能进行配种操作！");
+			}
+			else
+			{			
+				jsonResult.sendSuccessMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增" : "更新") + "配种信息成功！");
+				server.saveOrUpdate(pz);
+			}
 		} catch (Exception ex) {
-			jsonResult.sendErrorMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增"
-					: "更新") + "配种信息异常！");
+			jsonResult.sendErrorMessage((StringUtil.IsEmpty(pz.getXh()) ? "新增" : "更新") + "配种信息异常！");
 		}
 		return "infos";
 	}

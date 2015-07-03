@@ -2,14 +2,17 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
-import org.chonger.common.ConstantEnum;
+import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.common.ConstantEnum.NZLB;
+import org.chonger.common.ConstantEnum.NZMRZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.CDDJXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
-import org.chonger.entity.nqgl.NZLBXX;
+import org.chonger.entity.nqgl.NZMRZTXX;
 import org.chonger.entity.system.User;
-import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzfzServer;
+import org.chonger.service.nzgl.NzmrServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
@@ -35,7 +38,10 @@ public class CddjServer {
 	private NzxxServer nzServer;
 	
 	@Autowired
-	private NzlbServer lbServer;
+	private NzfzServer fzServer;
+	
+	@Autowired
+	private NzmrServer mrServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只产犊信息
@@ -105,16 +111,36 @@ public class CddjServer {
 				
 				//modify 2015-06-05	Daniel	1：添加产犊业务逻辑
 				NZJBXX _nzxx=nzServer.queryNZById(Cdxx.getNzbh());
-				NZLBXX _nzlb=_nzxx.getNzlbxx();
+				NZFZZTXX _fzxx=_nzxx.getNzfzzt();
+				//NZLBXX _nzlb=_nzxx.getNzlbxx();
 				//更新牛只的胎次数量、状态进入成年母牛
 				_nzxx.setTc(_nzxx.getTc()+1);
 				_nzxx.setLb(NZLB.成年母牛.getValue()+"");
+				_nzxx.setQq(0);//清除情期
+				nzServer.saveOrUpdate(_nzxx);
 				
 				//牛只状态进入泌乳期
-				_nzlb.setLb(ConstantEnum.NZLBZT.泌乳期.getValue());
+				//_nzlb.setLb(ConstantEnum.NZLBZT.泌乳期.getValue());
+				if(_fzxx==null)
+					_fzxx=new NZFZZTXX();
+				_fzxx.setZt(NZFZZT.围产后期.getValue());
+				_fzxx.setSj(Cdxx.getCdsj());
+				_fzxx.setDay(0);//
 				
-				nzServer.saveOrUpdate(_nzxx);
-				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
+				fzServer.saveOrUpDate(Cdxx.getNzbh(), _fzxx);
+				
+				//泌乳状态进行更新
+				NZMRZTXX _mrzt=_nzxx.getNzmrzt();
+				if(_mrzt==null)
+					_mrzt=new NZMRZTXX();
+				
+				_mrzt.setZt(NZMRZT.泌乳盛期.getValue());
+				_mrzt.setDay(0);
+				_mrzt.setSj(Cdxx.getCdsj());
+				
+				mrServer.saveOrUpDate(Cdxx.getNzbh(), _mrzt);
+				
+				//lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 			}
 			else
 				dao.saveOrUpdate(Cdxx);

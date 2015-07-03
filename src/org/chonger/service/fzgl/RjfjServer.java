@@ -2,13 +2,12 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
-import org.chonger.common.ConstantEnum;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.RJFJXX;
+import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
-import org.chonger.entity.nqgl.NZLBXX;
 import org.chonger.entity.system.User;
-import org.chonger.service.nzgl.NzlbServer;
+import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
@@ -33,7 +32,7 @@ public class RjfjServer {
 	@Autowired
 	private NzxxServer nzServer;	
 	@Autowired
-	private NzlbServer lbServer;
+	private NzfzServer fzServer;
 	
 	/**
 	 * 依据牛只的id信息查询牛只妊检信息
@@ -133,13 +132,17 @@ public class RjfjServer {
 				
 				//modify 2015-06-23	Daniel 1：新增复检信息的自动计算逻辑
 				//复检不用更新牛只基本信息
-				NZJBXX _nzxx=nzServer.queryNZById(Rjxx.getNzbh());
-				NZLBXX _nzlb=_nzxx.getNzlbxx();
+//				NZJBXX _nzxx=nzServer.queryNZById(Rjxx.getNzbh());
+//				NZLBXX _nzlb=_nzxx.getNzlbxx();
+//				
+//				//更新牛只的类别为已复检
+//				_nzlb.setLb(ConstantEnum.NZLBZT.已复检.getValue());
+//				
+//				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 				
-				//更新牛只的类别为已复检
-				_nzlb.setLb(ConstantEnum.NZLBZT.已复检.getValue());
+				//NZFZZTXX _fzxx=_nzxx.getNzfzzt();
+				//_fzxx.setBj(1);
 				
-				lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 			}
 			else
 				dao.saveOrUpdate(Rjxx);

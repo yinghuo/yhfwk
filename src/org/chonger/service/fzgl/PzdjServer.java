@@ -144,13 +144,13 @@ public class PzdjServer {
 //				_lbxx.setTssj(null);
 //				lbServer.saveOrUpdate(_lbxx,Pzxx.getNzbh());
 				
-//				NZFZZTXX fzzt=fzServer.findEntity(Pzxx.getNzbh());
-//				if(fzzt==null)
-//					fzzt=new NZFZZTXX();
-//				fzzt.setSj(Pzxx.getPzsj());
-//				fzzt.setTid(Pzxx.getXh());
-//				fzzt.setZt(NZFZZT)
-				
+				NZFZZTXX fzzt=fzServer.findEntity(Pzxx.getNzbh());
+				if(fzzt==null)
+					fzzt=new NZFZZTXX();
+				fzzt.setSj(Pzxx.getPzsj());
+				fzzt.setTid(Pzxx.getXh());
+				fzzt.setDay(0);//计算配种天数
+				fzServer.saveOrUpDate(Pzxx.getNzbh(), fzzt);
 			}
 			else
 				dao.saveOrUpdate(Pzxx);

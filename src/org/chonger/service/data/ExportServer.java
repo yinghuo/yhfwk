@@ -283,8 +283,8 @@ public class ExportServer {
 				dataItem[12]=DateTimeUtil.formatDateToString(nzxx.getCdrq());
 				dataItem[13]=nzxx.getFqh();
 				dataItem[14]=nzxx.getMqh();
-				dataItem[15]=nzxx.getMrzt();
-				dataItem[16]=nzxx.getFzzt();
+				dataItem[15]=nzxx.getMrzt()+"";
+				dataItem[16]=nzxx.getFzzt()+"";
 				dataItem[17]=nzxx.getBz();
 				
 				dataList.add(dataItem);
@@ -588,7 +588,7 @@ public class ExportServer {
 				dataItem[0]=gtcnxx.getNzjbxx().getNzbh();
 				dataItem[1]=DateTimeUtil.formatDateToString(gtcnxx.getJnrq());
 				dataItem[2]=gtcnxx.getBc();
-				dataItem[3]=gtcnxx.getCl()+"";
+				//dataItem[3]=gtcnxx.getCl()+"";
 				dataItem[4]=gtcnxx.getBz();
 				dataList.add(dataItem);
 			}
