@@ -152,8 +152,17 @@ public class NzxxServer {
 	 */
 	public long getNZCountByJSXX(String jsxh)
 	{
-		return dao.getCount("select count(*) from NZJBXX model where model.js='"+jsxh+"' and model.nzzt='0'");
+		String sql= "select count(*) from NZJBXX model where model.nzzt='0'";
+		if(!StringUtil.IsEmpty(jsxh) && !"".equals(jsxh)) 
+			sql+="  and model.js='"+jsxh+"'";
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
+		}
+		return dao.getCount(sql);
 	}
+
 	
 	/**
 	 * 保存或更新牛只信息
@@ -265,8 +274,14 @@ public class NzxxServer {
 	 */
 	public List<Object> queryByGroupLb()
 	{
-		String hql="select model.lb, count(*) from NZJBXX model group by model.lb";
-		
+		String hql="select model.lb, count(*) from NZJBXX model "
+				+ " where model.nzzt <> '1' ";
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			hql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
+		}
+		hql += " group by model.lb";
 		List<Object> objList=dao.find(hql);
 		return objList;
 	}

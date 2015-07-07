@@ -98,7 +98,7 @@
      			alert("请填写复检员！");
      			return false;
      		}
-     		else if(IsNull("tezk",0))
+     		/* else if(IsNull("tezk",0))
      		{
      			alert("请填写胎儿状况！");
      			return false;
@@ -108,6 +108,7 @@
      			alert("请填写牛只性别！");
      			return false;
      		}
+     		*/
      		return true;
      	}
      
