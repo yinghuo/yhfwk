@@ -27,7 +27,7 @@ public class JsonUtils {
 		return null;
 	}
 	
-	public static String sendJson(Map<String,String> infos) throws IOException
+	public static String sendJson(Map<String, Object> infos) throws IOException
 	{
 		if(infos!=null)
 		{

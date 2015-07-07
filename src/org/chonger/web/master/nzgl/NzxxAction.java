@@ -201,6 +201,8 @@ public class NzxxAction extends ActionSupport {
 			//查询统计结果
 			List<Object> countResult=server.queryByGroupLb();
 			
+			long iCountAll = server.getNZCountByJSXX("");
+			
 			//统计分类 哺乳犊牛、断奶犊牛、小育成牛、大育成牛、青年母牛、成年母牛、留养公牛
 			List<Object[]> lbList=new LinkedList<Object[]>();
 			lbList.add(new Object[]{"哺乳犊牛",0});
@@ -255,6 +257,7 @@ public class NzxxAction extends ActionSupport {
 			
 			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
 			jsonResult.getInfos().put("data",lbList);
+			jsonResult.getInfos().put("icount", iCountAll);
 			
 		}catch(Exception ex)
 		{

@@ -243,20 +243,35 @@ public class ImportServer {
 							nzxx.setJs(jsxxMap.get(jsbh));
 							nzxx.setEbbh(dataItem[2]);
 							nzxx.setJbqbh(dataItem[3]);
-							nzxx.setCsrq(DateTimeUtil.parseDate2YMDHMS(dataItem[4]));
+							if ((dataItem[4]==null) || (dataItem[4].isEmpty()))
+								nzxx.setCsrq(null);
+							else
+								nzxx.setCsrq(DateTimeUtil.parseDate2YMDHMS(dataItem[4]));
+							//nzxx.setCsrq(DateTimeUtil.parseDate2YMDHMS(dataItem[4]));
 							nzxx.setXb(ConstantEnum.NZXB.valueOf(dataItem[5]).getValue());
 							nzxx.setRqlx(ConstantEnum.NZRQLX.valueOf(dataItem[6]).getValue()+"");
-							nzxx.setRqsj(DateTimeUtil.parseDate2YMDHMS(dataItem[7]));
+							if ((dataItem[7]==null) || (dataItem[7].isEmpty()))
+								nzxx.setRqsj(null);
+							else
+								nzxx.setRqsj(DateTimeUtil.parseDate2YMDHMS(dataItem[7]));
+							//nzxx.setRqsj(DateTimeUtil.parseDate2YMDHMS(dataItem[7]));
 							nzxx.setCsz(Double.parseDouble(dataItem[8]));
 							nzxx.setPz(dataItem[9]);
 							nzxx.setMs(dataItem[10]);
 							nzxx.setTc((int)Double.parseDouble(dataItem[11]));
-							nzxx.setCdrq(DateTimeUtil.parseDate2YMDHMS(dataItem[12]));
+							if ((dataItem[12]==null) || (dataItem[12].isEmpty()))
+								nzxx.setCdrq(null);
+							else
+								nzxx.setCdrq(DateTimeUtil.parseDate2YMDHMS(dataItem[12]));
 							nzxx.setFqh(dataItem[13]);
 							nzxx.setMqh(dataItem[14]);
-							nzxx.setMrzt(Integer.parseInt(dataItem[15]));
-							nzxx.setFzzt(Integer.parseInt(dataItem[16]));
-							nzxx.setBz(dataItem[17]);
+							//nzxx.setMrzt(Integer.parseInt(dataItem[15]));
+							//nzxx.setFzzt(Integer.parseInt(dataItem[16]));
+							nzxx.setMrzt(0);
+							nzxx.setFzzt(0);
+							nzxx.setNzzt(0);
+							nzxx.setQq(0);
+							nzxx.setBz(dataItem[15]);
 							
 							nzxxServer.saveOrUpdate(nzxx);
 						}

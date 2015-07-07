@@ -12,7 +12,11 @@
  	
  	<div id="charA" style="float:left;margin-top:20px;"></div>
  	
- 	<div style="float:left;margin-left:10px;margin-top:20px;">
+ 	<div id="listA" style="float:left;margin-left:10px;margin-top:20px;">
+ 		
+ 	</div>
+ 	
+ 	<div style="float:left;margin-left:50px;margin-top:20px;">
  		<h3>牛群繁殖信息</h3>
  		<table style="margin-top:10px">
  			<tr>
@@ -29,7 +33,6 @@
  			</tr>
  		</table>
  	</div>
- 	
  	<script type="text/javascript">
      	showmap("我的基础数据> 牛群概貌");
      	
@@ -77,6 +80,22 @@
 	     	});
      	}
      	
+     	function createList(icount, data)
+     	{
+     		var str = "<h3>牛群状况</h3><table style='margin-top:10px'>";
+     		var str_table = "";
+     		var iZNS = 0;
+     		for(var i=0;i<data.length;i++)
+			{
+     			str_table += "<tr><td class='ta-r'>"+data[i][0]+"：</td><td class='ta-r'>"+data[i][1]+" 头</td></tr>";
+     			iZNS = iZNS + data[i][1];
+			}
+     		str += "<tr><td class='ta-r'>存栏总数：</td><td class='ta-r'>"+icount+" 头</td></tr>";
+     		str += str_table; 
+     		str += "</table>";
+     		document.getElementById("listA").innerHTML = str;
+     	}
+     	
      	$.ajax({
      		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadType.action",
      		type:"json",
@@ -87,6 +106,8 @@
           			
 					if(data["error"]==0)
 					{
+						var iCount = 0;
+						iCount = data["icount"];
 						//遍历列表
 						data=data["data"];
 						jsonData=new Array();
@@ -97,6 +118,7 @@
 							jsonData[i][1]=data[i][1];
 						}
 						
+						createList(iCount, jsonData);
 						createChart(jsonData);
 					}          			
           			else
