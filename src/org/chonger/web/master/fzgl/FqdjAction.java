@@ -5,13 +5,12 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.entity.fqxt.FQTSXX;
 import org.chonger.entity.fzgl.FQDJXX;
-import org.chonger.entity.jbxx.NCJBXX;
-import org.chonger.entity.system.User;
+import org.chonger.service.fqxt.FQTSXXServer;
 import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
-import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,8 +39,12 @@ import com.opensymphony.xwork2.ActionSupport;
 public class FqdjAction extends ActionSupport {
 
 	@Autowired
-	private FqdjServer server;
-
+	private FqdjServer server;	
+	@Autowired
+	private FQTSXXServer tsxxServer;
+	
+	
+	
 	public FqdjAction() {
 		jsonResult = new JsonResultUtils();
 	}
@@ -126,5 +129,35 @@ public class FqdjAction extends ActionSupport {
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
 		return "infos";
+	}
+	
+	/**
+	 * 新增发情信息，通过其他信息
+	 * 
+	 * @modify 2015-07-25	Daniel	1:修改发情系统的确认发情到发情信息登记信息完善
+	 * @modify 2015-07-25	Daniel	1:注销函数
+	 */
+	@Deprecated
+	public String add() throws Exception
+	{
+		if(!StringUtil.IsEmpty(id))
+		{
+			//通过ID加载提示消息
+			FQTSXX tsxx=tsxxServer.findEntity(id);
+			
+			if(tsxx!=null)
+			{
+				fq=new FQDJXX();
+				fq.setNzbh(tsxx.getNzbh());
+				fq.setNzjbxx(tsxx.getNzjbxx());
+				
+				//处理发情系统信息中的时间
+				
+				fq.setFxfs("1");
+				
+			}
+		}
+		
+		return "edit.jsp";
 	}
 }

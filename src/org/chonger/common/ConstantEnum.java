@@ -20,6 +20,30 @@ public class ConstantEnum {
 	//如果需要使用枚举常量，可以在这里进行声明定义。
 	
 	/**
+	 * 定义牛只护蹄修蹄状态
+	 */
+	public static enum HTXT implements BaseEnum<Integer>{
+		未修(0),已修(1);
+		private int value;
+		HTXT(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
+	 * 定义牛只疾病是否弃奶
+	 */
+	public static enum SFQN implements BaseEnum<Integer>{
+		否(0),是(1);
+		private int value;
+		SFQN(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	/**
 	 * 定义牛只离场登记的离群原因
 	 */
 	public static enum LCDJYY implements BaseEnum<Integer>{
@@ -252,7 +276,7 @@ public class ConstantEnum {
 	 */
 	public static enum NZZT implements BaseEnum<Integer>{
 		
-		正常(0),离场(1);
+		正常(0),离场(1),淘汰(2);
 		
 		private int value;
 		NZZT(int value){this.value=value;}

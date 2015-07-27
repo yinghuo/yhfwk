@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.chonger.entity.nqgl.NZJBXX;
 import org.hibernate.annotations.Cache;
@@ -45,9 +46,11 @@ public class RJFJXX {
 	@Column(name = "fjy")
 	private String fjy;//复检员
 	
+	@Transient
 	@Column(name = "tezk")
 	private String tezk;//胎儿状况
 	
+	@Transient
 	@Column(name="nzxb")
 	private int nzxb;//牛只性别
 	
@@ -113,19 +116,19 @@ public class RJFJXX {
 	public void setFjy(String fjy) {
 		this.fjy = fjy;
 	}
-
+	@Deprecated
 	public String getTezk() {
 		return tezk;
 	}
-
+	@Deprecated
 	public void setTezk(String tezk) {
 		this.tezk = tezk;
 	}
-
+	@Deprecated
 	public int getNzxb() {
 		return nzxb;
 	}
-
+	@Deprecated
 	public void setNzxb(int nzxb) {
 		this.nzxb = nzxb;
 	}

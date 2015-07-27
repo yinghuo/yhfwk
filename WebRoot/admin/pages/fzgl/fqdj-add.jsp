@@ -46,7 +46,7 @@
 				<tr>
 					<td class="td_right">发现方式：</td>
 					<td class="">
-						<select id="fxfs" name="fq.fxfs" class="select" >
+						<select id="fxfs" name="fq.fxfs" class="select" onchange="fxfsdone()">
 							<option value="">选择发现方式</option>
 						<y:EnumValues value="${fq.fxfs}" enumName="FXFS">
 							<option value="${value}" ${selected}>${label}</option>
@@ -55,7 +55,8 @@
 						<span class="required">*必填</span>
 					</td>
 				</tr>
-				<tr>
+				
+				<tr id="trfxr">
 					<td class="td_right">发现人：</td>
 					<td class="">
 						<input type="text" id="fxrtxt" readonly="readonly" class="input-text lh30" value="${fq.fxr}" size="35">
@@ -63,6 +64,7 @@
 						&nbsp;<a id="selectfxr" onclick="ygSelect('selectfxr')" class="ext_btn"><span class="add"></span>选择员工</a><span class="required">*必填</span>
 					</td>
 				</tr>
+				
 				<tr>
 					<td class="td_right">审核员：</td>
 					<td class="">
@@ -106,6 +108,10 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
 	<script type="text/javascript">
 		showmap("发情信息管理 > 新增发情信息");
+		
+		<%//如果当前发情方式为计步器，则不需要发现人 %>
+		fxfsdone();
+		
 		function validata() {
 			if (IsNull("nzbh", 0)) {
 				alert("请填写牛只编号！");
@@ -126,7 +132,7 @@
      			alert("请选择发现方式！");
      			return false;
      		}
-     		else if(IsNull("fxr",0))
+     		else if($("#fxfs").val()==0&&IsNull("fxr",0))
      		{
      			alert("请填写发现人！");
      			return false;
@@ -144,7 +150,19 @@
      		
 			return true;
 		}
-
+		
+		function fxfsdone()
+		{
+			if($("#fxfs").val()==1)
+			{
+				$("#trfxr").css("display","none");
+			}
+			else
+			{
+				$("#trfxr").show();
+			}
+		}
+		
 		function savedone(data) {
 			jsonResult(
 					data,

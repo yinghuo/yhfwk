@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50087
 File Encoding         : 65001
 
-Date: 2015-07-03 10:41:41
+Date: 2015-07-15 10:46:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3649,20 +3649,12 @@ CREATE TABLE `fqkzqxx` (
 DROP TABLE IF EXISTS `fqtsxx`;
 CREATE TABLE `fqtsxx` (
   `XH` varchar(36) NOT NULL,
-  `JBQBH` varchar(16) default NULL,
-  `NCBH` varchar(16) default NULL,
-  `NZBH` varchar(16) default NULL,
-  `NSBH` varchar(16) default NULL,
+  `JBQBH` varchar(36) default NULL,
+  `NCBH` varchar(36) default NULL,
+  `NZBH` varchar(36) default NULL,
   `TSLX` varchar(16) default NULL COMMENT '发情提示 运动量下降提示',
   `TSMS` varchar(128) default NULL,
-  `SFFQ` int(1) default '0' COMMENT '0：未发情\r\n            1：已发情',
-  `JCR` varchar(16) default NULL,
-  `JCSJ` datetime default NULL,
-  `JCJG` varchar(128) default NULL,
-  `ZJPZSJ` datetime default NULL,
-  `SFPZ` int(1) default NULL COMMENT '0：未配种\r\n            1：已配种',
-  `PZR` varchar(16) default NULL,
-  `PZSJ` datetime default NULL,
+  `SFQR` int(1) default '0' COMMENT '0：未确认           1：已确认',
   `BZ` varchar(128) default NULL,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -3670,6 +3662,9 @@ CREATE TABLE `fqtsxx` (
 -- ----------------------------
 -- Records of fqtsxx
 -- ----------------------------
+INSERT INTO `fqtsxx` VALUES ('1', '1', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '1', '111', '0', null);
+INSERT INTO `fqtsxx` VALUES ('2', '1', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '1', '333', '0', '');
+INSERT INTO `fqtsxx` VALUES ('3', '1', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '1', '222', '0', null);
 
 -- ----------------------------
 -- Table structure for `gndjb`
@@ -3915,7 +3910,7 @@ INSERT INTO `ncjbxxb` VALUES ('d81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '201500001
 DROP TABLE IF EXISTS `nzfzztxx`;
 CREATE TABLE `nzfzztxx` (
   `xh` varchar(36) NOT NULL,
-  `sj` datetime NOT NULL COMMENT '时间信息',
+  `sj` datetime default NULL COMMENT '时间信息',
   `tssj` datetime default NULL COMMENT '推算时间',
   `zt` int(1) NOT NULL COMMENT '0:是否配种，',
   `day` int(11) NOT NULL default '0',
@@ -4005,7 +4000,7 @@ INSERT INTO `nzlcdjb` VALUES ('e6740e78-80bf-4648-9baa-056ea5040ed8', 'd81ffad1-
 DROP TABLE IF EXISTS `nzmrztxx`;
 CREATE TABLE `nzmrztxx` (
   `xh` varchar(36) NOT NULL,
-  `sj` datetime NOT NULL COMMENT '时间信息',
+  `sj` datetime default NULL COMMENT '时间信息',
   `tssj` datetime default NULL COMMENT '推算时间',
   `zt` int(11) NOT NULL,
   `day` int(11) NOT NULL default '0',
@@ -4127,8 +4122,8 @@ CREATE TABLE `rjfjdjb` (
   `FJRQ` datetime NOT NULL,
   `FJJG` text NOT NULL,
   `FJY` varchar(100) NOT NULL,
-  `TEZK` varchar(200) NOT NULL,
-  `NZXB` int(2) NOT NULL,
+  `TEZK` varchar(200) default NULL,
+  `NZXB` int(2) default NULL,
   `BZ` text,
   PRIMARY KEY  (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -4261,7 +4256,7 @@ INSERT INTO `yh_system_menus` VALUES ('4fa9bea1-264c-4c68-9239-41db86e9c1db', '�
 INSERT INTO `yh_system_menus` VALUES ('9881e7c2-d5ca-4d5b-b567-f2607a4951ae', '转舍记录查询', null, '/master/nzgl/zsxx.action', '0', '1', 'b953f0d0-a0f3-462b-9726-bc72012ac760', '1', '1');
 INSERT INTO `yh_system_menus` VALUES ('a945cb02-a136-4735-b349-332f8fc94bfa', '离场记录查询', null, '/master/nzgl/lcxx.action', '0', '1', 'b953f0d0-a0f3-462b-9726-bc72012ac760', '2', '1');
 INSERT INTO `yh_system_menus` VALUES ('6d07a593-4daa-43ea-9ee5-12be440bce2f', '发情管理', null, '#', '0', '0', '', '3', '1');
-INSERT INTO `yh_system_menus` VALUES ('431b0286-702e-40d1-aac0-2481845536da', '发情信息管理', null, '#', '0', '1', '6d07a593-4daa-43ea-9ee5-12be440bce2f', '0', '1');
+INSERT INTO `yh_system_menus` VALUES ('431b0286-702e-40d1-aac0-2481845536da', '发情信息管理', null, '/master/fqxt/fqts.action', '0', '1', '6d07a593-4daa-43ea-9ee5-12be440bce2f', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('60ae96d5-72a9-4d58-bbe3-1166252529ce', '繁殖管理', null, '#', '0', '0', '', '4', '1');
 INSERT INTO `yh_system_menus` VALUES ('a98aa967-38b2-45b4-bb13-7ef21badad0f', '发情信息登记', null, '/master/fzgl/fqdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '0', '1');
 INSERT INTO `yh_system_menus` VALUES ('d41d97c3-3d88-412e-9d46-f59a19d0e5fa', '配种信息登记', null, '/master/fzgl/pzdj.action', '0', '1', '60ae96d5-72a9-4d58-bbe3-1166252529ce', '1', '1');
@@ -4351,7 +4346,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-05-24 16:15:51', '2015-06-03 10:22:09');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-12 09:43:57', '2015-06-12 09:47:57');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-07-03 10:26:42', '2015-07-03 10:37:11');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-07-14 16:42:57', '2015-07-14 17:04:01');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`

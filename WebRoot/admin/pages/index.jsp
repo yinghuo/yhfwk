@@ -98,12 +98,14 @@
 	}
 	
   </script>
-  <title>欢迎使用牧场管理系统</title>
+  <title>欢迎使用智能云牧场管理系统</title>
 </head>
 <body>
     <div class="top">
       <div id="top_t">
-        <div id="logo" class="fl"></div>
+        <div id="logo" class="fl">
+        	
+        </div>
         <div id="photo_info" class="fr">
           <div id="photo" class="fl">
             <a href="#" onclick="me()"><img src="${pageContext.request.contextPath}/images/a.png" alt="" width="60" height="60"></a>
@@ -116,7 +118,7 @@
             </div>
             <div class="info_center">
               <s:property value="#session.urole"/>
-              <span id="nt">通知</span><span><a href="#" id="notice">3</a></span>
+              <span id="nt">通知</span><span><a href="#" id="notice">0</a></span>
             </div>
           </div>
         </div>

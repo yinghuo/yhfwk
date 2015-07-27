@@ -10,6 +10,7 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.common.ConstantEnum;
 import org.chonger.common.ConstantEnum.NZMRZT;
+import org.chonger.common.ConstantEnum.NZZT;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.nqgl.NZMRZTXX;
 import org.chonger.service.nzgl.NzfzServer;
@@ -133,15 +134,33 @@ public class NzxxAction extends ActionSupport {
 		return "edit.jsp";
 	}
 	
-	/**删除数据操作*/
+	/**
+	 * 删除数据操作
+	 * 
+	 * @modify 2015-07-25	Daniel	1:注释删除操作，牛只功能无删除操作！
+	 */	
 	public String delete() throws Exception{
 		try{
-			server.delete(id);
+			//server.delete(id);
 			jsonResult.sendSuccessMessage("删除牛只信息成功！");
 		}catch(Exception ex)
 		{
 			jsonResult.sendErrorMessage(ex.getMessage());
 		}
+		return "infos";
+	}
+	
+	/**淘汰数据操作*/
+	public String eliminate() throws Exception{
+		
+		try
+		{
+			server.eliminate(id);
+			jsonResult.sendSuccessMessage("淘汰牛只完成！");
+		}catch(Exception ex)
+		{
+			jsonResult.sendErrorMessage(ex.getMessage());
+		}		
 		return "infos";
 	}
 	
@@ -192,6 +211,8 @@ public class NzxxAction extends ActionSupport {
 	 * @throws 
 	 * @author Daniel
 	 * @version V1.0
+	 * 
+	 * modify 2015-07-25
 	 */
 	public String loadType()
 	{
@@ -203,6 +224,8 @@ public class NzxxAction extends ActionSupport {
 			
 			long iCountAll = server.getNZCountByJSXX("");
 			
+			long ttCount=server.queryCountByNzzt(NZZT.淘汰);
+			
 			//统计分类 哺乳犊牛、断奶犊牛、小育成牛、大育成牛、青年母牛、成年母牛、留养公牛
 			List<Object[]> lbList=new LinkedList<Object[]>();
 			lbList.add(new Object[]{"哺乳犊牛",0});
@@ -212,7 +235,6 @@ public class NzxxAction extends ActionSupport {
 			lbList.add(new Object[]{"青年母牛",0});
 			lbList.add(new Object[]{"成年母牛",0});
 			lbList.add(new Object[]{"留养公牛",0});
-			
 			
 			if(countResult!=null&&countResult.size()>0)
 			{
@@ -258,6 +280,7 @@ public class NzxxAction extends ActionSupport {
 			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
 			jsonResult.getInfos().put("data",lbList);
 			jsonResult.getInfos().put("icount", iCountAll);
+			jsonResult.getInfos().put("tcount",ttCount);
 			
 		}catch(Exception ex)
 		{

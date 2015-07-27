@@ -1,8 +1,8 @@
 package org.chonger.service.fzgl;
 
+import java.util.Date;
 import java.util.List;
 
-import org.chonger.common.ConstantEnum.NZFZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
@@ -10,6 +10,7 @@ import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.system.User;
 import org.chonger.service.nzgl.NzfzServer;
 import org.chonger.utils.CommUUID;
+import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,7 +150,14 @@ public class PzdjServer {
 					fzzt=new NZFZZTXX();
 				fzzt.setSj(Pzxx.getPzsj());
 				fzzt.setTid(Pzxx.getXh());
-				fzzt.setDay(0);//计算配种天数
+				//modify Daniel 修复日期bug，应计算配种日期到今天的天数
+				int between=DateTimeUtil.getDayBetweenHms(Pzxx.getPzsj(), new Date());
+				if(between!=-1)
+				{
+					fzzt.setDay(Math.abs(between));//计算配种天数
+				}
+				else
+					fzzt.setDay(0);//默认配种天数
 				fzServer.saveOrUpDate(Pzxx.getNzbh(), fzzt);
 			}
 			else

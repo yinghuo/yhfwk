@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.chonger.common.ConstantEnum;
 import org.chonger.common.ConstantEnum.NZLB;
+import org.chonger.common.ConstantEnum.NZZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.system.User;
@@ -139,7 +140,7 @@ public class NzxxServer {
 	
 	
 	/**
-	 * 根据圈舍的编号查询该圈舍的牛只个数
+	 * 根据圈舍的编号查询该圈舍的牛只个数，如果存在圈舍参数则查询该圈舍信息，如果参数为空则查询所有牧场个数。
 	 * @Title: getNZCountByJSXX 
 	 * @Description: 
 	 * @param jsxh
@@ -149,10 +150,12 @@ public class NzxxServer {
 	 * @version V1.0
 	 * 
 	 * @modify 2015-05-14	Daniel	1:修复bug，增加统计条件，统计正常牛只
+	 * @modify 2015-07-25	Daniel 	1:修复牛只个数统计，统计条件中添加淘汰牛只(nzzt=2)的统计.
 	 */
 	public long getNZCountByJSXX(String jsxh)
 	{
-		String sql= "select count(*) from NZJBXX model where model.nzzt='0'";
+		//@modify 2015-07-25	Daniel 修改语句条件nzzt='0'为nzzt <> '1'
+		String sql= "select count(*) from NZJBXX model where model.nzzt <> '1'";
 		if(!StringUtil.IsEmpty(jsxh) && !"".equals(jsxh)) 
 			sql+="  and model.js='"+jsxh+"'";
 		User user=SessionUtils.getUser();
@@ -232,7 +235,8 @@ public class NzxxServer {
 			return NZLB.小育成牛;
 		if(yl<24)
 			return NZLB.大育成牛;
-		return NZLB.青年母牛;
+		//return NZLB.青年母牛;
+		return NZLB.成年母牛;
 	}
 	
 	/**
@@ -266,6 +270,30 @@ public class NzxxServer {
 	}
 	
 	/**
+	 * 淘汰牛只登记
+	 * @param id
+	 * @throws Exception
+	 * @retrun void 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public void eliminate(String id) throws Exception{
+		if(!StringUtil.IsEmpty(id))
+		{
+			//获取牛只的信息
+			NZJBXX nzxx=this.queryNZById(id);
+			if(nzxx!=null)
+			{
+				nzxx.setNzzt(NZZT.淘汰.getValue());
+				//更新牛只信息
+				this.saveOrUpdate(nzxx);
+			}
+			else
+				throw new Exception("无效的牛只数据ID!");
+		}		
+	}
+	
+	/**
 	 * 对牛只的信息按照类别进行统计
 	 * @retrun void 
 	 * @throws 
@@ -284,6 +312,25 @@ public class NzxxServer {
 		hql += " group by model.lb";
 		List<Object> objList=dao.find(hql);
 		return objList;
+	}
+	
+	/**
+	 * 查询指定牛只的状态的牛只个数
+	 * @param nzzt
+	 * @retrun long 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public long queryCountByNzzt(NZZT nzzt)
+	{
+		String hql="select count(*) from NZJBXX model where model.nzzt = '"+nzzt.getValue()+"'";
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			hql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
+		}
+		return dao.getCount(hql);
 	}
 	
 }

@@ -66,7 +66,7 @@
 					<td class="td_right">是否弃奶：</td>
 					<td class="">
 						<select id="fsqn" name="jb.fsqn" class="select" >
-						<y:EnumValues value="${jb.fsqn}" enumName="SFPZ">
+						<y:EnumValues value="${jb.fsqn}" enumName="SFQN">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>

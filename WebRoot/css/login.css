@@ -35,7 +35,14 @@ html, body {
  line-height: 30px;
  text-align: center;
  color: #555;
+ margin-top:50px;
 }
+
+#login_bottom a{
+	color:#555;
+	text-decoration:none;
+}
+
 #login_area{
 	margin: 0px auto;
 	width: 986px;
@@ -89,6 +96,21 @@ input,img{
 	cursor: pointer;
 	vertical-align: middle;
 }
+
+#sub_demo{
+	width:150px;
+	height:41px;
+	line-height:41px;
+	background: url('../images/login/demo.png') 0px 0px no-repeat;
+	font:normal 15px/41px "Microsoft YaHei";
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	vertical-align: middle;
+	float:right;
+	margin-right:50px;
+}
+
 .verify{
 	width: 50px;
 	height: 38px;

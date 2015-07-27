@@ -140,6 +140,28 @@ public class DateTimeUtil {
 		return -1;
 	}
 	
+	public static int getDayBetweenHms(Date beginDate,Date endDate)
+	{
+		try {
+			if(sdfYMDHMS==null)sdfYMDHMS=new SimpleDateFormat(YMDHMS);
+			
+			beginDate=sdfYMDHMS.parse(sdfYMD.format(beginDate));
+			endDate=sdfYMDHMS.parse(sdfYMD.format(endDate)); 
+			Calendar cal = Calendar.getInstance();    
+			cal.setTime(beginDate);    
+			long time1 = cal.getTimeInMillis();                 
+			cal.setTime(endDate);    
+			long time2 = cal.getTimeInMillis();         
+			long between_days=(time2-time1)/(1000*3600*24);  
+			         
+			return Integer.parseInt(String.valueOf(between_days));       
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
 	/**
 	 * 
 	 * @param date

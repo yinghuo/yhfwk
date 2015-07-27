@@ -24,6 +24,15 @@
 	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
 	          				<td>耳标编号：</td>
 	          				<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
+	          				<td>妊检结果：</td>
+	          				<td>
+	          					<select id="cjjg" name="rj.cjjg" class="select" >
+									<option value="">所有结果</option>
+									<y:EnumValues value="${rj.cjjg}" enumName="CJJG">
+										<option value="${value}" ${selected}>${label}</option>
+									</y:EnumValues>
+								</select>
+	          				</td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -48,12 +57,17 @@
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
               	<th width="200">牛只编号</th>
-              	<th>繁殖状态</th>
-              	<th>繁殖天数</th>
-              	<th>初检日期</th>
-              	<th>初检结果</th>              	
-              	<th>初检员</th>
-              	<th>初检方式</th>
+              	<th>最近配种时间</th>
+              	<th>编号(公牛号)</th>
+              	<th>泌乳状态</th>
+              	<th>预产日期</th>
+              	<th>1日期</th><!-- 默认计算初检日期， -->
+              	<th>1结果</th><!-- 已孕 未孕 -->
+              	<th>2日期</th>
+              	<th>2结果</th><!-- 有胎 无胎 -->
+              	<th>3日期</th>
+              	<th>4结果</th><!-- 有胎 无胎 -->
+              	<th>备注</th>
               	<th width="160">操作</th>
          	</tr>
          	<s:iterator value="rjlist" status="status" id="rjcj">

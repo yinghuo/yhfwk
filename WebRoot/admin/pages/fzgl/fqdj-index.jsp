@@ -51,17 +51,19 @@
               	<th width="200">牛只编号</th>
               	<th width="200">当前情期</th>
               	<th width="200">发情时间</th>
+              	<th width="200">最佳配种时段</th>
               	<th width="200">发情类型</th>
               	<th width="200">发现方式</th>
               	<th width="200">发现人</th>
-              	<th width="200">是否配种</th>
+              	<th width="200">是否配种↓</th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="fqlist" status="status" id="fqxx">
 						<tr>
 							<td><s:property value="#fqxx.nzjbxx.nzbh"/></td>
 							<td><s:property value="#fqxx.nzjbxx.qq"/></td>
-							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/></td>
+							<td><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/><br><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/></td>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>
 							<td><s:property value="#fqxx.fxr"/></td>

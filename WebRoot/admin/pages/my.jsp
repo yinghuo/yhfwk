@@ -80,7 +80,7 @@
 	     	});
      	}
      	
-     	function createList(icount, data)
+     	function createList(icount, data,tcount)
      	{
      		var str = "<h3>牛群状况</h3><table style='margin-top:10px'>";
      		var str_table = "";
@@ -91,14 +91,16 @@
      			iZNS = iZNS + data[i][1];
 			}
      		str += "<tr><td class='ta-r'>存栏总数：</td><td class='ta-r'>"+icount+" 头</td></tr>";
-     		str += str_table; 
+     		str += str_table;
+     		str += "<tr><td class='ta-r'>淘汰牛只：</td><td class='ta-r'>"+tcount+" 头</td></tr>";
      		str += "</table>";
      		document.getElementById("listA").innerHTML = str;
      	}
      	
      	$.ajax({
-     		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadType.action",
-     		type:"json",
+     		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadType.action?t="+new Date().getTime(),
+      		type:"get",
+          	dataType:"json",
      		success:function(data){
           		if(data)
           		{
@@ -108,6 +110,7 @@
 					{
 						var iCount = 0;
 						iCount = data["icount"];
+						var tcount=data["tcount"];
 						//遍历列表
 						data=data["data"];
 						jsonData=new Array();
@@ -118,7 +121,7 @@
 							jsonData[i][1]=data[i][1];
 						}
 						
-						createList(iCount, jsonData);
+						createList(iCount, jsonData,tcount);
 						createChart(jsonData);
 					}          			
           			else
@@ -130,8 +133,9 @@
      	});
      	
      	$.ajax({
-     		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadCount.action",
-     		type:"json",
+     		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadCount.action?t="+new Date().getTime(),
+       		type:"get",
+       		dataType:"json",
      		success:function(data){
           		if(data)
           		{

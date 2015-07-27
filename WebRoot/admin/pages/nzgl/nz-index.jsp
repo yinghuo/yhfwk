@@ -21,11 +21,38 @@
 	          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 	          			<tr>
 	          				<td>牛只编号：</td>
-	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="30"></td>
+	          				<td><input id="bh" type="text" name="bh" class="input-text lh25" value="${bh}" size="20"></td>	          				
 	          				<td>计步器编号：</td>
-	          				<td><input id="jbq" type="text" name="jbq" class="input-text lh25" value="${jbq}" size="30"></td>
+	          				<td><input id="jbq" type="text" name="jbq" class="input-text lh25" value="${jbq}" size="20"></td>
 	          				<td>耳标编号：</td>
-	          				<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="30"></td>
+	          				<td><input id="eb" type="text" name="eb" class="input-text lh25" value="${eb}" size="20"></td>
+	          			</tr>
+	          			<tr>
+	          				<td>所属圈舍：</td>
+	          				<td><select id="js" name="js" class="select">
+	          						<option>所有圈舍</option>
+	          				</select></td>	
+	          				<td>牛只类别：</td>
+	          				<td><select id="lb" name="lb" class="select">
+	          					<option value="">所有类别</option>
+								<y:EnumValues value="${nz.lb}" enumName="NZLB">
+									<option value="${value}" ${selected}>${label}</option>
+								</y:EnumValues>
+	          				</select></td>
+	          				<td>繁殖状态：</td>
+	          				<td><select id="fzzt" name="fzzt" class="select">
+	          					<option value="">所有状态</option>
+								<y:EnumValues value="${nz.lb}" enumName="NZFZZT">
+									<option value="${value}" ${selected}>${label}</option>
+								</y:EnumValues>
+	          				</select></td>
+	          				<td>泌乳状态：</td>
+	          				<td><select id="mrzt" name="mrzt" class="select">
+	          					<option value="">所有状态</option>
+								<y:EnumValues value="${nz.lb}" enumName="NZMRZT">
+									<option value="${value}" ${selected}>${label}</option>
+								</y:EnumValues>
+	          				</select></td>
 	          			</tr>
 	          		</table>
 	          		</form>
@@ -49,13 +76,19 @@
   	<div class="box span10 oh mt5">
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
-              	<th width="120">牛只编号</th>
-              	<th width="120">所属圈舍</th>
-              	<th width="120">类别</th>
-              	<th width="100">状态</th>
-              	<th width="120">入群类型</th>
+              	<th width="100">牛只编号</th>
+              	<th width="100">所属圈舍</th>
+              	<th>类别</th>
+              	<th>繁殖状态</th>
+              	<th>繁殖天数</th>
+              	<th>最后配种日期</th>
+              	<th>泌乳状态</th>
+              	<th>泌乳天数</th>
               	<th width="120">出生日期</th>
-              	<th width="80">性别</th>
+              	<th>性别</th>
+              	<th>配孕天数</th>
+              	<th>胎间距↓</th>
+              	<th>预产期↓</th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="nzlist" status="status" id="nzxx">
@@ -63,20 +96,32 @@
 					<td><a href="${pageContext.request.contextPath}/master/nzgl/nzxx!info.action?id=<s:property value="#nzxx.xh"/>"><s:property value="#nzxx.nzbh"/></a></td>
 					<td><s:property value="#nzxx.jsjbxx.jsmc"/></td>					
 					<td><y:EnumLabel enumName="NZLB" value="${nzxx.lb}"/></td>
-					<s:if test="#nzxx.nzlbxx!=null">
-						<td><y:EnumLabel enumName="NZLBZT" value="${nzxx.nzlbxx.lb}"/></td>
+					<s:if test="#nzxx.nzfzzt!=null">
+						<td><y:EnumLabel enumName="NZFZZT" value="${nzxx.nzfzzt.zt}"/></td>
 					</s:if>
 					<s:else>
-						<td></td>
+						<td>未登记</td>
 					</s:else>
-					<td><y:EnumLabel enumName="NZRQLX" value="${nzxx.rqlx}"/></td>
+					<td></td>
+					<td></td>
+					<s:if test="#nzxx.nzmrzt!=null">
+						<td><y:EnumLabel enumName="NZMRZT" value="${nzxx.nzmrzt.zt}"/></td>
+					</s:if>
+					<s:else>
+						<td>未登记</td>
+					</s:else>		
+					<td></td>
 					<td><s:date name="#nzxx.csrq" format="yyyy-MM-dd"/></td>
 					<td><y:EnumLabel enumName="NZXB" value="${nzxx.xb}"/></td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#nzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
-						<a title="删除" id="comsubmit_delete" promptInfo='确认删除当前牛只的信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/nzgl/nzxx!delete.action?id=<s:property value="#nzxx.xh"/>" class="fa fa-remove cr-p">删除</a>
+						<%//<a title="删除" id="comsubmit_delete" promptInfo='确认删除当前牛只的信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/nzgl/nzxx!delete.action?id=<s:property value="#nzxx.xh"/>" class="fa fa-remove cr-p">删除</a> %>
 						<a title="转舍登记" class="fa fa-exchange cr-p" onclick="transfer('<s:property value="#nzxx.xh"/>')">转舍</a>
 						<a title="离场登记" class="fa fa-truck cr-p" onclick="departure('<s:property value="#nzxx.xh"/>')">离场</a>
+						<a title="淘汰登记" class="fa fa-remove cr-p" onclick="eliminate('<s:property value="#nzxx.xh"/>')">淘汰</a>
 					</td>
 				</tr>
 			</s:iterator>
@@ -111,7 +156,9 @@
            	</div>
 		</div>
   	 </div>
+  	 <div style="display:none" id="widgetData_loadjs" url="${pageContext.request.contextPath}/master/jsgl/jsgl!loadname.action?ncbh=me" callfunction=",loadjsdone,"></div>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
@@ -141,14 +188,36 @@
      		window.location.href="${pageContext.request.contextPath}/master/nzgl/lcxx!add.action?id="+id;
      	}
      	
-     	function deleteDone(data)
+     	function eliminate(id)
+     	{
+     		window.location.href="${pageContext.request.contextPath}/master/nzgl/ttxx!add.action?id="+id;
+     	}
+     	
+     	function loadjsdone(data)
+     	{
+     		var selectControl=document.getElementById("js");
+     		var defval="${nz.js}";
+     		selectControl.options.length = 1;
+     		if(data)
+     		{
+     			for(var i=0;i<data.length;i++)
+				{
+					var items=data[i];
+					var optionItem=new Option(items.name,items.id);
+					if(defval&&defval==items.id)optionItem.selected=true;
+					selectControl.options.add(optionItem);
+				}
+     		}
+     	}
+     	
+     	<%/*function deleteDone(data)
      	{
      		jsonResult(data,function(data){
      			if(data["error"]==0)
      				window.location.reload();
      		});
      	}
-     	
+     	*/%>
      </script>
   </body>
 </html>

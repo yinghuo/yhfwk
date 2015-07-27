@@ -30,7 +30,7 @@
 					<td class="td_right">左前肢：</td>
 					<td class="">
 						<select id="zq" name="ht.zq" class="select" >
-						<y:EnumValues value="${ht.zq}" enumName="SFPZ">
+						<y:EnumValues value="${ht.zq}" enumName="HTXT">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
@@ -41,7 +41,7 @@
 					<td class="td_right">右前肢：</td>
 					<td class="">
 						<select id="yq" name="ht.yq" class="select" >
-						<y:EnumValues value="${ht.yq}" enumName="SFPZ">
+						<y:EnumValues value="${ht.yq}" enumName="HTXT">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
@@ -52,7 +52,7 @@
 					<td class="td_right">左后肢：</td>
 					<td class="">
 						<select id="zh" name="ht.zh" class="select" >
-						<y:EnumValues value="${ht.zh}" enumName="SFPZ">
+						<y:EnumValues value="${ht.zh}" enumName="HTXT">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
@@ -63,7 +63,7 @@
 					<td class="td_right">右后肢：</td>
 					<td class="">
 						<select id="yh" name="ht.yh" class="select" >
-						<y:EnumValues value="${ht.yh}" enumName="SFPZ">
+						<y:EnumValues value="${ht.yh}" enumName="HTXT">
 							<option value="${value}" ${selected}>${label}</option>
 						</y:EnumValues>
 						</select>
