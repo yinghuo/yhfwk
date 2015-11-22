@@ -59,6 +59,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/patchca-0.5.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/quartz-1.8.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api-2.4.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet-api.jar"/>
@@ -91,12 +94,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xalan-2.5.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xercesImpl-2.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xml-apis-2.0.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-2.1.2.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/yhtaglib-2.0.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-3.12-20150511.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-ooxml-schemas-3.12-20150511.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-2.1.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/yhexcel.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/yhtaglib-2.0.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -6,11 +6,13 @@ import java.util.List;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.chonger.common.ConstantEnum.CJJG2;
 import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.fzgl.RJCJXX;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.fzgl.PzdjServer;
 import org.chonger.service.fzgl.RjcjServer;
+import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.StringUtil;
@@ -149,6 +151,78 @@ public class RjcjAction extends ActionSupport {
 			}
 		}
 		return "edit.jsp";
+	}
+	
+	private String t,r;
+	private int v;
+	public String getT() {	return t;	}	
+	public void setT(String t) {	this.t = t;	}
+	public int getV() {	return v;	}
+	public void setV(int v) {	this.v = v;	}
+	public String getR() {	return r;	}
+	public void setR(String r) {	this.r = r;	}
+	
+	/**
+	 * 检查结果处理
+	 * @Title: jc 
+	 * @Description: Note(这里用一句话描述这个方法的作用) 
+	 * @throws Exception
+	 * @retrun String 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String jc() throws Exception
+	{
+		System.out.println("更新id:"+id);
+		System.out.println("更新类型:"+t);
+		System.out.println("更新值:"+v);
+		System.out.println("更新行:"+r);
+		System.out.println("更新时间:"+rj.getRj2rq());
+		
+		if(!StringUtil.IsEmpty(id))
+		{
+			//根据ID查找指定的检查信息
+			RJCJXX rjxx=server.getCjxxById(id);
+			
+			if(rjxx!=null)
+			{
+				//更新数据项
+				if(!StringUtil.IsEmpty(t))
+				{
+					if(t.equals("2"))//更新2
+					{
+						rjxx.setRj2rq(rj.getRj2rq());
+						rjxx.setRj2jg(v);
+						server.saveOrUpdate(rjxx);
+						jsonResult.sendSuccessMessage("操作成功！");
+						jsonResult.getInfos().put("t",t);
+						jsonResult.getInfos().put("r",r);
+						jsonResult.getInfos().put("d",rj.getRj2rq()!=null?DateTimeUtil.formatDateToString(rj.getRj2rq(),"yyyy年MM月dd日"):"");
+						jsonResult.getInfos().put("v",v==0?CJJG2.有胎.toString():CJJG2.无胎.toString());
+					}
+					else if(t.equals("3"))
+					{
+						rjxx.setRj3rq(rj.getRj3rq());
+						rjxx.setRj3jg(v);
+						server.saveOrUpdate(rjxx);
+						jsonResult.sendSuccessMessage("操作成功！");
+						jsonResult.getInfos().put("t",t);
+						jsonResult.getInfos().put("r",r);
+						jsonResult.getInfos().put("d",rj.getRj3rq()!=null?DateTimeUtil.formatDateToString(rj.getRj3rq(),"yyyy年MM月dd日"):"");
+						jsonResult.getInfos().put("v",v==0?CJJG2.有胎.toString():CJJG2.无胎.toString());
+					}
+					
+				}
+				else
+					jsonResult.sendErrorMessage("无效的数据类型！");
+			}
+			else
+				jsonResult.sendErrorMessage("无效的数据项！");
+		}
+		else
+			jsonResult.sendErrorMessage("无效的数据项！");
+		//获取id
+		return "infos";
 	}
 	
 }

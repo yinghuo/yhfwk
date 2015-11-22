@@ -7,8 +7,10 @@ import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.nqgl.NZFZZTXX;
+import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.system.User;
 import org.chonger.service.nzgl.NzfzServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.DateTimeUtil;
 import org.chonger.utils.SessionUtils;
@@ -35,6 +37,9 @@ public class PzdjServer {
 	
 	@Autowired
 	private NzfzServer fzServer;
+	
+	@Autowired
+	private NzxxServer nzServer;
 	
 	/**
 	 * 根据配种ID获取配种信息
@@ -126,14 +131,25 @@ public class PzdjServer {
 			{
 				//牛只序号为空，表示新增，进行自动编号
 				Pzxx.setXh(CommUUID.getUUID());
-				dao.save(Pzxx);
+				
 				
 				//modify 2015-06-03	Daniel 1：新增配种信息保存时修改发情信息
 				//更新发情信息
 				FQDJXX _fqxx=fqServer.getFqxxById(Pzxx.getFqid());
 				_fqxx.setSfpz(1);
 				fqServer.saveOrUpdate(_fqxx);
+				
+				//同步发情类型 方式
+				Pzxx.setFqlx(_fqxx.getFqlx());
+				Pzxx.setFxfs(_fqxx.getFxfs());
+				
+				dao.save(Pzxx);
+				
 				//更新牛只信息
+				NZJBXX nzxx=nzServer.queryNZById(Pzxx.getNzbh());
+				nzxx.setZhpzrq(Pzxx.getPzsj());
+				nzServer.saveOrUpdate(nzxx);
+				
 //				NZLBXX _lbxx=lbServer.getNzlbxxById(Pzxx.getNzbh());
 //				if(_lbxx==null)//牛只不存在类型信息，一般这里应该会出现，添加以防万一
 //					_lbxx=new NZLBXX();

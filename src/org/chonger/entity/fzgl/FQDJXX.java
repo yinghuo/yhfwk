@@ -40,6 +40,12 @@ public class FQDJXX
 	@Column(name = "fqsj")
 	private Date fqsj;//发情时间
 	
+	@Column(name="pzsj")
+	private Date pzsj;//配种时间
+	
+	@Column(name="pzsj1")
+	private Date pzsj1;//配种时间1
+	
 	@Column(name = "fqlx")
 	private String fqlx;//发情类型
 	
@@ -159,6 +165,22 @@ public class FQDJXX
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public Date getPzsj() {
+		return pzsj;
+	}
+
+	public void setPzsj(Date pzsj) {
+		this.pzsj = pzsj;
+	}
+
+	public Date getPzsj1() {
+		return pzsj1;
+	}
+
+	public void setPzsj1(Date pzsj1) {
+		this.pzsj1 = pzsj1;
 	}
 	
 }

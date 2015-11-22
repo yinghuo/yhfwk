@@ -110,6 +110,8 @@ public class FqtsAction extends ActionSupport {
 			{
 				if(ts.getSffq()==0)
 				{
+					
+					
 					//依据发情提示信息生成发情信息
 					FQDJXX fq=new FQDJXX();
 					fq.setNzbh(ts.getNzbh());
@@ -117,10 +119,18 @@ public class FqtsAction extends ActionSupport {
 					
 					//处理发情系统信息中的时间
 					fq.setFqsj(server.parseDateByMsg(ts.getTsms()));
+					
 					fq.setFqlx("0");
 					fq.setFxfs("1");
 					fq.setSfpz(0);
 					fq.setShy("");
+					
+					Date tssj=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,8,0,0);
+					Date tssj1=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,12,0,0);
+					
+					fq.setPzsj(tssj);
+					fq.setPzsj1(tssj1);
+					
 					//保存发情登记信息
 					fqServer.saveOrUpdate(fq);
 					
@@ -129,8 +139,7 @@ public class FqtsAction extends ActionSupport {
 					ts.setShy("");
 					server.saveOrUpdate(ts);
 					
-					Date tssj=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,8,0,0);
-					Date tssj1=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,12,0,0);
+					
 					
 					jsonResult.sendSuccessMessage("确认成功！最佳配种时间为:"+DateTimeUtil.formatDateToString(tssj)+" 到 "+DateTimeUtil.formatDateToString(tssj1)+"之间！");
 					jsonResult.getInfos().put("id",bh);

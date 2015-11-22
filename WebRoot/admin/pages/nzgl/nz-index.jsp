@@ -130,11 +130,12 @@
          	<div class="pagination">
             	<ul>
             		<i:Page page="pager" count="9">
+            				<li class="first-child disabled"><span>数量：${dataCount}头</span></li>
             			<s:if test="#attr.IsFirst">
-							<li class="first-child disabled"><span>上一页</span></li>
+							<li class="disabled"><span>上一页</span></li>
 						</s:if>
 						<s:else>
-							<li class="first-child"><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
+							<li class=""><a href="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=${pageNowNum-1}${searchString}">上一页</a></li>
 						</s:else>
 						<i:PageNum>
 							<s:if test="#attr.IsNow">

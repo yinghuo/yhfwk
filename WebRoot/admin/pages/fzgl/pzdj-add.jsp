@@ -24,7 +24,7 @@
 				<tr>
 					<td class="td_right">配种时间：</td>
 					<td class="">
-						<input type="text" id="pzsj" name="pz.pzsj" class="input-text lh30" readonly="readonly" value="<s:date name="pz.pzsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+						<input type="text" id="pzsj" name="pz.pzsj" class="input-text lh30" readonly="readonly" value="<s:date name="pz.pzsj" format="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" size="50"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
@@ -50,13 +50,13 @@
 				<tr>
 					<td class="td_right">发情时间：</td>
 					<td class="">
-						<input type="text" id="fqsj" name="pz.fqsj" class="input-text lh30 cr-na" readonly="readonly" value="<s:date name="pz.fqsj" format="yyyy-MM-dd HH:mm"/>" size="50"><span class="required">*必填</span>
+						<input type="text" id="fqsj" name="pz.fqsj" class="input-text lh30 cr-na" readonly="readonly" value="<s:date name="pz.fqsj" format="yyyy-MM-dd HH:mm:ss"/>" size="50"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>
 					<td class="td_right">发情类型：</td>
 					<td class="">
-						<select id="fqlx" name="pz.fqlx" class="select cr-na" disabled="disabled">
+						<select id="fqlx" name="pz.fqlx" class="select cr-na" readonly="true">
 							<option value="">选择发情类型</option>
 						<y:EnumValues value="${pz.fqlx}" enumName="FQLX">
 							<option value="${value}" ${selected}>${label}</option>
@@ -68,7 +68,7 @@
 				<tr>
 					<td class="td_right">发现方式：</td>
 					<td class="">
-						<select id="fxfs" name="pz.fxfs" class="select cr-na" disabled="disabled">
+						<select id="fxfs" name="pz.fxfs" class="select cr-na" readonly="true">
 							<option value="${pz.fxfs}">选择发现方式</option>
 						<y:EnumValues value="${pz.fxfs}" enumName="FXFS">
 							<option value="${value}" ${selected}>${label}</option>

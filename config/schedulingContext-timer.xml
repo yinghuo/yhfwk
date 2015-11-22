@@ -14,7 +14,8 @@
 	<bean id="schedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="nzlbTrigger"/> 
+				<ref bean="nzlbTrigger"/>
+				<ref bean="nctjTrigger"/>
 			</list>
 		</property>
 		<property name="jobFactory">
@@ -30,7 +31,6 @@
 			</map>
 		</property>
 	</bean>
-	
 	<bean id="nzlbTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail">
 			<ref bean="nzlbUpdateTask"/>
@@ -39,5 +39,24 @@
 			<value>0 0 0 * * ?</value>
 		</property>		
 	</bean>
+	
+	
+	<bean id="nctjTask" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass" value="org.chonger.service.task.TongjiTask"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="sessionFactory" value-ref="sessionFactory"></entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="nctjTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="nctjTask"/>
+		</property>
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>		
+	</bean>
+	
 </beans>
 

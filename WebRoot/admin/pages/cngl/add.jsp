@@ -7,7 +7,7 @@
   </head>
   <body>
   	<div class="box_center mt10">
-		<form id="frmcnxx" class="jqtransform">
+		<form id="frmcnxx" class="jqtransform"> 
 				<input type="hidden" name="cn.xh" value="${cn.xh}">
 				<table class="form_table pt15 pb15" border="0" cellpadding="0" cellspacing="0">
 					<tr>
@@ -21,7 +21,7 @@
 					<tr>
 						<td class="td_right">挤奶日期：</td>
 						<td class="">
-							<input type="text" id="jnrq" name="cn.jnrq" readonly="readonly" class="input-text lh30" value="<s:date name="cn.jnrq" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+							<input type="text" id="jnrq" name="cn.jnrq" readonly="readonly" class="input-text lh30" value="<s:date name="cn.jnrq" format="yyyy-MM-dd"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" size="50"><span class="required">*必填</span>
 						</td>
 					</tr>					
 					<tr>
@@ -71,6 +71,27 @@
      			alert("请填写挤奶日期！");
      			return false;
      		}
+     		//产奶量的输入检测
+     		var vale;
+     		if((vale=$("#scl").val()).length>0 && isNaN(vale))
+     		{
+     			alert("早班的产量输入错误，必须为数字！");
+     			return false;
+     		}
+     		
+     		if((vale=$("#xcl").val()).length>0 && isNaN(vale))
+     		{
+     			alert("午班的产量输入错误，必须为数字！");
+     			return false;
+     		}
+     		
+     		if((vale=$("#wcl").val()).length>0 && isNaN(vale))
+     		{
+     			alert("晚班的产量输入错误，必须为数字！");
+     			return false;
+     		}
+     		
+     		
      		/*else if(IsNull("bc",0))
      		{
      			alert("请填写挤奶班次！");

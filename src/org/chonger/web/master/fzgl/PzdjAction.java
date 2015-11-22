@@ -3,6 +3,7 @@ package org.chonger.web.master.fzgl;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
@@ -13,6 +14,7 @@ import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.service.fzgl.PzdjServer;
 import org.chonger.service.nzgl.NzxxServer;
+import org.chonger.service.yggl.YgxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
 import org.chonger.utils.StringUtil;
@@ -160,7 +162,11 @@ public class PzdjAction extends ActionSupport {
 				pz.setFqsj(_fqxx.getFqsj());
 				pz.setFqlx(_fqxx.getFqlx());
 				pz.setFxfs(_fqxx.getFxfs());
-				pz.setFxr(_fqxx.getFxr());
+				//pz.setFxr(_fqxx.getFxr());
+				
+				//加载默认员工
+				pz.setFxr((String)ServletActionContext.getRequest().getSession().getAttribute(YgxxServer.YGXXNAME));
+				
 			}
 		}
 		

@@ -3,10 +3,11 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/boot/bootstrap.min.css">
     <script src="${pageContext.request.contextPath}/js/jquery-1.9.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+	<script src="${pageContext.request.contextPath}/plugins/boot/bootstrap.min.js"></script>
 	<title>智能云牧场管理系统</title>
 </head>
 <body>
@@ -45,7 +46,24 @@
 	<div id="login_bottom">
 		Copyright © 2015 <a href="#" target="_blank"><strong>北京创捷世纪科技有限公司</strong></a> All rights reserved .
 	</div>
-	<script type="text/javascript">
+	<!-- Select User -->
+	<div class="modal fade" id="selectUserModal" tabindex="-1" role="dialog">
+	   <div class="modal-dialog">
+	      <div class="modal-content">
+	         <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	            <h4 class="modal-title" id="myModalLabel">请选择默认的员工信息</h4>
+	         </div>
+	         <div class="modal-body">
+	            <ul id="userListPanel">
+	            	
+	            </ul>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+
+	<script type="text/javascript">		
  			function rvode()
 	 		{
 	 			document.getElementById("vcodeimg").src="${pageContext.request.contextPath}/vimage.jsp?type=login&t="+Date.parse(new Date());
@@ -66,7 +84,7 @@
 		  		{
 		  			alert("请输入验证码！");
 		  			return;
-		  		}*/
+		  		}*/		  		
 		  		
 		  		$("#loginfrm").ajaxSubmit({
 					dataType:  'json',
@@ -78,7 +96,8 @@
 							$("#vcode").val("");
 						}else if(data["login"]=="access")
 						{
-							window.location="${pageContext.request.contextPath}/login!access.action";
+							loadUser();
+							//window.location="${pageContext.request.contextPath}/login!access.action";
 						}else
 						{
 							alert("异常代码！");
@@ -89,6 +108,41 @@
 					}
 				});
 		  	}
+		  	
+		  	//加载员工信息
+		  	function loadUser()
+		  	{		  		
+		  		$.ajax({
+					url:"${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",
+					type:"get",
+					timeout:1200000,
+					success:function(data){
+						if(data)
+						{
+							var datalength=data.length;
+							if(datalength>0)
+							{
+								var userListPanel=$("#userListPanel");
+								userListPanel.html("");
+								for(var i=0;i<datalength;i++)
+								{
+									var item=data[i];
+									userListPanel.append('<li><a href="${pageContext.request.contextPath}/login!access.action?id='+item.id+'">'+item.name+'</a></li>');
+								}
+								$("#selectUserModal").modal("show");
+							}
+							else
+							{
+								//user list is empty
+								window.location="${pageContext.request.contextPath}/login!access.action";
+							}
+						}
+						else
+							window.location="${pageContext.request.contextPath}/login!access.action";
+					}
+				});
+		  	}
+		  	
 </script>
 </body>
 </html>

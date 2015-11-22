@@ -50,6 +50,15 @@ public class GTCNXX {
 	@Column(name = "wcl")
 	private double wcl=0;//晚上产量
 	
+	@Column(name = "rc")
+	private double rc;//日产
+	
+	@Column(name="src")
+	private double src;//上日产
+	
+	@Column(name = "ce")
+	private double ce;//差额
+	
 	@Column(name = "bz")
 	private String bz;//备注
 	
@@ -135,6 +144,30 @@ public class GTCNXX {
 
 	public void setNzjbxx(NZJBXX nzjbxx) {
 		this.nzjbxx = nzjbxx;
+	}
+
+	public double getRc() {
+		return rc;
+	}
+
+	public void setRc(double rc) {
+		this.rc = rc;
+	}
+
+	public double getCe() {
+		return ce;
+	}
+
+	public void setCe(double ce) {
+		this.ce = ce;
+	}
+
+	public double getSrc() {
+		return src;
+	}
+
+	public void setSrc(double src) {
+		this.src = src;
 	}
 	
 }

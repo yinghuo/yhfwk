@@ -315,6 +315,21 @@ public class ConstantEnum {
 	}
 	
 	/**
+	 * 定义牛只妊娠初检2结果
+	 */
+	public static enum CJJG2 implements BaseEnum<Integer>{
+		
+		有胎(0),无胎(1);
+		
+		private int value;
+		CJJG2(int value){this.value=value;}
+		
+		@Override
+		public Integer getValue() {	return value;}
+	}
+	
+	
+	/**
 	 * 定义牛只妊娠初检方式
 	 */
 	public static enum CJFS implements BaseEnum<Integer>{

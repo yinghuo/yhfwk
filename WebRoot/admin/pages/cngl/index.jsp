@@ -58,16 +58,16 @@
          	</tr>
          	<s:iterator value="cnlist" status="status" id="gtcnxx">
 						<tr>
-							<td><a href=""><s:property value="#gtcnxx.nzjbxx.nzbh"/></a></td>
-							<td></td>
-							<td></td>
+							<td><a href="#"><s:property value="#gtcnxx.nzjbxx.nzbh"/></a></td>
+							<td><s:property value="#gtcnxx.nzjbxx.tc"/></td>
+							<td><s:property value="#gtcnxx.nzjbxx.nzmrzt.day"/>天</td>
 							<td><s:date name="#gtcnxx.jnrq" format="yyyy-MM-dd"/></td>
 							<td><s:property value="#gtcnxx.scl"/></td>
 							<td><s:property value="#gtcnxx.xcl"/></td>
 							<td><s:property value="#gtcnxx.wcl"/></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><s:property value="#gtcnxx.rc"/></td>
+							<td><s:property value="#gtcnxx.src"/></td>
+							<td>${gtcnxx.rc-gtcnxx.src}</td>
 							<td></td>
 						</tr>
 			</s:iterator>

@@ -117,8 +117,9 @@
               <a href="#" onclick="logout()" id="out">&nbsp;</a>
             </div>
             <div class="info_center">
-              <s:property value="#session.urole"/>
-              <span id="nt">通知</span><span><a href="#" id="notice">0</a></span>
+              <%//<s:property value="#session.urole"/>%>
+              用户：<s:property value="#session._yggl_ygxx_name_"/>
+              <!--<span id="nt">通知</span><span><a href="#" id="notice">0</a></span>-->
             </div>
           </div>
         </div>

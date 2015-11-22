@@ -11,13 +11,14 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.common.ConstantKey;
-import org.chonger.entity.jbxx.NCJBXX;
+import org.chonger.entity.jbxx.YGJBXX;
 import org.chonger.entity.system.Menu;
 import org.chonger.entity.system.Role;
 import org.chonger.entity.system.User;
 import org.chonger.service.system.MenuManager;
 import org.chonger.service.system.RoleManager;
 import org.chonger.service.system.UserManager;
+import org.chonger.service.yggl.YgxxServer;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,6 +41,9 @@ import com.opensymphony.xwork2.ActionSupport;
 })
 public class LoginAction extends ActionSupport {
 	
+	@Autowired
+	private YgxxServer server;
+	
 	final boolean debug=true;
 	
 	private String loginName;
@@ -48,6 +52,7 @@ public class LoginAction extends ActionSupport {
 	private String regPhone;
 	private String regEmail;
 	private String qyregKey;//企业注册码
+	private String id;//ID信息
 	
 	public String getQyregKey() {
 		return qyregKey;
@@ -70,6 +75,13 @@ public class LoginAction extends ActionSupport {
 	public void setLoginVcode(String loginVcode) {
 		this.loginVcode = loginVcode;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 	
 	//操作结果，传递给界面进行处理
 	private Map<String, String> infos = new LinkedHashMap<String, String>();
@@ -143,6 +155,9 @@ public class LoginAction extends ActionSupport {
 			User user=userManager.LoginUser(loginName, loginPwd);
 			if(user!=null)
 			{
+				//加载用户的角色
+				Role userRole=roleManager.findById(user.getUroleid());
+				user.setRole(userRole);
 				ServletActionContext.getRequest().getSession().setAttribute(UserManager.USERSESSIONKEY, user);
 				ServletActionContext.getRequest().getSession().setAttribute("uname", user.getUname());
 				ServletActionContext.getRequest().getSession().setAttribute("ulname", user.getUloginname());
@@ -171,16 +186,15 @@ public class LoginAction extends ActionSupport {
 	{
 		//获取当前登录的用户信息，然后根据用户的角色加载用户菜单
 		Object Userobj=ServletActionContext.getRequest().getSession().getAttribute(UserManager.USERSESSIONKEY);
+		User user=null;
 		List<Menu> allmenus=null;
 		if(Userobj!=null)
 		{
 			try {
-				User user=(User)Userobj;
-				Role userRole=roleManager.findById(user.getUroleid());
-				user.setRole(userRole);
-				ServletActionContext.getRequest().getSession().setAttribute("urole",userRole.getRname());
+				user=(User)Userobj;				
+				ServletActionContext.getRequest().getSession().setAttribute("urole",user.getRole().getRname());
 				ServletActionContext.getRequest().getSession().setAttribute(ConstantKey.SESSION_USER_NCXX_OBJECT,user.getNcjbxx());
-				allmenus=menumanager.loadMenusByUserRole(userRole);
+				allmenus=menumanager.loadMenusByUserRole(user.getRole());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -213,6 +227,23 @@ public class LoginAction extends ActionSupport {
 			}
 			ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONKEY, allmenus);
 			ServletActionContext.getRequest().getSession().setAttribute(MenuManager.MENUSSESSIONJSONKEY, jsonmenus);
+			
+			//加载员工信息
+			if(!StringUtil.IsEmpty(id))
+			{
+				YGJBXX ygjbxx=server.getEntityById(id);
+				if(ygjbxx!=null)
+				{
+					ServletActionContext.getRequest().getSession().setAttribute(YgxxServer.YGXX, ygjbxx);
+					ServletActionContext.getRequest().getSession().setAttribute(YgxxServer.YGXXID, ygjbxx.getXh());
+					ServletActionContext.getRequest().getSession().setAttribute(YgxxServer.YGXXNAME, ygjbxx.getYgmc());
+				}
+				else
+					ServletActionContext.getRequest().getSession().setAttribute(YgxxServer.YGXXNAME,user.getRole().getRname());
+			}
+			else
+				ServletActionContext.getRequest().getSession().setAttribute(YgxxServer.YGXXNAME,user.getRole().getRname());
+			
 			//判断跳转
 			ServletActionContext.getResponse().sendRedirect(ServletActionContext.getRequest().getContextPath()+"/admin/pages/");
 		}
@@ -342,5 +373,5 @@ public class LoginAction extends ActionSupport {
 	public String checkEmail()
 	{
 		return "";
-	}
+	}	
 }

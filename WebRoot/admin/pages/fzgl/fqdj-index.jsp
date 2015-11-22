@@ -63,7 +63,12 @@
 							<td><s:property value="#fqxx.nzjbxx.nzbh"/></td>
 							<td><s:property value="#fqxx.nzjbxx.qq"/></td>
 							<td><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/></td>
-							<td><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/><br><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm:ss"/></td>
+							<s:if test="#fqxx.pzsj!=null&&#fqxx.pzsj1!=null">
+								<td><s:date name="#fqxx.pzsj" format="yyyy-MM-dd HH:mm:ss"/><br><s:date name="#fqxx.pzsj1" format="yyyy-MM-dd HH:mm:ss"/></td>
+							</s:if>
+							<s:else>
+								<td></td>
+							</s:else>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>
 							<td><s:property value="#fqxx.fxr"/></td>

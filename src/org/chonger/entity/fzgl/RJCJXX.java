@@ -48,6 +48,18 @@ public class RJCJXX {
 	@Column(name = "cjfs")
 	private int cjfs;//直肠、孕酮、超声、其他
 	
+	@Column(name="rj2rq")
+	private Date rj2rq;//2日期
+	
+	@Column(name="rj2jg")
+	private int rj2jg;//2结果
+	
+	@Column(name="rj3rq")
+	private Date rj3rq;//3日期
+	
+	@Column(name="rj3jg")
+	private int rj3jg;//2结果
+	
 	@Column(name = "bz")
 	private String bz;//备注
 	
@@ -125,6 +137,38 @@ public class RJCJXX {
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public Date getRj2rq() {
+		return rj2rq;
+	}
+
+	public void setRj2rq(Date rj2rq) {
+		this.rj2rq = rj2rq;
+	}
+
+	public int getRj2jg() {
+		return rj2jg;
+	}
+
+	public void setRj2jg(int rj2jg) {
+		this.rj2jg = rj2jg;
+	}
+
+	public Date getRj3rq() {
+		return rj3rq;
+	}
+
+	public void setRj3rq(Date rj3rq) {
+		this.rj3rq = rj3rq;
+	}
+
+	public int getRj3jg() {
+		return rj3jg;
+	}
+
+	public void setRj3jg(int rj3jg) {
+		this.rj3jg = rj3jg;
 	}
 	
 	

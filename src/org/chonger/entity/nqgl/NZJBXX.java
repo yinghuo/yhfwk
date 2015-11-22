@@ -130,6 +130,10 @@ public class NZJBXX {
 	@Column(name="qq")
 	private int qq=0;
 	
+	/**最后配种时间*/
+	@Column(name="zhpzrq")
+	private Date zhpzrq;
+	
 	@Column(name = "bz")
 	/**备注*/
 	private String bz;
@@ -472,6 +476,14 @@ public class NZJBXX {
 
 	public void setFqtsxxList(List<FQTSXX> fqtsxxList) {
 		this.fqtsxxList = fqtsxxList;
+	}
+
+	public Date getZhpzrq() {
+		return zhpzrq;
+	}
+
+	public void setZhpzrq(Date zhpzrq) {
+		this.zhpzrq = zhpzrq;
 	}
 
 	

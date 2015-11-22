@@ -129,6 +129,10 @@ public class RjcjServer {
 			{
 				//牛只序号为空，表示新增，进行自动编号
 				Rjxx.setXh(CommUUID.getUUID());
+				
+				Rjxx.setRj2jg(-1);
+				Rjxx.setRj3jg(-1);
+				
 				dao.save(Rjxx);
 				
 				//modify 2015-06-04	Daniel 1：新增初检信息的自动计算逻辑

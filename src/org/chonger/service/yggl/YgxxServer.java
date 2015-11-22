@@ -24,6 +24,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class YgxxServer {
 	
+	public static String YGXX="_yggl_ygxx_";
+	public static String YGXXID="_yggl_ygxx_id_";
+	public static String YGXXNAME="_yggl_ygxx_name_";
+	
 	@Autowired
 	private CommonDAO<YGJBXX> dao;
 	
