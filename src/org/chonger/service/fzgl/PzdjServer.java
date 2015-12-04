@@ -147,8 +147,8 @@ public class PzdjServer {
 				
 				//更新牛只信息
 				NZJBXX nzxx=nzServer.queryNZById(Pzxx.getNzbh());
-				nzxx.setZhpzrq(Pzxx.getPzsj());
-				nzServer.saveOrUpdate(nzxx);
+				//nzxx.setZhpzrq(Pzxx.getPzsj());//Daniel 使用繁殖状态的配种日期
+				//nzServer.saveOrUpdate(nzxx);
 				
 //				NZLBXX _lbxx=lbServer.getNzlbxxById(Pzxx.getNzbh());
 //				if(_lbxx==null)//牛只不存在类型信息，一般这里应该会出现，添加以防万一

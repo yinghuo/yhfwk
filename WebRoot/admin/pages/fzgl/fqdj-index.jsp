@@ -55,7 +55,7 @@
               	<th width="200">发情类型</th>
               	<th width="200">发现方式</th>
               	<th width="200">发现人</th>
-              	<th width="200">是否配种↓</th>
+              	<th width="200" value="" type="1" class="order cr-p" title="降序">是否配种&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="fqlist" status="status" id="fqxx">
@@ -117,6 +117,7 @@
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YOrder.js"></script>
      <script>
      	showmap("发情信息管理 > 发情信息列表");
      	

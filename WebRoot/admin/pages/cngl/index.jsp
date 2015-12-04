@@ -47,13 +47,13 @@
               	<th>牛只编号</th>
               	<th>胎次↓</th>
               	<th>泌乳天数</th>
-              	<th>挤奶日期</th>
+              	<th value="" type="1" class="order cr-p" title="降序">挤奶日期&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>早</th>
               	<th>中</th>
               	<th>晚</th>
-              	<th>日产↓</th>
+              	<th value="" type="1" class="order cr-p" title="降序">日产&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>上次产量</th>
-              	<th>差额↓</th>
+              	<th value="" type="1" class="order cr-p" title="降序">差额&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="160">操作</th>
          	</tr>
          	<s:iterator value="cnlist" status="status" id="gtcnxx">
@@ -68,7 +68,7 @@
 							<td><s:property value="#gtcnxx.rc"/></td>
 							<td><s:property value="#gtcnxx.src"/></td>
 							<td>${gtcnxx.rc-gtcnxx.src}</td>
-							<td></td>
+							<td>&nbsp;</td>
 						</tr>
 			</s:iterator>
   	 	</table>
@@ -106,6 +106,7 @@
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YOrder.js"></script>
      <script>
      	showmap("产奶信息管理 > 个体产奶信息列表");
      	function search()

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
@@ -124,6 +125,25 @@ public class YgxxAction extends ActionSupport {
 		}
 		
 		return "infolist";
+	}
+	
+	/**加载默认登陆的用户信息*/
+	public String loadDefaultUser()
+	{
+		Object id=null;
+		if((id=ServletActionContext.getRequest().getSession().getAttribute(YgxxServer.YGXXID))!=null)
+		{
+			jsonResult.infosInitOrClear();
+			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
+			jsonResult.getInfos().put("id",id);
+			jsonResult.getInfos().put("name",ServletActionContext.getRequest().getSession().getAttribute(YgxxServer.YGXXNAME));
+			
+		}
+		else
+		{
+			jsonResult.sendErrorMessage("无效的默认用户！");
+		}
+		return "infos";
 	}
 	
 }

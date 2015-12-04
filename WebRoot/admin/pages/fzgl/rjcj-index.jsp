@@ -71,11 +71,25 @@
          	</tr>
          	<s:iterator value="rjlist" status="status" id="rjcj">
 						<tr id="r-${status.index}">
-							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>
-							<td><s:date name="#rjcj.nzjbxx.zhpzrq" format="yyyy-MM-dd"/></td>
-							<td></td>
+							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>							
+							<td>
+								<s:if test="#rjcj.nzjbxx.nzfzzt!=null">
+									<s:date name="#rjcj.nzjbxx.nzfzzt.sj" format="yyyy-MM-dd"/>
+								</s:if>
+								<s:else>
+									 -- 
+								</s:else>
+							</td>
+							<td> -- </td>
 							<td><y:EnumLabel enumName="NZFZZT" value="${rjcj.nzjbxx.nzfzzt.zt}" /></td>
-							<td></td>
+							<td>
+								<s:if test="#rjcj.nzjbxx.nzfzzt!=null&&(#rjcj.nzjbxx.nzfzzt.zt==1||#rjcj.nzjbxx.nzfzzt.zt==2)">
+									<s:date name="#rjcj.nzjbxx.nzfzzt.tssj" format="yyyy-MM-dd"/>
+								</s:if>
+								<s:else>
+									 -- 
+								</s:else>
+							</td>
 							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
 							<td>								

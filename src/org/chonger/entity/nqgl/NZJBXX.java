@@ -137,7 +137,15 @@ public class NZJBXX {
 	@Column(name = "bz")
 	/**备注*/
 	private String bz;
-
+	
+	/**配孕天数*/
+	@Column(name="pyts")
+	private int pyts;
+	
+	/**胎间距*/
+	@Column(name="tjj")
+	private int tjj;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="js",insertable = false, updatable = false)
 	private JSJBXX jsjbxx;
@@ -484,6 +492,22 @@ public class NZJBXX {
 
 	public void setZhpzrq(Date zhpzrq) {
 		this.zhpzrq = zhpzrq;
+	}
+
+	public int getPyts() {
+		return pyts;
+	}
+
+	public void setPyts(int pyts) {
+		this.pyts = pyts;
+	}
+
+	public int getTjj() {
+		return tjj;
+	}
+
+	public void setTjj(int tjj) {
+		this.tjj = tjj;
 	}
 
 	

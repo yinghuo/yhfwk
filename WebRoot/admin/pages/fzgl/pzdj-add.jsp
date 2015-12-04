@@ -107,6 +107,7 @@
 	<script type="text/javascript"	src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Yg.js"></script>
 	<script type="text/javascript">
 		showmap("配种信息管理 > <s:if test="pz.xh==null">新增</s:if><s:else>修改</s:else>配种信息");
 		selectMenu("d41d97c3-3d88-412e-9d46-f59a19d0e5fa");
@@ -225,6 +226,8 @@
 			}
 			nzselect.hiden();
 		}*/
+		
+		loadDef(["pzy","pzytxt"]);
 		
 	</script>
 </body>

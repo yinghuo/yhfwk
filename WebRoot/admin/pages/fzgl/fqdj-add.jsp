@@ -106,6 +106,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Yg.js"></script>
 	<script type="text/javascript">
 		showmap("发情信息管理 > 新增发情信息");
 		
@@ -234,7 +235,9 @@
 			}
 			nzselect.hiden();
 		}
-
+		
+		loadDef(["fxr","fxrtxt"]);
+		
 	</script>
 </body>
 </html>

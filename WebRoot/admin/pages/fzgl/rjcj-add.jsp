@@ -74,6 +74,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Yg.js"></script>
     <script type="text/javascript">
      	showmap("妊娠检查信息管理 > <s:if test="rj.xh==null">新增</s:if><s:else>修改</s:else>妊娠初检信息");
      	selectMenu("af0a7e33-4e07-4fed-972a-c798616766cb");
@@ -150,6 +151,8 @@
 			}
 			nzselect.hiden();
 		}*/
+     	
+     	loadDef(["cjy","cjytxt"]);
      	
      </script>
   </body>

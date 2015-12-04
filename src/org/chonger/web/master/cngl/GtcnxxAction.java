@@ -74,6 +74,20 @@ public class GtcnxxAction extends ActionSupport {
 		return searchString;
 	}
 	
+	private String oname;
+	private int otype;
+	public void setOname(String oname) {this.oname = oname;}
+	public void setOtype(int otype) {this.otype = otype;}
+	
+	/** 排序获取，方便翻页使用 */
+	public String getOrderString()
+	{
+		String orderString = "";
+		
+		return orderString;
+	}
+	
+	
 	@Override
 	public String execute() throws Exception {
 		pager.init(server.getQueryString(bh)+" order by model.jnrq desc",pager.pageSize,p);

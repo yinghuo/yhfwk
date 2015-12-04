@@ -87,8 +87,8 @@
               	<th width="120">出生日期</th>
               	<th>性别</th>
               	<th>配孕天数</th>
-              	<th>胎间距↓</th>
-              	<th>预产期↓</th>
+              	<th value="" type="1" class="order cr-p" title="降序">胎间距&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th value="" type="1" class="order cr-p" title="降序">预产期&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="nzlist" status="status" id="nzxx">
@@ -100,22 +100,58 @@
 						<td><y:EnumLabel enumName="NZFZZT" value="${nzxx.nzfzzt.zt}"/></td>
 					</s:if>
 					<s:else>
-						<td>未登记</td>
+						<td> -- </td>
 					</s:else>
-					<td></td>
-					<td></td>
+					<s:if test="#nzxx.nzfzzt!=null">
+						<td>${nzxx.nzfzzt.day}天</td>
+					</s:if>
+					<s:else>
+						<td> -- </td>
+					</s:else>
+					<s:if test="#nzxx.nzfzzt!=null">
+						<td><s:date name="#nzxx.nzfzzt.sj" format="yyyy-MM-dd"/></td>
+					</s:if>
+					<s:else>
+						<td> -- </td>
+					</s:else>
 					<s:if test="#nzxx.nzmrzt!=null">
 						<td><y:EnumLabel enumName="NZMRZT" value="${nzxx.nzmrzt.zt}"/></td>
 					</s:if>
 					<s:else>
-						<td>未登记</td>
+						<td> -- </td>
 					</s:else>		
-					<td></td>
+					<s:if test="#nzxx.nzmrzt!=null">
+						<td>${nzxx.nzmrzt.day}天</td>
+					</s:if>
+					<s:else>
+						<td> -- </td>
+					</s:else>
 					<td><s:date name="#nzxx.csrq" format="yyyy-MM-dd"/></td>
 					<td><y:EnumLabel enumName="NZXB" value="${nzxx.xb}"/></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>
+						<s:if test="#nzxx.pyts>-1">
+							${nzxx.pyts}天
+						</s:if>
+						<s:else>
+							 -- 
+						</s:else>
+					</td>
+					<td>
+						<s:if test="#nzxx.tjj>-1">
+							${nzxx.tjj}天
+						</s:if>
+						<s:else>
+							 -- 
+						</s:else>
+					</td>
+					<td>
+						<s:if test="#nzxx.nzfzzt!=null&&(#nzxx.nzfzzt.zt==1||#nzxx.nzfzzt.zt==2)">
+							<s:date name="#nzxx.nzfzzt.tssj" format="yyyy-MM-dd"/>
+						</s:if>
+						<s:else>
+							 -- 
+						</s:else>
+					</td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#nzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 						<%//<a title="删除" id="comsubmit_delete" promptInfo='确认删除当前牛只的信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/nzgl/nzxx!delete.action?id=<s:property value="#nzxx.xh"/>" class="fa fa-remove cr-p">删除</a> %>
@@ -163,6 +199,7 @@
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YMask.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/import.js"></script>
   	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/export.js"></script>
+  	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/YOrder.js"></script>
      <script>
      	showmap("牛只信息管理 > 牛只信息列表");
      	function search()
