@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 
 import org.chonger.entity.cngl.GTCNXX;
 import org.chonger.entity.fqxt.FQTSXX;
+import org.chonger.entity.fqxt.JBQXX;
 import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.LCXX;
@@ -182,6 +183,9 @@ public class NZJBXX {
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
 	private List<FQTSXX> fqtsxxList;
+	
+	@OneToOne(mappedBy="nzjbxx")
+	private JBQXX jbqxx;	
 	
 	@OneToOne(mappedBy="nzjbxx")
 	private NZLCXX nzlcxx;	
@@ -508,6 +512,14 @@ public class NZJBXX {
 
 	public void setTjj(int tjj) {
 		this.tjj = tjj;
+	}
+
+	public JBQXX getJbqxx() {
+		return jbqxx;
+	}
+
+	public void setJbqxx(JBQXX jbqxx) {
+		this.jbqxx = jbqxx;
 	}
 
 	

@@ -160,6 +160,10 @@ public class ImportAction extends ActionSupport {
 						dataList=server.readerExcel(filePath,ExportServer.XDXXColumnNames);
 						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.XDXXColumnNames);
 						break;
+					case DataType.JBQDATA:
+						dataList=server.readerExcel(filePath,ExportServer.JBQColumnNames);
+						ActionContext.getContext().getSession().put(ImportServer.IMPORTHEADSESSIONKEY, ExportServer.JBQColumnNames);
+						break;
 				}
 				
 				if(dataList!=null)
@@ -285,6 +289,10 @@ public class ImportAction extends ActionSupport {
 					case DataType.XDXXDATA:
 						server.insertXDXX(dataList);
 						url="/master/jbfy/xdxx.action";
+						break;
+					case DataType.JBQDATA:
+						server.insertJBQXX(dataList);
+						url="/master/fqxt/jbq.action";
 						break;
 				}
 								

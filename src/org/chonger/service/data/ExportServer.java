@@ -31,6 +31,7 @@ import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.YGJBXX;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.cngl.GtcnServer;
+import org.chonger.service.fqxt.JBQXXServer;
 import org.chonger.service.fzgl.CddjServer;
 import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.service.fzgl.GndjServer;
@@ -106,6 +107,9 @@ public class ExportServer {
 	private HtxtglServer htxtglServer;
 	@Autowired
 	private XdglServer xdglServer;
+	@Autowired
+	private JBQXXServer jbqxxServer;
+	
 	
 	/**圈舍信息模板表头*/
 	public static final String[] JSXXColumnNames=new String[]{"圈舍编号","圈舍名称","圈舍类型","备注信息"};
@@ -147,8 +151,8 @@ public class ExportServer {
 	public static final String[] NZHTXTXXColumnNames=new String[]{"牛只编号","修蹄日期","左前肢","右前肢","左后肢","右后肢","兽医","备注信息"};
 	/**消毒信息模板表头*/
 	public static final String[] XDXXColumnNames=new String[]{"消毒日期","消毒区域","药剂名称","使用剂量","批号","制造商","兽医","备注信息"};	
-	
-	
+	/**计步器模板表头*/
+	public static final String[] JBQColumnNames=new String[]{"计步器编号","牛只编号","备注信息"};
 	
 	/**
 	 * 导出Excel文件

@@ -53,5 +53,7 @@ public class DataType {
 	/**消毒登记数据类型=19*/
 	public static final int XDXXDATA=19;
 	
+	/**计步器数据类型=20*/
+	public static final int JBQDATA=20;
 	
 }
