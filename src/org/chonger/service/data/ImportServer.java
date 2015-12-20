@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.chonger.common.ConstantEnum;
 import org.chonger.entity.cngl.GTCNXX;
+import org.chonger.entity.fqxt.JBQXX;
 import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.fzgl.FQDJXX;
 import org.chonger.entity.fzgl.GNDJXX;
@@ -27,6 +28,7 @@ import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.entity.jbxx.YGJBXX;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.service.cngl.GtcnServer;
+import org.chonger.service.fqxt.JBQXXServer;
 import org.chonger.service.fzgl.CddjServer;
 import org.chonger.service.fzgl.FqdjServer;
 import org.chonger.service.fzgl.GndjServer;
@@ -99,7 +101,8 @@ public class ImportServer {
 	private HtxtglServer htxtglServer;
 	@Autowired
 	private XdglServer xdglServer;
-	
+	@Autowired
+	private JBQXXServer jbqServer;
 	
 	/**
 	 * 识别圈舍信息Excel
@@ -1015,4 +1018,44 @@ public class ImportServer {
 		}
 	}
 	
+
+	/**
+	 * 保存计步器信息
+	 * @param dataList
+	 * @retrun void 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 * @throws Exception 
+	 */
+	public void insertJBQXX(List<String[]> dataList) throws Exception{
+		if(dataList!=null)
+		{
+			try{
+				
+				//导入牛只发情信息需要进行牛只的编号验证
+				Map<String,String> nzxxMap=nzxxServer.findBh$IdMap();
+				if(nzxxMap!=null)
+				{				
+					for(String[] dataItem : dataList)
+					{
+						String nzbh=dataItem[1];
+						if(nzxxMap.containsKey(nzbh))
+						{
+							JBQXX jbqxx=new JBQXX();
+							jbqxx.setJbqbh(dataItem[0]);
+							jbqxx.setNzbh(nzxxMap.get(nzbh));
+							jbqxx.setRemark(dataItem[2]);
+							jbqServer.saveOrUpdate(jbqxx);
+						}
+						else
+							throw new Exception("不可用的牛只编号["+nzbh+"]！");
+					}
+				}
+			}catch(Exception ex)
+			{
+				throw ex;
+			}
+		}
+	}
 }
