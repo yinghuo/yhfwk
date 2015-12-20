@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-12-20 11:08:04
+Date: 2015-12-20 13:28:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -4431,13 +4431,14 @@ CREATE TABLE `yh_system_config` (
   `name` varchar(20) NOT NULL,
   `value` text NOT NULL,
   `bz` text,
-  `ncbh` varchar(36) NOT NULL,
+  `ncbh` varchar(36) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yh_system_config
 -- ----------------------------
+INSERT INTO `yh_system_config` VALUES ('0', '_DM_SYSTEM_', 'NC_COUNT', '1', null, null);
 INSERT INTO `yh_system_config` VALUES ('2e54e34d-8d0f-497c-af3e-0b9c249a03da', '_DM_KZQPZ_', 'XIAXIAN', '10', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
 INSERT INTO `yh_system_config` VALUES ('4333481e-aeb7-4e54-95f5-2f9329225ae3', '_DM_KZQPZ_', 'SHANGXIAN', '30', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
 
@@ -4563,9 +4564,9 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 -- Records of yh_system_users
 -- ----------------------------
-INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-12-13 21:43:46', '2015-12-13 22:55:02');
+INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-12-20 11:33:30', '2015-12-20 11:38:32');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-12 09:43:57', '2015-06-12 09:47:57');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-12-20 10:54:02', '2015-12-20 11:02:44');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-12-20 11:38:20', '2015-12-20 13:27:31');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -4614,3 +4615,17 @@ CREATE TABLE `yyjlb` (
 -- ----------------------------
 -- Records of yyjlb
 -- ----------------------------
+DROP TRIGGER IF EXISTS `OnNcxxInsert_SystemCount`;
+DELIMITER ;;
+CREATE TRIGGER `OnNcxxInsert_SystemCount` AFTER INSERT ON `ncjbxxb` FOR EACH ROW BEGIN
+	update yh_system_config set value=(select count(*) from ncjbxxb) where domain='_DM_SYSTEM_' and name='NC_COUNT';
+end
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `OnNcxxDelete_SystemCount`;
+DELIMITER ;;
+CREATE TRIGGER `OnNcxxDelete_SystemCount` AFTER DELETE ON `ncjbxxb` FOR EACH ROW BEGIN
+	update yh_system_config set value=(select count(*) from ncjbxxb) where domain='_DM_SYSTEM_' and name='NC_COUNT';
+end
+;;
+DELIMITER ;

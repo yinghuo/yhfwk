@@ -44,6 +44,21 @@ public class ConfigManager {
 	}
 	
 	/**
+	 * 通过名称获取配置信息
+	 * @param name
+	 * @return
+	 */
+	public Config querySystemConfigByName(String domain,String name)
+	{
+		List<Config> confList=dao.find("from Config model where model.domain = '"+domain+"' and model.name='"+name+"'");
+		if(confList!=null&&confList.size()>0)
+		{
+			return confList.get(0);
+		}		
+		return null;
+	}
+	
+	/**
 	 * 保存或更新配置信息
 	 * @param name
 	 * @param value

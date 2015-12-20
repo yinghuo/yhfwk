@@ -37,7 +37,7 @@
 						<input type="button" name="demo" id="sub_demo" onclick="" value="快速体验" />
 					</div>
 					<div style="margin-top:20px;float:right;font-size:16px;color:#555">
-						当前已有<span style="color:#eeb900;margin:0px 3px;">00000000</span>个牧场在使用，期待您的加入！
+						当前已有<span id="count" style="color:#eeb900;margin:0px 3px;">00000000</span>个牧场在使用，期待您的加入！
 					</div>
 				</form>
 			</div>
@@ -63,7 +63,28 @@
 	   </div>
 	</div>
 
-	<script type="text/javascript">		
+	<script type="text/javascript">
+			$.ajax({
+					url:"${pageContext.request.contextPath}/info!count.action?t="+new Date().getTime(),
+					type:"get",
+					timeout:1200000,
+					success:function(data){
+						if(data)
+						{
+							var count=data["count"];
+							if(count)
+							{
+								var countStr="";
+								for(var i=0;i<8-count.length;i++)
+									countStr+="0";
+								countStr+=count;
+								
+								$("#count").html(countStr);
+							}
+						}
+					}
+			});
+	
  			function rvode()
 	 		{
 	 			document.getElementById("vcodeimg").src="${pageContext.request.contextPath}/vimage.jsp?type=login&t="+Date.parse(new Date());
@@ -113,7 +134,7 @@
 		  	function loadUser()
 		  	{		  		
 		  		$.ajax({
-					url:"${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action?"+new Date(),
+					url:"${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action?t="+new Date().getTime(),
 					type:"get",
 					timeout:1200000,
 					success:function(data){
