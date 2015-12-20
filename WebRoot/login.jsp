@@ -113,7 +113,7 @@
 		  	function loadUser()
 		  	{		  		
 		  		$.ajax({
-					url:"${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action",
+					url:"${pageContext.request.contextPath}/master/yggl/ygxx!loadname.action?"+new Date(),
 					type:"get",
 					timeout:1200000,
 					success:function(data){

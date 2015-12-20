@@ -9,9 +9,11 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 import org.chonger.entity.jbxx.YGJBXX;
+import org.chonger.entity.system.User;
 import org.chonger.service.yggl.YgxxServer;
 import org.chonger.utils.JsonResultUtils;
 import org.chonger.utils.RollPage;
+import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -109,19 +111,34 @@ public class YgxxAction extends ActionSupport {
 		return "edit.jsp";
 	}
 	
+	/**
+	 * 登陆调用加载员工信息
+	 * @return
+	 */
 	public String loadname()
 	{
-		yglist=server.findAllYGXX();
-		if(yglist!=null&&yglist.size()>0)
+		//判断用户类型
+		User user=SessionUtils.getUser();
+		System.out.println("用户信息："+user);
+		System.out.println("角色："+user.getRole().getRtype());
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			yglist=server.findAllYGXX();
+			if(yglist!=null&&yglist.size()>0)
+			{
+				jsonResult.objListInitOrClear();
+				for(YGJBXX item : yglist)
+				{
+					HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
+					infoMap.put("id",item.getXh());
+					infoMap.put("name",item.getYgmc());
+					jsonResult.getObjList().add(infoMap);
+				}
+			}
+		}
+		else//其他类型
 		{
 			jsonResult.objListInitOrClear();
-			for(YGJBXX item : yglist)
-			{
-				HashMap<String,String> infoMap=new LinkedHashMap<String,String>();
-				infoMap.put("id",item.getXh());
-				infoMap.put("name",item.getYgmc());
-				jsonResult.getObjList().add(infoMap);
-			}
 		}
 		
 		return "infolist";

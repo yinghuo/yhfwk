@@ -53,7 +53,7 @@ public class YgxxServer {
 		if(!StringUtil.IsEmpty(xm))sql+=" and model.ygmc like '%"+xm+"%'";
 		
 		User user=SessionUtils.getUser();
-		if(user!=null&&user.getRole().getRtype()==2)
+		if(user!=null&&user.getRole().getRtype()==2)//牛场信息过滤
 		{
 			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
 		}
