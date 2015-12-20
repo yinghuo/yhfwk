@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-12-15 22:58:38
+Date: 2015-12-20 11:08:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3689,18 +3689,14 @@ CREATE TABLE `fqtsxx` (
   `JBQBH` varchar(36) DEFAULT NULL,
   `NCBH` varchar(36) DEFAULT NULL,
   `NZBH` varchar(36) DEFAULT NULL,
-  `NSBH` varchar(36) DEFAULT NULL,
-  `TSSJ` datetime DEFAULT NULL,
-  `TSLX` varchar(36) DEFAULT NULL COMMENT '发情提示 运动量下降提示',
+  `TSLX` varchar(16) DEFAULT NULL COMMENT '发情提示 运动量下降提示',
   `TSMS` varchar(128) DEFAULT NULL,
-  `SFQR` char(1) DEFAULT '0' COMMENT '0:否\r\n            1:是',
-  `SFFQ` char(1) DEFAULT NULL COMMENT '0：未发情\r\n            1：已发情',
-  `JCR` varchar(16) DEFAULT NULL,
-  `JCSJ` datetime DEFAULT NULL,
-  `JCJG` varchar(128) DEFAULT NULL,
+  `SFQR` int(1) DEFAULT '0' COMMENT '0：未确认           1：已确认',
+  `SHY` text,
   `BZ` varchar(128) DEFAULT NULL,
+  `TSSJ` datetime DEFAULT NULL,
   PRIMARY KEY (`XH`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fqtsxx
@@ -4569,7 +4565,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-12-13 21:43:46', '2015-12-13 22:55:02');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-12 09:43:57', '2015-06-12 09:47:57');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-12-15 22:29:32', '2015-12-15 22:34:13');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-12-20 10:54:02', '2015-12-20 11:02:44');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
