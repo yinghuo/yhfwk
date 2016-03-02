@@ -28,7 +28,7 @@
 				<tr>
 					<td class="td_right">发情时间：</td>
 					<td class="">
-						<input type="text" id="fqsj" name="fq.fqsj" class="input-text lh30" readonly="readonly" value="<s:date name="fq.fqsj" format="yyyy-MM-dd HH:mm"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" size="50"><span class="required">*必填</span>
+						<input type="text" id="fqsj" name="fq.fqsj" class="input-text lh30" readonly="readonly" value="<s:date name="fq.fqsj" format="yyyy-MM-dd HH:mm:ss"/>" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" size="50"><span class="required">*必填</span>
 					</td>
 				</tr>
 				<tr>

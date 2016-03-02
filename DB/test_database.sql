@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50709
 File Encoding         : 65001
 
-Date: 2015-12-20 13:28:08
+Date: 2016-03-02 23:32:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,12 +32,14 @@ CREATE TABLE `cddjb` (
   `JBQ` varchar(16) DEFAULT NULL,
   `XZR` varchar(36) DEFAULT NULL,
   `BZ` varchar(128) DEFAULT NULL,
+  `TJJ` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cddjb
 -- ----------------------------
+INSERT INTO `cddjb` VALUES ('10e09103-252f-4fd6-9410-44eacc703e1d', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2016-09-20 00:00:00', '1', '0', '0', '张三', '2', '1', '', null, '0');
 
 -- ----------------------------
 -- Table structure for `district`
@@ -3602,7 +3604,7 @@ CREATE TABLE `fqdjb` (
 -- ----------------------------
 -- Records of fqdjb
 -- ----------------------------
-INSERT INTO `fqdjb` VALUES ('fe775a25-ab2d-4dd6-960c-d7213dc7f864', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-10-28 18:30:00', '2015-10-29 02:30:00', '2015-10-29 06:30:00', '0', '1', null, '', '1', null, null);
+INSERT INTO `fqdjb` VALUES ('dc538ed4-c0eb-40ff-82a3-22e50f4aa4cc', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-12-21 21:38:12', '2015-12-22 05:38:12', '2015-12-22 09:38:12', '0', '0', 'b9a2f96b-7df7-47f2-8d2f-b0952008784d', '李四', '1', null, '1');
 
 -- ----------------------------
 -- Table structure for `fqjbkzxx`
@@ -3695,6 +3697,7 @@ CREATE TABLE `fqtsxx` (
   `SHY` text,
   `BZ` varchar(128) DEFAULT NULL,
   `TSSJ` datetime DEFAULT NULL,
+  `fqid` varchar(36) DEFAULT NULL COMMENT '发情信息ID',
   PRIMARY KEY (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -3880,7 +3883,7 @@ CREATE TABLE `jbqxx` (
   `xh` varchar(36) NOT NULL,
   `jbqbh` varchar(64) NOT NULL,
   `ncbh` varchar(36) NOT NULL,
-  `nzbh` varchar(36) NOT NULL,
+  `nzbh` varchar(36) DEFAULT NULL,
   `regdate` datetime NOT NULL,
   `remark` text,
   PRIMARY KEY (`xh`)
@@ -3889,7 +3892,7 @@ CREATE TABLE `jbqxx` (
 -- ----------------------------
 -- Records of jbqxx
 -- ----------------------------
-INSERT INTO `jbqxx` VALUES ('236a6c79-44a2-4f1f-8a64-ee16f77e4bb7', '22', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-12-15 22:12:09', null);
+INSERT INTO `jbqxx` VALUES ('4f91d72b-fe90-4546-9d90-c1f1df9e2060', '123', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'ec155fa0-2b05-46b1-91ed-eafa64af475c', '2016-02-29 11:52:10', null);
 
 -- ----------------------------
 -- Table structure for `jsxxb`
@@ -4052,7 +4055,7 @@ CREATE TABLE `nctjxx` (
 -- ----------------------------
 -- Records of nctjxx
 -- ----------------------------
-INSERT INTO `nctjxx` VALUES ('d81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '2', '0', '0', '0', '0', '2015-10-28 18:30:00', '0', '0', '0', null, '0');
+INSERT INTO `nctjxx` VALUES ('d81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '3', '0', '0', '0', '0', '2015-12-21 21:38:12', '2', '800', '0', null, '0');
 
 -- ----------------------------
 -- Table structure for `nzfzztxx`
@@ -4073,9 +4076,7 @@ CREATE TABLE `nzfzztxx` (
 -- ----------------------------
 -- Records of nzfzztxx
 -- ----------------------------
-INSERT INTO `nzfzztxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-01 00:00:00', '2015-06-01 08:00:00', '1', '20', 'eb3492d1-7946-4d21-8e9e-2e87acb19d00', '1', '0');
-INSERT INTO `nzfzztxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-06-24 00:00:00', '2015-06-24 08:00:00', '4', '0', null, '0', '0');
-INSERT INTO `nzfzztxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-10-28 23:02:22', '2015-10-29 02:30:00', '0', '0', '6c75e263-e9f9-4fb9-81a1-3060bd81cbda', '1', '0');
+INSERT INTO `nzfzztxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2016-09-20 00:00:00', '2016-09-26 21:54:33', '4', '-234', '54f464c2-295b-47a6-be92-fbc5f64ebddd', '1', '0');
 
 -- ----------------------------
 -- Table structure for `nzjbxx`
@@ -4109,17 +4110,19 @@ CREATE TABLE `nzjbxx` (
   `PYTS` int(11) DEFAULT '-1',
   `TJJ` int(11) DEFAULT '-1',
   `BZ` varchar(128) DEFAULT NULL,
+  `fzztxh` varchar(36) DEFAULT NULL,
+  `mrztxh` varchar(36) DEFAULT NULL,
   PRIMARY KEY (`XH`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nzjbxx
 -- ----------------------------
-INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '0.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '1', null, '-1', '-1', '');
-INSERT INTO `nzjbxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '001', '', '', '2015-01-01 00:00:00', '0', '5', '0', '2015-01-01 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '2', '2015-05-27 00:00:00', '1', '1', '1', '0', '0', '2', null, '-1', '-1', '');
-INSERT INTO `nzjbxx` VALUES ('ec155fa0-2b05-46b1-91ed-eafa64af475c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '012', '', '', '2015-05-22 00:00:00', '0', '1', '0', '2015-05-22 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', null, '', '', '', '0', '0', '1', null, '-1', '-1', '');
-INSERT INTO `nzjbxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'DR001', '', '', '2014-01-01 00:00:00', '0', '5', '0', '2014-01-01 00:00:00', '24.00', '12.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '优', '白色', '1', '2015-05-02 00:00:00', '', '', '-1', '-1', '0', '0', null, '-1', '-1', '');
-INSERT INTO `nzjbxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'T001', '', '', '2014-01-02 00:00:00', '0', '4', '0', '2014-01-02 00:00:00', '17.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '0', null, '', '', '0', '0', '2', '2', null, '-1', '-1', '');
+INSERT INTO `nzjbxx` VALUES ('77b80d7c-cc60-4a0e-9208-980d65cd0cf9', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'NZ00001', '1', '1', '2015-05-08 00:00:00', '0', '1', '1', null, '0.00', '11.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '11', '1', '1', '2015-05-06 00:00:00', '1', '1', '1', '1', '1', '1', null, '-1', '-1', '', null, null);
+INSERT INTO `nzjbxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '001', '', '', '2015-01-01 00:00:00', '0', '5', '0', '2015-01-01 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '3', '2015-05-27 00:00:00', '1', '1', '2', '0', '0', '0', null, '-1', '-1', '', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c');
+INSERT INTO `nzjbxx` VALUES ('ec155fa0-2b05-46b1-91ed-eafa64af475c', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '012', '', '', '2015-05-22 00:00:00', '0', '3', '0', '2015-05-22 00:00:00', '0.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '1', null, '', '', '0', '0', '0', '1', null, '-1', '-1', '', null, null);
+INSERT INTO `nzjbxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'DR001', '', '', '2014-01-01 00:00:00', '0', '5', '0', '2014-01-01 00:00:00', '24.00', '12.00', 'a5f61758-61c9-45a1-afa2-d6f00e987d9e', '优', '白色', '1', '2015-05-02 00:00:00', '', '', '-1', '-1', '0', '0', null, '-1', '-1', '', null, null);
+INSERT INTO `nzjbxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'T001', '', '', '2014-01-02 00:00:00', '0', '4', '0', '2014-01-02 00:00:00', '17.00', '1.00', 'ce9deded-6bdd-44dc-8c21-c5e346bbdd0c', '1', '1', '0', null, '', '', '0', '0', '2', '2', null, '-1', '-1', '', null, null);
 
 -- ----------------------------
 -- Table structure for `nzlcdjb`
@@ -4164,9 +4167,7 @@ CREATE TABLE `nzmrztxx` (
 -- ----------------------------
 -- Records of nzmrztxx
 -- ----------------------------
-INSERT INTO `nzmrztxx` VALUES ('adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-01 00:00:00', '2015-06-01 08:00:00', '0', '20', 'eb3492d1-7946-4d21-8e9e-2e87acb19d00');
-INSERT INTO `nzmrztxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-06-24 00:00:00', null, '0', '0', null);
-INSERT INTO `nzmrztxx` VALUES ('cb07fd07-4be8-4668-9bfb-8a11553c0e7d', null, null, '0', '0', null);
+INSERT INTO `nzmrztxx` VALUES ('67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2016-01-10 00:00:00', null, '1', '20', null);
 
 -- ----------------------------
 -- Table structure for `nzttjdb`
@@ -4233,7 +4234,7 @@ CREATE TABLE `pzdjb` (
 -- ----------------------------
 -- Records of pzdjb
 -- ----------------------------
-INSERT INTO `pzdjb` VALUES ('6c75e263-e9f9-4fb9-81a1-3060bd81cbda', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-10-28 23:02:22', '1', '1', '张三', '2015-10-28 18:30:00', '0', '1', '张三', '0', '');
+INSERT INTO `pzdjb` VALUES ('54f464c2-295b-47a6-be92-fbc5f64ebddd', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-12-21 21:54:33', 'ABC', '11', 'b9a2f96b-7df7-47f2-8d2f-b0952008784d', '2015-12-21 21:38:12', '0', '0', '张三', '0', '');
 
 -- ----------------------------
 -- Table structure for `qcdjb`
@@ -4284,7 +4285,7 @@ CREATE TABLE `rjcjdjb` (
 -- ----------------------------
 -- Records of rjcjdjb
 -- ----------------------------
-INSERT INTO `rjcjdjb` VALUES ('ebc3c664-f3de-4cf6-8700-9634f826b90b', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-10-28 00:00:00', '1', '张三', '0', '2015-10-29 00:00:00', '0', null, '-1', '');
+INSERT INTO `rjcjdjb` VALUES ('2fb89bd2-7273-4891-a95d-8c02caa313c2', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-12-21 00:00:00', '0', 'b9a2f96b-7df7-47f2-8d2f-b0952008784d', '0', '2016-07-30 00:00:00', '0', null, '-1', '');
 
 -- ----------------------------
 -- Table structure for `rjfjdjb`
@@ -4306,10 +4307,6 @@ CREATE TABLE `rjfjdjb` (
 -- ----------------------------
 -- Records of rjfjdjb
 -- ----------------------------
-INSERT INTO `rjfjdjb` VALUES ('2a2d8eaf-2221-4985-931e-1c01bb00c433', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', '67737e1f-6a88-4b4c-a5b6-e3d2faff9b7c', '2015-05-12 00:00:00', '111', '张三、李四', '111', '0', '');
-INSERT INTO `rjfjdjb` VALUES ('7108833d-90a4-4fad-82e7-94e8de802166', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-05-24 09:03:00', '复检正常', '张三', '稳定', '0', '这里是备注');
-INSERT INTO `rjfjdjb` VALUES ('f73b5820-df21-46a0-bb9b-cb5f19068a88', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'adee8481-dc19-43cf-8e20-3d4f140af59e', '2015-06-29 00:00:00', '111', '张三', '11', '0', '11');
-INSERT INTO `rjfjdjb` VALUES ('06552c09-2d74-4c8b-9ae7-21fb82be086b', 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e', 'cb07fd07-4be8-4668-9bfb-8a11553c0e7d', '2015-07-25 00:00:00', '我问问', '张三', null, null, '');
 
 -- ----------------------------
 -- Table structure for `tsxxb`
@@ -4439,8 +4436,8 @@ CREATE TABLE `yh_system_config` (
 -- Records of yh_system_config
 -- ----------------------------
 INSERT INTO `yh_system_config` VALUES ('0', '_DM_SYSTEM_', 'NC_COUNT', '1', null, null);
-INSERT INTO `yh_system_config` VALUES ('2e54e34d-8d0f-497c-af3e-0b9c249a03da', '_DM_KZQPZ_', 'XIAXIAN', '10', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
-INSERT INTO `yh_system_config` VALUES ('4333481e-aeb7-4e54-95f5-2f9329225ae3', '_DM_KZQPZ_', 'SHANGXIAN', '30', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
+INSERT INTO `yh_system_config` VALUES ('1bc2e661-1693-48a1-b841-be5f1070807c', '_DM_KZQPZ_', 'SHANGXIAN', '30', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
+INSERT INTO `yh_system_config` VALUES ('49c6eec4-95d9-4cbd-84d2-a00f422b5273', '_DM_KZQPZ_', 'XIAXIAN', '10', null, 'd81ffad1-e0ef-495f-9fdc-acdbb2fb935e');
 
 -- ----------------------------
 -- Table structure for `yh_system_menus`
@@ -4566,7 +4563,7 @@ CREATE TABLE `yh_system_users` (
 -- ----------------------------
 INSERT INTO `yh_system_users` VALUES ('1', '管理员', 'administrator', '8f54eee04c13e5e09204f259bfa126fa6d2aeee87447918bdc8a6b9d6e13750b', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefad', null, '2015-12-20 11:33:30', '2015-12-20 11:38:32');
 INSERT INTO `yh_system_users` VALUES ('2', '系统管理员', 'root', 'd506db04359170f4576523e7f5f680e12b403249ee844bc0e18160bda944e4a8', null, '0', 'bfe348a5-73e1-4d91-9853-e685c46109a9', null, '2015-06-12 09:43:57', '2015-06-12 09:47:57');
-INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2015-12-20 11:38:20', '2015-12-20 13:27:31');
+INSERT INTO `yh_system_users` VALUES ('f0482464-454d-4a44-b008-dbae061d298a', 'qiye1', 'qiye1', '23134a96830f81f749cad6af6f1eade4e207c845e061153c3885f88cf572dec8', null, '0', 'b05f9a5d-10c7-466f-833a-3ab9928fefae', null, '2016-03-02 23:07:10', '2016-03-02 23:20:27');
 
 -- ----------------------------
 -- Table structure for `yh_system_users_info`
@@ -4615,6 +4612,293 @@ CREATE TABLE `yyjlb` (
 -- ----------------------------
 -- Records of yyjlb
 -- ----------------------------
+
+-- ----------------------------
+-- Procedure structure for `SP_OF_TR_get_pjbs`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `SP_OF_TR_get_pjbs`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_OF_TR_get_pjbs`(IN vncbh varchar(100),
+    IN vjbbh varchar(100),
+    IN vnzbh varchar(100),
+    IN vjbrq varchar(100),
+    IN vjbsd varchar(10),
+		OUT vscpjbs int(11))
+    SQL SECURITY INVOKER
+BEGIN
+	DECLARE sqlstr varchar(2000);
+	#拼接SQL语句
+
+	#SET sqlstr = concat('select pjbs',jbsd,' into scpjbs from fqydsjxx where ncbh = ',ncbh,' and jbqbh = ',jbbh,' and nzbh =',nzbh,' and date_format(jlrq,"%Y-%m-%d") < ',jbrq,' order by jlrq desc limit 1');
+	#SET @sql = sqlstr;
+	#PREPARE presql FROM @sql;
+	#EXECUTE sqlstr;
+	#DEALLOCATE PREPARE presql;
+	CASE vjbsd
+		WHEN '0' THEN
+			select pjbs0 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '1' THEN
+			select pjbs1 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '2' THEN
+			select pjbs2 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '3' THEN
+			select pjbs3 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '4' THEN
+			select pjbs4 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '5' THEN
+			select pjbs5 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '6' THEN
+			select pjbs6 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '7' THEN
+			select pjbs7 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '8' THEN
+			select pjbs8 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '9' THEN
+			select pjbs9 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '10' THEN
+			select pjbs10 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '11' THEN
+			select pjbs11 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '12' THEN
+			select pjbs12 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '13' THEN
+			select pjbs13 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '14' THEN
+			select pjbs14 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '15' THEN
+			select pjbs15 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '16' THEN
+			select pjbs16 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '17' THEN
+			select pjbs17 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '18' THEN
+			select pjbs18 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '19' THEN
+			select pjbs19 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '20' THEN
+			select pjbs20 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '21' THEN
+			select pjbs21 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '22' THEN
+			select pjbs22 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		WHEN '23' THEN
+			select pjbs23 into vscpjbs from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh =vnzbh and date_format(jlrq,"%Y-%m-%d") < vjbrq order by jlrq desc limit 1;
+		END CASE;	
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `SP_OF_TR_ins_ydsj`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `SP_OF_TR_ins_ydsj`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_OF_TR_ins_ydsj`(IN vncbh varchar(100),
+    IN vjbbh varchar(100),
+    IN vnzbh varchar(100),
+    IN vjbrq varchar(100),
+    IN vjbsd varchar(100),
+		IN vnzbs int(11),
+		IN vpjbs int(11))
+BEGIN
+	DECLARE vsql varchar(1000);
+	#拼接SQL语句
+	#判断是否存在记录
+	set @fqid = (select xh from fqydsjxx where ncbh = vncbh and jbqbh = vjbbh and nzbh = vnzbh and date_format(jlrq,"%Y-%m-%d") = vjbrq limit 1);
+	#if @fqid = null then
+	#	set vsql = concat("insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs",vjbsd," pjbs",vjbsd,") values(uuid(),'",vncbh,"','",vjbbh,"','",vnzbh,"','",vjbrq,"',",vnzbs,vpjbs,")");
+	#else
+	#	set vsql = concat("update fqydsjxx set jlbs",vjbsd,"=",vnzbs,",pjbs",vjbsd,"=",vpjbs," where xh =",@fqid);
+	#end if;
+	#执行sql语句
+	#SET @sql = vsql;
+	#PREPARE presql FROM @sql;
+	#EXECUTE presql;
+	#DEALLOCATE PREPARE presql;
+	#IF @fqid is null THEN
+	IF ISNULL(@fqid) THEN
+		CASE vjbsd
+			WHEN '0' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs0, pjbs0) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '1' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs1, pjbs1) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '2' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs2, pjbs2) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '3' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs3, pjbs3) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '4' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs4, pjbs4) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '5' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs5, pjbs5) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '6' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs6, pjbs6) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '7' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs7, pjbs7) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '8' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs8, pjbs8) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '9' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs9, pjbs9) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '10' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs10, pjbs10) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '11' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs11, pjbs11) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '12' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs12, pjbs12) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '13' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs13, pjbs13) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '14' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs14, pjbs14) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '15' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs15, pjbs15) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '16' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs16, pjbs16) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '17' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs17, pjbs17) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '18' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs18, pjbs18) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '19' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs19, pjbs19) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '20' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs20, pjbs20) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '21' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs21, pjbs21) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '22' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs22, pjbs22) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			WHEN '23' THEN
+				insert into fqydsjxx (xh, ncbh, jbqbh, nzbh, jlrq, jlbs23, pjbs23) values(uuid(),vncbh,vjbbh,vnzbh,vjbrq,vnzbs,vpjbs);
+			END CASE;
+	ELSE
+		CASE vjbsd
+			WHEN '0' THEN
+				update fqydsjxx set jlbs0=vnzbs, pjbs0=vpjbs where xh =@fqid;
+			WHEN '1' THEN
+				update fqydsjxx set jlbs1=vnzbs, pjbs1=vpjbs where xh =@fqid;
+			WHEN '2' THEN
+				update fqydsjxx set jlbs2=vnzbs, pjbs2=vpjbs where xh =@fqid;
+			WHEN '3' THEN
+				update fqydsjxx set jlbs3=vnzbs, pjbs3=vpjbs where xh =@fqid;
+			WHEN '4' THEN
+				update fqydsjxx set jlbs4=vnzbs, pjbs4=vpjbs where xh =@fqid;
+			WHEN '5' THEN
+				update fqydsjxx set jlbs5=vnzbs, pjbs5=vpjbs where xh =@fqid;
+			WHEN '6' THEN
+				update fqydsjxx set jlbs6=vnzbs, pjbs6=vpjbs where xh =@fqid;
+			WHEN '7' THEN
+				update fqydsjxx set jlbs7=vnzbs, pjbs7=vpjbs where xh =@fqid;
+			WHEN '8' THEN
+				update fqydsjxx set jlbs8=vnzbs, pjbs8=vpjbs where xh =@fqid;
+			WHEN '9' THEN
+				update fqydsjxx set jlbs9=vnzbs, pjbs9=vpjbs where xh =@fqid;
+			WHEN '10' THEN
+				update fqydsjxx set jlbs10=vnzbs, pjbs10=vpjbs where xh =@fqid;
+			WHEN '11' THEN
+				update fqydsjxx set jlbs11=vnzbs, pjbs11=vpjbs where xh =@fqid;
+			WHEN '12' THEN
+				update fqydsjxx set jlbs12=vnzbs, pjbs12=vpjbs where xh =@fqid;
+			WHEN '13' THEN
+				update fqydsjxx set jlbs13=vnzbs, pjbs13=vpjbs where xh =@fqid;
+			WHEN '14' THEN
+				update fqydsjxx set jlbs14=vnzbs, pjbs14=vpjbs where xh =@fqid;
+			WHEN '15' THEN
+				update fqydsjxx set jlbs15=vnzbs, pjbs15=vpjbs where xh =@fqid;
+			WHEN '16' THEN
+				update fqydsjxx set jlbs16=vnzbs, pjbs16=vpjbs where xh =@fqid;
+			WHEN '17' THEN
+				update fqydsjxx set jlbs17=vnzbs, pjbs17=vpjbs where xh =@fqid;
+			WHEN '18' THEN
+				update fqydsjxx set jlbs18=vnzbs, pjbs18=vpjbs where xh =@fqid;
+			WHEN '19' THEN
+				update fqydsjxx set jlbs19=vnzbs, pjbs19=vpjbs where xh =@fqid;
+			WHEN '20' THEN
+				update fqydsjxx set jlbs20=vnzbs, pjbs20=vpjbs where xh =@fqid;
+			WHEN '21' THEN
+				update fqydsjxx set jlbs21=vnzbs, pjbs21=vpjbs where xh =@fqid;
+			WHEN '22' THEN
+				update fqydsjxx set jlbs22=vnzbs, pjbs22=vpjbs where xh =@fqid;
+			WHEN '23' THEN
+				update fqydsjxx set jlbs23=vnzbs, pjbs23=vpjbs where xh =@fqid;
+			END CASE;
+		#set vsql = concat("update fqydsjxx set jlbs",vjbsd,"=",vnzbs,",pjbs",vjbsd,"=",vpjbs," where xh =",@fqid);
+	end if;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `SP_OF_TR_ins_ydts`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `SP_OF_TR_ins_ydts`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_OF_TR_ins_ydts`(IN vncbh varchar(100),
+	IN vjbbh varchar(100),
+	IN vnzbh varchar(100),
+	IN vjbrq varchar(100),
+	IN vjbsj varchar(100),
+	IN vtslx varchar(100),
+	IN vtsms varchar(100))
+BEGIN
+	#1、检查是否已经提示，当天有提示，则不再提示
+	set @sfts = (select xh from fqtsxx where ncbh = vncbh and jbqbh = vjbbh and nzbh = vnzbh and date_format(tssj,"%Y-%m-%d") = vjbrq);
+  if ISNULL(@sfts) then
+		#2、增加数据到fqtsxx表
+		insert into fqtsxx(xh, jbqbh, ncbh, nzbh, tssj, tslx, tsms) values (uuid(),vjbbh, vncbh, vnzbh, vjbsj, vtslx, vtsms);
+		#3、增加数据到tsxxb表
+		#查询提示电话号码
+		set @tsdh = (select pzydh from ncjbxxb where xh = vncbh);
+		insert into tsxxb(xh, ncbh, sjhm, tslx, tsnr) values (uuid(), vncbh, @tsdh, vtslx, vtsms);
+  end if;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `TG_INSERT_FQJBXX`;
+DELIMITER ;;
+CREATE TRIGGER `TG_INSERT_FQJBXX` AFTER INSERT ON `fqjbxx` FOR EACH ROW BEGIN
+	#1、获取牛场编号、计步器编号、计步日期、时间、步数
+	set @ncbh = (select xh from ncjbxxb where ncbh =new.ncbh);
+              #set @ncbh = new.ncbh;
+	set @jbbh = new.jbqbh;
+	set @jbrq = (select date_format(new.kssj,'%Y-%m-%d'));
+	set @jbsd = (select date_format(new.kssj,'%k'));
+	set @jbsj = (select  date_format(new.kssj,'%Y-%m-%d %H:%i:%s'));
+	set @nzbs = new.ljxx;
+	set @fqyz = 2;
+	set @jbyz = 0.5;
+	#2、根据牛场编号、计步器编号，获取牛只编号
+	set @nzxh = (select nzbh from jbqxx where ncbh = @ncbh and jbqbh = @jbbh);
+    #set @nzxh = new.jbqbh;
+	#3、根据牛只信息，拼接SQL语句获取到以有的该时段的平均值。
+	call SP_OF_TR_get_pjbs(@ncbh, @jbbh, @nzxh, @jbrq, @jbsd, @scpjbs);
+	#4、比较以前平均步数和本次步数的比例
+	if isnull(@scpjbs) then 
+	  #4.1:以前平均步数为空，则不做比较，赋值本次平均值。
+	  set @pjbs = @nzbs;
+	else 
+	  #4.2:比较平均步数和本次步数
+	  if @nzbs/@scpjbs > @fqyz then
+	  #4.2.1:达到发情阈值，则记录发情提醒及短信提醒，不再赋值本次平均步数。
+        set @nzbh = (select nzbh from nzjbxx where xh = @nzxh);
+        set @jsmc = (select jsmc from jsxxb where xh =(select js from nzjbxx where xh = @nzxh));
+		set @pjbs = @scpjbs;
+		set @tslx = '发情提示';
+		set @tsnr = concat('【发情提示】牛舍:',@jsmc,' 牛号:',@nzbh,' 牛只可能发情,请检查确认.提示时间:',@jbsj);
+		call SP_OF_TR_ins_ydts(@ncbh, @jbbh, @nzxh, @jbrq, @jbsj, @tslx, @tsnr);
+	  elseif @nzbs/@scpjbs < @jbyz then
+	  #4.2.2达到疾病阈值，则记录疾病提醒及短信提醒
+        set @nzbh = (select nzbh from nzjbxx where xh = @nzxh);
+        set @jsmc = (select jsmc from jsxxb where xh =(select js from nzjbxx where xh = @nzxh));
+		set @pjbs = @scpjbs;
+		set @tslx = '运动量下降提示';
+		set @tsnr = concat('【运动量下降提示】牛舍:',@jsmc,' 牛号:',@nzbh,' 牛只运动量下降,请检查确认.提示时间:',@jbsj);
+		call SP_OF_TR_ins_ydts(@ncbh, @jbbh, @nzxh, @jbrq, @jbsj, @tslx, @tsnr);
+	  else 
+		set @pjbs = round((@scpjbs*7 + @nzbs)/8) ;
+	  end if;
+	end if;
+	#5、  插入fqjbsjxx表一条新记录。根据牛只编号和计步日期获取fqjbsjxx表中是否有该天记录，没有则创建。有则更新该小时字段数据。
+	call SP_OF_TR_ins_ydsj(@ncbh, @jbbh, @nzxh, @jbrq, @jbsd, @nzbs, @pjbs);
+end
+;;
+DELIMITER ;
 DROP TRIGGER IF EXISTS `OnNcxxInsert_SystemCount`;
 DELIMITER ;;
 CREATE TRIGGER `OnNcxxInsert_SystemCount` AFTER INSERT ON `ncjbxxb` FOR EACH ROW BEGIN

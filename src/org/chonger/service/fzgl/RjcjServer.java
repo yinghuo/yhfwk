@@ -127,7 +127,7 @@ public class RjcjServer {
 			
 			if(StringUtil.IsEmpty(Rjxx.getXh()))
 			{
-				//牛只序号为空，表示新增，进行自动编号
+				//序号为空，表示新增，进行自动编号
 				Rjxx.setXh(CommUUID.getUUID());
 				
 				Rjxx.setRj2jg(-1);
@@ -167,7 +167,8 @@ public class RjcjServer {
 					//未孕
 					//更新牛只列别信息 空怀期
 					//_nzlb.setLb(ConstantEnum.NZLBZT.空怀期.getValue());
-					_fzzt.setZt(NZFZZT.空怀期.getValue());					
+					_fzzt.setZt(NZFZZT.空怀期.getValue());
+					
 				}
 				//lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 				fzServer.saveOrUpDate(_nzxx.getXh(), _fzzt);

@@ -54,6 +54,17 @@ public class FQTSXX
 	@Column(name = "bz")
 	private String bz;//备注
 	
+	@Column(name = "fqid")
+	private String fqid;//发情编号
+	
+	public String getFqid() {
+		return fqid;
+	}
+
+	public void setFqid(String fqid) {
+		this.fqid = fqid;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)
 	private NZJBXX nzjbxx;

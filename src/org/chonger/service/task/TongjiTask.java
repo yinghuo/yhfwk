@@ -14,6 +14,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.springframework.orm.hibernate3.SessionFactoryUtils;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,29 +35,43 @@ public class TongjiTask extends QuartzJobBean  {
 	}
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-		session=sessionFactory.openSession();
+		//session=sessionFactory.openSession();
+		session=SessionFactoryUtils.getSession(sessionFactory, true);
 	}
 	
 	@Override
 	protected void executeInternal(JobExecutionContext arg0)
 			throws JobExecutionException {
 		
-		//查询所有牛场信息
-		List<NCJBXX> listAll=getNCList();
-		
-		if(listAll!=null&&listAll.size()>0)
+		System.out.println("牛场统计处理：");
+		if(sessionFactory!=null)
 		{
-			for(NCJBXX nzxx : listAll)
+			try
 			{
-				NCTJXX tjxx=getTJXX(nzxx.getXh());
+				//查询所有牛场信息
+				List<NCJBXX> listAll=getNCList();
 				
-				updateNZCount(tjxx);//获取牛场的统计牛只数量
-				updateFQ30(tjxx);//获取牛场的发情信息
-				updateFQ1(tjxx);
-				updateFQTime(tjxx);
-				updateCD30(tjxx);
-				
-				saveOrUpdate(tjxx);
+				if(listAll!=null&&listAll.size()>0)
+				{
+					for(NCJBXX nzxx : listAll)
+					{
+						NCTJXX tjxx=getTJXX(nzxx.getXh());
+						
+						updateNZCount(tjxx);//获取牛场的统计牛只数量
+						updateFQ30(tjxx);//获取牛场的发情信息
+						updateFQ1(tjxx);
+						updateFQTime(tjxx);
+						updateCD30(tjxx);
+						
+						saveOrUpdate(tjxx);
+					}
+				}
+			}catch(Exception ex)
+			{
+				ex.printStackTrace();
+			}finally{
+				if(session!=null)
+					SessionFactoryUtils.releaseSession(session, sessionFactory);
 			}
 		}
 	}

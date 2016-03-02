@@ -14,7 +14,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "yh_system_menus")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Menu {
+public class Menu implements java.io.Serializable{
 	
 	public Menu()
 	{

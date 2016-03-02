@@ -125,11 +125,11 @@ public class FqtsAction extends ActionSupport {
 					fq.setSfpz(0);
 					fq.setShy("");
 					
-					Date tssj=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,8,0,0);
-					Date tssj1=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,12,0,0);
-					
-					fq.setPzsj(tssj);
-					fq.setPzsj1(tssj1);
+//					Date tssj=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,8,0,0);
+//					Date tssj1=DateTimeUtil.addDate(fq.getFqsj(), 0, 0,0,12,0,0);
+//					
+//					fq.setPzsj(tssj);
+//					fq.setPzsj1(tssj1);
 					
 					//保存发情登记信息
 					fqServer.saveOrUpdate(fq);
@@ -137,11 +137,12 @@ public class FqtsAction extends ActionSupport {
 					//更改提示信息
 					ts.setSffq(1);//更改为确认发情
 					ts.setShy("");
+					ts.setFqid(fq.getXh());
 					server.saveOrUpdate(ts);
 					
 					
 					
-					jsonResult.sendSuccessMessage("确认成功！最佳配种时间为:"+DateTimeUtil.formatDateToString(tssj)+" 到 "+DateTimeUtil.formatDateToString(tssj1)+"之间！");
+					jsonResult.sendSuccessMessage("确认成功！最佳配种时间为:"+DateTimeUtil.formatDateToString(fq.getPzsj())+" 到 "+DateTimeUtil.formatDateToString(fq.getPzsj1())+"之间！");
 					jsonResult.getInfos().put("id",bh);
 					jsonResult.getInfos().put("shy",fq.getShy());
 				}

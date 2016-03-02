@@ -120,7 +120,7 @@
 					<s:else>
 						<td> -- </td>
 					</s:else>		
-					<s:if test="#nzxx.nzmrzt!=null">
+					<s:if test="#nzxx.nzmrzt!=null && #nzxx.nzmrzt.zt>-1">
 						<td>${nzxx.nzmrzt.day}天</td>
 					</s:if>
 					<s:else>

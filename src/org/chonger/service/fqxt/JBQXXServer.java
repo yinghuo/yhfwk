@@ -49,6 +49,33 @@ public class JBQXXServer {
 	}
 	
 	/**
+	 * 判断指定的绑定是否存在
+	 * @param jbq
+	 * @param nz
+	 * @return
+	 */
+	public JBQXX exist(String jbq,String nz)
+	{
+		if(StringUtil.IsEmpty(jbq)&&StringUtil.IsEmpty(nz))
+			return null;
+		
+		String sql="from JBQXX model where 1=1 ";
+		if(!StringUtil.IsEmpty(jbq))sql+=" and model.jbqbh = '"+jbq+"' ";
+		if(!StringUtil.IsEmpty(nz))sql+=" and model.nzbh = '"+nz+"' ";
+		
+		User user=SessionUtils.getUser();
+		if(user!=null&&user.getRole().getRtype()==2)
+		{
+			sql+=" and model.ncbh='"+user.getNcjbxx().getXh()+"'";
+		}
+		
+		List<JBQXX> resultList=dao.find(sql);
+		if(resultList!=null&&resultList.size()>0)
+			return resultList.get(0);
+		return null;
+	}
+	
+	/**
 	 * 保存和更新计步器信息
 	 * @param entity
 	 */

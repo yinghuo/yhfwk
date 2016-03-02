@@ -92,6 +92,8 @@
 							</td>
 							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
 							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
+							<%//2016-01-11 Daniel 添加妊检2-3的过滤，未孕情况下无需继续%>
+							<s:if test="#rjcj.cjjg==0">
 							<td>								
 								<s:if test="#rjcj.rj2rq==null">
 									<span id="rj2rq-${status.index}"></span>
@@ -135,6 +137,13 @@
 									<y:EnumLabel enumName="CJJG2" value="${rjcj.rj3jg}" />
 								</s:else>	
 							</td>
+							</s:if>
+							<s:else>
+								<td> -- </td>
+								<td> -- </td>
+								<td> -- </td>
+								<td> -- </td>
+							</s:else>
 							<td></td>
 							<!-- <td>
 								<a title="修改" onclick="edit('<s:property value="#rjcj.xh"/>')" class="fa fa-edit cr-p">修改</a>

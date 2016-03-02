@@ -166,6 +166,7 @@ public class PzdjServer {
 					fzzt=new NZFZZTXX();
 				fzzt.setSj(Pzxx.getPzsj());
 				fzzt.setTid(Pzxx.getXh());
+				fzzt.setBj(1);
 				//modify Daniel 修复日期bug，应计算配种日期到今天的天数
 				int between=DateTimeUtil.getDayBetweenHms(Pzxx.getPzsj(), new Date());
 				if(between!=-1)

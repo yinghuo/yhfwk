@@ -75,6 +75,14 @@ public class FQTSXXServer {
 		return null;
 	}
 	
+	/**
+	 * 获取所有的发情提示信息
+	 * @return
+	 */
+	public List<FQTSXX> findAll(){
+		return dao.find(getQueryString(null)+" order by model.sffq,xh desc");
+	}
+	
 	public void saveOrUpdate(FQTSXX tsxx)
 	{
 		if(tsxx!=null)
@@ -106,11 +114,30 @@ public class FQTSXXServer {
 		if(matcher.find())
 		{
 			String dateString=matcher.group();
-			System.out.println("解析时间："+dateString);
+			//System.out.println("解析时间："+dateString);
 			
 			return DateTimeUtil.parseDate2YMDHMS(dateString);
 		}
 		return null;
 	}
-	
+	/**
+	 * 分析消息中的时间
+	 * @param msg
+	 * @retrun Date 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String parseStringByMsg(String msg)
+	{
+		Matcher matcher = datePattern.matcher(msg);
+		if(matcher.find())
+		{
+			String dateString=matcher.group();
+			//System.out.println("解析时间："+dateString);
+			
+			return dateString;
+		}
+		return null;
+	}
 }

@@ -58,6 +58,26 @@ public class KzqpzAction extends ActionSupport {
 		//加载信息
 		conf=manager.queryConfigByName(domain, shangKey);
 		conf1=manager.queryConfigByName(domain,xiaKey);
+		
+		//2016-01-11 Daniel 新增默认值逻辑，当指定配置不存在时则创建
+		if(conf==null)
+		{
+			conf=new Config();
+			conf.setDomain(domain);
+			conf.setName(shangKey);
+			conf.setValue("30");
+			manager.saveOrUpdateConfig(conf);
+		}
+		
+		if(conf1==null)
+		{
+			conf1=new Config();
+			conf1.setDomain(domain);
+			conf1.setName(xiaKey);
+			conf1.setValue("10");
+			manager.saveOrUpdateConfig(conf1);
+		}
+		
 		return "info.page";
 	}
 	

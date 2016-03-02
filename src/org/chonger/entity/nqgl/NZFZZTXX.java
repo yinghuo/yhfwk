@@ -53,13 +53,12 @@ public class NZFZZTXX {
 	
 	@Column(name="bj")
 	/*标记*/
-	private int bj;//1:已配种(未启用) 2：已初检
+	private int bj;//1：已初检  2:已配种 0:未配种
 	
 	@Column(name="cs")
 	private int cs;//次数
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "xh")
+	@OneToOne(mappedBy="nzfzzt",fetch = FetchType.LAZY)
 	private NZJBXX nzxx;
 	
 	public NZJBXX getNzxx() {

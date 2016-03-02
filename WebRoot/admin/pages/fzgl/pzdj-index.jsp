@@ -54,7 +54,6 @@
               	<th>繁殖天数</th>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
-              	<th>配种员</th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="pzlist" status="status" id="pzxx">
@@ -73,7 +72,6 @@
 					</td>
 					<td><s:property value="#pzxx.djbh"/></td>
 					<td><s:property value="#pzxx.djlx"/></td>
-					<td><s:property value="#pzxx.pzy"/></td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#pzxx.xh"/>')" class="fa fa-edit cr-p">修改</a>
 						<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条配种信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fzgl/pzdj!delete.action?id=<s:property value="#pzxx.xh"/>" class="fa fa-remove cr-p">删除</a>

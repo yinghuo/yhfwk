@@ -125,6 +125,13 @@ public class FqdjServer {
 				Fqxx.setNcbh(user.getNcjbxx().getXh());
 			}
 			
+			//计算发情后的最佳配种时间 +8-12小时
+			Date tssj=DateTimeUtil.addDate(Fqxx.getFqsj(), 0, 0,0,8,0,0);
+			Date tssj1=DateTimeUtil.addDate(Fqxx.getFqsj(), 0, 0,0,12,0,0);
+			
+			Fqxx.setPzsj(tssj);
+			Fqxx.setPzsj1(tssj1);
+			
 			if(StringUtil.IsEmpty(Fqxx.getXh()))
 			{
 				//牛只序号为空，表示新增，进行自动编号
@@ -140,8 +147,7 @@ public class FqdjServer {
 			else
 				dao.saveOrUpdate(Fqxx);
 			
-			//计算发情后的最佳配种时间 +8-12小时
-			Date tssj=DateTimeUtil.addDate(Fqxx.getFqsj(), 0, 0,0,8,0,0);
+			
 			
 			//更新牛只的类别详细信息
 			//NZLBXX lbxx=nzxx.getNzlbxx();
@@ -162,6 +168,7 @@ public class FqdjServer {
 			fzzt.setSj(Fqxx.getFqsj());
 			fzzt.setTssj(tssj);
 			fzzt.setTid(Fqxx.getXh());//关联发情信息
+			fzzt.setBj(0);//未配种
 			fzServer.saveOrUpDate(Fqxx.getNzbh(), fzzt);			
 			
 			//发出消息

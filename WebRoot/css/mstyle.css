@@ -1,0 +1,131 @@
+html,body{
+	margin:0;
+	padding:0px;
+	height:100%;
+}
+
+.fr{
+	float:right;
+}
+
+.fl{
+	float:left;
+}
+
+.header{
+	height:9.9%;
+	border-bottom:1px #666 solid
+}
+
+.footer{
+	height:3.9%;
+	padding-left:20px;
+}
+
+.content{
+	height:66%;
+}
+
+.ad{
+	height:19.9%;
+	border-bottom:1px #666 solid
+}
+
+.header div{
+	display:inline-block;
+}
+
+.lights{
+	padding-left:1%;
+}
+
+.lights div{
+	display:inline-block;
+	margin-right:10px;
+}
+
+.lights img{
+	display:block;
+}
+
+.title,.timer,.tel{
+	height:100%;
+	font-size:2em;
+	line-height:250%;
+}
+
+.title{
+	margin-left:20px;
+}
+
+.timer{
+	margin-left:20px;
+	margin-right:10px;
+}
+
+.w025{
+	width:25%;
+}
+
+.w03{
+	width:29%;
+}
+
+.w045{
+	width:45%;
+}
+
+#info{
+	border-left:1px #666 solid;
+	border-right:1px #666 solid;
+}
+
+#info .title1,#device .title1{
+	margin:10px 0;
+	font-size:1.2em;
+	font-weight:bold;
+	text-align:center;
+}
+
+.ultable{
+	widht:100%;
+	margin:0;
+	padding:0;
+}
+
+
+.ultable li span{
+	display:inline-block;
+}
+
+.ultable .tc1{
+	width:10%;
+}
+
+.ultable .tc2{
+	width:20%;
+}
+
+.ultable .tc3{
+	width:30%;
+}
+
+.info-content,.device-content{
+	margin-top:30px;
+	height:86%;
+	overflow:hidden;
+}
+
+.bline{
+	border-bottom:1px #666 solid;
+	line-height:200%;
+	cursor:pointer;
+}
+
+.msg-info{
+	color:#0066CC;
+}
+
+.msg-error{
+	color:#CC0033;
+}

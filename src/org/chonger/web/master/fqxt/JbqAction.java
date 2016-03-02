@@ -63,9 +63,19 @@ public class JbqAction extends ActionSupport {
 	private int p;
 	public void setP(int p) {		this.p = p;	}
 	
+	/** 搜索查询参数定义 */
+	private String jbqbh, nzbh;
+	public String getJbqbh() {return jbqbh;}
+	public void setJbqbh(String jbqbh) {this.jbqbh = jbqbh;	}
+	public String getNzbh() {return nzbh;}
+	public void setNzbh(String nzbh) {this.nzbh = nzbh;	}
+	
+	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(null,null),pager.pageSize,p);
+
+		//2016-01-11 Daniel 新增默认排序
+		pager.init(server.getQueryString(null,null)+" order by model.regdate desc",pager.pageSize,p);
 		jbqlst=pager.getDataSource();
 		return "list.page";
 	}
@@ -79,6 +89,20 @@ public class JbqAction extends ActionSupport {
 		jsonResult.infosInitOrClear();
 		try
 		{
+			//检查指定的牛只计步器是否存在
+			JBQXX jbqxx=server.exist(null, jbq.getNzbh());
+			if(jbqxx!=null)
+			{
+				jsonResult.sendErrorMessage("该牛只已经存在其他的计步器绑定信息！计步器编号为："+jbqxx.getJbqbh());
+				return "infos";
+			}
+			jbqxx=server.exist(jbq.getJbqbh(),null);
+			if(jbqxx!=null)
+			{
+				jsonResult.sendErrorMessage("该计步器已经绑定了别的牛只编号！");
+				return "infos";
+			}
+			
 			jsonResult.sendSuccessMessage((StringUtil.IsEmpty(jbq.getXh())?"新增":"更新")+"计步器信息成功！");	
 			server.saveOrUpdate(jbq);
 		}catch(Exception ex)

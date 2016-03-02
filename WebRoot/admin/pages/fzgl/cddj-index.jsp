@@ -49,14 +49,13 @@
 				<thead>
 					<tr>
 						<th>牛只编号</th>
-						<th>配种时间</th>
+						<!-- <th>配种时间</th>  -->
 						<th>编号（公牛号）</th>
 						<th>泌乳状态</th>
 						<th>产犊时间</th>
 						<th>产犊类型</th>
 						<th>产犊难易</th>
 						<th>胎位</th>
-						<th>接产员</th>
 						<th>胎儿数量</th>
 						<th width="200">操作</th>
 					</tr>
@@ -65,11 +64,28 @@
 					<s:iterator value="cdlist" status="status" id="cdxx">
 						<tr>
 							<td><s:property value="#cdxx.nzjbxx.nzbh"/></td>
+							<%/* <td>
+								<s:if test="#cdxx.nzjbxx.nzfzzt!=null">
+									<s:date name="#cdxx.nzjbxx.nzfzzt.sj" format="yyyy-MM-dd"/>
+								</s:if>
+								<s:else>
+									 -- 
+								</s:else>
+							</td>*/%>
+							<td></td>
+							<td>
+								<s:if test="#cdxx.nzjbxx.nzmrzt!=null">
+									<y:EnumLabel enumName="NZMRZT" value="${cdxx.nzjbxx.nzmrzt.zt}" />
+								</s:if>
+								<s:else>
+									 -- 
+								</s:else>		
+							</td>
+							
 							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
 							<td><s:property value="#cdxx.cdlx"/></td>
 							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
 							<td><y:EnumLabel enumName="CDTW" value="${cdxx.tw}"/></td>
-							<td><s:property value="#cdxx.jcy"/></td>
 							<td><s:property value="#cdxx.tesl"/></td>
 							<td>
 								<a onclick="edit('<s:property value="#cdxx.xh"/>')" class="fa fa-edit cr-p">修改</a>

@@ -36,10 +36,9 @@
 			<ref bean="nzlbUpdateTask"/>
 		</property>
 		<property name="cronExpression">
-			<value>0 0 0 * * ?</value>
+			<value>5 0 0 * * ?</value>
 		</property>		
 	</bean>
-	
 	
 	<bean id="nctjTask" class="org.springframework.scheduling.quartz.JobDetailBean">
 		<property name="jobClass" value="org.chonger.service.task.TongjiTask"/>

@@ -2,9 +2,13 @@ package org.chonger.service.fzgl;
 
 import java.util.List;
 
+import org.chonger.common.ConstantEnum.NZMRZT;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.fzgl.GNDJXX;
+import org.chonger.entity.nqgl.NZMRZTXX;
 import org.chonger.entity.system.User;
+import org.chonger.service.nzgl.NzmrServer;
+import org.chonger.service.nzgl.NzxxServer;
 import org.chonger.utils.CommUUID;
 import org.chonger.utils.SessionUtils;
 import org.chonger.utils.StringUtil;
@@ -22,6 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class GndjServer {
+	
+	@Autowired
+	private NzxxServer nzServer;
+	
+	@Autowired
+	private NzmrServer nrServer;
+	
 	@Autowired
 	private CommonDAO<GNDJXX> dao;
 	
@@ -116,6 +127,13 @@ public class GndjServer {
 				//牛只序号为空，表示新增，进行自动编号
 				Gnxx.setXh(CommUUID.getUUID());
 				dao.save(Gnxx);
+				
+				//牛只泌乳信息更新
+				NZMRZTXX mrxx=nrServer.findEntity(Gnxx.getNzbh());
+				if(mrxx==null)
+					mrxx=new NZMRZTXX();
+				mrxx.setZt(NZMRZT.干奶期.getValue());
+				nrServer.saveOrUpDate(Gnxx.getNzbh(), mrxx);
 			}
 			else
 				dao.saveOrUpdate(Gnxx);

@@ -2,7 +2,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form"%>
 
-
 <!doctype html>
 <html>
 	<head>
@@ -17,7 +16,7 @@
 		          		</div>
 		          	</div> -->
 		          	<div class="box_center pt5 pb5">
-		          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/yggl/ygxx.action" method="post">
+		          		<form id="frmSearch" action="${pageContext.request.contextPath}/master/fqxt/jbq.action" method="post">
 		          		<table class="form_table" border="0" cellpadding="0" cellspacing="0">
 		          			<tr>
 		          				<td>计步器编号：</td>
@@ -51,6 +50,7 @@
 		              	<th width="">计步器编号</th>
 		              	<th width="">所属控制器</th>
 		              	<th width="">牛只编号</th>
+		              	<th width="180">登记日期</th>
 		              	<th width="200">操作</th>
 		         	</tr>
 		         	<s:iterator value="jbqlst" status="status" id="jbq">
@@ -58,7 +58,9 @@
 									<td><s:property value="#jbq.jbqbh"/></td>
 									<td></td>
 									<td><s:property value="#jbq.nzjbxx.nzbh"/></td>
+									<td><s:date name="#jbq.regdate" format="yyyy-MM-dd HH:mm:ss"/></td>
 									<td>
+										<a title="计步器数据" onclick="data('<s:property value="#jbq.xh"/>')" class="fa fa-list-alt cr-p">计步器数据</a>
 										<a title="修改" onclick="edit('<s:property value="#jbq.xh"/>')" class="fa fa-edit cr-p">修改</a>
 										<a title="删除" id="comsubmit_delete" promptInfo='确认删除该条计步器信息吗？' callfunction=",deleteDone," url="${pageContext.request.contextPath}/master/fqxt/jbq!delete.action?id=<s:property value="#jbq.xh"/>" class="fa fa-remove cr-p">删除</a>
 									</td>
@@ -109,6 +111,12 @@
 	     	{
 	     		window.location.href="${pageContext.request.contextPath}/admin/pages/fqxt/jbq-add.jsp";
 	     	}
+	     	
+	     	function data(id)
+	     	{
+	     		window.location.href="${pageContext.request.contextPath}/admin/pages/fqxt/jbq-data.jsp";
+	     	}
+	     	
 	     	function deleteDone(data)
 	     	{
 	     		jsonResult(data,function(data){

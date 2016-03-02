@@ -6,6 +6,7 @@ import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
 import org.chonger.entity.nqgl.NZMRZTXX;
+import org.chonger.utils.CommUUID;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class NzmrServer {
 	@Autowired
 	private CommonDAO<NZMRZTXX> dao;
 	
+	@Autowired
+	private NzxxServer nzServer;
+	
 	/**
 	 * 只更新和保存牛只的泌乳状态信息
 	 * @param nzxx
@@ -35,7 +39,8 @@ public class NzmrServer {
 	 */
 	public void saveOrUpDate(NZJBXX nzxx,int zt)
 	{
-		NZMRZTXX _updateEntity=findEntity(nzxx.getXh());
+		//NZMRZTXX _updateEntity=findEntity(nzxx.getXh());
+		NZMRZTXX _updateEntity=findEntity(nzxx.getMrztxh());
 		if(_updateEntity!=null)
 		{
 			_updateEntity.setZt(zt);
@@ -43,10 +48,15 @@ public class NzmrServer {
 		}
 		else//新建
 		{
+			//2016-01-11 Daniel 修改创建逻辑
 			_updateEntity=new NZMRZTXX();
-			_updateEntity.setXh(nzxx.getXh());
+			//_updateEntity.setXh(nzxx.getXh());
+			_updateEntity.setXh(CommUUID.getUUID());
 			_updateEntity.setZt(zt);
 			dao.save(_updateEntity);
+			
+			nzxx.setMrztxh(_updateEntity.getXh());
+			nzServer.saveOrUpdate(nzxx);
 		}
 	}
 	
@@ -63,8 +73,14 @@ public class NzmrServer {
 	{
 		if(StringUtil.IsEmpty(mrzt.getXh()))
 		{
-			mrzt.setXh(nzxxId);
+			//2016-01-11 Daniel 修改创建逻辑
+			//mrzt.setXh(nzxxId);
+			mrzt.setXh(CommUUID.getUUID());
 			dao.save(mrzt);
+			
+			NZJBXX nzxx = nzServer.queryNZById(nzxxId);
+			nzxx.setMrztxh(mrzt.getXh());
+			nzServer.saveOrUpdate(nzxx);
 		}
 		else
 		{

@@ -49,8 +49,7 @@ public class NZMRZTXX {
 	/*关联目标的id*/
 	private String tid;
 		
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "xh")
+	@OneToOne(mappedBy="nzmrzt",fetch = FetchType.LAZY)
 	private NZJBXX nzxx;
 	
 	public NZJBXX getNzxx() {

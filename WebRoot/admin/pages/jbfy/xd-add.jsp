@@ -72,6 +72,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Yg.js"></script>
  	<script type="text/javascript">
  		showmap("疾病防疫管理 > 新增消毒信息");
  		function validata() {
@@ -136,6 +137,7 @@
 		 		}
 			}
 		}
+		loadDef(["sy","sytxt"]);
     </script>
   </body>
  </html>

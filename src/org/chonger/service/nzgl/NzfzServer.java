@@ -5,6 +5,7 @@ import java.util.List;
 import org.chonger.dao.CommonDAO;
 import org.chonger.entity.nqgl.NZFZZTXX;
 import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.utils.CommUUID;
 import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class NzfzServer {
 	
 	@Autowired
 	private CommonDAO<NZFZZTXX> dao;
+	
+	@Autowired
+	private NzxxServer nzServer;
 	
 	/**
 	 * 指保存和保存牛只的繁殖状态信息
@@ -43,10 +47,15 @@ public class NzfzServer {
 		}
 		else//新建
 		{
+			//2016-01-11 Daniel 修改创建逻辑
 			_updateEntity=new NZFZZTXX();
-			_updateEntity.setXh(nzxx.getXh());
+			//_updateEntity.setXh(nzxx.getXh());
+			_updateEntity.setXh(CommUUID.getUUID());
 			_updateEntity.setZt(zt);
 			dao.save(_updateEntity);
+			
+			nzxx.setFzztxh(_updateEntity.getXh());
+			nzServer.saveOrUpdate(nzxx);
 		}
 		
 	}
@@ -72,9 +81,14 @@ public class NzfzServer {
 			//}
 			//else//不存在繁殖状态信息
 			//{
-				fzxx.setXh(nzxxId);
+			//2016-01-11 Daniel 修改创建逻辑
+				//fzxx.setXh(nzxxId);
+			fzxx.setXh(CommUUID.getUUID());
 				dao.save(fzxx);
 			//}
+				NZJBXX nzxx = nzServer.queryNZById(nzxxId);
+				nzxx.setFzztxh(fzxx.getXh());
+				nzServer.saveOrUpdate(nzxx);
 		}
 		else
 		{

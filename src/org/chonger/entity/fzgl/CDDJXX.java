@@ -63,6 +63,9 @@ public class CDDJXX
 	@Column(name = "bz")
 	private String bz;//备注
 	
+	@Column(name = "TJJ")
+	private int tjj;//胎间距
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)
 	private NZJBXX nzjbxx;
@@ -169,6 +172,14 @@ public class CDDJXX
 
 	public void setBz(String bz) {
 		this.bz = bz;
+	}
+
+	public int getTjj() {
+		return tjj;
+	}
+
+	public void setTjj(int tjj) {
+		this.tjj = tjj;
 	}
 	
 }

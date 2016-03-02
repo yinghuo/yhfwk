@@ -54,7 +54,6 @@
               	<th width="200">最佳配种时段</th>
               	<th width="200">发情类型</th>
               	<th width="200">发现方式</th>
-              	<th width="200">发现人</th>
               	<th width="200" value="" type="1" class="order cr-p" title="降序">是否配种&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="200">操作</th>
          	</tr>
@@ -71,7 +70,6 @@
 							</s:else>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}"/></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}"/></td>
-							<td><s:property value="#fqxx.fxr"/></td>
 							<td><y:EnumLabel enumName="SFPZ" value="${fqxx.sfpz}"/></td>
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#fqxx.xh"/>')" class="fa fa-edit cr-p">修改</a>

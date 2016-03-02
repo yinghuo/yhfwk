@@ -123,6 +123,10 @@ public class DateTimeUtil {
 	public static int getDayBetween(Date beginDate,Date endDate)
 	{
 		try {
+			
+			if(null==beginDate||null==endDate)
+				return -1;
+			
 			beginDate=sdfYMD.parse(sdfYMD.format(beginDate));
 			endDate=sdfYMD.parse(sdfYMD.format(endDate)); 
 			Calendar cal = Calendar.getInstance();    

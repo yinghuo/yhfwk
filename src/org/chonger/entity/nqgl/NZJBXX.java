@@ -147,14 +147,24 @@ public class NZJBXX {
 	@Column(name="tjj")
 	private int tjj;
 	
+	/**繁殖状态序号*/
+	@Column(name="fzztxh")
+	private String fzztxh;
+	
+	/**泌乳状态序号*/
+	@Column(name="mrztxh")
+	private String mrztxh;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="js",insertable = false, updatable = false)
 	private JSJBXX jsjbxx;
 	
-	@OneToOne(mappedBy="nzxx")
+	@OneToOne
+	@JoinColumn(name = "fzztxh",insertable = false, updatable = false)
 	private NZFZZTXX nzfzzt;
 	
-	@OneToOne(mappedBy="nzxx")
+	@OneToOne
+	@JoinColumn(name = "mrztxh",insertable = false, updatable = false)
 	private NZMRZTXX nzmrzt;
 	
 	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
@@ -520,6 +530,22 @@ public class NZJBXX {
 
 	public void setJbqxx(JBQXX jbqxx) {
 		this.jbqxx = jbqxx;
+	}
+
+	public String getFzztxh() {
+		return fzztxh;
+	}
+
+	public void setFzztxh(String fzztxh) {
+		this.fzztxh = fzztxh;
+	}
+
+	public String getMrztxh() {
+		return mrztxh;
+	}
+
+	public void setMrztxh(String mrztxh) {
+		this.mrztxh = mrztxh;
 	}
 
 	

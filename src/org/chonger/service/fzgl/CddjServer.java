@@ -107,7 +107,7 @@ public class CddjServer {
 			{
 				//牛只序号为空，表示新增，进行自动编号
 				Cdxx.setXh(CommUUID.getUUID());
-				dao.save(Cdxx);
+				
 				
 				//modify 2015-06-05	Daniel	1：添加产犊业务逻辑
 				NZJBXX _nzxx=nzServer.queryNZById(Cdxx.getNzbh());
@@ -117,14 +117,16 @@ public class CddjServer {
 				_nzxx.setTc(_nzxx.getTc()+1);
 				_nzxx.setLb(NZLB.成年母牛.getValue()+"");
 				_nzxx.setQq(0);//清除情期
-				nzServer.saveOrUpdate(_nzxx);
+				
 				
 				//牛只状态进入泌乳期
 				//_nzlb.setLb(ConstantEnum.NZLBZT.泌乳期.getValue());
 				if(_fzxx==null)
 					_fzxx=new NZFZZTXX();
 				_fzxx.setZt(NZFZZT.围产后期.getValue());
-				_fzxx.setSj(Cdxx.getCdsj());
+				_fzxx.setSj(Cdxx.getCdsj());//时间更新为产犊时间
+				_nzxx.setTjj(_fzxx.getDay());//Daniel 增加胎间距
+				Cdxx.setTjj(_fzxx.getDay());//Daniel 胎间距应该保留历史在产犊记录中
 				_fzxx.setDay(0);//
 				
 				fzServer.saveOrUpDate(Cdxx.getNzbh(), _fzxx);
@@ -140,6 +142,8 @@ public class CddjServer {
 				
 				mrServer.saveOrUpDate(Cdxx.getNzbh(), _mrzt);
 				
+				dao.save(Cdxx);
+				nzServer.saveOrUpdate(_nzxx);
 				//lbServer.saveOrUpdate(_nzlb,_nzxx.getXh());
 			}
 			else

@@ -31,7 +31,7 @@
    			<td><a href="#" >详情</a></td>
    		</tr>
    		<tr>
-   			<td>当日发情</td>
+   			<td>上一日发情</td>
    			<td><s:property value="tjxx.fq1"/></td>
    			<!-- <td><s:property value="tjxx.fq1jcl"/>%</td> -->
    			<td>0</td>
@@ -53,24 +53,24 @@
   	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   		<tr>
      		<th></th>
-       		<th colspan="2">本牧场(<s:property value="tjxx.zts"/>头)</th>
-         	<th colspan="2">同规模牧场(0头)</th>
+       		<th colspan="1">本牧场(<s:property value="tjxx.zts"/>头)</th>
+         	<th colspan="1">同规模牧场(0头)</th>
          	<th></th>
    		</tr>
    		<tr>
    			<th>项目</th>
    			<th>数量</th>
-   			<th>参配率（30日）</th>
+   			<!-- <th>参配率（30日）</th> -->
    			<th>数量</th>
-   			<th>参配率（30日）</th>
+   			<!-- <th>参配率（30日）</th> -->
    			<th>改进方案</th>
    		</tr>
    		<tr>
    			<td>出生牛犊(30日)</td>
    			<td><s:property value="tjxx.cd30"/></td>
-   			<td><s:property value="tjxx.cpl30"/>%</td>
+   			<%//<td><s:property value="tjxx.cpl30"/>%</td> %>
    			<td>0</td>
-   			<td>0%</td>
+   			<%//<td>0%</td> %>
    			<td><a href="#" >详情</a></td>
    		</tr>
   	</table>

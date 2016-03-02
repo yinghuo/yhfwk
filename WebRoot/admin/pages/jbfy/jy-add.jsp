@@ -98,6 +98,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSubmit2.0.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YSelect.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/YWidget.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/Yg.js"></script>
  	<script type="text/javascript">
      	showmap("疾病防疫管理 > 新增检疫信息");
      	function validata() {
@@ -201,6 +202,7 @@
 			}
 			nzselect.hiden();
 		}
+		loadDef(["sy","sytxt"]);
     </script>
   </body>
  </html>
