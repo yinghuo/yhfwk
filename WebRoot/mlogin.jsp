@@ -15,10 +15,10 @@
 		<div id="welcome">
 			欢迎使用智能云牧场管理系统，咨询电话<span style="margin:0px 5px;">010-51957160</span>
 		</div>
-		<div id="back">
+		<!-- <div id="back">
 			<a href="#">快速注册</a>&nbsp;&nbsp; | &nbsp;&nbsp;
 			<a href="#">帮助</a>
-		</div>
+		</div> -->
 	</div>
 	<div id="login_center">
 		<div id="login_area">
@@ -43,6 +43,40 @@
 		Copyright © 2015 <a href="#" target="_blank"><strong>北京创捷世纪科技有限公司</strong></a> All rights reserved .
 	</div>
 	<script type="text/javascript">
+		//自动登录
+		var userInfo = injectedObject.load();
+		if(userInfo && userInfo.length>0){
+			//自动登录
+			var userInfos=userInfo.split("/");
+			if(userInfos.length>1){
+				$("#sub_btn").val("自动登录中..");
+				$.ajax({
+					url:"${pageContext.request.contextPath}/login.action",
+					type:"post",
+					data:{loginName:userInfos[0],loginPwd:userInfos[1]},
+					dataType:"json",
+					success:function(data){
+						if(data["login"]=="fail")
+						{
+							$("#sub_btn").html("登&nbsp;&nbsp;录");
+							alert(data["msg"]);
+						}else if(data["login"]=="access")
+						{
+							window.location="${pageContext.request.contextPath}/m/m!access.action";
+						}else
+						{
+							$("#sub_btn").html("登&nbsp;&nbsp;录");
+							alert("异常代码！");
+						}
+					},
+					error:function(data){
+						$("#sub_btn").html("登&nbsp;&nbsp;录");
+					}
+				}); 
+			}
+			
+		}
+		
 		function login()
 		  	{
 		  		if($("#username").val().length<=0)
@@ -63,6 +97,10 @@
 							alert(data["msg"]);
 						}else if(data["login"]=="access")
 						{
+							//调用保存 
+							var name=$("#username").val();
+							var pwd=$("#pwd").val()
+							injectedObject.save(name,pwd);
 							window.location="${pageContext.request.contextPath}/m/m!access.action";
 						}else
 						{

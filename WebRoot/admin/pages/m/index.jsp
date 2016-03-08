@@ -181,37 +181,39 @@
 	     	});
      	}
     	
-    	$.ajax({
-     		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadType.action?t="+new Date().getTime(),
-      		type:"get",
-          	dataType:"json",
-     		success:function(data){
-          		if(data)
-          		{
-					if(data["error"]==0)
-					{
-						var iCount = 0;
-						iCount = data["icount"];
-						var tcount=data["tcount"];
-						//遍历列表
-						data=data["data"];
-						jsonData=new Array();
-						for(var i=0;i<data.length;i++)
-						{
-							jsonData[i]=new Array();
-							jsonData[i][0]=data[i][0];
-							jsonData[i][1]=data[i][1];
-						}
-						
-						createChart(jsonData);
-					}          			
-          			else
-          			{
-          				alert(data["msg"]);
-          			}
-          		}	
-        	}
-     	});
+    	function loadChartInfo(){
+    		$.ajax({
+         		url:"${pageContext.request.contextPath}/master/nzgl/nzxx!loadType.action?t="+new Date().getTime(),
+          		type:"get",
+              	dataType:"json",
+         		success:function(data){
+              		if(data)
+              		{
+    					if(data["error"]==0)
+    					{
+    						var iCount = 0;
+    						iCount = data["icount"];
+    						var tcount=data["tcount"];
+    						//遍历列表
+    						data=data["data"];
+    						jsonData=new Array();
+    						for(var i=0;i<data.length;i++)
+    						{
+    							jsonData[i]=new Array();
+    							jsonData[i][0]=data[i][0];
+    							jsonData[i][1]=data[i][1];
+    						}
+    						
+    						createChart(jsonData);
+    					}          			
+              			else
+              			{
+              				alert(data["msg"]);
+              			}
+              		}	
+            	}
+         	});
+    	}
     	
     	//加载数据
     	function loadDeviceInfo(){
@@ -281,11 +283,12 @@
          	});
     	}
     	
-
+    	loadChartInfo();
     	loadDeviceInfo();
     	loadInfo();
     	
     	var loadDeviceTimer=setInterval(function(){
+    		loadChartInfo();
     		loadDeviceInfo();
     		loadInfo();
     	}, 1000*60);
