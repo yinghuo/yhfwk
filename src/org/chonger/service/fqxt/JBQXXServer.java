@@ -48,6 +48,11 @@ public class JBQXXServer {
 		return dao.find(getQueryString(null,null));
 	}
 	
+	
+	public long getCount(){
+		return dao.getCount("select count(*) "+getQueryString(null,null));
+	}
+	
 	/**
 	 * 判断指定的绑定是否存在
 	 * @param jbq

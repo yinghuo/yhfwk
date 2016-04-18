@@ -192,13 +192,27 @@ public class ConstantEnum {
 	public static enum NZFZZT implements BaseEnum<Integer>{
 		
 		发情期(0),
+		/**
+		 * 妊娠前6个月
+		 */
 		妊娠前期(1),
+		/**
+		 * 妊娠7个月至产犊
+		 */
 		妊娠后期(2),
-		围产前期(3),
-		围产后期(4),
-		泌乳期(5),
+//		围产前期(3),
+//		围产后期(4),
+//		泌乳期(5),
+		/**
+		 * 发情配种后未孕
+		 */
 		空怀期(6),
-		流产(7);
+		流产(7),
+		预产期(8),
+		/**
+		 * Daniel 添加，产牛后状态
+		 */
+		恢复期(9);
 		
 		private int value;
 		NZFZZT(int value){this.value=value;}
@@ -212,10 +226,30 @@ public class ConstantEnum {
 	 */
 	public static enum NZMRZT implements BaseEnum<Integer>{
 		
+		/**
+		 * 分娩后第16天至第100天
+		 */
 		泌乳盛期(0),
+		/**
+		 * 分娩后101天到200天
+		 */
 		泌乳中期(1),
+		/**
+		 * 分娩后201天到停奶前1天
+		 */
 		泌乳后期(2),		
-		干奶期(3);
+		/**
+		 * 分娩日期之前60天进入干奶期
+		 */
+		干奶期(3),
+		/**
+		 * 产前15天
+		 */
+		围产前期(4),
+		/**
+		 * 产后15天
+		 */
+		围产后期(5);
 		
 		private int value;
 		NZMRZT(int value){this.value=value;}
@@ -276,7 +310,10 @@ public class ConstantEnum {
 	 */
 	public static enum NZZT implements BaseEnum<Integer>{
 		
-		正常(0),离场(1),淘汰(2);
+		正常(0),
+		离场(1),
+		淘汰(2)
+		;
 		
 		private int value;
 		NZZT(int value){this.value=value;}

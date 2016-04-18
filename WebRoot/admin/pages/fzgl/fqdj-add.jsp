@@ -236,7 +236,7 @@
 			nzselect.hiden();
 		}
 		
-		loadDef(["fxr","fxrtxt"]);
+		loadDefName(["fxr","fxrtxt"]);
 		
 	</script>
 </body>

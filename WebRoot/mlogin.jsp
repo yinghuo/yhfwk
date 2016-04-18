@@ -15,9 +15,9 @@
 		<div id="welcome">
 			欢迎使用智能云牧场管理系统，咨询电话<span style="margin:0px 5px;">010-51957160</span>
 		</div>
-		<!-- <div id="back">
+		 <!-- <div id="back">
 			<a href="#">快速注册</a>&nbsp;&nbsp; | &nbsp;&nbsp;
-			<a href="#">帮助</a>
+			<a href="javascript:test();">帮助</a>
 		</div> -->
 	</div>
 	<div id="login_center">
@@ -43,17 +43,25 @@
 		Copyright © 2015 <a href="#" target="_blank"><strong>北京创捷世纪科技有限公司</strong></a> All rights reserved .
 	</div>
 	<script type="text/javascript">
+		
+		/* function test(){
+			var sd=injectedObject.show();
+			alert("保存路径："+sd);
+		} */
+	
 		//自动登录
 		var userInfo = injectedObject.load();
+		
 		if(userInfo && userInfo.length>0){
 			//自动登录
 			var userInfos=userInfo.split("/");
+			//alert("自动登录信息："+userInfo+",用户名："+userInfos[0]+",密码："+userInfos[1]);
 			if(userInfos.length>1){
 				$("#sub_btn").val("自动登录中..");
 				$.ajax({
 					url:"${pageContext.request.contextPath}/login.action",
 					type:"post",
-					data:{loginName:userInfos[0],loginPwd:userInfos[1]},
+					data:"loginName="+userInfos[0]+"&loginPwd="+userInfos[1],
 					dataType:"json",
 					success:function(data){
 						if(data["login"]=="fail")
@@ -62,7 +70,7 @@
 							alert(data["msg"]);
 						}else if(data["login"]=="access")
 						{
-							window.location="${pageContext.request.contextPath}/m/m!access.action";
+							window.location="${pageContext.request.contextPath}/m/m!access.action?"+new Date().getTime();
 						}else
 						{
 							$("#sub_btn").html("登&nbsp;&nbsp;录");
@@ -100,8 +108,9 @@
 							//调用保存 
 							var name=$("#username").val();
 							var pwd=$("#pwd").val()
-							injectedObject.save(name,pwd);
-							window.location="${pageContext.request.contextPath}/m/m!access.action";
+							var ret = injectedObject.save(name,pwd);
+							//alert("保存结果："+ret);
+							window.location="${pageContext.request.contextPath}/m/m!access.action?"+new Date().getTime();
 						}else
 						{
 							alert("异常代码！");

@@ -15,7 +15,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
- * 产犊登记信息实体类
+ * 干奶信息实体类
  * 
  * @author Daniel
  * @create 2015-05-17

@@ -114,6 +114,13 @@ public class CddjServer {
 				NZFZZTXX _fzxx=_nzxx.getNzfzzt();
 				//NZLBXX _nzlb=_nzxx.getNzlbxx();
 				//更新牛只的胎次数量、状态进入成年母牛
+				//@modify 2016-03-23 Daniel 修改胎间距计算方式，如果胎次为0 则胎间距为0，后面的为繁殖天数-上次胎间距
+				if(_nzxx.getTc()<=0){
+					_nzxx.setTjj(0);
+				}else{
+					_nzxx.setTjj(_fzxx.getDay()-_nzxx.getTjj());//Daniel 增加胎间距
+				}
+				
 				_nzxx.setTc(_nzxx.getTc()+1);
 				_nzxx.setLb(NZLB.成年母牛.getValue()+"");
 				_nzxx.setQq(0);//清除情期
@@ -123,9 +130,9 @@ public class CddjServer {
 				//_nzlb.setLb(ConstantEnum.NZLBZT.泌乳期.getValue());
 				if(_fzxx==null)
 					_fzxx=new NZFZZTXX();
-				_fzxx.setZt(NZFZZT.围产后期.getValue());
+//				_fzxx.setZt(NZFZZT.围产后期.getValue());
+				_fzxx.setZt(NZFZZT.恢复期.getValue());
 				_fzxx.setSj(Cdxx.getCdsj());//时间更新为产犊时间
-				_nzxx.setTjj(_fzxx.getDay());//Daniel 增加胎间距
 				Cdxx.setTjj(_fzxx.getDay());//Daniel 胎间距应该保留历史在产犊记录中
 				_fzxx.setDay(0);//
 				
@@ -136,9 +143,11 @@ public class CddjServer {
 				if(_mrzt==null)
 					_mrzt=new NZMRZTXX();
 				
-				_mrzt.setZt(NZMRZT.泌乳盛期.getValue());
+				//产犊后进入围产后期
+				_mrzt.setZt(NZMRZT.围产后期.getValue());
 				_mrzt.setDay(0);
 				_mrzt.setSj(Cdxx.getCdsj());
+				_mrzt.setNzxh(_nzxx.getXh());
 				
 				mrServer.saveOrUpDate(Cdxx.getNzbh(), _mrzt);
 				

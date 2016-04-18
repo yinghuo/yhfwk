@@ -119,6 +119,7 @@ public class LoginAction extends ActionSupport {
 			infos.put("msg","请输入登陆密码！");
 			return "success";
 		}
+		
 		/*if(StringUtil.IsEmpty(loginVcode))
 		{
 			infos.clear();

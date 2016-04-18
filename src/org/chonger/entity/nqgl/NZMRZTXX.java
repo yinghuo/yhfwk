@@ -24,6 +24,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "nzmrztxx")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class NZMRZTXX {
+	public String getNzxh() {
+		return nzxh;
+	}
+
+	public void setNzxh(String nzxh) {
+		this.nzxh = nzxh;
+	}
+
 	@Id
 	@Column(name = "xh")
 	/**序号*/
@@ -48,7 +56,11 @@ public class NZMRZTXX {
 	@Column(name="tid")
 	/*关联目标的id*/
 	private String tid;
-		
+	
+	//牛只序号
+	@Column(name="nzxh")
+	private String nzxh;
+	
 	@OneToOne(mappedBy="nzmrzt",fetch = FetchType.LAZY)
 	private NZJBXX nzxx;
 	

@@ -62,6 +62,7 @@ public class TongjiTask extends QuartzJobBean  {
 						updateFQ1(tjxx);
 						updateFQTime(tjxx);
 						updateCD30(tjxx);
+						updateCN1(tjxx);
 						
 						saveOrUpdate(tjxx);
 					}
@@ -242,10 +243,37 @@ public class TongjiTask extends QuartzJobBean  {
 	private void updateCN1(NCTJXX tjxx)
 	{
 		//获取当前1天之前的时间
-		Date date1=DateTimeUtil.addDate(new Date(), 0, 0, -1);		
-		//String hql="select count(*) from FQDJXX model where model.ncbh='"+tjxx.getNcxh()+"' and model.fqsj = '"+date1+"'";
+		Date date1=DateTimeUtil.addDate(new Date(), 0, 0, -1);
+		String beginDate = DateTimeUtil.formatDateToString(DateTimeUtil.getDayBegin(date1));
+		String endDate = DateTimeUtil.formatDateToString(DateTimeUtil.getDayEnd(date1));
+		String hql="select sum(model.rc) from GTCNXX model where model.ncbh='"+tjxx.getNcxh()+"' and model.jnrq >= '"+beginDate+"' && model.jnrq <= '"+endDate+"'";
 		
+		if(sessionFactory!=null)
+		{
+			Query query=session.createQuery(hql);
+			
+			long nzCount=0;
+			
+			Object obj=query.uniqueResult();
+			if(obj!=null)
+				nzCount=((Number)obj).longValue();//获取执行的个数
+			
+			tjxx.setCnz((double)nzCount);
+		}
 		
-		
+		//查询最多
+		hql="select max(model.rc) from GTCNXX model where model.ncbh='"+tjxx.getNcxh()+"' and model.jnrq >= '"+beginDate+"' && model.jnrq <= '"+endDate+"'";
+		if(sessionFactory!=null)
+		{
+			Query query=session.createQuery(hql);
+			
+			long nzCount=0;
+			
+			Object obj=query.uniqueResult();
+			if(obj!=null)
+				nzCount=((Number)obj).longValue();
+			
+			tjxx.setCn1value((double)nzCount);
+		}
 	}
 }

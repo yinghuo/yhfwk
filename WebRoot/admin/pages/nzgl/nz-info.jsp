@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form" %>
 <%@ taglib prefix="y" uri="http://open.yinghuo.info/taglib/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!doctype html>
 <html>
@@ -82,8 +83,7 @@
 				<div class="box_top tab tab_title">
 					<a class="ml10 pa5 cr-p activate" tab="fqjl">发情记录</a>
 					<a class="ml10 pa5 cr-p" tab="pzjl">配种记录</a>
-					<a class="ml10 pa5 cr-p" tab="cjjl">初检记录</a>
-					<a class="ml10 pa5 cr-p" tab="fjjl">复检记录</a>
+					<a class="ml10 pa5 cr-p" tab="cjjl">孕检记录</a>
 					<a class="ml10 pa5 cr-p" tab="lcjl">流产记录</a>
 					<a class="ml10 pa5 cr-p" tab="cdjl">产犊记录</a>
 					<a class="ml10 pa5 cr-p" tab="gnjl">干奶记录</a>
@@ -161,7 +161,7 @@
 				</table>
 			</div>
 			<%//复检信息 %>
-			<div class="tab-view">
+			<%/*<div class="tab-view">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
 					<tr>
 						<th width="120">复检日期</th>
@@ -176,7 +176,7 @@
 						</tr>
 					</s:iterator>
 				</table>
-			</div>
+			</div>*/%>
 			<%//流产信息 %>
 			<div class="tab-view">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
@@ -230,6 +230,14 @@
 						<th width="120">使用药物</th>
 						<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.gnxxList" status="status" id="gnxx">
+						<tr>
+							<td><s:date name="#gnxx.gnrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#gnxx.gnff"/></td>
+							<td><s:property value="#gnxx.syyw"/></td>
+							<td><s:property value="#gnxx.sy"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 			<%//产奶信息 %>
@@ -248,7 +256,7 @@
 							<td><s:property value="#cnxx.scl"/></td>
 							<td><s:property value="#cnxx.xcl"/></td>
 							<td><s:property value="#cnxx.wcl"/></td>
-							<td><s:property value="#cnxx.scl+#cnxx.xcl+#cnxx.wcl"/></td>
+							<td><fmt:formatNumber value="${cnxx.scl+cnxx.xcl+cnxx.wcl}" pattern="#,###.00" /></td>
 						</tr>
 					</s:iterator>
 				</table>
@@ -267,6 +275,19 @@
 		              	<th width="200">是否弃奶</th>
 		              	<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.jbxxList" status="status" id="jbxx">
+						<tr>
+							<td><s:date name="#jbxx.fbrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#jbxx.jbzl"/></td>
+							<td><s:property value="#jbxx.jbmc"/></td>
+							<td><s:property value="#jbxx.zyzz"/></td>
+							<td><s:property value="#jbxx.fbyy"/></td>
+							<td><s:property value="#jbxx.yzcd"/></td>
+							<td><s:property value="#jbxx.czqk"/></td>
+							<td><y:EnumLabel enumName="SFPZ" value="${jb.fsqn}"/></td>
+							<td><s:property value="#jbxx.sys"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 			<%//免疫信息 %>
@@ -282,6 +303,18 @@
 						<th width="200">结果</th>
 						<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.myxxList" status="status" id="myxx">
+						<tr>
+							<td><s:date name="#myxx.myrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#myxx.myxm"/></td>
+							<td><s:property value="#myxx.ymmc"/></td>
+							<td><s:property value="#myxx.syjl"/></td>
+							<td><s:property value="#myxx.ph"/></td>
+							<td><s:property value="#myxx.zzs"/></td>
+							<td><s:property value="#myxx.jg"/></td>
+							<td><s:property value="#myxx.sy"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 			<%//检疫信息 %>
@@ -299,6 +332,20 @@
 						<th width="200">结果</th>
 						<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.jyxxList" status="status" id="jyxx">
+						<tr>
+							<td><s:date name="#jyxx.jyrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#jyxx.jyyl"/></td>
+							<td><s:property value="#jyxx.jyxm"/></td>
+							<td><s:property value="#jyxx.ymmc"/></td>
+							<td><s:property value="#jyxx.jylx"/></td>
+							<td><s:property value="#jyxx.syjl"/></td>
+							<td><s:property value="#jyxx.ph"/></td>
+							<td><s:property value="#jyxx.zzs"/></td>
+							<td><s:property value="#jyxx.jg"/></td>
+							<td><s:property value="#jyxx.sy"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 			<%//驱虫信息 %>
@@ -314,6 +361,18 @@
 						<th width="200">驱虫效果</th>
 						<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.qcxxList" status="status" id="qcxx">
+						<tr>
+							<td><s:date name="#qcxx.qcrq" format="yyyy年MM月dd日" /></td>
+							<td><s:property value="#qcxx.qcff"/></td>
+							<td><s:property value="#qcxx.ywmc"/></td>
+							<td><s:property value="#qcxx.syjl"/></td>
+							<td><s:property value="#qcxx.ph"/></td>
+							<td><s:property value="#qcxx.zzs"/></td>
+							<td><s:property value="#qcxx.qcxg"/></td>
+							<td><s:property value="#qcxx.sy"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 			<%//护蹄修蹄信息 %>
@@ -327,6 +386,16 @@
 						<th width="200">右后肢</th>
 						<th width="200">兽医</th>
 					</tr>
+					<s:iterator value="nz.htxtList" status="status" id="htxx">
+						<tr>
+							<td><s:date name="#htxx.xtrq" format="yyyy年MM月dd日" /></td>
+							<td><y:EnumLabel enumName="HTXT" value="${htxx.zq}" /></td>
+							<td><y:EnumLabel enumName="HTXT" value="${htxx.zh}" /></td>
+							<td><y:EnumLabel enumName="HTXT" value="${htxx.yq}" /></td>
+							<td><y:EnumLabel enumName="HTXT" value="${htxx.yh}" /></td>
+							<td><s:property value="#htxx.sy"/></td>
+						</tr>
+					</s:iterator>
 				</table>
 			</div>
 		</div>

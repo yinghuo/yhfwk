@@ -161,7 +161,7 @@ public class PzdjServer {
 //				_lbxx.setTssj(null);
 //				lbServer.saveOrUpdate(_lbxx,Pzxx.getNzbh());
 				
-				NZFZZTXX fzzt=fzServer.findEntity(Pzxx.getNzbh());
+				NZFZZTXX fzzt=nzxx.getNzfzzt();//fzServer.findEntity(Pzxx.getNzbh());
 				if(fzzt==null)
 					fzzt=new NZFZZTXX();
 				fzzt.setSj(Pzxx.getPzsj());

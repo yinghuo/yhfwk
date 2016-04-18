@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.chonger.entity.nqgl.NZJBXX;
+import org.chonger.utils.DateTimeUtil;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 /**
@@ -27,6 +28,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class FQDJXX
 {
+	public int getSjzt() {
+		return sjzt;
+	}
+
+	public void setSjzt(int sjzt) {
+		this.sjzt = sjzt;
+	}
+
 	@Id
 	@Column(name = "xh")
 	private String xh;//序号
@@ -67,6 +76,9 @@ public class FQDJXX
 	@Column(name = "bz")
 	private String bz;//备注
 	
+	@Column(name = "sjzt")
+	private int sjzt;//数据状态 0 显示 1隐藏
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)
 	private NZJBXX nzjbxx;
@@ -106,7 +118,18 @@ public class FQDJXX
 	public Date getFqsj() {
 		return fqsj;
 	}
-
+	
+	//添加+处理
+//	public void setFqsj(String fqsj) {
+//		System.out.println("发情时间："+fqsj);
+//		if(fqsj!=null && fqsj.length() > 0){
+//			fqsj = fqsj.replaceAll("+", " ");
+//			this.fqsj = DateTimeUtil.parseDate2YMDHMS(fqsj);
+//		}else{
+//			this.fqsj = null;
+//		}
+//	}
+	
 	public void setFqsj(Date fqsj) {
 		this.fqsj = fqsj;
 	}

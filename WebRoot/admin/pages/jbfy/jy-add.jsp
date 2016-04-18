@@ -202,7 +202,7 @@
 			}
 			nzselect.hiden();
 		}
-		loadDef(["sy","sytxt"]);
+		loadDefName(["sy","sytxt"]);
     </script>
   </body>
  </html>

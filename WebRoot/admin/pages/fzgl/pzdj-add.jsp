@@ -227,7 +227,7 @@
 			nzselect.hiden();
 		}*/
 		
-		loadDef(["pzy","pzytxt"]);
+		loadDefName(["pzy","pzytxt"]);
 		
 	</script>
 </body>

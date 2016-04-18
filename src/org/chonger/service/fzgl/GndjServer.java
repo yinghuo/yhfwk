@@ -133,6 +133,7 @@ public class GndjServer {
 				if(mrxx==null)
 					mrxx=new NZMRZTXX();
 				mrxx.setZt(NZMRZT.干奶期.getValue());
+				mrxx.setNzxh(Gnxx.getNzbh());
 				nrServer.saveOrUpDate(Gnxx.getNzbh(), mrxx);
 			}
 			else

@@ -152,7 +152,7 @@
 			nzselect.hiden();
 		}*/
      	
-     	loadDef(["cjy","cjytxt"]);
+		loadDefName(["cjy","cjytxt"]);
      	
      </script>
   </body>

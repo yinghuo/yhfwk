@@ -60,6 +60,8 @@ public class LCXX
 	@Column(name = "bz")
 	private String bz;//备注
 	
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)
 	private NZJBXX nzjbxx;

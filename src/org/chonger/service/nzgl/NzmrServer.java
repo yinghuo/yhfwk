@@ -53,6 +53,7 @@ public class NzmrServer {
 			//_updateEntity.setXh(nzxx.getXh());
 			_updateEntity.setXh(CommUUID.getUUID());
 			_updateEntity.setZt(zt);
+			_updateEntity.setNzxh(nzxx.getXh());
 			dao.save(_updateEntity);
 			
 			nzxx.setMrztxh(_updateEntity.getXh());

@@ -203,7 +203,7 @@
 			nzselect.hiden();
 		}
 		
-		loadDef([["hsr","hsrtxt"],["fxr","fxrtxt"]]);
+		loadDefName([["hsr","hsrtxt"],["fxr","fxrtxt"]]);
 		
      </script>
   </body>

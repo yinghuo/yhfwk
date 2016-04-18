@@ -129,3 +129,8 @@ html,body{
 .msg-error{
 	color:#CC0033;
 }
+
+.pztime{
+	width:20%!important;
+	font-size:12px;
+}

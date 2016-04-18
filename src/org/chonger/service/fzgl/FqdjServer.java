@@ -132,6 +132,9 @@ public class FqdjServer {
 			Fqxx.setPzsj(tssj);
 			Fqxx.setPzsj1(tssj1);
 			
+
+			NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
+			
 			if(StringUtil.IsEmpty(Fqxx.getXh()))
 			{
 				//牛只序号为空，表示新增，进行自动编号
@@ -139,7 +142,6 @@ public class FqdjServer {
 				dao.save(Fqxx);
 				
 				//更新牛只情期数据
-				NZJBXX nzxx=nzServer.queryNZById(Fqxx.getNzbh());
 				nzxx.setQq(nzxx.getQq()+1);
 				nzServer.saveOrUpdate(nzxx);
 				
@@ -161,7 +163,7 @@ public class FqdjServer {
 			
 			//更新繁殖状态信息
 			//牛只在新增发情登记的同时，需要更新繁殖状态为发情期
-			NZFZZTXX fzzt=fzServer.findEntity(Fqxx.getNzbh());
+			NZFZZTXX fzzt=nzxx.getNzfzzt();//fzServer.findEntity(Fqxx.getNzbh());
 			if(fzzt==null)
 				fzzt=new NZFZZTXX();
 			fzzt.setZt(NZFZZT.发情期.getValue());

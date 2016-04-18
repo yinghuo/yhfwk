@@ -147,14 +147,19 @@ public class RjcjServer {
 					if(_nzxx.getTc()<=0)
 					{
 						_nzxx.setLb(ConstantEnum.NZLB.青年母牛.getValue()+"");
-						nzServer.saveOrUpdate(_nzxx);
 					}
+					
+					//@add 2016-03-23 Daniel 添加配孕天数记录
+					_nzxx.setPyts(DateTimeUtil.getDayBetweenHms(_fzzt.getSj(), Rjxx.getCjrq()));
+					nzServer.saveOrUpdate(_nzxx);
+					
 					
 					//更新牛只列别信息 已初检
 					//_nzlb.setLb(ConstantEnum.NZLBZT.妊娠前期.getValue());
 					//_nzlb.setLb(ConstantEnum.NZLBZT.已初检.getValue());
 					_fzzt.setZt(NZFZZT.妊娠前期.getValue());
 					_fzzt.setBj(1);//已初检
+					
 					
 					//计算预产期
 					//配种时间开始+280天预产期

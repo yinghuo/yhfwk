@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!doctype html>
 <html>
@@ -90,13 +91,13 @@
    		</tr>
    		<tr>
    			<td>上一日总产奶量</td>
-   			<td>0 Kg</td><!-- 整个牛群总产量 -->
-   			<td>0 Kg</td>
+   			<td><fmt:formatNumber value="${tjxx.cnz}" pattern="#,###.00" /> Kg</td><!-- 整个牛群总产量 -->
+   			<td>.00 Kg</td>
    		</tr>
    		<tr>
    			<td>单产状元</td>
-   			<td>0 Kg</td><!-- 牛号+上一日总产量 -->
-   			<td>0 Kg</td>
+   			<td><fmt:formatNumber value="${tjxx.cn1value}" pattern="#,###.00" /> Kg</td><!-- 牛号+上一日总产量 -->
+   			<td>.00 Kg</td>
    		</tr>
   	</table>
   	

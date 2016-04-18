@@ -51,7 +51,7 @@
               	<th width="120">配种时间</th>
               	<th>情期</th>
               	<th>繁殖状态</th>
-              	<th>繁殖天数</th>
+              	<%//<th>繁殖天数</th> %>
               	<th>冻精编号</th>
               	<th>冻精类型</th>
               	<th width="200">操作</th>
@@ -61,15 +61,23 @@
 					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
 					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
 					<td><s:property value="#pzxx.nzjbxx.qq"/></td>
-					<td><y:EnumLabel enumName="NZFZZT" value="${pzxx.nzjbxx.nzfzzt.zt}" /></td>
 					<td>
+						<y:EnumLabel enumName="NZFZZT" value="${pzxx.nzjbxx.nzfzzt.zt}" />
+						(<s:if test="#pzxx.nzjbxx.nzfzzt!=null">
+							<s:property value="#pzxx.nzjbxx.nzfzzt.day"/>天
+						</s:if>
+						<s:else>
+							0天
+						</s:else>)
+					</td>
+					<%/*<td>
 						<s:if test="#pzxx.nzjbxx.nzfzzt!=null">
 							<s:property value="#pzxx.nzjbxx.nzfzzt.day"/>天
 						</s:if>
 						<s:else>
 							0天
 						</s:else>
-					</td>
+					</td>*/%>
 					<td><s:property value="#pzxx.djbh"/></td>
 					<td><s:property value="#pzxx.djlx"/></td>
 					<td>

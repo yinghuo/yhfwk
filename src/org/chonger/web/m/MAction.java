@@ -72,6 +72,7 @@ public class MAction  extends ActionSupport {
 		
 		//获取当前登录的用户信息，然后根据用户的角色加载用户菜单
 		Object Userobj=ServletActionContext.getRequest().getSession().getAttribute(UserManager.USERSESSIONKEY);
+		System.out.println("移动端登录成功："+Userobj);
 		User user=null;
 		if(Userobj!=null)
 		{
@@ -175,11 +176,13 @@ public class MAction  extends ActionSupport {
 						
 						item.put("zt", tsxx.getSffq()+"");
 						
+						item.put("pz", "---- ---- <br /> ---- ----");
+						
 						//提示时间
 						if(!StringUtils.isEmptyOrNull(tsxx.getFqid())){
 							FQDJXX fqxx=fqServer.getFqxxById(tsxx.getFqid());
 							if(fqxx!=null){
-								item.put("pz", DateTimeUtil.formatDateToString(fqxx.getPzsj())+"\\n"+DateTimeUtil.formatDateToString(fqxx.getPzsj1()));
+								item.put("pz", DateTimeUtil.formatDateToString(fqxx.getPzsj())+"<br />"+DateTimeUtil.formatDateToString(fqxx.getPzsj1()));
 							}
 						}
 						
@@ -208,4 +211,5 @@ public class MAction  extends ActionSupport {
 		}
 		return "infos";
 	}
+
 }

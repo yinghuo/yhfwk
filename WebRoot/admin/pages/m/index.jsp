@@ -22,7 +22,7 @@
     			设备连接
     		</div>
     		<div>
-    			<img src="${pageContext.request.contextPath}/images/BallGreen.png" class="wan" width="48" height="48"/>
+    			<img id="netLight" src="${pageContext.request.contextPath}/images/BallGreen.png" class="wan" width="48" height="48"/>
     			网络连接
     		</div>
     	</div>
@@ -125,11 +125,23 @@
     	$(".ad-img").css("height",adHeight);
     	$(".ad-img").css("width","33%");
     	
+    	var imgsrc="${pageContext.request.contextPath}/images/";
+    	var conLightImgSrc=imgsrc+"BallGreen.png";
+    	var errLightImgSrc=imgsrc+"BallRed.png";
+    	
+    	//网络信号控制
+    	function lightNet(con){
+    		document.getElementById("netLight").src=con?conLightImgSrc:errLightImgSrc;
+    		location.reload();
+    	}
+    	
+    	//读取牛场个数
     	$.ajax({
 			url:"${pageContext.request.contextPath}/info!count.action?t="+new Date().getTime(),
 			type:"get",
 			timeout:1200000,
 			success:function(data){
+				lightNet(true);
 				if(data)
 				{
 					var count=data["count"];
@@ -143,9 +155,38 @@
 						$("#count").html(countStr);
 					}
 				}
+			},
+			error:function(){
+				lightNet(false);
 			}
 		});
     	
+    	//读取计步器信息
+    	$.ajax({
+			url:"${pageContext.request.contextPath}/master/fqxt/jbq!count.action?t="+new Date().getTime(),
+			type:"get",
+			timeout:1200000,
+			success:function(data){
+				lightNet(true);
+				if(data)
+				{
+					var count=data["count"];
+					if(count)
+					{
+						count=count+"";
+						var countStr="";
+						for(var i=0;i<8-count.length;i++)
+							countStr+="0";
+						countStr+=count;
+						
+						$("#jbqcount").html(countStr);
+					}
+				}
+			},
+			error:function(){
+				lightNet(false);
+			}
+		});
     	
     	//图形
     	function createChart(data)
@@ -187,6 +228,7 @@
           		type:"get",
               	dataType:"json",
          		success:function(data){
+         			lightNet(true);
               		if(data)
               		{
     					if(data["error"]==0)
@@ -211,7 +253,10 @@
               				alert(data["msg"]);
               			}
               		}	
-            	}
+            	},
+    			error:function(){
+    				lightNet(false);
+    			}
          	});
     	}
     	
@@ -222,6 +267,7 @@
           		type:"get",
               	dataType:"json",
          		success:function(data){
+         			lightNet(true);
               		if(data)
               		{
     					if(data["error"]==0)
@@ -239,7 +285,10 @@
               				alert(data["msg"]);
               			}
               		}	
-            	}
+            	},
+    			error:function(){
+    				lightNet(false);
+    			}
          	});
     	}
     	
@@ -249,6 +298,7 @@
           		type:"get",
               	dataType:"json",
          		success:function(data){
+         			lightNet(true);
               		if(data)
               		{
     					if(data["error"]==0)
@@ -270,7 +320,7 @@
     								msg="未发情";
     							}
     							
-    							var html='<li class="bline '+css+'"><span class="tc1">'+(i+1)+'</span><span class="tc1">'+item.nz+'</span><span class="tc1">'+item.js+'</span><span class="tc1">'+item.tc+'</span><span class="tc3">'+item.sj+'</span><span class="tc1">'+msg+'</span><span class="tc1">'+item.pz+'</span></li>';
+    							var html='<li class="bline '+css+'"><span class="tc1">'+(i+1)+'</span><span class="tc1">'+item.nz+'</span><span class="tc1">'+item.js+'</span><span class="tc1">'+item.tc+'</span><span class="tc3">'+item.sj+'</span><span class="tc1">'+msg+'</span><span class="tc1 pztime">'+item.pz+'</span></li>';
     							control.append(html);
     						}
     					}          			
@@ -279,7 +329,10 @@
               				alert(data["msg"]);
               			}
               		}	
-            	}
+            	},
+    			error:function(){
+    				lightNet(false);
+    			}
          	});
     	}
     	

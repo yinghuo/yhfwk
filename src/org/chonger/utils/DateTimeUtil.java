@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class DateTimeUtil {
 	public static final String YMD = "yyyy-MM-dd";
-	public static final String YMDHMS = "yyyy-MM-dd hh:mm:ss";//@2014-03-06 add Daniel
+	public static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";//@2014-03-06 add Daniel
 	public static SimpleDateFormat sdfYMDHMS;
 	public static SimpleDateFormat sdfYMD=new SimpleDateFormat(YMD);  
 	
@@ -146,11 +146,15 @@ public class DateTimeUtil {
 	
 	public static int getDayBetweenHms(Date beginDate,Date endDate)
 	{
+		
+		if(null==beginDate||null==endDate)
+			return -1;
+		
 		try {
 			if(sdfYMDHMS==null)sdfYMDHMS=new SimpleDateFormat(YMDHMS);
 			
-			beginDate=sdfYMDHMS.parse(sdfYMD.format(beginDate));
-			endDate=sdfYMDHMS.parse(sdfYMD.format(endDate)); 
+			beginDate=sdfYMDHMS.parse(sdfYMD.format(beginDate)+" 00:00:00");
+			endDate=sdfYMDHMS.parse(sdfYMD.format(endDate)+" 00:00:00"); 
 			Calendar cal = Calendar.getInstance();    
 			cal.setTime(beginDate);    
 			long time1 = cal.getTimeInMillis();                 
@@ -164,6 +168,36 @@ public class DateTimeUtil {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+	
+	public static Date getDayBegin(Date beginDate){
+		if(beginDate==null)return null;
+		
+		try {
+			if(sdfYMDHMS==null)sdfYMDHMS=new SimpleDateFormat(YMDHMS);
+			
+			beginDate=sdfYMDHMS.parse(sdfYMD.format(beginDate)+" 00:00:00");
+			
+			return beginDate;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static Date getDayEnd(Date date){
+		if(date==null)return null;
+		
+		try {
+			if(sdfYMDHMS==null)sdfYMDHMS=new SimpleDateFormat(YMDHMS);
+			
+			date=sdfYMDHMS.parse(sdfYMD.format(date)+" 23:59:59");
+			
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**
@@ -232,6 +266,8 @@ public class DateTimeUtil {
 		
 		System.out.println(DateTimeUtil.getDayBetween(date, datend));
 		
+		System.out.println("获取今天的开始："+getDayBegin(new Date()));
+		System.out.println("获取今天的结束："+getDayEnd(new Date()));
 	}
 	
 }

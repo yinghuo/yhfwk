@@ -67,10 +67,10 @@
 					<td>${status.count }</td>
 					<td><s:property value="#htxx.nzjbxx.nzbh" /></td>
 					<td><s:date name="#htxx.xtrq" format="yyyy-MM-dd" /></td>
-					<td><y:EnumLabel enumName="SFPZ" value="${htxx.zq}" /></td>
-					<td><y:EnumLabel enumName="SFPZ" value="${htxx.yq}" /></td>
-					<td><y:EnumLabel enumName="SFPZ" value="${htxx.zh}" /></td>
-					<td><y:EnumLabel enumName="SFPZ" value="${htxx.yh}" /></td>
+					<td><y:EnumLabel enumName="HTXT" value="${htxx.zq}" /></td>
+					<td><y:EnumLabel enumName="HTXT" value="${htxx.yq}" /></td>
+					<td><y:EnumLabel enumName="HTXT" value="${htxx.zh}" /></td>
+					<td><y:EnumLabel enumName="HTXT" value="${htxx.yh}" /></td>
 					<td><s:property value="#htxx.sy" /></td>
 					<td><a title="修改"
 						onclick="edit('<s:property value="#htxx.xh"/>')"

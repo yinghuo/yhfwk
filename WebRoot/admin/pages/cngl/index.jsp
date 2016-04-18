@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="i" uri="http://open.yinghuo.info/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!doctype html>
 <html>
@@ -54,7 +55,7 @@
               	<th value="" type="1" class="order cr-p" title="降序">日产&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>上次产量</th>
               	<th value="" type="1" class="order cr-p" title="降序">差额&nbsp;<span class="fa fa-caret-down"></span></th>
-              	<th width="160">操作</th>
+              	<!-- <th width="160">操作</th> -->
          	</tr>
          	<s:iterator value="cnlist" status="status" id="gtcnxx">
 						<tr>
@@ -67,8 +68,8 @@
 							<td><s:property value="#gtcnxx.wcl"/></td>
 							<td><s:property value="#gtcnxx.rc"/></td>
 							<td><s:property value="#gtcnxx.src"/></td>
-							<td>${gtcnxx.rc-gtcnxx.src}</td>
-							<td>&nbsp;</td>
+							<td><fmt:formatNumber value="${gtcnxx.rc-gtcnxx.src}" pattern="#,###.00" /></td>
+							<!-- <td>&nbsp;</td> -->
 						</tr>
 			</s:iterator>
   	 	</table>

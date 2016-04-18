@@ -39,7 +39,7 @@ public class NzfzServer {
 	public void saveOrUpDate(NZJBXX nzxx,int zt)
 	{
 		//查询牛只的繁殖状态信息
-		NZFZZTXX _updateEntity=findEntity(nzxx.getXh());
+		NZFZZTXX _updateEntity=nzxx.getNzfzzt();//findEntity(nzxx.getXh());
 		if(_updateEntity!=null)
 		{
 			_updateEntity.setZt(zt);
@@ -51,6 +51,7 @@ public class NzfzServer {
 			_updateEntity=new NZFZZTXX();
 			//_updateEntity.setXh(nzxx.getXh());
 			_updateEntity.setXh(CommUUID.getUUID());
+			_updateEntity.setNzxh(nzxx.getXh());
 			_updateEntity.setZt(zt);
 			dao.save(_updateEntity);
 			
@@ -83,6 +84,7 @@ public class NzfzServer {
 			//{
 			//2016-01-11 Daniel 修改创建逻辑
 				//fzxx.setXh(nzxxId);
+			fzxx.setNzxh(nzxxId);
 			fzxx.setXh(CommUUID.getUUID());
 				dao.save(fzxx);
 			//}
@@ -104,7 +106,7 @@ public class NzfzServer {
 	 * @author Daniel
 	 * @version V1.0
 	 */
-	public NZFZZTXX findEntity(String nzxxId)
+	public NZFZZTXX findEntity1(String nzxxId)
 	{
 		List<NZFZZTXX> resultList=dao.find("from NZFZZTXX model where model.xh='"+nzxxId+"'");
 		if(resultList!=null&&resultList.size()>0)

@@ -19,10 +19,16 @@ import org.chonger.entity.fqxt.FQTSXX;
 import org.chonger.entity.fqxt.JBQXX;
 import org.chonger.entity.fzgl.CDDJXX;
 import org.chonger.entity.fzgl.FQDJXX;
+import org.chonger.entity.fzgl.GNDJXX;
 import org.chonger.entity.fzgl.LCXX;
 import org.chonger.entity.fzgl.PZDJXX;
 import org.chonger.entity.fzgl.RJCJXX;
 import org.chonger.entity.fzgl.RJFJXX;
+import org.chonger.entity.jbfy.HTXTXX;
+import org.chonger.entity.jbfy.JBXX;
+import org.chonger.entity.jbfy.JYXX;
+import org.chonger.entity.jbfy.MYXX;
+import org.chonger.entity.jbfy.QCXX;
 import org.chonger.entity.jbxx.JSJBXX;
 import org.chonger.utils.DateTimeUtil;
 import org.hibernate.annotations.Cache;
@@ -199,6 +205,25 @@ public class NZJBXX {
 	
 	@OneToOne(mappedBy="nzjbxx")
 	private NZLCXX nzlcxx;	
+	
+	//添加其他模块信息汇总
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<GNDJXX> gnxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<JBXX> jbxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<MYXX> myxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)	
+	private List<JYXX> jyxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<QCXX> qcxxList;
+	
+	@OneToMany(mappedBy="nzjbxx",fetch = FetchType.LAZY)
+	private List<HTXTXX> htxtList;
 	
 	public JSJBXX getJsjbxx() {
 		return jsjbxx;
@@ -546,6 +571,54 @@ public class NZJBXX {
 
 	public void setMrztxh(String mrztxh) {
 		this.mrztxh = mrztxh;
+	}
+
+	public List<GNDJXX> getGnxxList() {
+		return gnxxList;
+	}
+
+	public void setGnxxList(List<GNDJXX> gnxxList) {
+		this.gnxxList = gnxxList;
+	}
+
+	public List<JBXX> getJbxxList() {
+		return jbxxList;
+	}
+
+	public void setJbxxList(List<JBXX> jbxxList) {
+		this.jbxxList = jbxxList;
+	}
+
+	public List<MYXX> getMyxxList() {
+		return myxxList;
+	}
+
+	public void setMyxxList(List<MYXX> myxxList) {
+		this.myxxList = myxxList;
+	}
+
+	public List<JYXX> getJyxxList() {
+		return jyxxList;
+	}
+
+	public void setJyxxList(List<JYXX> jyxxList) {
+		this.jyxxList = jyxxList;
+	}
+
+	public List<QCXX> getQcxxList() {
+		return qcxxList;
+	}
+
+	public void setQcxxList(List<QCXX> qcxxList) {
+		this.qcxxList = qcxxList;
+	}
+
+	public List<HTXTXX> getHtxtList() {
+		return htxtList;
+	}
+
+	public void setHtxtList(List<HTXTXX> htxtList) {
+		this.htxtList = htxtList;
 	}
 
 	

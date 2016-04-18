@@ -26,6 +26,14 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class RJCJXX {
 	
+	public int getSjzt() {
+		return sjzt;
+	}
+
+	public void setSjzt(int sjzt) {
+		this.sjzt = sjzt;
+	}
+
 	@Id
 	@Column(name = "xh")
 	private String xh;//序号
@@ -62,6 +70,9 @@ public class RJCJXX {
 	
 	@Column(name = "bz")
 	private String bz;//备注
+	
+	@Column(name = "sjzt")
+	private int sjzt;//数据状态 0 显示 1隐藏
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="nzbh",insertable = false, updatable = false)

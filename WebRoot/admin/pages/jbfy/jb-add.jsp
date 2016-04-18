@@ -238,7 +238,7 @@
 			nzselect.hiden();
 		}
 		
-		loadDef(["sys","systxt"]);
+		loadDefName(["sys","systxt"]);
     </script>
   </body>
  </html>

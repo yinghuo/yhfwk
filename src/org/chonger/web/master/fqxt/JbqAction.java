@@ -133,4 +133,21 @@ public class JbqAction extends ActionSupport {
 		}
 		return "infos";
 	}
+
+	
+	/**计步器个数*/
+	public String count() throws Exception{
+		
+		jsonResult.infosInitOrClear();
+		try{
+			long count = server.getCount();
+			jsonResult.getInfos().put(JsonResultUtils.ERROR, JsonResultUtils.OKVALUE);
+			jsonResult.getInfos().put("count", count);
+		}catch(Exception ex){
+			jsonResult.sendErrorMessage(ex.getMessage());
+		}
+		
+		return "infos";
+	}
+	
 }

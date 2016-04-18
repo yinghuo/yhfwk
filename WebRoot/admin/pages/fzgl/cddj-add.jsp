@@ -171,8 +171,8 @@
 			nzselect.hiden();
 		}
      	
-     	loadDef(["jcy","jcytxt"]);
-     	loadDef(["xzr","xzrtxt"]);
+		loadDefName(["jcy","jcytxt"]);
+		loadDefName(["xzr","xzrtxt"]);
      	
      </script>
   </body>
