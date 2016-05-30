@@ -17,7 +17,7 @@ import com.opensymphony.xwork2.conversion.impl.DefaultTypeConverter;
  */
 public class DateConvert extends DefaultTypeConverter {
 	private static final DateFormat[] ACCEPT_DATE_FORMATS = {
-			new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+			new SimpleDateFormat("yyyy-MM-dd HH:mm"),
 			new SimpleDateFormat("dd/MM/yyyy"),   
 			new SimpleDateFormat("yyyy-MM-dd"),   
 			new SimpleDateFormat("yyyy/MM/dd")

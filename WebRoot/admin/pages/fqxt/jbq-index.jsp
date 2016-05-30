@@ -58,7 +58,7 @@
 									<td><s:property value="#jbq.jbqbh"/></td>
 									<td></td>
 									<td><s:property value="#jbq.nzjbxx.nzbh"/></td>
-									<td><s:date name="#jbq.regdate" format="yyyy-MM-dd HH:mm:ss"/></td>
+									<td><s:date name="#jbq.regdate" format="yyyy-MM-dd HH:mm"/></td>
 									<td>
 										<a title="计步器数据" onclick="data('<s:property value="#jbq.xh"/>')" class="fa fa-list-alt cr-p">计步器数据</a>
 										<a title="修改" onclick="edit('<s:property value="#jbq.xh"/>')" class="fa fa-edit cr-p">修改</a>

@@ -58,7 +58,7 @@
          	<s:iterator value="gnlist" status="status" id="gnxx">
 						<tr>
 							<td><s:property value="#gnxx.nzjbxx.nzbh"/></td>
-							<td><s:date name="#gnxx.gnrq" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#gnxx.gnrq" format="yyyy-MM-dd"/></td>
 							<td><s:property value="#gnxx.gnff"/></td>
 							<td><s:property value="#gnxx.syyw"/></td>
 							<td><s:property value="#gnxx.sy"/></td>

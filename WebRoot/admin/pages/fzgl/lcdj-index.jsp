@@ -58,7 +58,7 @@
          	<s:iterator value="lclist" status="status" id="lcxx">
 						<tr>
 							<td><s:property value="#lcxx.nzjbxx.nzbh"/></td>
-							<td><s:date name="#lcxx.lcrq" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#lcxx.lcrq" format="yyyy-MM-dd"/></td>
 							<td><s:property value="#lcxx.lcyy"/></td>
 							<td><s:property value="#lcxx.telx"/></td>
 							<td><s:property value="#lcxx.fxr"/></td>

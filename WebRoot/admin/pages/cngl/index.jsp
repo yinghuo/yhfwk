@@ -68,7 +68,7 @@
 							<td><s:property value="#gtcnxx.wcl"/></td>
 							<td><s:property value="#gtcnxx.rc"/></td>
 							<td><s:property value="#gtcnxx.src"/></td>
-							<td><fmt:formatNumber value="${gtcnxx.rc-gtcnxx.src}" pattern="#,###.00" /></td>
+							<td><fmt:formatNumber value="${gtcnxx.rc-gtcnxx.src}" pattern="#,##0.00" /></td>
 							<!-- <td>&nbsp;</td> -->
 						</tr>
 			</s:iterator>

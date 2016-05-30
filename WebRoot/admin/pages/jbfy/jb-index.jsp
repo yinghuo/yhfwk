@@ -72,7 +72,7 @@
 							<td><s:property value="#jb.fbyy"/></td>
 							<td><s:property value="#jb.yzcd"/></td>
 							<td><s:property value="#jb.czqk"/></td>
-							<td><y:EnumLabel enumName="SFPZ" value="${jb.fsqn}"/></td>
+							<td><y:EnumLabel enumName="SFQN" value="${jb.fsqn}"/></td>
 							<td><s:property value="#jb.sys"/></td>
 							<td>
 								<a title="修改" onclick="edit('<s:property value="#jb.xh"/>')" class="fa fa-edit cr-p">修改</a>

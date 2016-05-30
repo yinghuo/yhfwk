@@ -71,7 +71,7 @@
 							无
 						</s:else>
 					</td>
-					<td><s:date name="#rjfj.fjrq" format="yyyy年MM月dd日" /></td>
+					<td><s:date name="#rjfj.fjrq" format="yyyy-MM-dd" /></td>
 					<td><s:property value="#rjfj.fjjg" /></td>
 					<td><s:property value="#rjfj.fjy" /></td>
 					<!-- <td><s:property value="#rjfj.tezk" /></td>

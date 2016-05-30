@@ -172,7 +172,7 @@ public class MAction  extends ActionSupport {
 						item.put("nz", tsxx.getNzjbxx().getNzbh());
 						item.put("js", tsxx.getNzjbxx().getJsjbxx().getJsmc());
 						item.put("tc", tsxx.getNzjbxx().getTc()+"");
-						item.put("sj", tsServer.parseStringByMsg(tsxx.getTsms()));
+						item.put("sj", tsServer.parseTimeStringByMsg(tsxx.getTsms()));
 						
 						item.put("zt", tsxx.getSffq()+"");
 						
@@ -182,7 +182,7 @@ public class MAction  extends ActionSupport {
 						if(!StringUtils.isEmptyOrNull(tsxx.getFqid())){
 							FQDJXX fqxx=fqServer.getFqxxById(tsxx.getFqid());
 							if(fqxx!=null){
-								item.put("pz", DateTimeUtil.formatDateToString(fqxx.getPzsj())+"<br />"+DateTimeUtil.formatDateToString(fqxx.getPzsj1()));
+								item.put("pz", DateTimeUtil.formatDateToShortString(fqxx.getPzsj())+"<br />"+DateTimeUtil.formatDateToShortString(fqxx.getPzsj1()));
 							}
 						}
 						

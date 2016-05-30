@@ -111,7 +111,7 @@
 					</tr>
 					<s:iterator value="nz.fqdjxxList" status="status" id="fqxx">
 						<tr>
-							<td><s:date name="#fqxx.fqsj" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#fqxx.fqsj" format="yyyy-MM-dd HH:mm" /></td>
 							<td><y:EnumLabel enumName="FQLX" value="${fqxx.fqlx}" /></td>
 							<td><y:EnumLabel enumName="FXFS" value="${fqxx.fxfs}" /></td>
 							<td><s:property value="#fqxx.fxr" /></td>
@@ -132,8 +132,8 @@
 					</tr>
 					<s:iterator value="nz.pzdjxxList" status="status" id="pzxx">
 						<tr>
-							<td><s:date name="#pzxx.fqsj" format="yyyy年MM月dd日" /></td>
-							<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#pzxx.fqsj" format="yyyy-MM-dd HH:mm" /></td>
+							<td><s:date name="#pzxx.pzsj" format="yyyy-MM-dd HH:mm" /></td>
 							<td><s:property value="#pzxx.djbh" /></td>
 							<td><s:property value="#pzxx.djlx" /></td>
 							<td><s:property value="#pzxx.pzy" /></td>
@@ -152,7 +152,7 @@
 					</tr>
 					<s:iterator value="nz.rjcjxxList" status="status" id="cjxx">
 						<tr>
-							<td><s:date name="#cjxx.cjrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#cjxx.cjrq" format="yyyy-MM-dd" /></td>
 							<td><y:EnumLabel enumName="CJJG" value="${cjxx.cjjg}" /></td>
 							<td><s:property value="#cjxx.cjy"/></td>
 							<td><y:EnumLabel enumName="CJFS" value="${cjxx.cjfs}" /></td>
@@ -189,7 +189,7 @@
 					</tr>
 					<s:iterator value="nz.lcdjxxList" status="status" id="lcxx">
 						<tr>
-							<td><s:date name="#lcxx.lcrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#lcxx.lcrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#lcxx.lcyy"/></td>
 							<td><s:property value="#lcxx.telx"/></td>
 							<td><s:property value="#lcxx.fxr"/></td>
@@ -211,7 +211,7 @@
 					</tr>
 					<s:iterator value="nz.cddjxxList" status="status" id="cdxx">
 						<tr>
-							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#cdxx.cdsj" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#cdxx.cdlx"/></td>
 							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
 							<td><y:EnumLabel enumName="CDTW" value="${cdxx.tw}"/></td>
@@ -232,7 +232,7 @@
 					</tr>
 					<s:iterator value="nz.gnxxList" status="status" id="gnxx">
 						<tr>
-							<td><s:date name="#gnxx.gnrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#gnxx.gnrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#gnxx.gnff"/></td>
 							<td><s:property value="#gnxx.syyw"/></td>
 							<td><s:property value="#gnxx.sy"/></td>
@@ -252,11 +252,11 @@
 					</tr>
 					<s:iterator value="nz.gtcnxxList" status="status" id="cnxx">
 						<tr>
-							<td><s:date name="#cnxx.jnrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#cnxx.jnrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#cnxx.scl"/></td>
 							<td><s:property value="#cnxx.xcl"/></td>
 							<td><s:property value="#cnxx.wcl"/></td>
-							<td><fmt:formatNumber value="${cnxx.scl+cnxx.xcl+cnxx.wcl}" pattern="#,###.00" /></td>
+							<td><fmt:formatNumber value="${cnxx.scl+cnxx.xcl+cnxx.wcl}" pattern="#,##0.00" /></td>
 						</tr>
 					</s:iterator>
 				</table>
@@ -277,7 +277,7 @@
 					</tr>
 					<s:iterator value="nz.jbxxList" status="status" id="jbxx">
 						<tr>
-							<td><s:date name="#jbxx.fbrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#jbxx.fbrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#jbxx.jbzl"/></td>
 							<td><s:property value="#jbxx.jbmc"/></td>
 							<td><s:property value="#jbxx.zyzz"/></td>
@@ -305,7 +305,7 @@
 					</tr>
 					<s:iterator value="nz.myxxList" status="status" id="myxx">
 						<tr>
-							<td><s:date name="#myxx.myrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#myxx.myrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#myxx.myxm"/></td>
 							<td><s:property value="#myxx.ymmc"/></td>
 							<td><s:property value="#myxx.syjl"/></td>
@@ -334,7 +334,7 @@
 					</tr>
 					<s:iterator value="nz.jyxxList" status="status" id="jyxx">
 						<tr>
-							<td><s:date name="#jyxx.jyrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#jyxx.jyrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#jyxx.jyyl"/></td>
 							<td><s:property value="#jyxx.jyxm"/></td>
 							<td><s:property value="#jyxx.ymmc"/></td>
@@ -363,7 +363,7 @@
 					</tr>
 					<s:iterator value="nz.qcxxList" status="status" id="qcxx">
 						<tr>
-							<td><s:date name="#qcxx.qcrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#qcxx.qcrq" format="yyyy-MM-dd" /></td>
 							<td><s:property value="#qcxx.qcff"/></td>
 							<td><s:property value="#qcxx.ywmc"/></td>
 							<td><s:property value="#qcxx.syjl"/></td>
@@ -388,7 +388,7 @@
 					</tr>
 					<s:iterator value="nz.htxtList" status="status" id="htxx">
 						<tr>
-							<td><s:date name="#htxx.xtrq" format="yyyy年MM月dd日" /></td>
+							<td><s:date name="#htxx.xtrq" format="yyyy-MM-dd" /></td>
 							<td><y:EnumLabel enumName="HTXT" value="${htxx.zq}" /></td>
 							<td><y:EnumLabel enumName="HTXT" value="${htxx.zh}" /></td>
 							<td><y:EnumLabel enumName="HTXT" value="${htxx.yq}" /></td>

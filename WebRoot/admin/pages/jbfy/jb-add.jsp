@@ -181,6 +181,22 @@
 				alert("请填写兽医！");
 				return false;
 			}
+			
+     		//药费累计的输入检测
+     		var vale;
+     		if((vale=$("#yflj").val()).length>0 && isNaN(vale))
+     		{
+     			alert("药费累计输入错误，必须为数字！");
+     			return false;
+     		}
+     		//用药次数的输入检测
+     		var vale;
+     		if((vale=$("#yycs").val()).length>0 && isNaN(vale))
+     		{
+     			alert("用药次数输入错误，必须为数字！");
+     			return false;
+     		}
+     		
 			return true;
 		}
 

@@ -197,7 +197,7 @@ public class RjcjAction extends ActionSupport {
 						jsonResult.sendSuccessMessage("操作成功！");
 						jsonResult.getInfos().put("t",t);
 						jsonResult.getInfos().put("r",r);
-						jsonResult.getInfos().put("d",rj.getRj2rq()!=null?DateTimeUtil.formatDateToString(rj.getRj2rq(),"yyyy年MM月dd日"):"");
+						jsonResult.getInfos().put("d",rj.getRj2rq()!=null?DateTimeUtil.formatDateToString(rj.getRj2rq(),"yyyy-MM-dd"):"");
 						jsonResult.getInfos().put("v",v==0?CJJG2.有胎.toString():CJJG2.无胎.toString());
 					}
 					else if(t.equals("3"))
@@ -208,7 +208,7 @@ public class RjcjAction extends ActionSupport {
 						jsonResult.sendSuccessMessage("操作成功！");
 						jsonResult.getInfos().put("t",t);
 						jsonResult.getInfos().put("r",r);
-						jsonResult.getInfos().put("d",rj.getRj3rq()!=null?DateTimeUtil.formatDateToString(rj.getRj3rq(),"yyyy年MM月dd日"):"");
+						jsonResult.getInfos().put("d",rj.getRj3rq()!=null?DateTimeUtil.formatDateToString(rj.getRj3rq(),"yyyy-MM-dd"):"");
 						jsonResult.getInfos().put("v",v==0?CJJG2.有胎.toString():CJJG2.无胎.toString());
 					}
 					

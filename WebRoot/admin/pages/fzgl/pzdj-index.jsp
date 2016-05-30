@@ -59,7 +59,7 @@
          	<s:iterator value="pzlist" status="status" id="pzxx">
 				<tr>
 					<td><s:property value="#pzxx.nzjbxx.nzbh"/></td>
-					<td><s:date name="#pzxx.pzsj" format="yyyy年MM月dd日"/></td>
+					<td><s:date name="#pzxx.pzsj" format="yyyy-MM-dd HH:mm"/></td>
 					<td><s:property value="#pzxx.nzjbxx.qq"/></td>
 					<td>
 						<y:EnumLabel enumName="NZFZZT" value="${pzxx.nzjbxx.nzfzzt.zt}" />

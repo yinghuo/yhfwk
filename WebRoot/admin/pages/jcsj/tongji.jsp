@@ -41,7 +41,7 @@
    		</tr>
    		<tr>
    			<td>最后发情时间</td>
-   			<td><s:date name="tjxx.fq0t" format="yyyy-MM-dd HH:mm:ss"/></td>
+   			<td><s:date name="tjxx.fq0t" format="yyyy-MM-dd HH:mm"/></td>
    			<!-- <td> -- </td> -->
    			<td>0</td>
    			<!-- <td> -- </td> -->
@@ -91,13 +91,13 @@
    		</tr>
    		<tr>
    			<td>上一日总产奶量</td>
-   			<td><fmt:formatNumber value="${tjxx.cnz}" pattern="#,###.00" /> Kg</td><!-- 整个牛群总产量 -->
-   			<td>.00 Kg</td>
+   			<td><fmt:formatNumber value="${tjxx.cnz}" pattern="#,##0.00" /> Kg</td><!-- 整个牛群总产量 -->
+   			<td>0.00 Kg</td>
    		</tr>
    		<tr>
    			<td>单产状元</td>
-   			<td><fmt:formatNumber value="${tjxx.cn1value}" pattern="#,###.00" /> Kg</td><!-- 牛号+上一日总产量 -->
-   			<td>.00 Kg</td>
+   			<td><fmt:formatNumber value="${tjxx.cn1value}" pattern="#,##0.00" /> Kg</td><!-- 牛号+上一日总产量 -->
+   			<td>0.00 Kg</td>
    		</tr>
   	</table>
   	

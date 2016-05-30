@@ -7,7 +7,8 @@ import java.util.Date;
 
 public class DateTimeUtil {
 	public static final String YMD = "yyyy-MM-dd";
-	public static final String YMDHMS = "yyyy-MM-dd HH:mm:ss";//@2014-03-06 add Daniel
+	public static final String YMDHMS = "yyyy-MM-dd HH:mm";//@2014-03-06 add Daniel
+	public static final String YMDHM = "yyyy-MM-dd HH:mm";//@2016-05-06 add liuzq
 	public static SimpleDateFormat sdfYMDHMS;
 	public static SimpleDateFormat sdfYMD=new SimpleDateFormat(YMD);  
 	
@@ -36,6 +37,20 @@ public class DateTimeUtil {
 		if(t1==null)return null;
 		if(sdfYMDHMS==null)
 			sdfYMDHMS=new SimpleDateFormat(YMDHMS);
+		return sdfYMDHMS.format(t1);
+	}
+	
+	/**
+	 * 默认格式化为yyyy-MM-dd hh:mm
+	 * @author Daniel
+	 * @param t1 要格式化的时间
+	 * @return
+	 */
+	public static String formatDateToShortString(Date t1)
+	{
+		if(t1==null)return null;
+		if(sdfYMDHMS==null)
+			sdfYMDHMS=new SimpleDateFormat(YMDHM);
 		return sdfYMDHMS.format(t1);
 	}
 	

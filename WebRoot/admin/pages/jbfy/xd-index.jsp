@@ -63,7 +63,7 @@
 			<s:iterator value="xdlist" status="status" id="xd">
 				<tr>
 					<td>${status.count }</td>
-					<td><s:date name="#xd.xdrq" format="yyyy年MM月dd日" /></td>
+					<td><s:date name="#xd.xdrq" format="yyyy-MM-dd" /></td>
 					<td><s:property value="#xd.xdqy" /></td>
 					<td><s:property value="#xd.yjmc" /></td>
 					<td><s:property value="#xd.syjl" /></td>

@@ -82,7 +82,7 @@
 								</s:else>		
 							</td>
 							
-							<td><s:date name="#cdxx.cdsj" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#cdxx.cdsj" format="yyyy-MM-dd"/></td>
 							<td><s:property value="#cdxx.cdlx"/></td>
 							<td><y:EnumLabel enumName="CDNYCD" value="${cdxx.cdny}"/></td>
 							<td><y:EnumLabel enumName="CDTW" value="${cdxx.tw}"/></td>

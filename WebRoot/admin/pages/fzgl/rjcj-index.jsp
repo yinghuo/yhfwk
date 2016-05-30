@@ -74,7 +74,7 @@
 							<td><s:property value="#rjcj.nzjbxx.nzbh"/></td>							
 							<td>
 								<s:if test="#rjcj.nzjbxx.nzfzzt!=null">
-									<s:date name="#rjcj.nzjbxx.nzfzzt.sj" format="yyyy-MM-dd"/>
+									<s:date name="#rjcj.nzjbxx.nzfzzt.sj" format="yyyy-MM-dd HH:mm"/>
 								</s:if>
 								<s:else>
 									 -- 
@@ -90,7 +90,7 @@
 									 -- 
 								</s:else>
 							</td>
-							<td><s:date name="#rjcj.cjrq" format="yyyy年MM月dd日"/></td>
+							<td><s:date name="#rjcj.cjrq" format="yyyy-MM-dd"/></td>
 							<td><y:EnumLabel enumName="CJJG" value="${rjcj.cjjg}" /></td>
 							<%//2016-01-11 Daniel 添加妊检2-3的过滤，未孕情况下无需继续%>
 							<s:if test="#rjcj.cjjg==0">
@@ -100,7 +100,7 @@
 									<a href="javascript:{}" onClick="WdatePicker({el:'rj2rq-${status.index}',dateFmt:'yyyy-MM-dd',onpicked:function(dp){picked(dp,'2-${status.index}');}})">选择日期</a>
 								</s:if>
 								<s:else>
-									<s:date name="#rjcj.rj2rq" format="yyyy年MM月dd日"/>
+									<s:date name="#rjcj.rj2rq" format="yyyy-MM-dd"/>
 								</s:else>
 							</td>
 							<td>
@@ -122,7 +122,7 @@
 									<a href="javascript:{}" onClick="WdatePicker({el:'rj3rq-${status.index}',dateFmt:'yyyy-MM-dd',onpicked:function(dp){picked(dp,'3-${status.index}');}})">选择日期</a>
 								</s:if>
 								<s:else>
-									<s:date name="#rjcj.rj3rq" format="yyyy年MM月dd日"/>
+									<s:date name="#rjcj.rj3rq" format="yyyy-MM-dd"/>
 								</s:else>
 							<td>
 								<s:if test="#rjcj.rj3jg==-1">

@@ -100,6 +100,7 @@ public class FQTSXXServer {
 	}
 	
 	private Pattern datePattern=Pattern.compile("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}");
+	private Pattern shortTimePattern=Pattern.compile("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
 	/**
 	 * 分析消息中的时间
 	 * @param msg
@@ -131,6 +132,26 @@ public class FQTSXXServer {
 	public String parseStringByMsg(String msg)
 	{
 		Matcher matcher = datePattern.matcher(msg);
+		if(matcher.find())
+		{
+			String dateString=matcher.group();
+			//System.out.println("解析时间："+dateString);
+			
+			return dateString;
+		}
+		return null;
+	}
+	/**
+	 * 分析消息中的时间(没有秒)
+	 * @param msg
+	 * @retrun Date 
+	 * @throws 
+	 * @author Daniel
+	 * @version V1.0
+	 */
+	public String parseTimeStringByMsg(String msg)
+	{
+		Matcher matcher = shortTimePattern.matcher(msg);
 		if(matcher.find())
 		{
 			String dateString=matcher.group();

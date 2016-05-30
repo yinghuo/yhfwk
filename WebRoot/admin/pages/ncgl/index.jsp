@@ -55,8 +55,8 @@
 					<td><s:property value="#ncxx.ncmc"/></td>
 					<td><s:property value="#ncxx.fzr"/></td>
 					<td><s:property value="#ncxx.fzrdh"/></td>
-					<td><s:date name="#ncxx.kssysj" format="yyyy年MM月dd日"/></td>
-					<td><s:date name="#ncxx.tzsysj" format="yyyy年MM月dd日"/></td>
+					<td><s:date name="#ncxx.kssysj" format="yyyy-MM-dd"/></td>
+					<td><s:date name="#ncxx.tzsysj" format="yyyy-MM-dd"/></td>
 					<td><s:property value="#ncxx.user.uloginname"/></td>
 					<td>
 						<a title="修改" onclick="edit('<s:property value="#ncxx.xh"/>')" class="fa fa-edit cr-p">修改</a>

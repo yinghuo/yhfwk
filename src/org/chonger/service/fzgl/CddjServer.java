@@ -115,10 +115,17 @@ public class CddjServer {
 				//NZLBXX _nzlb=_nzxx.getNzlbxx();
 				//更新牛只的胎次数量、状态进入成年母牛
 				//@modify 2016-03-23 Daniel 修改胎间距计算方式，如果胎次为0 则胎间距为0，后面的为繁殖天数-上次胎间距
-				if(_nzxx.getTc()<=0){
+//				if(_nzxx.getTc()<=0){
+//					_nzxx.setTjj(0);
+//				}else{
+//					_nzxx.setTjj(_fzxx.getDay()-_nzxx.getTjj());//Daniel 增加胎间距
+//				}
+				//@modify 2016-05-23 Liuzq 修改胎间距计算方式，育成牛第一胎后，胎间距应该是0，
+				//生第二胎的时候才会出现胎间距，第二胎的出生日期减去第一胎出生的日期，是胎间距，成年母牛才会有胎间距
+				if(_nzxx.getTc()<=1){
 					_nzxx.setTjj(0);
 				}else{
-					_nzxx.setTjj(_fzxx.getDay()-_nzxx.getTjj());//Daniel 增加胎间距
+					_nzxx.setTjj(_fzxx.getDay()-_nzxx.getTjj());//liuzq 增加胎间距 应该怎么计算？两个胎次之间的天数差
 				}
 				
 				_nzxx.setTc(_nzxx.getTc()+1);
