@@ -14,6 +14,8 @@ import org.chonger.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
+
+import antlr.StringUtils;
 /**
  * 个体产奶管理的常用Action处理
  * @ClassName: GtcnxxAction
@@ -78,6 +80,8 @@ public class GtcnxxAction extends ActionSupport {
 	private int otype;
 	public void setOname(String oname) {this.oname = oname;}
 	public void setOtype(int otype) {this.otype = otype;}
+	public String getOname() { return oname; }
+	public int getOtype() { return otype; }
 	
 	/** 排序获取，方便翻页使用 */
 	public String getOrderString()
@@ -90,7 +94,13 @@ public class GtcnxxAction extends ActionSupport {
 	
 	@Override
 	public String execute() throws Exception {
-		pager.init(server.getQueryString(bh)+" order by model.jnrq desc",pager.pageSize,p);
+		
+		String order = "model.jnrq desc";
+		if(!StringUtil.IsEmpty(oname)){
+			order = "model." + oname + " " + (otype==1?"desc":"asc");
+		}
+		
+		pager.init(server.getQueryString(bh)+" order by " + order,pager.pageSize,p);
 		cnlist=pager.getDataSource();
 		return "list.jsp";
 	}

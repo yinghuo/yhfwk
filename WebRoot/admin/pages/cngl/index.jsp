@@ -46,15 +46,15 @@
   	 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table ta-c">
   	 		<tr>
               	<th>牛只编号</th>
-              	<th>胎次↓</th>
+              	<th url="${pageContext.request.contextPath}/master/cngl/gtcnxx.action?p=1${searchString}" value="nzjbxx.tc" type="1" class="order cr-p" title="降序">胎次&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>泌乳天数</th>
-              	<th value="" type="1" class="order cr-p" title="降序">挤奶日期&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th url="${pageContext.request.contextPath}/master/cngl/gtcnxx.action?p=1${searchString}" value="jnrq" type="1" class="order cr-p" title="降序">挤奶日期&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>早</th>
               	<th>中</th>
               	<th>晚</th>
-              	<th value="" type="1" class="order cr-p" title="降序">日产&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th url="${pageContext.request.contextPath}/master/cngl/gtcnxx.action?p=1${searchString}" value="rc" type="1" class="order cr-p" title="降序">日产&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th>上次产量</th>
-              	<th value="" type="1" class="order cr-p" title="降序">差额&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th url="${pageContext.request.contextPath}/master/cngl/gtcnxx.action?p=1${searchString}" value="src" type="1" class="order cr-p" title="降序">差额&nbsp;<span class="fa fa-caret-down"></span></th>
               	<!-- <th width="160">操作</th> -->
          	</tr>
          	<s:iterator value="cnlist" status="status" id="gtcnxx">
@@ -129,6 +129,15 @@
      	{
      		window.location.href="${pageContext.request.contextPath}/master/jsgl/jsgl!edit.action?id="+id;
      	}     	
+     	
+     	var oname = "${oname}";
+     	var otype = "${otype}";
+     	
+     	if(oname && oname.length > 0){
+     		console.log($(".order[value="+oname+"]"));
+     		$(".order[value="+oname+"]").attr("type",otype);
+     	}
+     	
      </script>
   </body>
  </html>
