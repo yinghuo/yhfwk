@@ -54,7 +54,7 @@
               	<th width="200">最佳配种时段</th>
               	<th width="200">发情类型</th>
               	<th width="200">发现方式</th>
-              	<th width="200" value="" type="1" class="order cr-p" title="降序">是否配种&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th width="200" url="${pageContext.request.contextPath}/master/fzgl/fqdj.action?p=1${searchString}" value="sfpz" type="1" class="order cr-p" title="降序">是否配种&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="fqlist" status="status" id="fqxx">
@@ -146,6 +146,14 @@
      				window.location.reload();
      		});
      	}
+     	
+     	var oname = "${oname}";
+     	var otype = "${otype}";
+     	
+     	if(oname && oname.length > 0){
+     		$(".order[value='"+oname+"']").attr("type",otype);
+     	}
+     	
      </script>
   </body>
 </html>

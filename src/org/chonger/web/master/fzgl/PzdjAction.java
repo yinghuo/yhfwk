@@ -90,11 +90,30 @@ public class PzdjAction extends ActionSupport {
 		return searchString;
 	}
 	
-	@Override
+	private String oname;
+	private int otype;
+	public void setOname(String oname) {this.oname = oname;}
+	public void setOtype(int otype) {this.otype = otype;}
+	public String getOname() { return oname; }
+	public int getOtype() { return otype; }
 	
+	/** 排序获取，方便翻页使用 */
+	public String getOrderString()
+	{
+		String orderString = "";
+		
+		return orderString;
+	}
+	
+	@Override
 	public String execute() throws Exception {
 		//modify 2015-06-04	Daniel	添加排序，按照配种时间排序
-		pager.init(server.getQueryString(bh, eb) + " order by model.pzsj desc ", pager.pageSize, p);
+		String order = "model.pzsj desc";
+		if(!StringUtil.IsEmpty(oname)){
+			order = "model." + oname + " " + (otype==1?"desc":"asc");
+		}
+		
+		pager.init(server.getQueryString(bh, eb) + " order by " + order, pager.pageSize, p);
 		pzlist = pager.getDataSource();
 		return "pz-list.jsp";
 	}

@@ -90,10 +90,31 @@ public class FqdjAction extends ActionSupport {
 		return searchString;
 	}
 	
+	private String oname;
+	private int otype;
+	public void setOname(String oname) {this.oname = oname;}
+	public void setOtype(int otype) {this.otype = otype;}
+	public String getOname() { return oname; }
+	public int getOtype() { return otype; }
+	
+	/** 排序获取，方便翻页使用 */
+	public String getOrderString()
+	{
+		String orderString = "";
+		
+		return orderString;
+	}
+	
 	@Override
 	public String execute() throws Exception {
 		//modify 2015-06-03	Daniel	添加排序，需要配种的排在前面
-		pager.init(server.getQueryString(bh, eb)+" order by model.sfpz ", pager.pageSize, p);
+		
+		String order = "model.sfpz";
+		if(!StringUtil.IsEmpty(oname)){
+			order = "model." + oname + " " + (otype==1?"desc":"asc");
+		}
+		
+		pager.init(server.getQueryString(bh, eb)+" order by " + order, pager.pageSize, p);
 		fqlist = pager.getDataSource();
 		return "fq-list.jsp";
 	}

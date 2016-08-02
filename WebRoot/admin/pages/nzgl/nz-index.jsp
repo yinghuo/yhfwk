@@ -87,8 +87,8 @@
               	<th width="120">出生日期</th>
               	<th>性别</th>
               	<th>配孕天数</th>
-              	<th value="" type="1" class="order cr-p" title="降序">胎间距&nbsp;<span class="fa fa-caret-down"></span></th>
-              	<th value="" type="1" class="order cr-p" title="降序">预产期&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th url="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=1${searchString}" value="tjj" type="1" class="order cr-p" title="降序">胎间距&nbsp;<span class="fa fa-caret-down"></span></th>
+              	<th url="${pageContext.request.contextPath}/master/nzgl/nzxx.action?p=1${searchString}" value="nzfzzt.tssj" type="1" class="order cr-p" title="降序">预产期&nbsp;<span class="fa fa-caret-down"></span></th>
               	<th width="200">操作</th>
          	</tr>
          	<s:iterator value="nzlist" status="status" id="nzxx">
@@ -246,6 +246,13 @@
 					selectControl.options.add(optionItem);
 				}
      		}
+     	}
+     	
+     	var oname = "${oname}";
+     	var otype = "${otype}";
+     	
+     	if(oname && oname.length > 0){
+     		$(".order[value='"+oname+"']").attr("type",otype);
      	}
      	
      	<%/*function deleteDone(data)
